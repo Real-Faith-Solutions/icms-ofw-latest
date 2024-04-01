@@ -448,7 +448,7 @@ class Administrator extends CI_Controller {
     public function user_login() {
         $sess = $this->checkSession();
         if ($sess) {
-            redirect(SITE_URL . 'dashboard');
+            redirect(SITE_URL . 'twofactorauth');
             exit();
         } else {
             session_destroy();
@@ -468,20 +468,40 @@ class Administrator extends CI_Controller {
     }
 
     public function twofactorauth() {
-        session_destroy();
-        $aRecordSet = [];
-        $aSEO = array(
-            'page_title' => 'ICMS:twofactorauth',
-            'page_description' => 'User Validation',
-            'page_keyword' => 'Two-factor Authentication'
-        );
-        $aLibraries = array(
-            'plugin' => '',
-            'css' => '',
-            'js' => array('global_methods', 'icms_message')
-        );
-        $this->setTemplate('user_twofactor_authentication', $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
+        $sess = $this->checkSession();
+        if ($sess) {
+            $aRecordSet = [];
+            $aSEO = array(
+                'page_title' => 'ICMS:twofactorauth',
+                'page_description' => 'User Validation',
+                'page_keyword' => 'Two-factor Authentication'
+            );
+            $aLibraries = array(
+                'plugin' => '',
+                'css' => '',
+                'js' => array('global_methods', 'icms_message')
+            );
+            $this->setTemplate('user_twofactor_authentication', $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
+        } else {
+            redirect(SITE_URL . 'twofactorauth');
+            exit();
+        }
+        
     }
+    // public function twofactorauth() {
+    //    $aRecordSet = [];
+    //         $aSEO = array(
+    //             'page_title' => 'ICMS:twofactorauth',
+    //             'page_description' => 'User Validation',
+    //             'page_keyword' => 'Two-factor Authentication'
+    //         );
+    //         $aLibraries = array(
+    //             'plugin' => '',
+    //             'css' => '',
+    //             'js' => array('global_methods', 'icms_message')
+    //         );
+    //         $this->setTemplate('user_twofactor_authentication', $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
+    // }
     
 
     public function settings() {
