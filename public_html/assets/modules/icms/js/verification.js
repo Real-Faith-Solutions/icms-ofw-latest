@@ -147,18 +147,11 @@ $('.btn-resend').click(function () {
     });
 
     $.post(sAjaxWebPublic,data, function (rs) {
-        console.log(rs);
-        icmsMessage({
-            type: 'msgPreloader',
-            visible: true
-        });
-
         if (parseInt(rs.data.flag) == 1) {
             icmsMessage({
                 type: 'msgSuccess'
             });
         } else {
-            console.log(rs.data.flag);
             $('#otp_count').text(rs.data.err_msg);
             $('#otp_count').addClass('error-message');
             // Start countdown if there is remaining time
@@ -190,20 +183,3 @@ function startCountdown(remainingTime) {
     }, 1000);
 }
 
-function send() {
-    $.ajax({
-        url: 'your_api_endpoint.php', // Replace 'your_api_endpoint.php' with your actual API endpoint URL
-        type: 'POST',
-        dataType: 'json',
-        success: function(response) {
-            if (response.success) {
-                console.log('Email sent successfully');
-            } else {
-                console.error('Error:', response.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX Error:', status, error);
-        }
-    });
-}

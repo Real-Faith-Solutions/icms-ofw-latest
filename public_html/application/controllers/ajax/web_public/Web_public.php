@@ -7,14 +7,16 @@
  * @author LBS eBusiness Solutions Corp. 
  * @since 2017
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Web_public extends CI_Controller {
+class Web_public extends CI_Controller
+{
 
     const SUCCESS_RESPONSE = 1;
     const FAILED_RESPONSE = 0;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         //load validation library
@@ -27,7 +29,8 @@ class Web_public extends CI_Controller {
     /**
      * Ajax Route :: Action Controller
      */
-    public function ajax() {
+    public function ajax()
+    {
 
         // route ajax api
         $this->base_action_ajax();
@@ -38,15 +41,16 @@ class Web_public extends CI_Controller {
     //     $this->sessionPushLogout('admininistrator');
     // }
 
-    public function addFileComplaint($aParam) {
+    public function addFileComplaint($aParam)
+    {
 
         $aResponse = [];
         $aResponse['flag'] = self::FAILED_RESPONSE;
         $aParam = $this->yel->safe_mode_clean_array($aParam);
-        
 
-        $old_date = explode('/', $aParam['temporary_victim_dob']); 
-        $new_data = $old_date[2].'-'.$old_date[0].'-'.$old_date[1];
+
+        $old_date = explode('/', $aParam['temporary_victim_dob']);
+        $new_data = $old_date[2] . '-' . $old_date[0] . '-' . $old_date[1];
         $aParam['temporary_victim_dob'] = $new_data;
 
 
@@ -83,23 +87,23 @@ class Web_public extends CI_Controller {
         // add to temporary case table
         $add_data = $this->Web_public_model->addFileComplaint($aParam);
 
-        if($add_data[0]['stat'] == 1) {
+        if ($add_data[0]['stat'] == 1) {
 
-           //temporary case logs / remarks
+            //temporary case logs / remarks
             // $aParam['temporary_case_remarks'] = "Complainant info has been updated."; 
             // $aParam['temporary_case_remarks_added_by'] = $_SESSION['userData']['user_id'];
             // $addTemporaryCaseAccessLog = $this->Temporary_case_model->AddTemporaryCaseRemarksBySystem($aParam);
 
             //temporary case access logs
             $aParam['temporary_case_id'] = $add_data[0]['insert_id'];
-            $aParam['temporary_case_access_log_description'] = "Added new complaint."; 
+            $aParam['temporary_case_access_log_description'] = "Added new complaint.";
             $addTempCaseLog = $this->Web_public_model->addTempCaseLog($aParam);
 
             $aResponse['tcn'] = $add_data[1]['temporary_case_number'];
             $aResponse['tcid'] = $this->yel->encrypt_param($aParam['temporary_case_id']);
 
             // send otp
-            $otp = [];  
+            $otp = [];
             $otp['otp_code'] = mt_rand(100000, 999999);
             $otp['otp_type'] = 0; // Default 0 = no value
             $otp['otp_portal'] = 2; // email
@@ -123,7 +127,7 @@ class Web_public extends CI_Controller {
                 // ------//
 
                 // temp removal of verification code
-                
+
                 $this->Web_public_model->updateOTPStatusSuccess($aParam);
                 // ------ //
                 $aResponse['otp_details'] = $this->Web_public_model->getLastOtpRequestDetails($param);
@@ -139,21 +143,22 @@ class Web_public extends CI_Controller {
                 "id" => $aParam['temporary_case_id']
             ]);
 
-            
+
 
             $aResponse['flag'] = self::SUCCESS_RESPONSE;
         }
-        
+
         return $aResponse;
     }
 
     //Email Verification
-    public function verify_otp($aParam) {
+    public function verify_otp($aParam)
+    {
 
         // if (isset($_GET['tcn']) == false) {
         //     redirect(MAIN_SITE_URL);
         // }
-        
+
         $aRecordSet = [];
         $param = [];
 
@@ -161,7 +166,7 @@ class Web_public extends CI_Controller {
         $param['temp_case_info'] = $this->Web_public_model->getTempCaseInfoByCaseTempNumber($param);
         $param['otp_portal'] = 2;
         $lastOTPDetails = $this->Web_public_model->getLastOtpRequestDetails($param);
-        
+
         $sendOTP = 0;
         $aRecordSet['suspend'] = 0;
         if ($lastOTPDetails['otp_try'] >= 5 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
@@ -208,17 +213,18 @@ class Web_public extends CI_Controller {
     }
 
     //Submit Email OTP
-    public function submitEmailOTP($param) {
+    public function submitEmailOTP($param)
+    {
         $rs = [];
         $rs['flag'] = self::FAILED_RESPONSE;
-        
+
         $param = $this->yel->safe_mode_clean_array($param);
 
         $this->form_validation->set_rules('otp_code', '', 'required');
         $this->form_validation->set_rules('tcn', '', 'required');
 
         $param['temporary_case_no'] = $this->yel->decrypt_param($param['tcn']);
-        
+
         //return validation errors
         if ($this->form_validation->run() == FALSE) {
             $rs['message'] = validation_errors();
@@ -231,11 +237,11 @@ class Web_public extends CI_Controller {
 
         $param['temporary_case_id'] = $this->Web_public_model->getTempCaseId($param['temporary_case_no']);
 
-        if($param['temporary_case_id'] == '') {
+        if ($param['temporary_case_id'] == '') {
             $param['case_id'] = $this->Web_public_model->getCaseId($param['temporary_case_no']);
             $param['temporary_case_id'] = 'CN-' . $param['case_id'];
         }
-        
+
         // check tries and resend count
         $param['otp_portal'] = 2;
         $param['temp_case_info']['temporary_case_id'] =  $param['temporary_case_id'];
@@ -246,9 +252,9 @@ class Web_public extends CI_Controller {
             $rs['result']['otp_try'] = $lastOTPDetails['otp_try'];
             $rs['message'] = 'Reached retry limit';
             return $rs;
-        } 
+        }
 
-        
+
         $otpCompare = $this->Web_public_model->submitOTP($param);
 
         if ($otpCompare['otp_code'] == $param['otp_code']) {
@@ -260,7 +266,7 @@ class Web_public extends CI_Controller {
             // $this->Web_public_model->verifiedEmailAddress($param);
             // $this->Web_public_model->setMemberAsVerified($param);
             $rs['result']['otp_code'] = $this->yel->encrypt_param($otpCompare['otp_code']);
-            
+
             // if($param['case_id'] != '') {
             //     $param['temporary_case_id'] = $param['case_id'];
             // }
@@ -275,20 +281,21 @@ class Web_public extends CI_Controller {
     }
 
     //Resend Email OTP
-    public function resendEmailOTP($param) {
+    public function resendEmailOTP($param)
+    {
         $aRecordSet = [];
         $aRecordSet['flag'] = self::FAILED_RESPONSE;
         $param = $this->yel->safe_mode_clean_array($param);
 
         if (empty($param['tcn']) == true) {
             return redirect('/tracking');
-        } 
+        }
 
         $param['temporary_case_number'] = $this->yel->decrypt_param($param['tcn']);
         $param['temp_case_info'] = $this->Web_public_model->getTempCaseInfoByCaseTempNumber($param);
         $param['otp_portal'] = 2;
 
-        if(empty($param['temp_case_info']['temporary_case_id']) !== false) {
+        if (empty($param['temp_case_info']['temporary_case_id']) !== false) {
             return redirect('/tracking');
         }
 
@@ -312,13 +319,13 @@ class Web_public extends CI_Controller {
             }
         } elseif ($lastOTPDetails['resend_count'] >= 3) {
             // Check if it's the third or subsequent attempt and if the last OTP was sent more than 30 minutes ago
-            $remaining_time = (30 * 60) - $time_difference;
+            $remaining_time = 1800 - $time_difference;
             if ($remaining_time > 0) {
                 $aRecordSet['remaining_time'] = $remaining_time; // Pass remaining time
                 return $aRecordSet;
             }
         }
-        
+
 
         $otp = [];
         $otp['otp_code'] = mt_rand(100000, 999999);
@@ -343,13 +350,13 @@ class Web_public extends CI_Controller {
         $aRecordSet['last_update_time'] = $lastOTPDetails['otp_last_update'];
         $this->send();
         return $aRecordSet;
-
     }
 
-    public function searchCase($param) {
+    public function searchCase($param)
+    {
         $rs = [];
         $rs['flag'] = self::FAILED_RESPONSE;
-     
+
         $param = $this->yel->safe_mode_clean_array($param);
 
         $this->form_validation->set_rules('case_no', '', 'required');
@@ -367,38 +374,36 @@ class Web_public extends CI_Controller {
         // check if temp case is existing in icms_temporary_case table
         $param['temp_case_info'] = $this->Web_public_model->getTempCaseInfoByCaseTempNumber($param);
 
-        
-        if(!empty($param['temp_case_info']['temporary_case_id']) !== false ) {
+
+        if (!empty($param['temp_case_info']['temporary_case_id']) !== false) {
             $rs['tcn'] = $this->yel->encrypt_param($param['temporary_case_number']);
             $rs['result'] = 'temporary_case';
             $rs['link'] = 'tcn=' . $rs['tcn'];
             $param['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
-
         } else {
             // check if existing in icms_case table
             $param['case_info'] = $this->Web_public_model->getCaseInfoByCaseNumber($param);
-            if(!empty($param['case_info']['case_id']) !== false ) {
+            if (!empty($param['case_info']['case_id']) !== false) {
                 $rs['cn'] = $this->yel->encrypt_param($param['case_info']['case_number']);
                 $rs['result'] = 'case';
                 $rs['link'] = 'cn=' . $rs['cn'];
                 $param['temporary_case_id'] = $param['case_info']['case_id'];
-                
             } else {
                 $rs['message'] = 'No record found.';
                 return $rs;
             }
         }
-        
+
         //logs
-        $param['temporary_case_access_log_description'] = "Searched from public website."; 
+        $param['temporary_case_access_log_description'] = "Searched from public website.";
         $addTempCaseLog = $this->Web_public_model->addTempCaseLog($param);
 
-        if($rs['result'] == 'case') {
+        if ($rs['result'] == 'case') {
             $param['temporary_case_id'] = 'CN-' . $param['case_info']['case_id'];
         }
 
         // send otp
-        $otp = [];  
+        $otp = [];
         $otp['otp_code'] = mt_rand(100000, 999999);
         $otp['otp_type'] = 0; // Default 0 = no value
         $otp['otp_portal'] = 2; // email
@@ -421,12 +426,12 @@ class Web_public extends CI_Controller {
         // if($rs['result'] == 'case') {
         //     $aParam['temp_case_info']['temporary_case_id'] = $param['case_info']['case_id'];
         // } else {
-            $aParam['temp_case_info']['temporary_case_id'] = $param['temporary_case_id'];
+        $aParam['temp_case_info']['temporary_case_id'] = $param['temporary_case_id'];
         // }
         $aResponse['otp_details'] = $this->Web_public_model->getLastOtpRequestDetails($aParam);
         // $rs['link'] = '/verification?code='. $aResponse['otp_details']['otp_code'] . $rs['link'];
         $rs['link'] = '/verification?' . $rs['link'];
-        
+
         $rs['flag'] = self::SUCCESS_RESPONSE;
         $this->send();
         return $rs;
@@ -434,16 +439,17 @@ class Web_public extends CI_Controller {
 
 
 
-    public function sessionToInactive($aParam) {
+    public function sessionToInactive($aParam)
+    {
 
         $aResponse = [];
         $aResponse['flag'] = self::FAILED_RESPONSE;
         $aParam = $this->yel->safe_mode_clean_array($aParam);
-        
+
         $this->form_validation->set_rules('tcid', '', 'required');
         $this->form_validation->set_rules('ovc', '', 'required');
 
-        
+
         //return validation errors
         if ($this->form_validation->run() == FALSE) {
             $rs['message'] = validation_errors();
@@ -452,21 +458,22 @@ class Web_public extends CI_Controller {
 
         $aParam['temporary_case_id'] = $this->yel->decrypt_param($aParam['tcid']);
         $aParam['otp_v_code'] = $this->yel->decrypt_param($aParam['ovc']);
-        
+
         $aResponse['resp'] = $this->Web_public_model->sessionToInactive($aParam);
         $aResponse['flag'] = self::SUCCESS_RESPONSE;
 
         return $aResponse;
     }
 
-    function send() {
+    function send()
+    {
         // Load CodeIgniter instance
         $CI = &get_instance();
         $CI->load->library('email');
-    
+
         // Fetch all temporary cases
         $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
-    
+
         // Check if there are temporary cases fetched
         if ($temporaryCases) {
             // Load email configuration dynamically
@@ -479,20 +486,22 @@ class Web_public extends CI_Controller {
             $config['charset'] = 'utf-8';
             $config['newline'] = "\r\n";
             $config['smtp_crypto'] = 'tls';
-    
+
             $CI->email->initialize($config);
-    
+
             // Iterate through each temporary case
             foreach ($temporaryCases as $tempCase) {
-                // Fetch the OTP for the temporary case number
-                $param['otp_portal'] = 2;
-                // $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
+                if ($tempCase['temporary_complainant_preffered_contact_method'] == 2) { // 2 = email
+
+                    // Fetch the OTP for the temporary case number
+                    $param['otp_portal'] = 2;
+                    // $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
 
                     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
                     $CI->email->to($tempCase['temporary_complainant_email_address']);
                     $CI->email->subject('Confirm Email');
-    
+
                     // Construct email message
                     $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
                     $message .= '<p>Hi ' . $tempCase['temporary_complainant_firstname'] . ',</p>';
@@ -511,7 +520,7 @@ class Web_public extends CI_Controller {
                     $message .= '</div>';
                     $message .= '</div>';
                     $CI->email->message($message);
-    
+
                     // Send email
                     if ($CI->email->send()) {
                         // Email sent successfully
@@ -520,14 +529,15 @@ class Web_public extends CI_Controller {
                         // Email sending failed
                         // Handle failure if needed
                     }
-    
-                // // Check if OTP was fetched successfully
-                // if ($fetchedOTP) {
 
-                // } else {
-                //     // Handle case where OTP fetch failed
-                //     // Handle failure if needed
-                // }
+                    // // Check if OTP was fetched successfully
+                    // if ($fetchedOTP) {
+
+                    // } else {
+                    //     // Handle case where OTP fetch failed
+                    //     // Handle failure if needed
+                    // }
+                }
             }
         } else {
             // Handle case where no temporary cases are found
@@ -536,50 +546,52 @@ class Web_public extends CI_Controller {
         }
     }
 
-    function ConfirmationGmail() {
+    function ConfirmationGmail()
+    {
         // Load CodeIgniter instance
         $CI = &get_instance();
         $CI->load->library('email');
-    
+
         // Fetch all temporary cases
         $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
-    
+
         // Check if there are temporary cases fetched
         if ($temporaryCases) {
             // Iterate through each temporary case
             foreach ($temporaryCases as $tempCase) {
-                // Load email configuration dynamically
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'smtp.gmail.com';
-                $config['smtp_port'] = 587;
-                $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-                $config['smtp_pass'] = 'shsamihjjdkunaxs';
-                $config['mailtype'] = 'html';
-                $config['charset'] = 'utf-8';
-                $config['newline'] = "\r\n";
-                $config['smtp_crypto'] = 'tls';
-    
-                $CI->email->initialize($config);
-    
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
-                $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
-                $CI->email->subject('ICMS-IACAT CASE');
-                // Construct email message
-                $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
-                $message .= '<p>Your Case Mr/Mrs <b>'. $tempCase['temporary_complainant_lastname'] . ','. $tempCase['temporary_complainant_firstname'] .'</b> was added successfully with a case number of <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address
-                $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
-                $message .= '<p style="font-size: 12px;">';
-                $message .= '<div style="text-align:center;">';
-                $message .= 'from<br>';
-                $message .= 'ICMS.IACAT<br>';
-                $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
-                $message .= '</p>';
-                $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
-                $message .= '</div>';
-                $message .= '</div>';
-                $CI->email->message($message);
-        
+                if ($tempCase['temporary_complainant_preffered_contact_method'] == 2) { // 2 = email
+                    // Load email configuration dynamically
+                    $config['protocol'] = 'smtp';
+                    $config['smtp_host'] = 'smtp.gmail.com';
+                    $config['smtp_port'] = 587;
+                    $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
+                    $config['smtp_pass'] = 'shsamihjjdkunaxs';
+                    $config['mailtype'] = 'html';
+                    $config['charset'] = 'utf-8';
+                    $config['newline'] = "\r\n";
+                    $config['smtp_crypto'] = 'tls';
+
+                    $CI->email->initialize($config);
+
+                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                    $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
+                    $CI->email->subject('ICMS-IACAT CASE');
+                    // Construct email message
+                    $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+                    $message .= '<p>Your Case Mr/Mrs <b>' . $tempCase['temporary_complainant_lastname'] . ',' . $tempCase['temporary_complainant_firstname'] . '</b> was added successfully with a case number of <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address
+                    $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+                    $message .= '<p style="font-size: 12px;">';
+                    $message .= '<div style="text-align:center;">';
+                    $message .= 'from<br>';
+                    $message .= 'ICMS.IACAT<br>';
+                    $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+                    $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                    $message .= '</p>';
+                    $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+                    $message .= '</div>';
+                    $message .= '</div>';
+                    $CI->email->message($message);
+
                     // Send email
                     if ($CI->email->send()) {
                         // $response = array("success" => true);
@@ -589,11 +601,16 @@ class Web_public extends CI_Controller {
                         // echo json_encode($response);
                     }
                 }
-            } else {
-                // Handle case where no temporary cases are found
-                $response = array("success" => false, "message" => "No temporary cases found");
-                echo json_encode($response);
+                else {
+                    // send sms
+                    // echo "send sms";
+                    // $this->Icms->send_sms();
+                }
             }
+        } else {
+            // Handle case where no temporary cases are found
+            $response = array("success" => false, "message" => "No temporary cases found");
+            echo json_encode($response);
+        }
     }
-
 }

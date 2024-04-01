@@ -1,15 +1,22 @@
 <?php
 
 // page security
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Icms extends CI_Controller {
+use Aws\Sns\SnsClient;
 
-    public function __construct() {
+defined('BASEPATH') or exit('No direct script access allowed');
+
+require 'vendor/autoload.php';
+
+class Icms extends CI_Controller
+{
+
+    public function __construct()
+    {
         parent::__construct();
         // load modes
-	
-	$this->load->model('web_public/Web_public_model');
+
+        $this->load->model('web_public/Web_public_model');
         $this->load->model('administrator/Temporary_case_model');
         $this->load->model('Global_data_model');
     }
@@ -19,7 +26,8 @@ class Icms extends CI_Controller {
      *
      * For Development use only
      */
-    public function __sessionChecker() {
+    public function __sessionChecker()
+    {
 
         echo '<pre>';
         print_r($_SESSION);
@@ -31,17 +39,63 @@ class Icms extends CI_Controller {
      *
      * For Development use only
      */
-    public function sessionDestruct() {
+    public function sessionDestruct()
+    {
         // session destroy
         $this->sessionPushLogout('icms');
     }
 
-    public function index() 
+
+    public function send_sms()
+    {
+
+        // Initialize AWS SDK SNS client
+        $snsClient = new SnsClient([
+            'version' => 'latest',
+            'region' => 'ap-southeast-1',
+            'credentials' => [
+                'key' => constant('AWS_ACCESS_KEY'),
+                'secret' => constant('AWS_SECRET_KEY'),
+            ]
+        ]);
+
+        $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
+        if ($temporaryCases) {
+            foreach ($temporaryCases as $tempCase) {
+                if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
+                    try {
+                        // Sending SMS
+                        $result = $snsClient->publish([
+                            'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
+                            // 'PhoneNumber' => '+639761401847', 
+                            'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
+                            // 'MessageAttributes' => [], // If you need to specify any additional attributes
+                        ]);
+
+                        // Check for errors or log results
+                        // if ($result['@metadata']['statusCode'] == 200) {
+                        //     echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code'];
+                        //     echo "<br> number :" . $tempCase['temporary_complainant_mobile_number'];
+                        //     echo "<br>temporary_complainant_preffered_contact_method :" . $tempCase['temporary_complainant_preffered_contact_method'];
+                        // } else {
+                        //     echo "Failed to send SMS";
+                        // }
+                    } catch (Exception $error) {
+                        echo $error;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    public function index()
     {
         redirect(SITE_URL . 'agency');
     }
 
-    public function tracking() 
+    public function tracking()
     {
         $aRecordSet = [];
 
@@ -53,14 +107,14 @@ class Icms extends CI_Controller {
 
         $aLibraries = array(
             'plugin' => array('jquery.validate.min.js'),
-            'css' => array('landing_page', 'global'), 
+            'css' => array('landing_page', 'global'),
             'js' => array('landing_page', 'global_methods', 'icms_message', 'dg')
         );
 
         $this->setTemplate('diginex/landing_page', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO);
     }
 
-    public function verification() 
+    public function verification()
     {
 
         $aRecordSet = [];
@@ -70,24 +124,24 @@ class Icms extends CI_Controller {
         if (empty($_GET['tcn']) == true && empty($_GET['cn']) == true) {
             return redirect('/tracking');
         }
-        
-        if(!empty($_GET['cn']) !== false) {
+
+        if (!empty($_GET['cn']) !== false) {
             $param['temporary_case_number'] = $this->yel->decrypt_param($_GET['cn']);
             $param['temp_case_info'] = $this->Web_public_model->getCaseInfoByCaseNumber($param);
-            $param['temp_case_info']['temporary_case_id'] = 'CN-'.$param['temp_case_info']['case_id'];
+            $param['temp_case_info']['temporary_case_id'] = 'CN-' . $param['temp_case_info']['case_id'];
         }
 
-        if(!empty($_GET['tcn']) !== false) {
+        if (!empty($_GET['tcn']) !== false) {
             $param['temporary_case_number'] = $this->yel->decrypt_param($_GET['tcn']);
             $param['temp_case_info'] = $this->Web_public_model->getTempCaseInfoByCaseTempNumber($param);
         }
 
-        if($param['temporary_case_number'] == '') {
+        if ($param['temporary_case_number'] == '') {
             return redirect('/tracking');
         }
 
         $lastOTPDetails = $this->Web_public_model->getLastOtpRequestDetails($param);
-	
+
         $sendOTP = 0;
         $aRecordSet['suspend'] = 0;
         if ($lastOTPDetails['otp_try'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
@@ -104,8 +158,7 @@ class Icms extends CI_Controller {
             }
         }
 
-
-        if ($sendOTP == 1) {
+        if ($sendOTP == 1) { // email
             $otp = [];
             $otp['otp_code'] = mt_rand(100000, 999999);
             $otp['otp_type'] = 0; // Default 0 = no value
@@ -124,10 +177,14 @@ class Icms extends CI_Controller {
                 $this->Web_public_model->saveOTP($otp);
             }
             // $this->send(); 
+
+            $this->send_sms(); // send sms
+
         }
+        $this->send_sms(); // send sms
 
 
-                // Add this code after sending OTP
+        // Add this code after sending OTP
         // Initialize the variable to store fetched OTP
         $aRecordSet['fetchedOTP'] = 'otp_last_update';
 
@@ -145,8 +202,8 @@ class Icms extends CI_Controller {
         $aRecordSet['lastOTPDetails'] = $lastOTPDetails;
         $aRecordSet['contactDetails'] = $param['temp_case_info'];
         $aRecordSet['sendOTP'] = $sendOTP;
-        
-        
+
+
         $aSEO = array(
             'page_title' => 'Verification Page',
             'page_description' => 'Verification Page ',
@@ -154,26 +211,27 @@ class Icms extends CI_Controller {
         );
 
         $aLibraries = array(
-            'plugin' => array('sweetalert/sweetalert2.all.js',
-            'sweetalert/sweetalert2.all.min.js',
-            'sweetalert/sweetalert2.css',
-            'sweetalert/sweetalert2.js',
-            'sweetalert/sweetalert2.min.css',
-            'sweetalert/sweetalert2.min.js'),
-            'css' => array('verification', 'global'), 
+            'plugin' => array(
+                'sweetalert/sweetalert2.all.js',
+                'sweetalert/sweetalert2.all.min.js',
+                'sweetalert/sweetalert2.css',
+                'sweetalert/sweetalert2.js',
+                'sweetalert/sweetalert2.min.css',
+                'sweetalert/sweetalert2.min.js'
+            ),
+            'css' => array('verification', 'global'),
             'js' => array('verification', 'global_methods', 'icms_message', 'dg')
         );
         // $this->send();
         $this->setTemplate('diginex/verification', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO);
-
     }
 
-    public function result_page() 
+    public function result_page()
     {
 
         if (empty($_GET['tcid']) == true && empty($_GET['ovc']) == true) {
             return redirect('/tracking');
-        } 
+        }
 
         $aRecordSet = [];
         $param = [];
@@ -183,12 +241,12 @@ class Icms extends CI_Controller {
         $param['otp_v_code'] = $this->yel->decrypt_param($_GET['ovc']);
 
         $param['temp_case_info'] = $this->Web_public_model->getLatestOtpVerifiedCode($param);
-        
-        if(empty($param['temp_case_info']['temporary_case_id']) !== false) {
+
+        if (empty($param['temp_case_info']['temporary_case_id']) !== false) {
             return redirect('/tracking');
-        } 
-        
-        if($param['temp_case_info']['session_status'] == '1' ) {
+        }
+
+        if ($param['temp_case_info']['session_status'] == '1') {
             if (strtotime($param['temp_case_info']['otp_last_update']) <= strtotime("-30 minutes")) {
                 // update session staus to inactive
                 $this->Web_public_model->sessionToInactive($param);
@@ -199,18 +257,18 @@ class Icms extends CI_Controller {
         }
 
 
-        if(strpos($param['temp_case_info']['temporary_case_id'], 'CN-') !== false) {
+        if (strpos($param['temp_case_info']['temporary_case_id'], 'CN-') !== false) {
             $param['case_id'] = str_replace('CN-', '', $param['temp_case_info']['temporary_case_id']);
             // check if has record in temporary case
             $temp_case_info_by_case_id = $this->Web_public_model->getTemporaryCaseDetailsByCaseID($param);
 
-            if(empty($temp_case_info_by_case_id['temporary_case_id']) !== true) {
+            if (empty($temp_case_info_by_case_id['temporary_case_id']) !== true) {
                 $param['temporary_case_id'] = $temp_case_info_by_case_id['temporary_case_id'];
             } else {
                 $param['temporary_case_id'] = NULL;
                 $victim_info = [];
                 $complainant_info = [];
-                
+
                 // get case info by case id
                 $case_info = $this->Web_public_model->getCaseInfoByCaseID($param['case_id']);
                 // get vimtim id by case id
@@ -225,21 +283,21 @@ class Icms extends CI_Controller {
                 // get access logs
                 $logs = $this->Web_public_model->getTempCaseAccessLogsByCaseID($param['case_id']);
                 $logs = convert_date_format($logs, 'F d, Y h:i A', array('date_added'));
-                
+
                 // displayed data
                 $aRecordSet['resp']['date_of_complaint'] = convert_date_format('F d, Y h:i A', $complainant_info['case_complainant_date_added']);
                 $aRecordSet['resp']['complainant_name'] = $complainant_info['case_complainant_name'];
                 $aRecordSet['resp']['victim_name'] = $victim_info['victim_info_last_name'] . ', ' . $victim_info['victim_info_first_name'] . ' ' .  $victim_info['victim_info_middle_name'];
-                $aRecordSet['resp']['status'] = $case_info['case_status_id']; 
+                $aRecordSet['resp']['status'] = $case_info['case_status_id'];
                 $aRecordSet['resp']['last_tracked'] = $logs['date_added'];
                 $aRecordSet['resp']['tracking_number'] = $case_info['case_number'];
 
                 $services = $this->Web_public_model->getServices($param['case_id']);
 
                 if (count($services) > 0) {
-                    $newservices = $services; 
+                    $newservices = $services;
                     $temp_services = [];
-                    
+
                     foreach ($services as $key => $value) {
                         $newservices[$key]['service_status'] = "Ongoing";
                         $services_logs = $this->Temporary_case_model->getServiceLogs($value);
@@ -247,32 +305,30 @@ class Icms extends CI_Controller {
                         $cnt = 0;
                         if (count($services_logs) > 0) {
                             foreach ($services_logs as $k => $v) {
-                                $temp_services[$cnt] = $value; 
-                                $temp_services[$cnt]['service_status'] = $v['user_log_update_new_parameter']; 
-                                $temp_services[$cnt]['temporary_case_remarks_date_added'] = $v['temporary_case_remarks_date_added']; 
+                                $temp_services[$cnt] = $value;
+                                $temp_services[$cnt]['service_status'] = $v['user_log_update_new_parameter'];
+                                $temp_services[$cnt]['temporary_case_remarks_date_added'] = $v['temporary_case_remarks_date_added'];
                                 $cnt++;
                             }
-                            $newservices = array_merge($newservices, $temp_services); 
+                            $newservices = array_merge($newservices, $temp_services);
                         }
-                    }    
-                    $services = $newservices; 
+                    }
+                    $services = $newservices;
                 }
-             
+
                 $remarks = $services;
 
                 $temp_case = $case_info;
-
             }
+        }
 
-        } 
 
-        
-        
+
         // start of temp case number seaching
-        if(!empty($param['temporary_case_id']) !== false) {
+        if (!empty($param['temporary_case_id']) !== false) {
             $temp_case_data = $this->Web_public_model->getTemporaryCaseDetailsByTempCaseID($param);
 
-            if(empty($temp_case_data['temporary_case_id']) !== true) {
+            if (empty($temp_case_data['temporary_case_id']) !== true) {
                 // get access logs
                 $logs = $this->Web_public_model->getTempCaseAccessLogs($temp_case_data);
                 $logs = convert_date_format($logs, 'F d, Y h:i A', array('date_added'));
@@ -301,42 +357,39 @@ class Icms extends CI_Controller {
                     $services = $this->Temporary_case_model->getServices($temp_case_data);
 
                     if (count($services) > 0) {
-                        $newservices = $services; 
+                        $newservices = $services;
                         $temp_services = [];
-                        
+
                         foreach ($services as $key => $value) {
                             $newservices[$key]['service_status'] = "Ongoing";
                             $services_logs = $this->Temporary_case_model->getServiceLogs($value);
                             $cnt = 0;
                             if (count($services_logs) > 0) {
                                 foreach ($services_logs as $k => $v) {
-                                    $temp_services[$cnt] = $value; 
-                                    $temp_services[$cnt]['service_status'] = $v['user_log_update_new_parameter']; 
-                                    $temp_services[$cnt]['temporary_case_remarks_date_added'] = $v['temporary_case_remarks_date_added']; 
+                                    $temp_services[$cnt] = $value;
+                                    $temp_services[$cnt]['service_status'] = $v['user_log_update_new_parameter'];
+                                    $temp_services[$cnt]['temporary_case_remarks_date_added'] = $v['temporary_case_remarks_date_added'];
                                     $cnt++;
                                 }
-                                $newservices = array_merge($newservices, $temp_services); 
+                                $newservices = array_merge($newservices, $temp_services);
                             }
-                        }    
+                        }
 
-                        $services = $newservices; 
+                        $services = $newservices;
                     }
-                    
-                    $remarks = array_merge($remarks,$services);
+
+                    $remarks = array_merge($remarks, $services);
 
                     $aRecordSet['resp']['status'] = $temp_case_data['temporary_case_status_id'];
                 }
-
-        
-
             }
         }
 
         // print_r($param); exit();
-        
+
         // SORT BY DATE 
         foreach ($remarks as $key => $part) {
-                $sort[$key] = strtotime($part['temporary_case_remarks_date_added']);
+            $sort[$key] = strtotime($part['temporary_case_remarks_date_added']);
         }
 
 
@@ -345,21 +398,21 @@ class Icms extends CI_Controller {
             array_multisort($sort, SORT_DESC, $remarks);
 
             foreach ($remarks as $key => $value) {
-                if($value['log_type'] == 'service'){
+                if ($value['log_type'] == 'service') {
                     $data = [];
                     $data['log_type'] = "service";
                     // 1 = legal, 2 = reintegration
                     if ($value['service_category_type'] == '1') {
                         $data['log_type'] = "legal";
                         // criminal case = services_id = 40 
-                        if($value['services_id'] == 40){
+                        if ($value['services_id'] == 40) {
                             $cc =  $this->Temporary_case_model->getCriminalCaseForRemarks($temp_case);
                             $data = array_merge($data, $cc);
                             $data['service_type'] = "criminal_case";
                         }
-                    
+
                         // administrative case = services_id = 41
-                        if($value['services_id'] == 41){
+                        if ($value['services_id'] == 41) {
                             $ac =  $this->Temporary_case_model->getAdministrativeCaseForRemarks($temp_case);
                             $data = array_merge($data, $ac);
                             $data['service_type'] = "administrative_case";
@@ -378,13 +431,13 @@ class Icms extends CI_Controller {
                     $remarks[$key] = $data;
                 }
             }
-            
+
 
             $remarks = convert_date_format($remarks, 'F d, Y h:i A', array('temporary_case_remarks_date_added'));
             $aRecordSet['resp']['last_updated'] = $remarks[0]['temporary_case_remarks_date_added'];
         }
 
-        switch($aRecordSet['resp']['status']) {
+        switch ($aRecordSet['resp']['status']) {
             case '1':
                 $aRecordSet['resp']['status'] = 'Pending';
                 break;
@@ -400,7 +453,7 @@ class Icms extends CI_Controller {
         }
 
         $aRecordSet['listing'] = $this->yel->encrypt_id_in_array($remarks, array('temporary_case_remarks_id', 'temporary_case_id'));
-        
+
 
         // print_r('<pre>');
         // print_r($aRecordSet); exit();
@@ -411,20 +464,22 @@ class Icms extends CI_Controller {
         );
 
         $aLibraries = array(
-            'plugin' => array('sweetalert/sweetalert2.all.js',
-            'sweetalert/sweetalert2.all.min.js',
-            'sweetalert/sweetalert2.css',
-            'sweetalert/sweetalert2.js',
-            'sweetalert/sweetalert2.min.css',
-            'sweetalert/sweetalert2.min.js'),
-            'css' => array('result_page' , 'global'), 
+            'plugin' => array(
+                'sweetalert/sweetalert2.all.js',
+                'sweetalert/sweetalert2.all.min.js',
+                'sweetalert/sweetalert2.css',
+                'sweetalert/sweetalert2.js',
+                'sweetalert/sweetalert2.min.css',
+                'sweetalert/sweetalert2.min.js'
+            ),
+            'css' => array('result_page', 'global'),
             'js' => array('result_page', 'global_methods', 'icms_message', 'dg')
         );
 
         $this->setTemplate('diginex/result_page', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO);
     }
 
-    public function file_complaint() 
+    public function file_complaint()
     {
         $aRecordSet = [];
         $aParam = [];
@@ -463,22 +518,24 @@ class Icms extends CI_Controller {
         );
 
         $aLibraries = array(
-            'plugin' => array('jquery.validate.min.js',
-            'select2_/select2.full.js',
-            'select2_/select2.full.min.js',
-            'select2_/select2.js',
-            'chosen/chosen.min.css', 
-            'chosen/chosen.jquery.min.js',
-            'select2_/select2.min.js',
-            'case_datepicker/jquery.datetimepicker.full.js',
-            'case_datepicker/jquery.datetimepicker.css',
-            'sweetalert/sweetalert2.all.js',
-            'sweetalert/sweetalert2.all.min.js',
-            'sweetalert/sweetalert2.css',
-            'sweetalert/sweetalert2.js',
-            'sweetalert/sweetalert2.min.css',
-            'sweetalert/sweetalert2.min.js'),
-            'css' => array('file_complaint', 'global'), 
+            'plugin' => array(
+                'jquery.validate.min.js',
+                'select2_/select2.full.js',
+                'select2_/select2.full.min.js',
+                'select2_/select2.js',
+                'chosen/chosen.min.css',
+                'chosen/chosen.jquery.min.js',
+                'select2_/select2.min.js',
+                'case_datepicker/jquery.datetimepicker.full.js',
+                'case_datepicker/jquery.datetimepicker.css',
+                'sweetalert/sweetalert2.all.js',
+                'sweetalert/sweetalert2.all.min.js',
+                'sweetalert/sweetalert2.css',
+                'sweetalert/sweetalert2.js',
+                'sweetalert/sweetalert2.min.css',
+                'sweetalert/sweetalert2.min.js'
+            ),
+            'css' => array('file_complaint', 'global'),
             'js' => array('file_complaint', 'global_methods', 'icms_message', 'dg')
         );
 
@@ -490,10 +547,10 @@ class Icms extends CI_Controller {
     //     // Load CodeIgniter instance
     //     $CI = &get_instance();
     //     $CI->load->library('email');
-    
+
     //     // Fetch all temporary cases
     //     $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
-    
+
     //     // Check if there are temporary cases fetched
     //     if ($temporaryCases) {
     //         // Load email configuration dynamically
@@ -506,21 +563,21 @@ class Icms extends CI_Controller {
     //         $config['charset'] = 'utf-8';
     //         $config['newline'] = "\r\n";
     //         $config['smtp_crypto'] = 'tls';
-    
+
     //         $CI->email->initialize($config);
-    
+
     //         // Iterate through each temporary case
     //         foreach ($temporaryCases as $tempCase) {
     //             // Fetch the OTP for the temporary case number
     //             $param['otp_portal'] = 2;
     //             $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
-    
+
     //             // Check if OTP was fetched successfully
     //             if ($fetchedOTP) {
     //                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
     //                 $CI->email->to($tempCase['temporary_complainant_email_address']);
     //                 $CI->email->subject('Confirm Email');
-    
+
     //                 // Construct email message
     //                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
     //                 $message .= '<p>Hi ' . $tempCase['temporary_complainant_firstname'] . ',</p>';
@@ -539,7 +596,7 @@ class Icms extends CI_Controller {
     //                 $message .= '</div>';
     //                 $message .= '</div>';
     //                 $CI->email->message($message);
-    
+
     //                 // Send email
     //                 if ($CI->email->send()) {
     //                     // Email sent successfully
@@ -559,17 +616,17 @@ class Icms extends CI_Controller {
     //         echo json_encode($response);
     //     }
     // }
-    
+
 
     // function send() {
     //     // Load CodeIgniter instance
     //     $CI = &get_instance();
     //     $CI->load->library('email');
-    
+
     //     // Fetch the OTP for the temporary case number
     //     $param['otp_portal'] = 2;
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
-    
+
     //     // Load email configuration dynamically
     //     $config['protocol'] = 'smtp';
     //     $config['smtp_host'] = 'smtp.gmail.com';
@@ -580,13 +637,13 @@ class Icms extends CI_Controller {
     //     $config['charset'] = 'utf-8';
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
-    
+
     //     $CI->email->initialize($config);
-    
+
     //     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
     //     $CI->email->to('lhattz.jhunriz@gmail.com');
     //     $CI->email->subject('Confirm Email');
-        
+
     //     // Check if OTP was fetched successfully
     //     if ($fetchedOTP) {
     //         // Construct email message
@@ -607,7 +664,7 @@ class Icms extends CI_Controller {
     //         $message .= '</div>';
     //         $message .= '</div>';
     //         $CI->email->message($message);
-    
+
     //         // Send email
     //         if ($CI->email->send()) {
     //             $response = array("success" => true);
@@ -622,17 +679,17 @@ class Icms extends CI_Controller {
     //         echo json_encode($response);
     //     }
     // }
-    
+
 
     // function send() {
     //     // Load CodeIgniter instance
     //     $CI = &get_instance();
     //     $CI->load->library('email');
-    
+
     //     // Fetch the OTP for the temporary case number
     //     $param['otp_portal'] = 2;
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
-    
+
     //     // Load email configuration dynamically
     //     $config['protocol'] = 'smtp';
     //     $config['smtp_host'] = 'smtp.gmail.com';
@@ -643,14 +700,14 @@ class Icms extends CI_Controller {
     //     $config['charset'] = 'utf-8';
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
-    
+
     //     $CI->email->initialize($config);
-    
+
     //     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
     //     $CI->email->to('lhattz.jhunriz@gmail.com');
     //     // $CI->email->cc('lalata.jhunriz.bscs2019@gmail.com');
     //     // $CI->email->bcc('lalata.jhunriz.bscs2019@gmail.com');
-    
+
     //     $CI->email->subject('Confirm Email');
     //     // Check if OTP was fetched successfully
     //     if ($fetchedOTP) {
@@ -683,8 +740,8 @@ class Icms extends CI_Controller {
     //         echo 'Error sending email: ' . $CI->email->print_debugger();
     //     }
     // }
-    
-    
-    
-    
+
+
+
+
 }

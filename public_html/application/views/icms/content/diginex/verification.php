@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div> -->
                     <div class="card-body card-otp p-5 ">
                         <h4 class="card-title text-dark">OTP Sending</h4>
-                        <small>Please enter the 6-digit verification code we sent via email</small><br>
+                        <small>Please enter the 6-digit verification code we sent</small><br>
                         <form class="mt-1">
                             <div class="d-flex">
                                 <div class="m-auto">

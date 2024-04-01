@@ -1,23 +1,51 @@
+//------They comment the orignal code for validation of  // temporary_complainant_mobile_number: {required: true}, // temporary_complainant_preffered_contact_method: {required: true}, 
+//         // temporary_complainant_email_address: {required: true},
+
+// $('#file_complaint_form').validate({
+//     rules: {
+//         temporary_complainant_firstname: {required: true},
+//         temporary_complainant_lastname: {required: true},
+//         // temporary_complainant_mobile_number: {required: true},
+//         // temporary_complainant_email_address: {required: true},
+//         temporary_complainant_relation: {required: true},
+//         temporary_complainant_address: {required: true},
+//         // temporary_complainant_preffered_contact_method: {required: true}, 
+//         // temporary_complain: {required: true},
+//         temporary_complainant_complain: {required: true},
+
+//         temporary_victim_firstname: {required: true},
+//         temporary_victim_lastname: {required: true},
+//         // temporary_victim_mobile_number: {required: true},
+//         // temporary_victim_email_address: {required: true},
+//         temporary_victim_dob: {required: true},
+//         temporary_victim_address: {required: true},
+//         temporary_victim_country_deployment: {required: true}, 
+//         // temporary_complainant_preffered_contact_method: {required: true}, 
+//         temporary_victim_civil_status: {required: true}, 
+//         temporary_victim_departure_type: {required: true},
+//         temporary_victim_sex: {required: true}
+//     },
+
 $('#file_complaint_form').validate({
     rules: {
         temporary_complainant_firstname: {required: true},
         temporary_complainant_lastname: {required: true},
-        // temporary_complainant_mobile_number: {required: true},
-        // temporary_complainant_email_address: {required: true},
+        temporary_complainant_mobile_number: {required: true},
+        temporary_complainant_email_address: {required: true},
         temporary_complainant_relation: {required: true},
         temporary_complainant_address: {required: true},
-        // temporary_complainant_preffered_contact_method: {required: true}, 
-        // temporary_complain: {required: true},
+        temporary_complainant_preffered_contact_method: {required: true}, 
+        temporary_complain: {required: true},
         temporary_complainant_complain: {required: true},
 
         temporary_victim_firstname: {required: true},
         temporary_victim_lastname: {required: true},
-        // temporary_victim_mobile_number: {required: true},
-        // temporary_victim_email_address: {required: true},
+        temporary_victim_mobile_number: {required: true},
+        temporary_victim_email_address: {required: true},
         temporary_victim_dob: {required: true},
         temporary_victim_address: {required: true},
         temporary_victim_country_deployment: {required: true}, 
-        // temporary_complainant_preffered_contact_method: {required: true}, 
+        temporary_complainant_preffered_contact_method: {required: true}, 
         temporary_victim_civil_status: {required: true}, 
         temporary_victim_departure_type: {required: true},
         temporary_victim_sex: {required: true}

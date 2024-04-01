@@ -15,9 +15,10 @@
   min-height: 0;
   padding-bottom: 0;
 }
+
+/* overflow: hidden; */
 .masthead {
   position: absolute;
-  overflow: hidden;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -27,9 +28,10 @@
   width: 65vh;
   border-radius: 5%;
 }
+
+/* overflow: hidden; */
 .masthead_inner {
   position: absolute;
-  overflow: hidden;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -75,6 +77,8 @@
   box-sizing: border-box;
   color: #333;
 }
+/* 
+overflow: hidden; */
 #dialog {
   border: solid 1px #ccc;
   margin: 10px auto;
@@ -82,7 +86,6 @@
   display: inline-block;
   box-shadow: 0 0 4px #ccc;
   background-color: #faf8f8;
-  overflow: hidden;
   position: relative;
   max-width: 450px;
 }

@@ -6,6 +6,7 @@
 # Node artifact files
 node_modules/
 dist/
+public_html/vendor
 
 public_html/application/config/constants.php
 

@@ -40,10 +40,33 @@ Class Settings_model extends CI_Model {
         ";
         return $this->yel->GetOne($sql);
     }
+    //--------This is the Original Code for Fetching Global Parameters------
+    // public function getListGlobalParamType() {
+    //     $aResponse = [];
 
+    //     $sql = " 
+    //         SELECT 
+    //             `global_parameter_type_id`, 
+    //             `global_parameter_type_name`, 
+    //             `global_parameter_description`
+    //         FROM 
+    //             `icms_global_parameter_type`
+    //         WHERE 
+    //             `global_parameter_type_is_show`  = '1'
+    //         ORDER BY `global_parameter_type_name` ASC
+    //     ";
+
+    //     $aResponse = $this->yel->GetAll($sql);
+    //     return $aResponse;
+    // }
+
+
+    /*--------- We add the a query to exclude the showing of preffered contact method: AND `global_parameter_type_id` != 30 */
+
+                // 30 = Preferred Contact Method
     public function getListGlobalParamType() {
         $aResponse = [];
-
+    
         $sql = " 
             SELECT 
                 `global_parameter_type_id`, 
@@ -53,9 +76,10 @@ Class Settings_model extends CI_Model {
                 `icms_global_parameter_type`
             WHERE 
                 `global_parameter_type_is_show`  = '1'
+                AND `global_parameter_type_id` != 30
             ORDER BY `global_parameter_type_name` ASC
         ";
-
+    
         $aResponse = $this->yel->GetAll($sql);
         return $aResponse;
     }

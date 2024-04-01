@@ -427,7 +427,7 @@ Class Web_public_model extends CI_Model {
 
     public function getAllTemporaryCases() {
         // Assuming you have a database table named 'icms_temporary_case' and 'icms_temporary_case_otp'
-        $this->db->select('icms_temporary_case.temporary_complainant_email_address, icms_temporary_case.temporary_case_number, icms_temporary_case.temporary_complainant_firstname, icms_temporary_case.temporary_complainant_lastname, icms_temporary_case_otp.otp_code, icms_temporary_case_otp.otp_id, icms_temporary_case_otp.temporary_case_id');
+        $this->db->select('icms_temporary_case.temporary_complainant_preffered_contact_method,icms_temporary_case.temporary_complainant_mobile_number ,icms_temporary_case.temporary_complainant_email_address, icms_temporary_case.temporary_case_number, icms_temporary_case.temporary_complainant_firstname, icms_temporary_case.temporary_complainant_lastname, icms_temporary_case_otp.otp_code, icms_temporary_case_otp.otp_id, icms_temporary_case_otp.temporary_case_id');
         $this->db->from('icms_temporary_case');
         $this->db->join('icms_temporary_case_otp', 'icms_temporary_case_otp.temporary_case_id = icms_temporary_case.temporary_case_id', 'left');
         $this->db->order_by('icms_temporary_case_otp.otp_id', 'DESC');

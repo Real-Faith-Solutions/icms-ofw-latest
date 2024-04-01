@@ -73,11 +73,12 @@
                                                     id="inp-temporary_victim_lastname" name="temporary_victim_lastname"
                                                     placeholder="">
                                             </div>
+                                               <!---Adding <span class="text-danger"> *</span> to show to the user it is required-->
                                             <div class="form-group">
-                                                <label for="">Contact Number </label>
+                                                <label for="">Contact Number </label><span class="text-danger"> *</span>
                                                 <input type="text" class="form-control"
                                                     id="inp-temporary_victim_mobile_number"
-                                                    name="temporary_victim_mobile_number" placeholder="">
+                                                    name="temporary_victim_mobile_number" placeholder="e.g. +639394567128">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Sex </label><span class="text-danger"> *</span>
@@ -108,7 +109,7 @@
                                                     name="temporary_victim_middlename" placeholder="">
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Email Address</label>
+                                                <label for="">Email Address</label><span class="text-danger"> *</span>
                                                 <input type="email" class="form-control"
                                                     id="inp-temporary_victim_email_address"
                                                     name="temporary_victim_email_address" placeholder="">
@@ -165,15 +166,16 @@
                                                     id="inp-temporary_complainant_lastname"
                                                     name="temporary_complainant_lastname" placeholder="">
                                             </div>
+                                            <!---Adding <span class="text-danger"> *</span> to show to the user it is required-->
                                             <div class="form-group">
-                                                <label for="">Contact Number </label>
+                                                <label for="">Contact Number </label><span class="text-danger"> *</span>
                                                 <input type="text" class="form-control c-dt"
                                                     id="inp-temporary_complainant_mobile_number"
-                                                    name="temporary_complainant_mobile_number" placeholder="">
+                                                    name="temporary_complainant_mobile_number" placeholder="e.g. +639394567128">
                                             </div>
+                                               <!---Adding <span class="text-danger"> *</span> to show to the user it is required-->
                                             <div class="form-group">
-                                                <label for="">Preferred Contact Method </label>
-
+                                                <label for="">Preferred Contact Method </label><span class="text-danger"> *</span>
                                                 <select class="form-control"
                                                     name="temporary_complainant_preffered_contact_method">
                                                     <option value="">Select Preferred Contact Method</option>
@@ -195,8 +197,9 @@
                                                     id="inp-temporary_complainant_middlename"
                                                     name="temporary_complainant_middlename" placeholder="">
                                             </div>
+                                               <!---Adding <span class="text-danger"> *</span> to show to the user it is required-->
                                             <div class="form-group">
-                                                <label for="">Email Address</label>
+                                                <label for="">Email Address</label><span class="text-danger"> *</span>
                                                 <input type="email" class="form-control c-dt"
                                                     id="inp-temporary_complainant_email_address"
                                                     name="temporary_complainant_email_address" placeholder="">
