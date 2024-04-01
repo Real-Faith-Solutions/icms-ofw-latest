@@ -467,6 +467,23 @@ class Administrator extends CI_Controller {
         }
     }
 
+    public function twofactorauth() {
+        session_destroy();
+        $aRecordSet = [];
+        $aSEO = array(
+            'page_title' => 'ICMS:twofactorauth',
+            'page_description' => 'User Validation',
+            'page_keyword' => 'Two-factor Authentication'
+        );
+        $aLibraries = array(
+            'plugin' => '',
+            'css' => '',
+            'js' => array('global_methods', 'icms_message')
+        );
+        $this->setTemplate('user_twofactor_authentication', $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
+    }
+    
+
     public function settings() {
 
         $this->validateSession();

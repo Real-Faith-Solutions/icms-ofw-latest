@@ -27,75 +27,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body class="bg-white overflow-hidden row">
-
-    <div class="col-6 p-0 d-flex justify-content-end">
-        <!-- welcome header-->
-        <!-- <div class="d-flex justify-content-end h-100"> -->
-        <div class="user_card_left bg-card-dWhite ">
-            <div class="user_card_left sign_in-card_left">
-                <div class=" p2-10">
-                    <p class="card-title int_card-title">
-                        WELCOME
-                        <br>
-                        <span class="card-subtitle">INTEGRATED CASE MANAGEMENT SYSTEM</span>
-                    </p>
-
-                </div>
-
-                <div class="mt-3 ">
-                    <img src="<?php echo SITE_ASSETS ?>global/images/iacat_logo.png" class="brand_logo" alt="Logo">
-                    <!-- <img src="<?php echo SITE_ASSETS ?>global/images/icms-login-logo.png" class="brand_logo2" alt="Logo"> -->
-                </div>
-            </div>
-        </div>
-        <!-- </div> -->
-        <!-- welcome header-->
-    </div>
-    <div class="col-6 p-0">
-        <div class="user_card bg-card-dBlue">
-            <div class="user_card sign_in-card">
-                <p class="card-title title--head">
-                    Sign in
-                </p>
-                <div class="d-flex form--login">
-                    <form id="frm_login">
-                        <div class="form-group">
-                            <label for="txt_user">Username</label>
-                            <input type="text" name="txt_user" class="form-control input_user" id="txt_user"
-                                aria-describedby="" placeholder="username">
+    <!-- start of UI design modal for 2 factor auth -->
+    <!-- OTP Modal -->
+        <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="text-center">
+                <h4 class="card-title text-dark text-center">Two-Factor Authentication</h4>
+                <p>Please enter the 6-digit verification code we sent via email</p>
+                <small></small><br>
+                <form class="mt-1" id="twofactorauth">
+                    <div class="d-flex">
+                        <div class="m-auto">
+                            <input class="inp-code-1 inp-cd mr-1 text-center py-3" type="text" maxLength="1" size="5" min="0"
+                                max="9" pattern="[0-9]{1}" />
+                            <input class="inp-code-2 inp-cd mr-1 text-center py-3" type="text" maxLength="1" size="5" min="0"
+                                max="9" pattern="[0-9]{1}" />
+                            <input class="inp-code-3 inp-cd mr-1 text-center py-3" type="text" maxLength="1" size="5" min="0"
+                                max="9" pattern="[0-9]{1}" />
+                            <input class="inp-code-4 inp-cd mr-1 text-center py-3" type="text" maxLength="1" size="5" min="0"
+                                max="9" pattern="[0-9]{1}" />
+                            <input class="inp-code-5 inp-cd mr-1 text-center py-3" type="text" maxLength="1" size="5" min="0"
+                                max="9" pattern="[0-9]{1}" />
+                            <input class="inp-code-6 inp-cd mb-3 mr-1 text-center py-3" type="text" maxLength="1" size="5"
+                                min="0" max="9" pattern="[0-9]{1}" />
                         </div>
-                        <div class="form-group">
-                            <label for="txt_pass">Password <span
-                                    class="lbl-capslock text-danger font-weight-bold"></span>
-                            </label>
-                            <input type="password" name="txt_pass" class="form-control input_pass" id="txt_pass"
-                                aria-describedby="" placeholder="password">
-                            <span class="spn_icon-show"><i class="fa fa-eye-slash toggle-password_icon"
-                                    aria-hidden="true"></i></span>
-                        </div>
-                        <div class="form-group mb-3">
-                            <div class="g-recaptcha" data-sitekey="<?= GCAPTCHA_SITEKEY ?>"></div>
-                            <div id="recaptcha-error" class="error" style="display: none;">This field is required.</div>
-                        </div>
-                        <button type="submit" name="button" id="btn-login" class="btn login_btn">Login</button>
-                    </form>
-                </div>
-                <div class="mt-4 forgot-container" style="display: none;">
-                    <div class="d-flex justify-content-center links">
-                        <a class="forgot-pw" href="#">Forgot your password?</a>
                     </div>
+                    <br>
+                    <button type="button"
+                        class="btn btn-primary mt-3 d-flex m-auto px-5 btn-verify-twofa">Verify</button>
+                </form>
+                <br>
+                <!-- <a href="#" class="text-blue btn-send_via_email d-flex justify-content-end">
+                    <small>Send OTP via email address</small></a> -->
+
+                <div>
+                    <p id="otp_count"></p>
                 </div>
-            </div>
+
+
+                <div class="text-center">
+                    Didn't receive the code?<br />
+                    <button class="btn btn-resend-twofa btn-link"><small>Send code again</small></a><br />
+                        <!-- <a href="#"><small>Change phone number</small></a> -->
+                </div>
         </div>
-    </div>
-
-
-
-    <div class="user_card bg-card-orange"></div>
-    <div class="user_card bg-card-orange bg-upper"></div>
-    <div class="user_card bg-card-orange bg-upper"></div>
-
-    </div>
+        </div>
 
 
 

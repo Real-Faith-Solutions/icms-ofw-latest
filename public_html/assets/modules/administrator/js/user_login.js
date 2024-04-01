@@ -78,7 +78,7 @@ function loginUser() {
         }
       } else {
         if (parseInt(rs.data.link_type) === 1) {
-          var lnk = rs.data.link + "dashboard";
+          var lnk = rs.data.link + "twofactorauth";
           if (typeof rs.data.__session.userData.user_id !== "undefined") {
             location.assign(lnk); // to dash board/homepage
           }
@@ -177,22 +177,6 @@ $(document).ready(function () {
   });
 });
 
-// sending of the twofactor authentication
-// $('.2fa_btn').click(function(){
-//   $.post(
-//     sAjaxAccess,
-//     {
-//       type: "getTwoFactorAuth",
-//     },
-//     function (rs) {
-//       icmsMessage({
-//         type: "msgPreloader",
-//         visible: false,
-//       });
-//     },
-//     "json"
-//   );
-// });
 
 
 function verifyTwoFactorAuth() {
@@ -209,15 +193,16 @@ function verifyTwoFactorAuth() {
         $.post(
             sAjaxAccess,
             {
-                type: "getTwoFactorAuth",
+                type: "searchTwoFactorAuth",
             },
             function (rs) {
                 console.log(rs);
                 console.log(code);
                 if (rs.data) {
                     if (rs.data == code) {
-                        console.log("success");
-                        
+                      console.log("success");
+                      var lnk = "dashboard";
+                      location.assign(lnk);
                     } else {
                         console.error("errors");
                     }
