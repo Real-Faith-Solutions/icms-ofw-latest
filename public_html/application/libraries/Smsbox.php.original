@@ -3,11 +3,6 @@
 /** 
  * Page Security
  */
-
-use Aws\Sns\SnsClient;
-use Aws\Exception\AwsException;
-require 'vendor/autoload.php';
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
@@ -38,7 +33,6 @@ class SMSbox
     {
         $rs = [];
         $rs['flag'] = self::FAILED;
-        
         if ($mobile == "") {
             $rs['message']['mobile_number'] = "Mobile number is required";
             return $rs;
@@ -49,38 +43,19 @@ class SMSbox
             return $rs;
         }
 
-        // Initialize AWS SDK
-        $snsClient = new SnsClient([
-            'version' => 'latest',
-            'region' => 'ap-southeast-1',
-            'credentials' => [
-                'key' => constant('AWS_ACCESS_KEY'),
-                'secret' => constant('AWS_SECRET_KEY'),
-            ]
-        ]);
-
-        // Send SMS using AWS SNS
-        try {
-            $result = $snsClient->publish([
-                'Message' => $message,
-                'PhoneNumber' => $mobile,
-            ]);
-
-            // If message sent successfully
-            if ($result['@metadata']['statusCode'] == 200) {
-                $rs['flag'] = self::SUCCESS;
-
-                $this->addSMSBoxLog([
-                    'sms_box_message' => $message,
-                    'sms_box_number' => $mobile,
-                    'sms_box_is_sent' => 1
-                ]);
-            }
-        } catch (AwsException $e) {
-            $rs['message']['error'] = $e->getMessage();
+        // check mobile number 
+        $checkMobile = $this->checkMobile($mobile);
+        if ($checkMobile['flag'] == self::FAILED) {
+            $rs['message']['mobile_number'] = $checkMobile['log_msg'];
+            return $rs;
         }
 
-        return $rs;
+        $mobile = $checkMobile['mob_num'];
+        $aSMSContent = [];
+        $aSMSContent['sms_box_message'] = $message;
+        $aSMSContent['sms_box_number'] = $mobile;
+
+        return $this->addSMSBoxLog($aSMSContent);
     }
 
     /**
@@ -100,7 +75,7 @@ class SMSbox
             INSERT INTO
             `sms_box`
             SET
-            `sms_box_api_name` = 'JOSH',
+            `sms_box_api_name` = 'MARI',
             `sms_box_relation_id` = '1',
             `sms_box_message` = '" . $param['sms_box_message'] . "',
             `sms_box_number` = '" . $param['sms_box_number'] . "',
