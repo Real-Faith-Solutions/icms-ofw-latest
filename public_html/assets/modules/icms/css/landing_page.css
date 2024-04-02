@@ -26,7 +26,7 @@
 }
 .card-icms {
   width: 65vh;
-  border-radius: 5%;
+  border-radius: 1%;
 }
 
 /* overflow: hidden; */
@@ -262,6 +262,46 @@ a.complain-design{
     font-size: 30px;
   }
 }
+
+/* For devices with a width of exactly 1024px */
+/* For devices with a width of exactly 1024px */
+@media only screen and (min-width: 1024px) and (max-width: 1024px) {
+  /* Define your CSS rules for 1024px width here */
+  .masthead .masthead-content {
+    position: relative;
+    max-width: 40rem; /* Adjust as needed */
+  }
+  .card-icms {
+    width: 56vh; /* Adjust as needed */
+    height: auto; /* Adjust as needed */
+  }
+  .brand_logo {
+    width: 140px; /* Adjust as needed */
+  }
+  .sub-heading {
+    font-size: 21px; /* Adjust as needed */
+    margin: 15px 0px; /* Adjust as needed */
+  }
+  .icms_txt {
+    font-size: 40px; /* Adjust as needed */
+  }
+  .form-control {
+    height: 40px; /* Adjust as needed */
+    font-size: 16px; /* Adjust as needed */
+  }
+  .btn-search {
+    width: 108px; /* Adjust as needed */
+    height: 41px; /* Adjust as needed */
+    font-size: 16px; /* Adjust as needed */
+  }
+  .small, small {
+    font-size: 16px; /* Adjust as needed */
+  }
+}
+
+
+
+
 @media only screen and (min-width: 1200px) {
   .masthead .masthead-content {
     position: relative;
@@ -294,3 +334,38 @@ a.complain-design{
     font-size: 16px;
   }
 }
+
+@media only screen and (min-width: 1200px) {
+  .masthead .masthead-content {
+    position: relative;
+    max-width: 40rem;
+  }
+  .card-icms {
+    width: 56vh;
+    height: auto;
+  }
+  .brand_logo {
+    width: 140px;
+  }
+  .sub-heading {
+    font-size: 21px;
+    margin: 15px 0px;
+  }
+  .icms_txt {
+    font-size: 40px;
+  }
+  .form-control {
+    height: 40px;
+    font-size: 16px;
+  }
+  .btn-search {
+    width: 108px;
+    height: 41px;
+    font-size: 16px;
+  }
+  .small, small {
+    font-size: 16px;
+  }
+}
+
+
