@@ -30,6 +30,7 @@ function loginUser() {
       pass: pass,
     },
     function (rs) {
+      sessionStorage.setItem('loginResponse', JSON.stringify(rs));
       let data = rs.data;
 
       icmsMessage({
@@ -189,11 +190,20 @@ function verifyTwoFactorAuth() {
 
     if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
         var code = code1 + code2 + code3 + code4 + code5 + code6;
+
+        var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
+
+        var id = rs.data.__session.userData.user_id;
+        if (!rs) {
+          console.error('Login response not found');
+          return;
+        }
         
         $.post(
             sAjaxAccess,
             {
                 type: "searchTwoFactorAuth",
+                id: id
             },
             function (rs) {
                 console.log(rs);

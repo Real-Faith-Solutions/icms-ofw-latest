@@ -167,7 +167,6 @@ class User_access extends CI_Controller {
         }
         
         $aResponse['__session'] = $_SESSION;
-        $this->searchTwoFactorAuth($aResponse);
         return $aResponse;
     }
 
@@ -303,17 +302,10 @@ class User_access extends CI_Controller {
         return $result;
     }
 
-    public function searchTwoFactorAuth($aResponse) {
-        
-            $user_id = 27;
-            $result = $this->User_access_model->getTwoFactorAuthentication($user_id);
-            // $result = $this->User_access_model->getTwoFactorAuthentication($aResponse['user_id']);
-            if (!empty($result)) {
-                $twofa_code = $result[0]['twofa_code'];
-                return $twofa_code;
-            } else {
-                return false; // Or handle the case when no result is found
-            }
+    public function searchTwoFactorAuth() {
+            $id = $this->input->post('id');
+            $result = $this->User_access_model->getTwoFactorAuthentication($id);
+            return $result;
     }
     
 
