@@ -76,7 +76,6 @@ Class Settings_model extends CI_Model {
                 `icms_global_parameter_type`
             WHERE 
                 `global_parameter_type_is_show`  = '1'
-                AND `global_parameter_type_id` != 30
             ORDER BY `global_parameter_type_name` ASC
         ";
     
