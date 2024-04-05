@@ -248,6 +248,13 @@ Class User_access_model extends CI_Model {
         return $data;
     }
 
+    public function sendTwoFactorAutoViaEmail($param){
+        $sql = "SELECT * FROM icms_user AS u LEFT JOIN icms_user_case_twofa AS t ON u.user_id = t.user_id WHERE u.user_id='".$param."' ORDER BY t.twofa_added DESC LIMIT 1";
+        $result = $this->yel->GetAll($sql);
+        return $result;
+    }
+    
+
     public function getTwoFactorAuthentication($param) {
         $sql = "SELECT twofa_code FROM icms_user_case_twofa WHERE user_id='".$param."' ORDER BY twofa_added DESC LIMIT 1";
         
