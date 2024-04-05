@@ -232,4 +232,34 @@ function verifyTwoFactorAuth() {
 $('.btn-verify-twofa').click(verifyTwoFactorAuth);
 
 
+function resendTwofaCode() {
+
+  var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
+
+  var id = rs.data.__session.userData.user_id;
+  if (!rs) {
+    console.error('Login response not found');
+    return;
+  }
+
+  $.post(
+    sAjaxAccess,
+    {
+        type: "ResendTwoFactorAuth",
+        id
+    },
+    function (rs) {
+        if (rs.data) {
+          console.log("success");
+        } else {
+            console.log("try again");
+        }
+    },
+    "json"
+);
+}
+
+$('.btn-resend-twofa').click(resendTwofaCode);
+
+
 
