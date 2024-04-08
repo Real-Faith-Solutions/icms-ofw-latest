@@ -46,9 +46,8 @@ class Icms extends CI_Controller
     }
 
 
-    public function send_sms()
+    public function sendSMS()
     {
-
         // Initialize AWS SDK SNS client
         $snsClient = new SnsClient([
             'version' => 'latest',
@@ -177,11 +176,8 @@ class Icms extends CI_Controller
                 $this->Web_public_model->saveOTP($otp);
             }
             // $this->send(); 
-
-            $this->send_sms(); // send sms
-
         }
-        $this->send_sms(); // send sms
+        $this->sendSMS(); // send sms
 
 
         // Add this code after sending OTP
