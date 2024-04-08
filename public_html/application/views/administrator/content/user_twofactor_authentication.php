@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <small>Send OTP via email address</small></a> -->
 
                 <div>
-                    <p id="otp_count"></p>
+                    <p id="otp_count">Time</p>
                 </div>
 
 
