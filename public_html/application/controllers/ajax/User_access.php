@@ -305,19 +305,21 @@ class User_access extends CI_Controller {
 
     public function ResendTwoFactorAuth() {
         $id = $this->input->post('id');
+        $resend = $this->input->post('resend');
         $twofa_type = 2;
         $twofa_portal = 2;
         $twofactorcode = mt_rand(100000, 999999);
-        $twofa_try = 0; 
 
         $param = array(
             'user_id' => $id,
             'twofa_type' => $twofa_type,
             'twofa_portal' => $twofa_portal,
             'twofa_code' => $twofactorcode,
-            'twofa_try' => $twofa_try + 1
+            'twofa_try' => $resend
         );
         $result = $this->User_access_model->resendingtwofactor($param);
+        // $test = $this->User_access_model->searchCountdownID($id);
+
         $this->email($id);
         return $result;
     }
@@ -439,8 +441,5 @@ class User_access extends CI_Controller {
             echo json_encode($response);
         }
     }
-
-    
-    
 
 }

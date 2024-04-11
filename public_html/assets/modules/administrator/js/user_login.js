@@ -206,8 +206,6 @@ function verifyTwoFactorAuth() {
                 id: id
             },
             function (rs) {
-                console.log(rs);
-                console.log(code);
                 if (rs.data) {
                     if (rs.data == code) {
                       console.log("success");
@@ -232,31 +230,66 @@ function verifyTwoFactorAuth() {
 $('.btn-verify-twofa').click(verifyTwoFactorAuth);
 
 
-function resendTwofaCode() {
 
+// Function to reset resendAttempts array to 0 on page reload
+function resetResendAttempts() {
+  sessionStorage.removeItem('resendAttempts');
+}
+
+// Listen for page reload event
+window.addEventListener('beforeunload', resetResendAttempts);
+
+// Function to resend 2FA code
+function resendTwofaCode() {
   var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
 
-  var id = rs.data.__session.userData.user_id;
   if (!rs) {
     console.error('Login response not found');
     return;
   }
 
+  var id = rs.data.__session.userData.user_id;
+
+  // Define resendAttempts array
+  var resendAttempts = [];
+
+  // If resendAttempts is stored in sessionStorage, parse it
+  var storedAttempts = sessionStorage.getItem('resendAttempts');
+  if (storedAttempts) {
+    resendAttempts = JSON.parse(storedAttempts);
+  }
+
+  // If resendAttempts is empty, initialize attempts to 0
+  if (resendAttempts.length === 0) {
+    resendAttempts.push(0);
+  } else {
+    // Otherwise, replace the last value in the array with the updated attempts
+    var lastAttemptIndex = resendAttempts.length - 1;
+    resendAttempts[lastAttemptIndex]++;
+  }
+
+  // Store updated resendAttempts in sessionStorage
+  sessionStorage.setItem('resendAttempts', JSON.stringify(resendAttempts));
+
+  var resend = resendAttempts[resendAttempts.length - 1];
+  console.log("Attempts:", resend);
+
   $.post(
     sAjaxAccess,
     {
-        type: "ResendTwoFactorAuth",
-        id
+      type: "ResendTwoFactorAuth",
+      id: id,
+      resend: resend
     },
     function (rs) {
-        if (rs.data) {
-          console.log("success");
-        } else {
-            console.log("try again");
-        }
+      if (rs.data) {
+        console.log(rs.data);
+      } else {
+        console.log("try again");
+      }
     },
     "json"
-);
+  );
 }
 
 $('.btn-resend-twofa').click(resendTwofaCode);
