@@ -299,6 +299,28 @@ class User_access extends CI_Controller {
             'twofa_code' => $twofactorcode
         );
         $result = $this->User_access_model->addTwoFactorAuto($param);
+        $this->NotificationEmailTwofa($user_id);
+        return $result;
+    }
+
+    public function ResendTwoFactorAuth() {
+        $id = $this->input->post('id');
+        $resend = $this->input->post('resend');
+        $twofa_type = 2;
+        $twofa_portal = 2;
+        $twofactorcode = mt_rand(100000, 999999);
+
+        $param = array(
+            'user_id' => $id,
+            'twofa_type' => $twofa_type,
+            'twofa_portal' => $twofa_portal,
+            'twofa_code' => $twofactorcode,
+            'twofa_try' => $resend
+        );
+        $result = $this->User_access_model->resendingtwofactor($param);
+        // $test = $this->User_access_model->searchCountdownID($id);
+
+        $this->email($id);
         return $result;
     }
 
@@ -307,6 +329,117 @@ class User_access extends CI_Controller {
             $result = $this->User_access_model->getTwoFactorAuthentication($id);
             return $result;
     }
-    
+
+    public function NotificationEmailTwofa($user_id){
+        $CI = &get_instance();
+        $CI->load->library('email');
+        $TwofactorAuth = $this->User_access_model->sendTwoFactorAutoViaEmail($user_id);
+
+        if ($TwofactorAuth) {
+            foreach ($TwofactorAuth as $twofa) {
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
+
+                $CI->email->initialize($config);
+
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                $CI->email->to($twofa['user_email']); // Use the fetched email address
+                $CI->email->subject('ICMS-IACAT CASE');
+                // Construct email message
+                // Construct email message
+                $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+                $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
+                $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $twofa['twofa_code'] . '</p>';
+                $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+                $message .= '<p style="font-size: 12px;">';
+                $message .= '<div style="text-align:center;">';
+                $message .= 'from<br>';
+                $message .= 'ICMS.IACAT<br>';
+                $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                $message .= '</p>';
+                $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+                $message .= '</div>';
+                $message .= '</div>';
+                $CI->email->message($message);
+
+                // Send email
+                if ($CI->email->send()) {
+
+                } else {
+
+                }
+            }
+        } else {
+            // Handle case where no temporary cases are found
+            $response = array("success" => false, "message" => "No temporary cases found");
+            echo json_encode($response);
+        }
+    }
+
+    public function email($id){
+        $CI = &get_instance();
+        $CI->load->library('email');
+        $TwofactorAuth = $this->User_access_model->sendTwoFactorAutoViaEmail($id);
+
+        if ($TwofactorAuth) {
+            foreach ($TwofactorAuth as $twofa) {
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
+
+                $CI->email->initialize($config);
+
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                $CI->email->to($twofa['user_email']); // Use the fetched email address
+                $CI->email->subject('ICMS-IACAT CASE');
+                // Construct email message
+                // Construct email message
+                $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+                $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
+                $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $twofa['twofa_code'] . '</p>';
+                $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+                $message .= '<p style="font-size: 12px;">';
+                $message .= '<div style="text-align:center;">';
+                $message .= 'from<br>';
+                $message .= 'ICMS.IACAT<br>';
+                $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                $message .= '</p>';
+                $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+                $message .= '</div>';
+                $message .= '</div>';
+                $CI->email->message($message);
+
+                // Send email
+                if ($CI->email->send()) {
+
+                } else {
+
+                }
+            }
+        } else {
+            // Handle case where no temporary cases are found
+            $response = array("success" => false, "message" => "No temporary cases found");
+            echo json_encode($response);
+        }
+    }
 
 }
