@@ -604,7 +604,7 @@ class Web_public extends CI_Controller
                 else {
                     // send sms
                     // echo "send sms";
-                    // $this->Icms->send_sms();
+                    // $this->Icms->sendSMS();
                 }
             }
         } else {

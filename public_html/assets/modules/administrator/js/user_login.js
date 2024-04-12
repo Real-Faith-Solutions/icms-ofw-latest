@@ -230,7 +230,6 @@ function verifyTwoFactorAuth() {
 $('.btn-verify-twofa').click(verifyTwoFactorAuth);
 
 
-
 // Function to reset resendAttempts array to 0 on page reload
 function resetResendAttempts() {
   sessionStorage.removeItem('resendAttempts');
@@ -250,36 +249,46 @@ function resendTwofaCode() {
 
   var id = rs.data.__session.userData.user_id;
 
-  // Define resendAttempts array
-  var resendAttempts = [];
-
-  // If resendAttempts is stored in sessionStorage, parse it
+  // Retrieve resendAttempts from sessionStorage
   var storedAttempts = sessionStorage.getItem('resendAttempts');
-  if (storedAttempts) {
-    resendAttempts = JSON.parse(storedAttempts);
-  }
+  var resendAttempts = storedAttempts ? JSON.parse(storedAttempts) : [];
 
-  // If resendAttempts is empty, initialize attempts to 0
+  // Increment resendAttempts
   if (resendAttempts.length === 0) {
     resendAttempts.push(0);
   } else {
-    // Otherwise, replace the last value in the array with the updated attempts
     var lastAttemptIndex = resendAttempts.length - 1;
     resendAttempts[lastAttemptIndex]++;
   }
 
-  // Store updated resendAttempts in sessionStorage
+  // Update resendAttempts in sessionStorage
   sessionStorage.setItem('resendAttempts', JSON.stringify(resendAttempts));
 
-  var resend = resendAttempts[resendAttempts.length - 1];
-  console.log("Attempts:", resend);
+  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 15 : 50;
+  var timerElement = $('#twofa_count');
+  var timer = countdownSeconds;
 
+  // Disable resend button and start countdown
+  $('.btn-resend-twofa').prop('disabled', true);
+
+  var countdown = setInterval(function() {
+    timer--;
+    timerElement.text("Resend Code in: " + timer + " seconds");
+    $('#twofa_count').show();
+
+    if (timer <= 0) {
+      clearInterval(countdown);
+      $('.btn-resend-twofa').prop('disabled', false);
+      $('#twofa_count').hide();
+    }
+  }, 1000);
+
+  // Send AJAX request to resend 2FA code
   $.post(
     sAjaxAccess,
     {
       type: "ResendTwoFactorAuth",
       id: id,
-      resend: resend
     },
     function (rs) {
       if (rs.data) {
@@ -290,9 +299,18 @@ function resendTwofaCode() {
     },
     "json"
   );
+
+  // Clear countdown interval if button clicked again
+  $('.btn-resend-twofa').unbind('click').click(function() {
+    clearInterval(countdown);
+    resendTwofaCode();
+  });
 }
 
+// Attach click event listener to resend button
 $('.btn-resend-twofa').click(resendTwofaCode);
+
+
 
 
 
