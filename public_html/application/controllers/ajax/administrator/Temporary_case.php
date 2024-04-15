@@ -920,12 +920,12 @@ class Temporary_case extends CI_Controller {
     
                 $CI->email->initialize($config);
     
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                 $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
-                $CI->email->subject('ICMS-IACAT UPDATE CASE');
+                $CI->email->subject('ICMS-OFW UPDATE CASE');
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
-                $message .= '<p>Hi! Mr/Mrs <b>'. $tempCase['temporary_complainant_lastname'] . ','. $tempCase['temporary_complainant_firstname'] .'</b> Your case data is been update!. <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address   
+                $message .= '<p>Hi! Mr/Mrs <b>'. $tempCase['temporary_complainant_lastname'] . ','. $tempCase['temporary_complainant_firstname'] .'</b> Your case data is been update!. <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.OFW account.</p>'; // Use the fetched email address   
                 $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
                 $message .= '<div style="display: flex; flex-wrap: wrap;">';
                 $message .= '<div style="width: 50%;">';
@@ -1005,9 +1005,9 @@ class Temporary_case extends CI_Controller {
                 $message .= '<p style="font-size: 12px;">';
                 $message .= '<div style="text-align:center;">';
                 $message .= 'from<br>';
-                $message .= 'ICMS.IACAT<br>';
+                $message .= 'ICMS.OFW<br>';
                 $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
                 $message .= '</p>';
                 $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
                 $message .= '</div>';

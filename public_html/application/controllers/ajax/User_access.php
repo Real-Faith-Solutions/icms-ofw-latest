@@ -305,19 +305,21 @@ class User_access extends CI_Controller {
 
     public function ResendTwoFactorAuth() {
         $id = $this->input->post('id');
+        $resend = $this->input->post('resend');
         $twofa_type = 2;
         $twofa_portal = 2;
         $twofactorcode = mt_rand(100000, 999999);
-        $twofa_try = 0; 
 
         $param = array(
             'user_id' => $id,
             'twofa_type' => $twofa_type,
             'twofa_portal' => $twofa_portal,
             'twofa_code' => $twofactorcode,
-            'twofa_try' => $twofa_try + 1
+            'twofa_try' => $resend
         );
         $result = $this->User_access_model->resendingtwofactor($param);
+        // $test = $this->User_access_model->searchCountdownID($id);
+
         $this->email($id);
         return $result;
     }
@@ -349,9 +351,9 @@ class User_access extends CI_Controller {
 
                 $CI->email->initialize($config);
 
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                 $CI->email->to($twofa['user_email']); // Use the fetched email address
-                $CI->email->subject('ICMS-IACAT CASE');
+                $CI->email->subject('ICMS-OFW CASE');
                 // Construct email message
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
@@ -361,9 +363,9 @@ class User_access extends CI_Controller {
                 $message .= '<p style="font-size: 12px;">';
                 $message .= '<div style="text-align:center;">';
                 $message .= 'from<br>';
-                $message .= 'ICMS.IACAT<br>';
+                $message .= 'ICMS.OFW<br>';
                 $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
                 $message .= '</p>';
                 $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
                 $message .= '</div>';
@@ -405,9 +407,9 @@ class User_access extends CI_Controller {
 
                 $CI->email->initialize($config);
 
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                 $CI->email->to($twofa['user_email']); // Use the fetched email address
-                $CI->email->subject('ICMS-IACAT CASE');
+                $CI->email->subject('ICMS-OFW CASE');
                 // Construct email message
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
@@ -417,9 +419,9 @@ class User_access extends CI_Controller {
                 $message .= '<p style="font-size: 12px;">';
                 $message .= '<div style="text-align:center;">';
                 $message .= 'from<br>';
-                $message .= 'ICMS.IACAT<br>';
+                $message .= 'ICMS.OFW<br>';
                 $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
                 $message .= '</p>';
                 $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
                 $message .= '</div>';
@@ -439,8 +441,5 @@ class User_access extends CI_Controller {
             echo json_encode($response);
         }
     }
-
-    
-    
 
 }

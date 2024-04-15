@@ -278,4 +278,10 @@ Class User_access_model extends CI_Model {
         return $result;
         
     }
+
+    public function searchCountdownID($param) {
+        $sql = "SELECT * FROM icms_user_case_twofa WHERE user_id='".$param."' ORDER BY twofa_added DESC LIMIT 1";
+        $result = $this->yel->GetAll($sql);
+        return $result;
+    }
 }
