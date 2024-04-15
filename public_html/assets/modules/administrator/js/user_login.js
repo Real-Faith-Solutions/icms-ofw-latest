@@ -37,6 +37,7 @@ function loginUser() {
         type: "msgPreloader",
         visible: false,
       });
+      console.log(data);
 
       if (data.flag == "0") {
         if (data.php_validation.flag == "0") {
@@ -80,10 +81,11 @@ function loginUser() {
       } else {
         if (parseInt(rs.data.link_type) === 1) {
           var lnk = rs.data.link + "twofactorauth";
-          if (typeof rs.data.__session.userData.user_id !== "undefined") {
+          // if (typeof rs.data.__session.userData.user_id !== "undefined") {
             location.assign(lnk); // to dash board/homepage
-          }
+          // }
         } else if (parseInt(rs.data.link_type) === 2) {
+
           var body = "<br>Access Denied! <br><br>";
           body += "Your account is not registered as administrator<br><br>";
           body += "<a class='a-agn-lnk' href='#'>Try Agency Panel</a>";

@@ -58,7 +58,7 @@ class User_access extends CI_Controller {
         // get login attempt 
         $login_attempt_user = $this->User_access_model->getLoginAttemptByUserName($aParam); 
         $login_attempt = 0; 
-        $aResponse['login_attempt_user_is_exist'] = 0; 
+        $aResponse['login_attempt_user_is_exist'] = 0;
         if(isset($login_attempt_user['login_attempt']) == true){
             // update user login attempt
             $this->User_access_model->updateLoginAttemptByUserName($aParam); 
@@ -85,60 +85,61 @@ class User_access extends CI_Controller {
             #Update Login Attempt 
             $this->User_access_model->resetLoginAttempt($access);
 
-            // Call addTwoFactorAuth function after successful login
-            $this->addTwoFactorAuth($access['user_id']);
-
-
-            if (isset($_SESSION['login_ctr']) == true) {
-                $aResponse['login_ctr'] = $_SESSION['login_ctr'] + 1;
-            } else {
-                $aResponse['login_ctr'] = 1;
-            }
-            unset($_SESSION['login_ctr']);
+            // if (isset($_SESSION['login_ctr']) == true) {
+            //     $aResponse['login_ctr'] = $_SESSION['login_ctr'] + 1;
+            // } else {
+            //     $aResponse['login_ctr'] = 1;
+            // }
+            // unset($_SESSION['login_ctr']);
 
             if ($access['user_is_active'] == 1 && $access['user_level_is_active'] == 1 && $access['agency_is_active'] == 1 && $access['agency_branch_is_active'] == 1) {
+                // Call addTwoFactorAuth function after successful login
+                $this->addTwoFactorAuth($access['user_id']);
+                
+            
+                
                 $aResponse['result'] = self::SUCCESS_RESPONSE;
 
-                $access['accessKey'] = $this->yel->generateHASHID(12);
-                $aParam['user_id'] = $access['user_id'];
-                $aParam['accessKey'] = $access['accessKey'];
-                $access['view_legal'] = $this->User_access_model->validateViewLegalServices($access);
-                $this->session->set_userdata('userData', $access);
+                // $access['accessKey'] = $this->yel->generateHASHID(12);
+                // $aParam['user_id'] = $access['user_id'];
+                // $aParam['accessKey'] = $access['accessKey'];
+                // $access['view_legal'] = $this->User_access_model->validateViewLegalServices($access);
+                // $this->session->set_userdata('userData', $access);
 
 
-                unset($access['user_id']);
-                unset($access['user_level_is_active']);
-                unset($access['user_is_active']);
-                unset($access['agency_is_active']);
-                unset($access['agency_branch_id']);
-                unset($access['agency_id']);
-                unset($access['agency_branch_is_active']);
+                // unset($access['user_id']);
+                // unset($access['user_level_is_active']);
+                // unset($access['user_is_active']);
+                // unset($access['agency_is_active']);
+                // unset($access['agency_branch_id']);
+                // unset($access['agency_id']);
+                // unset($access['agency_branch_is_active']);
 
-                $aResponse['json'] = $this->yel->encrypt_param(json_encode($_SESSION['userData']));
+                // $aResponse['json'] = $this->yel->encrypt_param(json_encode($_SESSION['userData']));
 
                 if ($access['agency_is_admin'] == "1") {
                     // login page return UI
                     $aResponse['link'] = ADMIN_SITE_URL;
                     $aResponse['link_type'] = 1;
-                    $_SESSION['userData']['loginFrom'] = 'administrator';
+                    // $_SESSION['userData']['loginFrom'] = 'administrator';
                 } else {
                     $aResponse['link'] = AGENCY_SITE_URL;
                     $aResponse['link_type'] = 2;
-                    $_SESSION['userData']['loginFrom'] = 'agency';
+                    // $_SESSION['userData']['loginFrom'] = 'agency';
                 }
 
                 // save user log
 
-                $aLog = [];
-                $aLog['log_event_type'] = 1; // base on table : icms_user_event_type
-                $aLog['log_message'] = "Logged in an account";
-                $aLog['log_link'] = 'users/' . $this->yel->encrypt_param($aParam['user_id']);
-                $aLog['log_action'] = 1; // 1= new insert table 2=update table
-                $aResponse['log'] = $this->audit->create($aLog);
+                // $aLog = [];
+                // $aLog['log_event_type'] = 1; // base on table : icms_user_event_type
+                // $aLog['log_message'] = "Logged in an account";
+                // $aLog['log_link'] = 'users/' . $this->yel->encrypt_param($aParam['user_id']);
+                // $aLog['log_action'] = 1; // 1= new insert table 2=update table
+                // $aResponse['log'] = $this->audit->create($aLog);
 
                 //save app access
-                $this->User_access_model->setAppAccess_inactive($aParam);
-                $this->User_access_model->addAppAccess($aParam);
+                // $this->User_access_model->setAppAccess_inactive($aParam);
+                // $this->User_access_model->addAppAccess($aParam);
             } else {
                 $aResponse['access_msg'] = "";
                 $aResponse['result'] = self::FAILED_RESPONSE;
@@ -166,7 +167,7 @@ class User_access extends CI_Controller {
             $aResponse['access_msg'] = "Incorrect username or password";
         }
         
-        $aResponse['__session'] = $_SESSION;
+        // $aResponse['__session'] = $_SESSION;
         return $aResponse;
     }
 
@@ -325,9 +326,109 @@ class User_access extends CI_Controller {
     }
 
     public function searchTwoFactorAuth() {
-            $id = $this->input->post('id');
-            $result = $this->User_access_model->getTwoFactorAuthentication($id);
-            return $result;
+        $id = $this->input->post('id');
+
+        var_dump($id);
+
+        
+
+
+        $access = $this->User_access_model->getUserlogin($id);
+
+        if (isset($access['user_id']) == true) {
+            $aResponse['flag'] = self::SUCCESS_RESPONSE;
+            #Update Login Attempt 
+            $this->User_access_model->resetLoginAttempt($access);
+
+            if (isset($_SESSION['login_ctr']) == true) {
+                $aResponse['login_ctr'] = $_SESSION['login_ctr'] + 1;
+            } else {
+                $aResponse['login_ctr'] = 1;
+            }
+            unset($_SESSION['login_ctr']);
+
+            if ($access['user_is_active'] == 1 && $access['user_level_is_active'] == 1 && $access['agency_is_active'] == 1 && $access['agency_branch_is_active'] == 1) {
+                // Call addTwoFactorAuth function after successful login
+                $this->addTwoFactorAuth($access['user_id']);
+                
+                $aResponse['result'] = self::SUCCESS_RESPONSE;
+
+                $access['accessKey'] = $this->yel->generateHASHID(12);
+                $aParam['user_id'] = $access['user_id'];
+                $aParam['accessKey'] = $access['accessKey'];
+                $access['view_legal'] = $this->User_access_model->validateViewLegalServices($access);
+                $this->session->set_userdata('userData', $access);
+
+
+                unset($access['user_id']);
+                unset($access['user_level_is_active']);
+                unset($access['user_is_active']);
+                unset($access['agency_is_active']);
+                unset($access['agency_branch_id']);
+                unset($access['agency_id']);
+                unset($access['agency_branch_is_active']);
+
+                $aResponse['json'] = $this->yel->encrypt_param(json_encode($_SESSION['userData']));
+
+                if ($access['agency_is_admin'] == "1") {
+                    // login page return UI
+                    $aResponse['link'] = ADMIN_SITE_URL;
+                    $aResponse['link_type'] = 1;
+                    $_SESSION['userData']['loginFrom'] = 'administrator';
+                } else {
+                    $aResponse['link'] = AGENCY_SITE_URL;
+                    $aResponse['link_type'] = 2;
+                    $_SESSION['userData']['loginFrom'] = 'agency';
+                }
+
+                // save user log
+
+                $aLog = [];
+                $aLog['log_event_type'] = 1; // base on table : icms_user_event_type
+                $aLog['log_message'] = "Logged in an account";
+                $aLog['log_link'] = 'users/' . $this->yel->encrypt_param($aParam['user_id']);
+                $aLog['log_action'] = 1; // 1= new insert table 2=update table
+                $aResponse['log'] = $this->audit->create($aLog);
+
+                //save app access
+                $this->User_access_model->setAppAccess_inactive($aParam);
+                $this->User_access_model->addAppAccess($aParam);
+            } else {
+                $aResponse['access_msg'] = "";
+                $aResponse['result'] = self::FAILED_RESPONSE;
+                if ($access['agency_is_active'] == 0) {
+                    $aResponse['access_msg'] = "Agency has been deactivated";
+                }
+                if ($access['agency_branch_is_active'] == 0) {
+                    $aResponse['access_msg'] = "Branch agency has been deactivated";
+                }
+                if ($access['user_level_is_active'] == 0) {
+                    $aResponse['access_msg'] = "User level has been deactivated";
+                }
+                if ($access['user_is_active'] == 0) {
+                    $aResponse['access_msg'] = "Account has been deactivated";
+                }
+            }
+        } else {
+            $aResponse['result'] = self::FAILED_RESPONSE;
+            if (isset($_SESSION['login_ctr']) == true) {
+                $_SESSION['login_ctr'] = $_SESSION['login_ctr'] + 1;
+            } else {
+                $_SESSION['login_ctr'] = 1;
+            }
+            $aResponse['login_ctr'] = $_SESSION['login_ctr'];
+            $aResponse['access_msg'] = "Incorrect username or password";
+        }
+        
+        $aResponse['__session'] = $_SESSION;
+        return $aResponse;
+
+
+
+
+
+            
+
     }
 
     public function NotificationEmailTwofa($user_id){

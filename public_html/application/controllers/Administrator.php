@@ -447,8 +447,9 @@ class Administrator extends CI_Controller {
 
     public function user_login() {
         $sess = $this->checkSession();
+        
         if ($sess) {
-            redirect(SITE_URL . 'twofactorauth');
+            redirect(SITE_URL . 'dashboard');
             exit();
         } else {
             session_destroy();
@@ -470,6 +471,11 @@ class Administrator extends CI_Controller {
     public function twofactorauth() {
         $sess = $this->checkSession();
         if ($sess) {
+            redirect(SITE_URL . 'dashboard');
+            // exit();
+
+        } else {
+            session_destroy();
             $aRecordSet = [];
             $aSEO = array(
                 'page_title' => 'ICMS:twofactorauth',
@@ -482,9 +488,6 @@ class Administrator extends CI_Controller {
                 'js' => array('global_methods', 'icms_message')
             );
             $this->setTemplate('user_twofactor_authentication', $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
-        } else {
-            redirect(SITE_URL . 'twofactorauth');
-            exit();
         }
         
     }
