@@ -908,15 +908,17 @@ class Temporary_case extends CI_Controller {
                 $getGlobalDataStatus = $this->Temporary_case_model->getGlobalDataVictimStatus($victimStatus);
 
                 // Load email configuration dynamically
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'smtp.gmail.com';
-                $config['smtp_port'] = 587;
-                $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-                $config['smtp_pass'] = 'shsamihjjdkunaxs';
-                $config['mailtype'] = 'html';
-                $config['charset'] = 'utf-8';
-                $config['newline'] = "\r\n";
-                $config['smtp_crypto'] = 'tls';
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
     
                 $CI->email->initialize($config);
     
