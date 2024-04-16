@@ -469,6 +469,10 @@ class Administrator extends CI_Controller {
     }
 
     public function twofactorauth() {
+        if (empty($_GET['user']) == true) {
+            return redirect('/user_login');
+          }
+          
         $sess = $this->checkSession();
         if ($sess) {
             redirect(SITE_URL . 'dashboard');

@@ -31,7 +31,7 @@ function loginUser() {
     },
     function (rs) {
       sessionStorage.setItem('loginResponse', JSON.stringify(rs));
-      let data = rs.data;
+      let data = rs.data.aResponse;
 
       icmsMessage({
         type: "msgPreloader",
@@ -79,12 +79,12 @@ function loginUser() {
           });
         }
       } else {
-        if (parseInt(rs.data.link_type) === 1) {
-          var lnk = rs.data.link + "twofactorauth";
-          // if (typeof rs.data.__session.userData.user_id !== "undefined") {
+        if (parseInt(rs.data.aResponse.link_type) === 1) {
+          var lnk = rs.data.aResponse.link + "twofactorauth?user=" + user;
+          // if (typeof rs.data.aResponse.__session.userData.user_id !== "undefined") {
             location.assign(lnk); // to dash board/homepage
           // }
-        } else if (parseInt(rs.data.link_type) === 2) {
+        } else if (parseInt(rs.data.aResponse.link_type) === 2) {
 
           var body = "<br>Access Denied! <br><br>";
           body += "Your account is not registered as administrator<br><br>";
@@ -190,43 +190,46 @@ function verifyTwoFactorAuth() {
     var code5 = $('.inp-code-5').val().trim();
     var code6 = $('.inp-code-6').val().trim();
 
-    if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
-        var code = code1 + code2 + code3 + code4 + code5 + code6;
 
-        var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
-
-        var id = rs.data.__session.userData.user_id;
-        if (!rs) {
-          console.error('Login response not found');
-          return;
-        }
-        
-        $.post(
-            sAjaxAccess,
-            {
-                type: "searchTwoFactorAuth",
-                id: id
-            },
-            function (rs) {
-                if (rs.data) {
-                    if (rs.data == code) {
-                      console.log("success");
-                      var lnk = "dashboard";
-                      location.assign(lnk);
-                    } else {
-                        console.error("errors");
-                    }
-                } else {
-                    console.log("try again");
-                }
-            },
-            "json"
-        );
+   
+    if (empty($_GET['user']) == true) {
+      return redirect('/user_login');
     } else {
-        icmsMessage({
-            type: 'msgError'
-        });
+      $.post(
+        sAjaxAccess,
+        {
+          type: "searchTwoFactorAuth",
+        },
+        function (rs) {
+          sessionStorage.setItem('loginResponse', JSON.stringify(rs));
+          let data = rs.data;
+
+          // success message
+          if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
+            var code = code1 + code2 + code3 + code4 + code5 + code6;
+
+        } else {
+            // error message
+            icmsMessage({
+              type: 'msgError'
+            });
+          }
+          
+      });
     }
+
+        
+
+
+
+
+
+
+
+
+
+        
+        
 }
 
 $('.btn-verify-twofa').click(verifyTwoFactorAuth);

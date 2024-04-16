@@ -167,8 +167,11 @@ class User_access extends CI_Controller {
             $aResponse['access_msg'] = "Incorrect username or password";
         }
         
-        // $aResponse['__session'] = $_SESSION;
-        return $aResponse;
+        $aResponse['__session'] = $_SESSION;
+        return [
+            'aResponse' => $aResponse,
+            'access' => $access,
+        ];
     }
 
     public function checkAccountPassword($aParam){
@@ -325,15 +328,13 @@ class User_access extends CI_Controller {
         return $result;
     }
 
-    public function searchTwoFactorAuth() {
-        $id = $this->input->post('id');
+    public function searchTwoFactorAuth($aParam) {
+        // $id = $this->input->post('id');
 
-        var_dump($id);
+        // var_dump($aParam);
 
-        
-
-
-        $access = $this->User_access_model->getUserlogin($id);
+    
+        $access = $this->User_access_model->getUserlogin($aParam);
 
         if (isset($access['user_id']) == true) {
             $aResponse['flag'] = self::SUCCESS_RESPONSE;
