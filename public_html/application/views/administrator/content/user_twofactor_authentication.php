@@ -35,6 +35,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <p>Please enter the 6-digit verification code we sent via email</p>
                 <small></small><br>
                 <form class="mt-1" id="twofactorauth">
+                    <input type="hidden" class="user" value="<?php echo $user; ?>" readonly />
+
                     <div class="d-flex">
                         <div class="m-auto">
                             <input class="inp-code-1 inp-cd mr-1 text-center py-3" type="text" maxLength="1" size="5" min="0"

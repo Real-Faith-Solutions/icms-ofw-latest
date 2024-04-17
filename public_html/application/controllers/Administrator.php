@@ -469,15 +469,16 @@ class Administrator extends CI_Controller {
     }
 
     public function twofactorauth() {
-        if (empty($_GET['user']) == true) {
+
+        if (empty($_GET['user'])) {
             return redirect('/user_login');
-          }
+        }
+    
+        $user = $_GET['user'];
           
         $sess = $this->checkSession();
         if ($sess) {
             redirect(SITE_URL . 'dashboard');
-            // exit();
-
         } else {
             session_destroy();
             $aRecordSet = [];
@@ -491,10 +492,12 @@ class Administrator extends CI_Controller {
                 'css' => '',
                 'js' => array('global_methods', 'icms_message')
             );
-            $this->setTemplate('user_twofactor_authentication', $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
+
+            // Pass $user to the view
+            $this->setTemplate('user_twofactor_authentication', array('user' => $user) + $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
         }
-        
     }
+    
     // public function twofactorauth() {
     //    $aRecordSet = [];
     //         $aSEO = array(

@@ -108,6 +108,52 @@ Class User_access_model extends CI_Model {
         return $aResponse;
     }
 
+    public function getUserloginUsingUsername($aParam) {
+
+        $aResponse = [];
+        // $pw = $this->yel->encrypt($aParam['pass']);
+        $sql = "
+                    SELECT 
+                        `user`.`user_id`,
+                        `user`.`user_firstname`,
+                        `user`.`user_lastname`,
+                        `user`.`user_username`,
+                        `user`.`agency_branch_id`,
+                        `user`.`user_level_id`,
+                        `user`.`user_is_active`,
+                        `user`.`agency_is_active`,
+                        `user`.`agency_branch_is_active`,
+                        `user`.`user_level_is_active`,
+                        `user`.`user_phone_number`,
+                        `user`.`user_mobile_number`,
+                        `user`.`user_email`,
+                        `ga`.`agency_id`,
+                        `ga`.`agency_branch_id`,
+                        `ga`.`agency_branch_is_main`,
+                        `ga`.`agency_branch_name`,
+                        `gat`.`agency_name`,
+                        `gat`.`agency_abbr`,
+                        `gat`.`agency_is_admin`,
+                        `gat`.`agency_description`,
+                        (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id`='5' AND `transaction_parameter_count_id`=`user`.`user_level_id`) as `user_level`,
+                        (SELECT `document_hash` FROM `icms_image_upload` WHERE `photo_type_id`='1' AND `panel_id`='1' AND `image_upload_is_active`='1' AND `image_upload_is_primary`='1' AND `user_Id`=`user`.`user_id`) as `profile_pic`
+                    FROM
+                        `icms_user` `user`,
+                        `icms_agency_branch` `ga`,
+                        `icms_agency` `gat`
+                    WHERE
+                        ( `user`.`user_username`=  '" . $aParam['user'] . "' OR  `user`.`user_email`='" . $aParam['user'] . "')
+                    
+                    AND `ga`.`agency_branch_id`=`user`.`agency_branch_id`
+                    AND `gat`.`agency_id`=`ga`.`agency_id`
+                    LIMIT 1
+                ";
+
+        $aResponse = $this->yel->GetRow($sql);
+
+        return $aResponse;
+    }
+
     public function addAppAccess($aParam) {
         $aResponse = [];
 

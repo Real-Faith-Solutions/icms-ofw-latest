@@ -37,7 +37,6 @@ function loginUser() {
         type: "msgPreloader",
         visible: false,
       });
-      console.log(data);
 
       if (data.flag == "0") {
         if (data.php_validation.flag == "0") {
@@ -79,11 +78,10 @@ function loginUser() {
           });
         }
       } else {
+
         if (parseInt(rs.data.aResponse.link_type) === 1) {
           var lnk = rs.data.aResponse.link + "twofactorauth?user=" + user;
-          // if (typeof rs.data.aResponse.__session.userData.user_id !== "undefined") {
-            location.assign(lnk); // to dash board/homepage
-          // }
+            location.assign(lnk);
         } else if (parseInt(rs.data.aResponse.link_type) === 2) {
 
           var body = "<br>Access Denied! <br><br>";
@@ -180,57 +178,50 @@ $(document).ready(function () {
   });
 });
 
-
-
 function verifyTwoFactorAuth() {
+  
     var code1 = $('.inp-code-1').val().trim();
     var code2 = $('.inp-code-2').val().trim();
     var code3 = $('.inp-code-3').val().trim();
     var code4 = $('.inp-code-4').val().trim();
     var code5 = $('.inp-code-5').val().trim();
     var code6 = $('.inp-code-6').val().trim();
+    var user = $('.user').val();
 
+    $.post(
+      sAjaxAccess,
+      {
+        type: "searchTwoFactorAuth",
+        user: user,
+      },
+      function (rs) {
+        sessionStorage.setItem('loginResponse', JSON.stringify(rs));
+        let data = rs.data;
 
-   
-    if (empty($_GET['user']) == true) {
-      return redirect('/user_login');
-    } else {
-      $.post(
-        sAjaxAccess,
-        {
-          type: "searchTwoFactorAuth",
-        },
-        function (rs) {
-          sessionStorage.setItem('loginResponse', JSON.stringify(rs));
-          let data = rs.data;
+        icmsMessage({
+          type: "msgPreloader",
+          visible: false,
+        });
+        
+        // success message
+        if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
+          var code = code1 + code2 + code3 + code4 + code5 + code6;
 
-          // success message
-          if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
-            var code = code1 + code2 + code3 + code4 + code5 + code6;
-
-        } else {
-            // error message
-            icmsMessage({
-              type: 'msgError'
-            });
-          }
+          location.assign('dashboard');
           
-      });
-    }
-
+      } else {
+          // error message
+          icmsMessage({
+            type: "msgWarning",
+            body: "<br>Validation Failed",
+            caption: "One Time Password are incorrect",
+          });
+        }
         
-
-
-
-
-
-
-
-
-
-        
-        
+    });
+    
 }
+
 
 $('.btn-verify-twofa').click(verifyTwoFactorAuth);
 
