@@ -139,7 +139,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="list-group-item list-group-item-action active" id="list-contact_info" data-toggle="list" href="#tab-contact_info" role="tab" aria-controls="home">Contact Information<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#tab-education" role="tab" aria-controls="profile">Educational Background<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#tab-address_info" role="tab" aria-controls="messages">Address Information <font color="red"> <b>*</b> </font> <span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
-                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Next of Kin<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
+                            <!-- #####OSAEC change label to Guardians Information from Next of Kin #####                     -->
+                            <!-- <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Next of Kin<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a> -->
+                            <!-- #####OSAEC change label to Guardians Information from Next of Kin #####                     -->
+
+                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Guardian's Information<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12">
