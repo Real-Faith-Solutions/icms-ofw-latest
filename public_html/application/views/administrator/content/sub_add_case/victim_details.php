@@ -272,12 +272,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="tab-pane fade" id="tab-next_kin" role="tabpanel"
                                 aria-labelledby="list-settings-list">
                                 <br><br>
-                                <div class=" card-sub-title"> Victim's Next of Kin <span class="txt-orange"> (Maximum of
+
+                                <!-- ####OSAEC Change label from Victim's Next of Kin to Victim's Guardian's Information ##### -->
+                                <!-- <div class=" card-sub-title"> Victim's Next of Kin <span class="txt-orange"> (Maximum of
+                                        10 entries) </span><br>
+                                    <small class="card-desc"> Victim’s closest living relative/s or closest relation.
+                                    </small>
+                                    <hr class="card-sub-title_border">
+                                </div> -->
+                                <!-- ##### OSAEC Change label from Victim's Next of Kin to Victim's Guardian's Information ##### -->
+                                <div class=" card-sub-title">Victim's Guardian's Information <span class="txt-orange"> (Maximum of
                                         10 entries) </span><br>
                                     <small class="card-desc"> Victim’s closest living relative/s or closest relation.
                                     </small>
                                     <hr class="card-sub-title_border">
                                 </div>
+
                                 <div class="row form-row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="card card_tbl-container">
