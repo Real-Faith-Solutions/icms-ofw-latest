@@ -54,6 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     </div>
                     <br>
+                    <div style="padding: 5px;">
+                    </div>
                     <button type="button"
                         class="btn btn-primary mt-3 d-flex m-auto px-5 btn-verify-twofa">Verify</button>
                 </form>
@@ -63,6 +65,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <div>
                     <p id="twofa_count"></p>
+                    <p id="twofa_error_msg" style="color: red;"></p>
+                    
                 </div>
 
 

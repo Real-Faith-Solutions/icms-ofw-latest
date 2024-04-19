@@ -198,102 +198,141 @@ function verifyTwoFactorAuth() {
 
       },
       function (rs) {
-        sessionStorage.setItem('loginResponse', JSON.stringify(rs));
-        let data = rs.data;
+        if (rs.data.flag != 0) {
+          var lnk = rs.data.link + "dashboard";
+          location.assign(lnk);
+        }else {
+          $('#twofa_error_msg').text("Wrong Code!");
+          $('.inp-code-1').val('');
+          $('.inp-code-2').val('');
+          $('.inp-code-3').val('');
+          $('.inp-code-4').val('');
+          $('.inp-code-5').val('');
+          $('.inp-code-6').val('');
+        }
 
-        console.log(data);
+      },
+      "json"
+    );
 
-        
-        // dito ka mag lagay ng condition na if flag or result is = 1, success dapat galing sa controller
-
-        
-        
-      //   if (rs) {
-      //     console.log(rs);
-      //     // Check if data property exists
-      //     if (rs.data.aResponse) {
-      //         console.log("Data exists:", rs.data);
-
-      //         // Check specific properties
-      //         if (rs.data.flag !== undefined) {
-      //             console.log("Flag:", rs.data.flag);
-      //         }
-      //         if (rs.data.name !== undefined) {
-      //             console.log("Name:", rs.data.name);
-      //         }
-      //     } else {
-      //         console.log("Data is undefined");
-      //     }
-      // } else {
-      //     console.log("Response is null or empty");
-      // }
-
-        // if (typeof rs.data.__session.userData.user_id !== "undefined") {
-
-        // if(rs.data){
-        //     console.log(true);
-        //     console.log(rs.flag);
-
-        //     if(!rs.flag){
-        //       console.log('incorrect OTP');
-        //     } else {
-        //       console.log('correct OTP');
-        //     }
-
-        //     if(data.flag) {
-        //       console.log('correct OTP');
-        //     }
-            
-        // } else {
-        //   console.log(false);
-        // }
-
-        // if(rs.data.flag){
-        //   console.log('correct OTP');
-        // }
-
-        // if (rs){
-        //   if(rs.flag == 1 || rs.data.flag == 1){
-        //     console.log("flag = " + 1);
-        //     location.assign('dashboard');
-
-        //   }else{
-        //     console.log("flag = " + 0);
-        //     icmsMessage({
-        //       type: "msgWarning",
-        //       body: "<br>Validation Failed",
-        //       caption: "One Time Password are incorrect",
-        //     });
-        //   }
-        // }
-
-        
-        // success message
-        // if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
-          
-        //   if (data.flag == 'undefined') {
-        //     icmsMessage({
-        //       type: "msgWarning",
-        //       body: "<br>Validation Failed",
-        //       caption: "One Time Password are incorrect",
-        //     });
-        //   }else{
-
-        //     console.log("location.assign('dashboard')");
-        //     location.assign('dashboard');
-        //   }
-
-        // } else {
-        //   icmsMessage({
-        //     type: "msgWarning",
-        //     body: "<br>Validation Failed",
-        //     caption: "Enter One Time Password",
-        //   });
-        // }
-        
-    });
-    
 }
+// function verifyTwoFactorAuth() {
+  
+//     var code1 = $('.inp-code-1').val().trim();
+//     var code2 = $('.inp-code-2').val().trim();
+//     var code3 = $('.inp-code-3').val().trim();
+//     var code4 = $('.inp-code-4').val().trim();
+//     var code5 = $('.inp-code-5').val().trim();
+//     var code6 = $('.inp-code-6').val().trim();
+//     var code = code1 + code2 + code3 + code4 + code5 + code6;
+//     var user = $('.user').val();
+
+//     $.post(
+//       sAjaxAccess,
+//       {
+//         type: "searchTwoFactorAuth",
+//         user: user,
+//         code: code,
+
+//       },
+//       function (rs) {
+//         console.log(rs);
+//         // sessionStorage.setItem('loginResponse', JSON.stringify(rs));
+//         // let data = rs.data;
+
+        
+
+        
+//         // dito ka mag lagay ng condition na if flag or result is = 1, success dapat galing sa controller
+
+        
+        
+//       //   if (rs) {
+//       //     console.log(rs);
+//       //     // Check if data property exists
+//       //     if (rs.data.aResponse) {
+//       //         console.log("Data exists:", rs.data);
+
+//       //         // Check specific properties
+//       //         if (rs.data.flag !== undefined) {
+//       //             console.log("Flag:", rs.data.flag);
+//       //         }
+//       //         if (rs.data.name !== undefined) {
+//       //             console.log("Name:", rs.data.name);
+//       //         }
+//       //     } else {
+//       //         console.log("Data is undefined");
+//       //     }
+//       // } else {
+//       //     console.log("Response is null or empty");
+//       // }
+
+//         // if (typeof rs.data.__session.userData.user_id !== "undefined") {
+
+//         // if(rs.data){
+//         //     console.log(true);
+//         //     console.log(rs.flag);
+
+//         //     if(!rs.flag){
+//         //       console.log('incorrect OTP');
+//         //     } else {
+//         //       console.log('correct OTP');
+//         //     }
+
+//         //     if(data.flag) {
+//         //       console.log('correct OTP');
+//         //     }
+            
+//         // } else {
+//         //   console.log(false);
+//         // }
+
+//         // if(rs.data.flag){
+//         //   console.log('correct OTP');
+//         // }
+
+//         // if (rs){
+//         //   if(rs.flag == 1 || rs.data.flag == 1){
+//         //     console.log("flag = " + 1);
+//         //     location.assign('dashboard');
+
+//         //   }else{
+//         //     console.log("flag = " + 0);
+//         //     icmsMessage({
+//         //       type: "msgWarning",
+//         //       body: "<br>Validation Failed",
+//         //       caption: "One Time Password are incorrect",
+//         //     });
+//         //   }
+//         // }
+
+        
+//         // success message
+//         // if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
+          
+//         //   if (data.flag == 'undefined') {
+//         //     icmsMessage({
+//         //       type: "msgWarning",
+//         //       body: "<br>Validation Failed",
+//         //       caption: "One Time Password are incorrect",
+//         //     });
+//         //   }else{
+
+//         //     console.log("location.assign('dashboard')");
+//         //     location.assign('dashboard');
+//         //   }
+
+//         // } else {
+//         //   icmsMessage({
+//         //     type: "msgWarning",
+//         //     body: "<br>Validation Failed",
+//         //     caption: "Enter One Time Password",
+//         //   });
+//         // }
+        
+//     });
+    
+// }
 
 
 $('.btn-verify-twofa').click(verifyTwoFactorAuth);

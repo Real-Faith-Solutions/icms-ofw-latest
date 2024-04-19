@@ -337,7 +337,7 @@ class User_access extends CI_Controller {
             // $aResponse = [];
             $aResponse['flag'] = self::FAILED_RESPONSE;
             $aResponse['result'] = self::FAILED_RESPONSE;
-            $aResponse['name'] = "Joshua";
+            // $aResponse['name'] = "Joshua";
             return $aResponse;
         }
         
@@ -396,7 +396,6 @@ class User_access extends CI_Controller {
         $aResponse['__session'] = $_SESSION;
 
         return $aResponse;
-
     }
 
     public function NotificationEmailTwofa($user_id){
