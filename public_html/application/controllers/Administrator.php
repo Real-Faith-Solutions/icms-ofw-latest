@@ -473,11 +473,10 @@ class Administrator extends CI_Controller {
         if (empty($_GET['user'])) {
             return redirect('/user_login');
         }
-    
-        $user = $_GET['user'];
-          
-        $sess = $this->checkSession();
-        if ($sess) {
+
+        $user = $_GET['user'];  
+        $checkSession = $this->checkSession();
+        if ($checkSession) {
             redirect(SITE_URL . 'dashboard');
         } else {
             session_destroy();

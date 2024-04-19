@@ -277,6 +277,16 @@ Class User_access_model extends CI_Model {
         return $aResponse;
     }
 
+    public function getUserIdUsingUsername($aParam){
+        $sql = "
+            SELECT user_id FROM `icms_user` WHERE `user_username` = '" . $aParam['user'] . "'
+        ";
+
+        $aResponse = $this->yel->GetOne($sql);
+
+        return $aResponse;
+    }
+
     // adding of two factor authentication - in the login pages of the icms.
 
     public function addTwoFactorAuto($param){

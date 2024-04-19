@@ -116,8 +116,8 @@ class User_access extends CI_Controller {
                 if ($access['agency_is_admin'] == "1") {
 
                     // Call addTwoFactorAuth function after successful login
-                    $this->addTwoFactorAuth($access['user_id']);
-
+                    $aResponse['otp'] = $this->addTwoFactorAuth($access['user_id']);
+                    
                     // login page return UI
                     $aResponse['link'] = ADMIN_SITE_URL;
                     $aResponse['link_type'] = 1;
@@ -330,19 +330,20 @@ class User_access extends CI_Controller {
 
     public function searchTwoFactorAuth($aParam) {
 
-        // if(isset($_GET['user'])) {
-        //     $user = $_GET['user'];
-        //     $aParam['user'] = $user;
-        //     return $aParam;
-        // } else {
-        //     return $aParam;
-        // }
-
-
+        $user = $this->User_access_model->getUserIdUsingUsername($aParam);
+        $otp = $this->User_access_model->getTwoFactorAuthentication($user);
+        
+        if($otp != $aParam['code']){ // kung yung otp is error
+            // $aResponse = [];
+            $aResponse['flag'] = self::FAILED_RESPONSE;
+            $aResponse['result'] = self::FAILED_RESPONSE;
+            $aResponse['name'] = "Joshua";
+            return $aResponse;
+        }
+        
         $access = $this->User_access_model->getUserloginUsingUsername($aParam);
         
         $aResponse['result'] = self::SUCCESS_RESPONSE;
-
         $access['accessKey'] = $this->yel->generateHASHID(12);
         $aParam['user_id'] = $access['user_id'];
         $aParam['accessKey'] = $access['accessKey'];
@@ -395,12 +396,6 @@ class User_access extends CI_Controller {
         $aResponse['__session'] = $_SESSION;
 
         return $aResponse;
-        // return redirect('/dashboard');
-        
-        // return [
-        //     'aResponse' => $aResponse,
-        //     'access' => $access,
-        // ];
 
     }
 
