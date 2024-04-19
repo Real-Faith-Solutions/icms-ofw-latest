@@ -308,7 +308,7 @@ class User_access extends CI_Controller {
     }
 
     public function ResendTwoFactorAuth() {
-        $id = $this->input->post('id');
+        $id = $this->input->post('respoLoginId');
         $resend = $this->input->post('resend');
         $twofa_type = 2;
         $twofa_portal = 2;

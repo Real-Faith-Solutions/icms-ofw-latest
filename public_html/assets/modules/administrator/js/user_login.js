@@ -348,14 +348,8 @@ window.addEventListener('beforeunload', resetResendAttempts);
 
 // Function to resend 2FA code
 function resendTwofaCode() {
-  var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
-
-  if (!rs) {
-    console.error('Login response not found');
-    return;
-  }
-
-  var id = rs.data.__session.userData.user_id;
+  var respoLogin = JSON.parse(sessionStorage.getItem('loginResponse'));
+  var respoLoginId = respoLogin.data.access.user_id;
 
   // Retrieve resendAttempts from sessionStorage
   var storedAttempts = sessionStorage.getItem('resendAttempts');
@@ -372,7 +366,7 @@ function resendTwofaCode() {
   // Update resendAttempts in sessionStorage
   sessionStorage.setItem('resendAttempts', JSON.stringify(resendAttempts));
 
-  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 15 : 50;
+  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 1) ? 180 : 1800;
   var timerElement = $('#twofa_count');
   var timer = countdownSeconds;
 
@@ -396,13 +390,13 @@ function resendTwofaCode() {
     sAjaxAccess,
     {
       type: "ResendTwoFactorAuth",
-      id: id,
+      respoLoginId: respoLoginId,
     },
     function (rs) {
       if (rs.data) {
-        console.log(rs.data);
+        // console.log(rs.data);
       } else {
-        console.log("try again");
+        // console.log("try again");
       }
     },
     "json"
