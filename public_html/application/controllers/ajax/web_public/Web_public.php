@@ -498,23 +498,23 @@ class Web_public extends CI_Controller
                     // $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
 
-                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                     $CI->email->to($tempCase['temporary_complainant_email_address']);
                     $CI->email->subject('Confirm Email');
 
                     // Construct email message
                     $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
                     $message .= '<p>Hi ' . $tempCase['temporary_complainant_firstname'] . ',</p>';
-                    $message .= '<p>You recently added <strong style"color:#3b5998;">' . $tempCase['temporary_complainant_email_address'] . '</strong> to your ICMS.IACAT account.</p>';
+                    $message .= '<p>You recently added <strong style"color:#3b5998;">' . $tempCase['temporary_complainant_email_address'] . '</strong> to your ICMS.OFW account.</p>';
                     $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
                     $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $tempCase['otp_code'] . '</p>';
                     $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
                     $message .= '<p style="font-size: 12px;">';
                     $message .= '<div style="text-align:center;">';
                     $message .= 'from<br>';
-                    $message .= 'ICMS.IACAT<br>';
+                    $message .= 'ICMS.OFW<br>';
                     $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                    $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                    $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
                     $message .= '</p>';
                     $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
                     $message .= '</div>';
@@ -573,19 +573,19 @@ class Web_public extends CI_Controller
 
                     $CI->email->initialize($config);
 
-                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                     $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
-                    $CI->email->subject('ICMS-IACAT CASE');
+                    $CI->email->subject('ICMS-OFW CASE');
                     // Construct email message
                     $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
-                    $message .= '<p>Your Case Mr/Mrs <b>' . $tempCase['temporary_complainant_lastname'] . ',' . $tempCase['temporary_complainant_firstname'] . '</b> was added successfully with a case number of <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address
+                    $message .= '<p>Your Case Mr/Mrs <b>' . $tempCase['temporary_complainant_lastname'] . ',' . $tempCase['temporary_complainant_firstname'] . '</b> was added successfully with a case number of <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.OFW account.</p>'; // Use the fetched email address
                     $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
                     $message .= '<p style="font-size: 12px;">';
                     $message .= '<div style="text-align:center;">';
                     $message .= 'from<br>';
-                    $message .= 'ICMS.IACAT<br>';
+                    $message .= 'ICMS.OFW<br>';
                     $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                    $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                    $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
                     $message .= '</p>';
                     $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
                     $message .= '</div>';

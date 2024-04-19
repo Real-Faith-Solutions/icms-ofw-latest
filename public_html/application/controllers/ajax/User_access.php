@@ -58,14 +58,14 @@ class User_access extends CI_Controller {
         // get login attempt 
         $login_attempt_user = $this->User_access_model->getLoginAttemptByUserName($aParam); 
         $login_attempt = 0; 
-        $aResponse['login_attempt_user_is_exist'] = 0; 
+        $aResponse['login_attempt_user_is_exist'] = 0;
         if(isset($login_attempt_user['login_attempt']) == true){
             // update user login attempt
             $this->User_access_model->updateLoginAttemptByUserName($aParam); 
             // get login attempt 
             $login_attempt_user = $this->User_access_model->getLoginAttemptByUserName($aParam); 
             $login_attempt = $login_attempt_user['login_attempt']; 
-            $aResponse['login_attempt_user_is_exist'] = 1; 
+            $aResponse['login_attempt_user_is_exist'] = 1;
         }
 
         $aResponse['login_attempt'] =  $login_attempt;
@@ -82,59 +82,64 @@ class User_access extends CI_Controller {
 
         if (isset($access['user_id']) == true) {
             $aResponse['flag'] = self::SUCCESS_RESPONSE;
-
             #Update Login Attempt 
             $this->User_access_model->resetLoginAttempt($access);
 
-            if (isset($_SESSION['login_ctr']) == true) {
-                $aResponse['login_ctr'] = $_SESSION['login_ctr'] + 1;
-            } else {
-                $aResponse['login_ctr'] = 1;
-            }
-            unset($_SESSION['login_ctr']);
+            // if (isset($_SESSION['login_ctr']) == true) {
+            //     $aResponse['login_ctr'] = $_SESSION['login_ctr'] + 1;
+            // } else {
+            //     $aResponse['login_ctr'] = 1;
+            // }
+            // unset($_SESSION['login_ctr']);
 
             if ($access['user_is_active'] == 1 && $access['user_level_is_active'] == 1 && $access['agency_is_active'] == 1 && $access['agency_branch_is_active'] == 1) {
+                
                 $aResponse['result'] = self::SUCCESS_RESPONSE;
 
-                $access['accessKey'] = $this->yel->generateHASHID(12);
-                $aParam['user_id'] = $access['user_id'];
-                $aParam['accessKey'] = $access['accessKey'];
-                $access['view_legal'] = $this->User_access_model->validateViewLegalServices($access);
-                $this->session->set_userdata('userData', $access);
+                // $access['accessKey'] = $this->yel->generateHASHID(12);
+                // $aParam['user_id'] = $access['user_id'];
+                // $aParam['accessKey'] = $access['accessKey'];
+                // $access['view_legal'] = $this->User_access_model->validateViewLegalServices($access);
+                // $this->session->set_userdata('userData', $access);
 
 
-                unset($access['user_id']);
-                unset($access['user_level_is_active']);
-                unset($access['user_is_active']);
-                unset($access['agency_is_active']);
-                unset($access['agency_branch_id']);
-                unset($access['agency_id']);
-                unset($access['agency_branch_is_active']);
+                // unset($access['user_id']);
+                // unset($access['user_level_is_active']);
+                // unset($access['user_is_active']);
+                // unset($access['agency_is_active']);
+                // unset($access['agency_branch_id']);
+                // unset($access['agency_id']);
+                // unset($access['agency_branch_is_active']);
 
-                $aResponse['json'] = $this->yel->encrypt_param(json_encode($_SESSION['userData']));
+                // $aResponse['json'] = $this->yel->encrypt_param(json_encode($_SESSION['userData']));
 
                 if ($access['agency_is_admin'] == "1") {
+
+                    // Call addTwoFactorAuth function after successful login
+                    $aResponse['otp'] = $this->addTwoFactorAuth($access['user_id']);
+                    
+                    // login page return UI
                     $aResponse['link'] = ADMIN_SITE_URL;
                     $aResponse['link_type'] = 1;
-                    $_SESSION['userData']['loginFrom'] = 'administrator';
+                    // $_SESSION['userData']['loginFrom'] = 'administrator';
                 } else {
                     $aResponse['link'] = AGENCY_SITE_URL;
                     $aResponse['link_type'] = 2;
-                    $_SESSION['userData']['loginFrom'] = 'agency';
+                    // $_SESSION['userData']['loginFrom'] = 'agency';
                 }
 
                 // save user log
 
-                $aLog = [];
-                $aLog['log_event_type'] = 1; // base on table : icms_user_event_type
-                $aLog['log_message'] = "Logged in an account";
-                $aLog['log_link'] = 'users/' . $this->yel->encrypt_param($aParam['user_id']);
-                $aLog['log_action'] = 1; // 1= new insert table 2=update table
-                $aResponse['log'] = $this->audit->create($aLog);
+                // $aLog = [];
+                // $aLog['log_event_type'] = 1; // base on table : icms_user_event_type
+                // $aLog['log_message'] = "Logged in an account";
+                // $aLog['log_link'] = 'users/' . $this->yel->encrypt_param($aParam['user_id']);
+                // $aLog['log_action'] = 1; // 1= new insert table 2=update table
+                // $aResponse['log'] = $this->audit->create($aLog);
 
                 //save app access
-                $this->User_access_model->setAppAccess_inactive($aParam);
-                $this->User_access_model->addAppAccess($aParam);
+                // $this->User_access_model->setAppAccess_inactive($aParam);
+                // $this->User_access_model->addAppAccess($aParam);
             } else {
                 $aResponse['access_msg'] = "";
                 $aResponse['result'] = self::FAILED_RESPONSE;
@@ -162,9 +167,11 @@ class User_access extends CI_Controller {
             $aResponse['access_msg'] = "Incorrect username or password";
         }
         
-        $aResponse['__session'] = $_SESSION; 
-        
-        return $aResponse;
+        $aResponse['__session'] = $_SESSION;
+        return [
+            'aResponse' => $aResponse,
+            'access' => $access,
+        ];
     }
 
     public function checkAccountPassword($aParam){
@@ -282,6 +289,226 @@ class User_access extends CI_Controller {
         }
 
         return $aResponse;
+    }
+
+    public function addTwoFactorAuth($user_id) {
+        $twofa_type = 2;
+        $twofa_portal = 2;
+        $twofactorcode = mt_rand(100000, 999999);
+
+        $param = array(
+            'user_id' => $user_id,
+            'twofa_type' => $twofa_type,
+            'twofa_portal' => $twofa_portal,
+            'twofa_code' => $twofactorcode
+        );
+        $result = $this->User_access_model->addTwoFactorAuto($param);
+        $this->NotificationEmailTwofa($user_id);
+        return $result;
+    }
+
+    public function ResendTwoFactorAuth() {
+        $id = $this->input->post('id');
+        $resend = $this->input->post('resend');
+        $twofa_type = 2;
+        $twofa_portal = 2;
+        $twofactorcode = mt_rand(100000, 999999);
+
+        $param = array(
+            'user_id' => $id,
+            'twofa_type' => $twofa_type,
+            'twofa_portal' => $twofa_portal,
+            'twofa_code' => $twofactorcode,
+            'twofa_try' => $resend
+        );
+        $result = $this->User_access_model->resendingtwofactor($param);
+        // $test = $this->User_access_model->searchCountdownID($id);
+
+        $this->email($id);
+        return $result;
+    }
+
+    public function searchTwoFactorAuth($aParam) {
+
+        $user = $this->User_access_model->getUserIdUsingUsername($aParam);
+        $otp = $this->User_access_model->getTwoFactorAuthentication($user);
+        
+        if($otp != $aParam['code']){ // kung yung otp is error
+            // $aResponse = [];
+            $aResponse['flag'] = self::FAILED_RESPONSE;
+            $aResponse['result'] = self::FAILED_RESPONSE;
+            $aResponse['name'] = "Joshua";
+            return $aResponse;
+        }
+        
+        $access = $this->User_access_model->getUserloginUsingUsername($aParam);
+        
+        $aResponse['result'] = self::SUCCESS_RESPONSE;
+        $access['accessKey'] = $this->yel->generateHASHID(12);
+        $aParam['user_id'] = $access['user_id'];
+        $aParam['accessKey'] = $access['accessKey'];
+        $access['view_legal'] = $this->User_access_model->validateViewLegalServices($access);
+        $this->session->set_userdata('userData', $access);
+
+        # Update Login Attempt 
+        $aResponse['flag'] = self::SUCCESS_RESPONSE;
+        $this->User_access_model->resetLoginAttempt($access);
+
+
+
+        unset($access['user_id']);
+        unset($access['user_level_is_active']);
+        unset($access['user_is_active']);
+        unset($access['agency_is_active']);
+        unset($access['agency_branch_id']);
+        unset($access['agency_id']);
+        unset($access['agency_branch_is_active']);
+
+        $aResponse['json'] = $this->yel->encrypt_param(json_encode($_SESSION['userData']));
+
+        // save user log
+
+        $aLog = [];
+        $aLog['log_event_type'] = 1; // base on table : icms_user_event_type
+        $aLog['log_message'] = "Logged in an account";
+        $aLog['log_link'] = 'users/' . $this->yel->encrypt_param($aParam['user_id']);
+        $aLog['log_action'] = 1; // 1= new insert table 2=update table
+        // $aResponse['log'] = $this->audit->create($aLog);
+
+        //save app access
+        $this->User_access_model->setAppAccess_inactive($aParam);
+        $this->User_access_model->addAppAccess($aParam);
+
+        
+        
+
+        if ($access['agency_is_admin'] == "1") {
+            // login page return UI
+            $aResponse['link'] = ADMIN_SITE_URL;
+            $aResponse['link_type'] = 1;
+            $_SESSION['userData']['loginFrom'] = 'administrator';
+        } else {
+            $aResponse['link'] = AGENCY_SITE_URL;
+            $aResponse['link_type'] = 2;
+            $_SESSION['userData']['loginFrom'] = 'agency';
+        }
+
+        $aResponse['__session'] = $_SESSION;
+
+        return $aResponse;
+
+    }
+
+    public function NotificationEmailTwofa($user_id){
+        $CI = &get_instance();
+        $CI->load->library('email');
+        $TwofactorAuth = $this->User_access_model->sendTwoFactorAutoViaEmail($user_id);
+
+        if ($TwofactorAuth) {
+            foreach ($TwofactorAuth as $twofa) {
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
+
+                $CI->email->initialize($config);
+
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+                $CI->email->to($twofa['user_email']); // Use the fetched email address
+                $CI->email->subject('ICMS-OFW CASE');
+                // Construct email message
+                // Construct email message
+                $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+                $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
+                $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $twofa['twofa_code'] . '</p>';
+                $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+                $message .= '<p style="font-size: 12px;">';
+                $message .= '<div style="text-align:center;">';
+                $message .= 'from<br>';
+                $message .= 'ICMS.OFW<br>';
+                $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+                $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
+                $message .= '</p>';
+                $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+                $message .= '</div>';
+                $message .= '</div>';
+                $CI->email->message($message);
+
+                // Send email
+                if ($CI->email->send()) {
+
+                } else {
+
+                }
+            }
+        } else {
+            // Handle case where no temporary cases are found
+            $response = array("success" => false, "message" => "No temporary cases found");
+            echo json_encode($response);
+        }
+    }
+
+    public function email($id){
+        $CI = &get_instance();
+        $CI->load->library('email');
+        $TwofactorAuth = $this->User_access_model->sendTwoFactorAutoViaEmail($id);
+
+        if ($TwofactorAuth) {
+            foreach ($TwofactorAuth as $twofa) {
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
+
+                $CI->email->initialize($config);
+
+                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+                $CI->email->to($twofa['user_email']); // Use the fetched email address
+                $CI->email->subject('ICMS-OFW CASE');
+                // Construct email message
+                // Construct email message
+                $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+                $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
+                $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $twofa['twofa_code'] . '</p>';
+                $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+                $message .= '<p style="font-size: 12px;">';
+                $message .= '<div style="text-align:center;">';
+                $message .= 'from<br>';
+                $message .= 'ICMS.OFW<br>';
+                $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+                $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
+                $message .= '</p>';
+                $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+                $message .= '</div>';
+                $message .= '</div>';
+                $CI->email->message($message);
+
+                // Send email
+                if ($CI->email->send()) {
+
+                } else {
+
+                }
+            }
+        } else {
+            // Handle case where no temporary cases are found
+            $response = array("success" => false, "message" => "No temporary cases found");
+            echo json_encode($response);
+        }
     }
 
 }

@@ -30,7 +30,8 @@ function loginUser() {
       pass: pass,
     },
     function (rs) {
-      let data = rs.data;
+      sessionStorage.setItem('loginResponse', JSON.stringify(rs));
+      let data = rs.data.aResponse;
 
       icmsMessage({
         type: "msgPreloader",
@@ -77,12 +78,12 @@ function loginUser() {
           });
         }
       } else {
-        if (parseInt(rs.data.link_type) === 1) {
-          var lnk = rs.data.link + "dashboard";
-          if (typeof rs.data.__session.userData.user_id !== "undefined") {
-            location.assign(lnk); // to dash board/homepage
-          }
-        } else if (parseInt(rs.data.link_type) === 2) {
+
+        if (parseInt(rs.data.aResponse.link_type) === 1) {
+          var lnk = rs.data.aResponse.link + "twofactorauth?user=" + user;
+            location.assign(lnk);
+        } else if (parseInt(rs.data.aResponse.link_type) === 2) {
+
           var body = "<br>Access Denied! <br><br>";
           body += "Your account is not registered as administrator<br><br>";
           body += "<a class='a-agn-lnk' href='#'>Try Agency Panel</a>";
@@ -176,3 +177,209 @@ $(document).ready(function () {
     checkCapsLock($(this)[0]);
   });
 });
+
+function verifyTwoFactorAuth() {
+  
+    var code1 = $('.inp-code-1').val().trim();
+    var code2 = $('.inp-code-2').val().trim();
+    var code3 = $('.inp-code-3').val().trim();
+    var code4 = $('.inp-code-4').val().trim();
+    var code5 = $('.inp-code-5').val().trim();
+    var code6 = $('.inp-code-6').val().trim();
+    var code = code1 + code2 + code3 + code4 + code5 + code6;
+    var user = $('.user').val();
+
+    $.post(
+      sAjaxAccess,
+      {
+        type: "searchTwoFactorAuth",
+        user: user,
+        code: code,
+
+      },
+      function (rs) {
+        sessionStorage.setItem('loginResponse', JSON.stringify(rs));
+        let data = rs.data;
+
+        console.log(data);
+
+        
+        // dito ka mag lagay ng condition na if flag or result is = 1, success dapat galing sa controller
+
+        
+        
+      //   if (rs) {
+      //     console.log(rs);
+      //     // Check if data property exists
+      //     if (rs.data.aResponse) {
+      //         console.log("Data exists:", rs.data);
+
+      //         // Check specific properties
+      //         if (rs.data.flag !== undefined) {
+      //             console.log("Flag:", rs.data.flag);
+      //         }
+      //         if (rs.data.name !== undefined) {
+      //             console.log("Name:", rs.data.name);
+      //         }
+      //     } else {
+      //         console.log("Data is undefined");
+      //     }
+      // } else {
+      //     console.log("Response is null or empty");
+      // }
+
+        // if (typeof rs.data.__session.userData.user_id !== "undefined") {
+
+        // if(rs.data){
+        //     console.log(true);
+        //     console.log(rs.flag);
+
+        //     if(!rs.flag){
+        //       console.log('incorrect OTP');
+        //     } else {
+        //       console.log('correct OTP');
+        //     }
+
+        //     if(data.flag) {
+        //       console.log('correct OTP');
+        //     }
+            
+        // } else {
+        //   console.log(false);
+        // }
+
+        // if(rs.data.flag){
+        //   console.log('correct OTP');
+        // }
+
+        // if (rs){
+        //   if(rs.flag == 1 || rs.data.flag == 1){
+        //     console.log("flag = " + 1);
+        //     location.assign('dashboard');
+
+        //   }else{
+        //     console.log("flag = " + 0);
+        //     icmsMessage({
+        //       type: "msgWarning",
+        //       body: "<br>Validation Failed",
+        //       caption: "One Time Password are incorrect",
+        //     });
+        //   }
+        // }
+
+        
+        // success message
+        // if (code1.length > 0 && code2.length > 0 && code3.length > 0 && code4.length > 0 && code5.length > 0 && code6.length > 0 ) {
+          
+        //   if (data.flag == 'undefined') {
+        //     icmsMessage({
+        //       type: "msgWarning",
+        //       body: "<br>Validation Failed",
+        //       caption: "One Time Password are incorrect",
+        //     });
+        //   }else{
+
+        //     console.log("location.assign('dashboard')");
+        //     location.assign('dashboard');
+        //   }
+
+        // } else {
+        //   icmsMessage({
+        //     type: "msgWarning",
+        //     body: "<br>Validation Failed",
+        //     caption: "Enter One Time Password",
+        //   });
+        // }
+        
+    });
+    
+}
+
+
+$('.btn-verify-twofa').click(verifyTwoFactorAuth);
+
+
+// Function to reset resendAttempts array to 0 on page reload
+function resetResendAttempts() {
+  sessionStorage.removeItem('resendAttempts');
+}
+
+// Listen for page reload event
+window.addEventListener('beforeunload', resetResendAttempts);
+
+// Function to resend 2FA code
+function resendTwofaCode() {
+  var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
+
+  if (!rs) {
+    console.error('Login response not found');
+    return;
+  }
+
+  var id = rs.data.__session.userData.user_id;
+
+  // Retrieve resendAttempts from sessionStorage
+  var storedAttempts = sessionStorage.getItem('resendAttempts');
+  var resendAttempts = storedAttempts ? JSON.parse(storedAttempts) : [];
+
+  // Increment resendAttempts
+  if (resendAttempts.length === 0) {
+    resendAttempts.push(0);
+  } else {
+    var lastAttemptIndex = resendAttempts.length - 1;
+    resendAttempts[lastAttemptIndex]++;
+  }
+
+  // Update resendAttempts in sessionStorage
+  sessionStorage.setItem('resendAttempts', JSON.stringify(resendAttempts));
+
+  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 15 : 50;
+  var timerElement = $('#twofa_count');
+  var timer = countdownSeconds;
+
+  // Disable resend button and start countdown
+  $('.btn-resend-twofa').prop('disabled', true);
+
+  var countdown = setInterval(function() {
+    timer--;
+    timerElement.text("Resend Code in: " + timer + " seconds");
+    $('#twofa_count').show();
+
+    if (timer <= 0) {
+      clearInterval(countdown);
+      $('.btn-resend-twofa').prop('disabled', false);
+      $('#twofa_count').hide();
+    }
+  }, 1000);
+
+  // Send AJAX request to resend 2FA code
+  $.post(
+    sAjaxAccess,
+    {
+      type: "ResendTwoFactorAuth",
+      id: id,
+    },
+    function (rs) {
+      if (rs.data) {
+        console.log(rs.data);
+      } else {
+        console.log("try again");
+      }
+    },
+    "json"
+  );
+
+  // Clear countdown interval if button clicked again
+  $('.btn-resend-twofa').unbind('click').click(function() {
+    clearInterval(countdown);
+    resendTwofaCode();
+  });
+}
+
+// Attach click event listener to resend button
+$('.btn-resend-twofa').click(resendTwofaCode);
+
+
+
+
+
