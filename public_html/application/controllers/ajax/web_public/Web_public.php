@@ -147,7 +147,7 @@ class Web_public extends CI_Controller
 
             $aResponse['flag'] = self::SUCCESS_RESPONSE;
         }
-        $this->ConfirmationGmail();
+        // $this->ConfirmationGmail();
 
         return $aResponse;
     }
@@ -494,7 +494,7 @@ class Web_public extends CI_Controller
 
             // Iterate through each temporary case
             foreach ($temporaryCases as $tempCase) {
-                if ($tempCase['temporary_complainant_preffered_contact_method'] == 2) { // 2 = email
+                if ($tempCase['temporary_complainant_preffered_contact_method'] == 2) {
 
                     // Fetch the OTP for the temporary case number
                     $param['otp_portal'] = 2;
@@ -526,11 +526,9 @@ class Web_public extends CI_Controller
 
                     // Send email
                     if ($CI->email->send()) {
-                        // Email sent successfully
-                        // Handle success if needed
+                        $response = array("success" => true, "message" => "message Sent");
                     } else {
-                        // Email sending failed
-                        // Handle failure if needed
+                        $response = array("success" => false, "message" => "Not Sent");
                     }
 
                     // // Check if OTP was fetched successfully
@@ -549,71 +547,71 @@ class Web_public extends CI_Controller
         }
     }
 
-    function ConfirmationGmail()
-    {
-        // Load CodeIgniter instance
-        $CI = &get_instance();
-        $CI->load->library('email');
+    // function ConfirmationGmail()
+    // {
+    //     // Load CodeIgniter instance
+    //     $CI = &get_instance();
+    //     $CI->load->library('email');
 
-        // Fetch all temporary cases
-        $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
+    //     // Fetch all temporary cases
+    //     $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
 
-        // Check if there are temporary cases fetched
-        if ($temporaryCases) {
-            // Iterate through each temporary case
-            foreach ($temporaryCases as $tempCase) {
-                if ($tempCase['temporary_complainant_preffered_contact_method'] == 2) { // 2 = email
-                    // Load email configuration dynamically
-                    $config['protocol'] = 'smtp';
-                    $config['smtp_host'] = 'smtp.gmail.com';
-                    $config['smtp_port'] = 587;
-                    $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-                    $config['smtp_pass'] = 'shsamihjjdkunaxs';
-                    $config['mailtype'] = 'html';
-                    $config['charset'] = 'utf-8';
-                    $config['newline'] = "\r\n";
-                    $config['smtp_crypto'] = 'tls';
+    //     // Check if there are temporary cases fetched
+    //     if ($temporaryCases) {
+    //         // Iterate through each temporary case
+    //         foreach ($temporaryCases as $tempCase) {
+    //             if ($tempCase['temporary_complainant_preffered_contact_method'] == 2) { // 2 = email
+    //                 // Load email configuration dynamically
+    //                 $config['protocol'] = 'smtp';
+    //                 $config['smtp_host'] = 'smtp.gmail.com';
+    //                 $config['smtp_port'] = 587;
+    //                 $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
+    //                 $config['smtp_pass'] = 'shsamihjjdkunaxs';
+    //                 $config['mailtype'] = 'html';
+    //                 $config['charset'] = 'utf-8';
+    //                 $config['newline'] = "\r\n";
+    //                 $config['smtp_crypto'] = 'tls';
 
-                    $CI->email->initialize($config);
+    //                 $CI->email->initialize($config);
 
-                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
-                    $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
-                    $CI->email->subject('ICMS-IACAT CASE');
-                    // Construct email message
-                    $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
-                    $message .= '<p>Your Case Mr/Mrs <b>' . $tempCase['temporary_complainant_lastname'] . ',' . $tempCase['temporary_complainant_firstname'] . '</b> was added successfully with a case number of <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address
-                    $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
-                    $message .= '<p style="font-size: 12px;">';
-                    $message .= '<div style="text-align:center;">';
-                    $message .= 'from<br>';
-                    $message .= 'ICMS.IACAT<br>';
-                    $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                    $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
-                    $message .= '</p>';
-                    $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
-                    $message .= '</div>';
-                    $message .= '</div>';
-                    $CI->email->message($message);
+    //                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+    //                 $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
+    //                 $CI->email->subject('ICMS-IACAT CASE');
+    //                 // Construct email message
+    //                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+    //                 $message .= '<p>Your Case Mr/Mrs <b>' . $tempCase['temporary_complainant_lastname'] . ',' . $tempCase['temporary_complainant_firstname'] . '</b> was added successfully with a case number of <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address
+    //                 $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+    //                 $message .= '<p style="font-size: 12px;">';
+    //                 $message .= '<div style="text-align:center;">';
+    //                 $message .= 'from<br>';
+    //                 $message .= 'ICMS.IACAT<br>';
+    //                 $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+    //                 $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+    //                 $message .= '</p>';
+    //                 $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+    //                 $message .= '</div>';
+    //                 $message .= '</div>';
+    //                 $CI->email->message($message);
 
-                    // Send email
-                    if ($CI->email->send()) {
-                        // $response = array("success" => true);
-                        // echo json_encode($response);
-                    } else {
-                        // $response = array("success" => false, "message" => $CI->email->print_debugger());
-                        // echo json_encode($response);
-                    }
-                }
-                else {
-                    // send sms
-                    // echo "send sms";
-                    // $this->Icms->sendSMS();
-                }
-            }
-        } else {
-            // Handle case where no temporary cases are found
-            $response = array("success" => false, "message" => "No temporary cases found");
-            echo json_encode($response);
-        }
-    }
+    //                 // Send email
+    //                 if ($CI->email->send()) {
+    //                     // $response = array("success" => true);
+    //                     // echo json_encode($response);
+    //                 } else {
+    //                     // $response = array("success" => false, "message" => $CI->email->print_debugger());
+    //                     // echo json_encode($response);
+    //                 }
+    //             }
+    //             else {
+    //                 // send sms
+    //                 // echo "send sms";
+    //                 // $this->Icms->sendSMS();
+    //             }
+    //         }
+    //     } else {
+    //         // Handle case where no temporary cases are found
+    //         $response = array("success" => false, "message" => "No temporary cases found");
+    //         echo json_encode($response);
+    //     }
+    // }
 }

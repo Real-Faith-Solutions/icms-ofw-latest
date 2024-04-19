@@ -90,154 +90,208 @@ class Mailbox {
      *
      * @return array $aResponse
      */
-    public function sendMail($aEmail = null) {
-
-
-        // initialize
+     public function sendMail($aEmail = null) {
+        // Initialize
         $aResponse = [];
 
         // Email template
         $sTemplate = 'theme_default';
         $aResponse['flag'] = self::FAILED;
         if (!empty($aEmail['template']) !== false) {
-
             if (function_exists($aEmail['template']) === true) {
                 $sTemplate = $aEmail['template'];
             }
         }
 
-        // send email
+        // Send email
         if (EMAIL_INCLUDE === TRUE) {
-            
-            // initialize
-            $sRecipient = '';
+            $CI = &get_instance();
+            $CI->load->library('email');
 
-            // validate parameter
-            if (empty($aEmail['subject']) === true) {
-                
-                $aResponse['status'] = emailMessage('invalid_email_parameter')['message'];
-                return $aResponse;
-            }
+            $config = array(
+                            'protocol' => EMAIL_FROM_PROTOCOL,
+                            'smtp_host' => EMAIL_FROM_HOST,
+                            'smtp_port' => EMAIL_FROM_PORT,
+                            'smtp_user' => EMAIL_FROM_USER,
+                            'smtp_pass' => EMAIL_FROM_PASS,
+                            'mailtype' => EMAIL_FROM_mailtype,
+                            'charset' => EMAIL_FROM_charset,
+                            'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                            'newline' => "\r\n"
+                        );
 
-            if (empty($aEmail['from']) === true) {
-                $aEmail['from'] = EMAIL_FROM_EMAIL;
-            }
+            $CI->email->initialize($config);
 
-            if (empty($aEmail['sender']) === true) {
-                $aEmail['sender'] = EMAIL_FROM_NAME;
-            }
-
-            if (empty($aEmail['title']) === true) {
-                $aEmail['title'] = '';
-            }
-
-            if (empty($aEmail['custom_message']) === true) {
-                $aEmail['custom_message'] = null;
-            }
-
-            if (!empty($aEmail['include']) !== false) {
-                if ($aEmail['include'] == false) {
-                    
-                    $aResponse['status'] = emailMessage('exclude_mail')['message'];
-                    return $aResponse;
-                }
-            }
-
-
-            // formulation of template based on the template name
-            $mEmailContent = trim(preg_replace('/\s\s+/', ' ', ($sTemplate($aEmail['title'], $aEmail['message'], $aEmail['custom_message']))));
-
-
-
-
-            // check if recepient is in array
-            if (is_array($aEmail['to']) !== true) {
-
-
-                
-                // if [to] is not array
-                if (!filter_var($aEmail['to'], FILTER_VALIDATE_EMAIL) !== false) {
-                    $aResponse['status'] = emailMessage('invalid_email')['message'];
-                    return $aResponse;
-                }
-
-                // ready to send
-                $sRecipient = trim($aEmail['to']);
-
-
-                // another validation
-                if ((int) $this->checkMail($sRecipient)['flag'] != self::SUCCESS) {
-                    $aResponse['status'] = emailMessage('invalid_email')['message'];
-                    return $aResponse;
-                }
-
-                // prepare to mailbox
-                $sSequel = "
-                INSERT IGNORE INTO `icms_mailbox` SET
-                `mailbox_receiver` = '" . $sRecipient . "',
-                `mailbox_sender_mail` = '" . $aEmail['from'] . "',
-                `mailbox_sender_name` = '" . $aEmail['sender'] . "',
-                `mailbox_subject` = '" . $aEmail['subject'] . "',
-                `mailbox_message` = '" . $mEmailContent . "'
-                ";
-
-
-                $aResponse['status'] = $this->yel->exec($sSequel);
+            // Set sender and recipient
+            $CI->email->from(EMAIL_FROM_USER, EMAIL_FROM_NAME);
+            $CI->email->to($aEmail['to']);
+        
+            // Set email subject
+            $CI->email->subject($aEmail['subject']);
+        
+            // Formulate email content
+            $CI->email->set_mailtype('html'); // Set email format to HTML
+            $CI->email->message($sTemplate($aEmail['message']));
+        
+            // Send email
+            if (!$CI->email->send()) { // changed $mail to $CI->email
+                $aResponse['status'] = $CI->email->print_debugger(); // changed ErrorInfo to print_debugger
             } else {
-
-
-                // explode array
-                $i = 0;
-                foreach ($aEmail['to'] as $key => $sEmail) {
-
-
-
-                    // validate email
-                    if (!filter_var($sEmail, FILTER_VALIDATE_EMAIL) !== true) {
-
-
-
-                        // another validation
-                        if ((int) $this->checkMail($sEmail)['flag'] != self::SUCCESS) {
-                            $aResponse['status'][$i] = emailMessage('invalid_email')['message'];
-
-                            
-                        } else {
-
-                            $sRecipient .= ',' . $sEmail;
-
-                            // add to database
-                            $sSequel = "
-                            INSERT IGNORE INTO `icms_mailbox` SET
-                            `mailbox_receiver` = '" . $sEmail . "',
-                            `mailbox_sender_mail` = '" . $aEmail['from'] . "',
-                            `mailbox_sender_name` = '" . $aEmail['sender'] . "',
-                            `mailbox_subject` = '" . $aEmail['subject'] . "',
-                            `mailbox_message` = '" . $mEmailContent . "'
-                            ";
-
-                            $aResponse['status'][$i] = $this->yel->exec($sSequel);
-                        }
-                    }
-
-                    $i++;
-                }
-
-                // reinitialize, then maintain to string
-                $sRecipient = ltrim($sRecipient, ',');
+                $aResponse['flag'] = self::SUCCESS;
+                $aResponse['status'] = 'Email sent successfully.';
             }
-
-            $aResponse['flag'] = self::SUCCESS;
-
-
-            // preview || for debugging user
-            // $aResponse['content'] = $mEmailContent;
-            // template checker
-            $aResponse['template'] = $sTemplate;
         }
 
         return $aResponse;
     }
+    // public function sendMail($aEmail = null) {
+
+
+    //     // initialize
+    //     $aResponse = [];
+
+    //     // Email template
+    //     $sTemplate = 'theme_default';
+    //     $aResponse['flag'] = self::FAILED;
+    //     if (!empty($aEmail['template']) !== false) {
+
+    //         if (function_exists($aEmail['template']) === true) {
+    //             $sTemplate = $aEmail['template'];
+    //         }
+    //     }
+
+    //     // send email
+    //     if (EMAIL_INCLUDE === TRUE) {
+            
+    //         // initialize
+    //         $sRecipient = '';
+
+    //         // validate parameter
+    //         if (empty($aEmail['subject']) === true) {
+                
+    //             $aResponse['status'] = emailMessage('invalid_email_parameter')['message'];
+    //             return $aResponse;
+    //         }
+
+    //         if (empty($aEmail['from']) === true) {
+    //             $aEmail['from'] = EMAIL_FROM_EMAIL;
+    //         }
+
+    //         if (empty($aEmail['sender']) === true) {
+    //             $aEmail['sender'] = EMAIL_FROM_NAME;
+    //         }
+
+    //         if (empty($aEmail['title']) === true) {
+    //             $aEmail['title'] = '';
+    //         }
+
+    //         if (empty($aEmail['custom_message']) === true) {
+    //             $aEmail['custom_message'] = null;
+    //         }
+
+    //         if (!empty($aEmail['include']) !== false) {
+    //             if ($aEmail['include'] == false) {
+                    
+    //                 $aResponse['status'] = emailMessage('exclude_mail')['message'];
+    //                 return $aResponse;
+    //             }
+    //         }
+
+
+    //         // formulation of template based on the template name
+    //         $mEmailContent = trim(preg_replace('/\s\s+/', ' ', ($sTemplate($aEmail['title'], $aEmail['message'], $aEmail['custom_message']))));
+
+
+
+
+    //         // check if recepient is in array
+    //         if (is_array($aEmail['to']) !== true) {
+
+
+                
+    //             // if [to] is not array
+    //             if (!filter_var($aEmail['to'], FILTER_VALIDATE_EMAIL) !== false) {
+    //                 $aResponse['status'] = emailMessage('invalid_email')['message'];
+    //                 return $aResponse;
+    //             }
+
+    //             // ready to send
+    //             $sRecipient = trim($aEmail['to']);
+
+
+    //             // another validation
+    //             if ((int) $this->checkMail($sRecipient)['flag'] != self::SUCCESS) {
+    //                 $aResponse['status'] = emailMessage('invalid_email')['message'];
+    //                 return $aResponse;
+    //             }
+
+    //             // prepare to mailbox
+    //             $sSequel = "
+    //             INSERT IGNORE INTO `icms_mailbox` SET
+    //             `mailbox_receiver` = '" . $sRecipient . "',
+    //             `mailbox_sender_mail` = '" . $aEmail['from'] . "',
+    //             `mailbox_sender_name` = '" . $aEmail['sender'] . "',
+    //             `mailbox_subject` = '" . $aEmail['subject'] . "',
+    //             `mailbox_message` = '" . $mEmailContent . "'
+    //             ";
+
+
+    //             $aResponse['status'] = $this->yel->exec($sSequel);
+    //         } else {
+
+
+    //             // explode array
+    //             $i = 0;
+    //             foreach ($aEmail['to'] as $key => $sEmail) {
+
+
+
+    //                 // validate email
+    //                 if (!filter_var($sEmail, FILTER_VALIDATE_EMAIL) !== true) {
+
+
+
+    //                     // another validation
+    //                     if ((int) $this->checkMail($sEmail)['flag'] != self::SUCCESS) {
+    //                         $aResponse['status'][$i] = emailMessage('invalid_email')['message'];
+
+                            
+    //                     } else {
+
+    //                         $sRecipient .= ',' . $sEmail;
+
+    //                         // add to database
+    //                         $sSequel = "
+    //                         INSERT IGNORE INTO `icms_mailbox` SET
+    //                         `mailbox_receiver` = '" . $sEmail . "',
+    //                         `mailbox_sender_mail` = '" . $aEmail['from'] . "',
+    //                         `mailbox_sender_name` = '" . $aEmail['sender'] . "',
+    //                         `mailbox_subject` = '" . $aEmail['subject'] . "',
+    //                         `mailbox_message` = '" . $mEmailContent . "'
+    //                         ";
+
+    //                         $aResponse['status'][$i] = $this->yel->exec($sSequel);
+    //                     }
+    //                 }
+
+    //                 $i++;
+    //             }
+
+    //             // reinitialize, then maintain to string
+    //             $sRecipient = ltrim($sRecipient, ',');
+    //         }
+
+    //         $aResponse['flag'] = self::SUCCESS;
+
+
+    //         // preview || for debugging user
+    //         // $aResponse['content'] = $mEmailContent;
+    //         // template checker
+    //         $aResponse['template'] = $sTemplate;
+    //     }
+
+    //     return $aResponse;
+    // }
 
     /**
      * Load Mail Template - Newsletter
