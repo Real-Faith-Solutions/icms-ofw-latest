@@ -293,7 +293,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="card card_tbl-container">
                                             <div class="card_tbl-action">
                                                 <div class="tbl_info card-sub-title">
-                                                    <span class="">Next of Kin List</span>
+                                                    <!-- ####OSAEC change label for Next of Kin List to Guardian's List #### -->
+                                                    <!-- <span class="">Next of Kin List</span> -->
+                                                    <!-- #### OSAEC change label for Next of Kin List to Guardian's List  #### -->
+
+                                                    <span class="">Guardian's List</span>
                                                 </div>
                                                 <button type="button"
                                                     class="btn btn-secondary-light_blue  btn-add_relative float-right tbl_info"><i
