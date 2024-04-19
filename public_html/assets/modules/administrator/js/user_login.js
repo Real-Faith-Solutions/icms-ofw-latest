@@ -413,6 +413,17 @@ function resendTwofaCode() {
 $('.btn-resend-twofa').click(resendTwofaCode);
 
 
+$(document).ready(function () {
+  $('.inp-cd').on('input', function () {
+      var maxLength = parseInt($(this).attr('maxLength'));
+      var inputValue = $(this).val();
+      if (inputValue.length >= maxLength) {
+          $(this).next('.inp-cd').focus();
+      }
+  });
+});
+
+
 
 
 
