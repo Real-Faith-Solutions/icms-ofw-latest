@@ -116,6 +116,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" name="v_adob" class="form-control datepicker vi-assumed_dob" placeholder="MM/DD/YYYY">
                                     </div>
                                 </div>
+
+                            <!-- OSAEC adding Input Fields Health Status Disability Allergies History of Illness/Hospitalization start  -->
+                                <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class=" card-sub-title txt-W-500">Health Status<br> 
+                                        <small class="card-desc"> Fill in Health Status information. </small> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fake-info-content_form">
+                                <div class="row">
+                                    <div class="form-group col-12">           
+                                        <label>Disability</label>
+                                        <select class="form-control sel-disablity a-vi-disability" name="disability" >
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-12">           
+                                        <label>Allergies</label>
+                                        <select class="form-control sel-allergies a-vi-allergies" name="allergies" >
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-12">           
+                                        <label>History of Illness/Hospitalization</label>
+                                        <select class="form-control sel-history_of_illness a-vi-history_of_illness" name="history_of_illness" >
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- OSAEC adding Input Fields Health Status Disability Allergies History of Illness/Hospitalization end -->
+
                             </div>
                         </div>
                     </div>
