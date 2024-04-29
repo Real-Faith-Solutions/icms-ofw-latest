@@ -968,9 +968,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a class="nav-link txt-14 active "  data-toggle="tab" href="#employment_local">
                     Local Employment
                 </a>
-                <a class="nav-link txt-14" data-toggle="tab" href="#employment_international"> 
+                <!-- ##### OSAEC COMMENT START ##### -->
+                <!-- <a class="nav-link txt-14" data-toggle="tab" href="#employment_international"> 
                     International Employment   
-                </a>
+                </a> -->
+                <!-- ##### OSAEC COMMENT END ##### -->
             </nav>
         </div>
     </div>
