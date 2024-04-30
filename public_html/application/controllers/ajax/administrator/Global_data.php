@@ -115,7 +115,12 @@ class Global_data extends CI_Controller {
         $aResponse = $this->Global_data_model->getSex($aParam);
         return $aResponse;
     }
-
+     // Code OSAEC Added Start 
+    public function getEthnicGroup($aParam) {
+        $aResponse = $this->Global_data_model->getEthnicGroup($aParam);
+        return $aResponse;
+    }
+     // Code OSAEC Added END 
     public function getJobs() {
         $aResponse = $this->Global_data_model->getJobs();
         return $aResponse;
@@ -197,6 +202,24 @@ class Global_data extends CI_Controller {
                 $aParam['type_id'] = '8';
                 $aParam['status'] = '1';
                 break;
+            // Code OSAEC Added start    
+            case 'ethnicgroup':
+                $aParam['type_id'] = '32';
+                $aParam['status'] = '1';
+                break;
+            case 'disabilities':
+                $aParam['type_id'] = '33';
+                $aParam['status'] = '1';
+                break;
+            case 'allergies':
+                $aParam['type_id'] = '34';
+                $aParam['status'] = '1';
+                break;
+            case 'illness':
+                $aParam['type_id'] = '35';
+                $aParam['status'] = '1';
+                break;
+                 // Code OSAEC Added end     
         }
 
         return $aParam;
