@@ -20,7 +20,9 @@ class Victims extends CI_Controller {
         // load models
         $this->load->model('administrator/Victims_model');
         $this->load->model('administrator/Case_details_model');
-        $this->load->model('Global_data_model');
+        // OSAEC Comment Code Start
+        // $this->load->model('Global_data_model');
+        // OSAEC Comment Code END
     }
 
     /**
@@ -1286,8 +1288,9 @@ class Victims extends CI_Controller {
 
         // get victim details
         $aResponse['victim_details'] = $this->Victims_model->getVitimInfoById($aParam);
-        $aResponse['Global_data'] = $this->Global_data_model->getGlobalDataVictimInformation($aParam);
-
+        // OSAEC Comment Code Start
+        // $aResponse['Global_data'] = $this->Global_data_model->getGlobalDataVictimInformation($aParam);
+        // OSAEC Comment Code END
         
 
         if ($aResponse['victim_details']) {
