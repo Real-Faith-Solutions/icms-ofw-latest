@@ -70,6 +70,24 @@ class Case_details extends CI_Controller {
                 $aParam['type_id'] = '8';
                 $aParam['status'] = '1';
                 break;
+                 // OSAEC CODE START
+            case 'ethnicgroup':
+                $aParam['type_id'] = '32';
+                $aParam['status'] = '1';
+                break;
+            case 'disabilities':
+                $aParam['type_id'] = '33';
+                $aParam['status'] = '1';
+                break;
+            case 'allergies':
+                $aParam['type_id'] = '34';
+                $aParam['status'] = '1';
+                break;
+            case 'illness':
+                $aParam['type_id'] = '35';
+                $aParam['status'] = '1';
+                break;
+                // OSAEC CODE END
         }
 
         return $aParam;
