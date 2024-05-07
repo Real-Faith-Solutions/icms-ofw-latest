@@ -113,7 +113,7 @@ class Icms extends CI_Controller {
             $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
 
             $mail['to'] = array($param['temp_case_info']['temporary_complainant_email_address']);
-            $mail['subject'] = ' One-Time-Password';
+            $mail['subject'] = ' Your One Time Password';
             // $mail['template'] = 'otp';
             $mail['message'] = $otp['otp_code'] . '<br>';
             $mail['message'] .= "please enter this code";

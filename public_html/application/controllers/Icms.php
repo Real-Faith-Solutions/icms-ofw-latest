@@ -163,7 +163,7 @@ class Icms extends CI_Controller
             $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
 
             $mail['to'] = array($param['temp_case_info']['temporary_complainant_email_address']);
-            $mail['subject'] = ' One-Time-Password';
+            $mail['subject'] = ' Your One Time Password';
             // $mail['template'] = 'otp';
             $mail['message'] = $otp['otp_code'] . '<br>';
             // $mail['message'] .= "please enter this code";
@@ -548,13 +548,13 @@ class Icms extends CI_Controller
     //     // Check if there are temporary cases fetched
     //     if ($temporaryCases) {
     //         // Load email configuration dynamically
-    //         $config['protocol'] = 'smtp';
-    //         $config['smtp_host'] = 'smtp.gmail.com';
-    //         $config['smtp_port'] = 587;
-    //         $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-    //         $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //         $config['mailtype'] = 'html';
-    //         $config['charset'] = 'utf-8';
+    //         $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //         $config['smtp_host'] = EMAIL_FROM_HOST;
+    //         $config['smtp_port'] = EMAIL_FROM_PORT;
+    //         $config['smtp_user'] = EMAIL_FROM_USER;
+    //         $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //         $config['mailtype'] = EMAIL_FROM_mailtype;
+    //         $config['charset'] = EMAIL_FROM_charset;
     //         $config['newline'] = "\r\n";
     //         $config['smtp_crypto'] = 'tls';
 
@@ -568,7 +568,7 @@ class Icms extends CI_Controller
 
     //             // Check if OTP was fetched successfully
     //             if ($fetchedOTP) {
-    //                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+    //                 $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
     //                 $CI->email->to($tempCase['temporary_complainant_email_address']);
     //                 $CI->email->subject('Confirm Email');
 
@@ -622,19 +622,19 @@ class Icms extends CI_Controller
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
     //     // Load email configuration dynamically
-    //     $config['protocol'] = 'smtp';
-    //     $config['smtp_host'] = 'smtp.gmail.com';
-    //     $config['smtp_port'] = 587;
-    //     $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-    //     $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //     $config['mailtype'] = 'html';
-    //     $config['charset'] = 'utf-8';
+    //     $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //     $config['smtp_host'] = EMAIL_FROM_HOST;
+    //     $config['smtp_port'] = EMAIL_FROM_PORT;
+    //     $config['smtp_user'] = EMAIL_FROM_USER;
+    //     $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //     $config['mailtype'] = EMAIL_FROM_mailtype;
+    //     $config['charset'] = EMAIL_FROM_charset;
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
 
     //     $CI->email->initialize($config);
 
-    //     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+    //     $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
     //     $CI->email->to('lhattz.jhunriz@gmail.com');
     //     $CI->email->subject('Confirm Email');
 
@@ -685,22 +685,22 @@ class Icms extends CI_Controller
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
     //     // Load email configuration dynamically
-    //     $config['protocol'] = 'smtp';
-    //     $config['smtp_host'] = 'smtp.gmail.com';
-    //     $config['smtp_port'] = 587;
-    //     $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-    //     $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //     $config['mailtype'] = 'html';
-    //     $config['charset'] = 'utf-8';
+    //     $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //     $config['smtp_host'] = EMAIL_FROM_HOST;
+    //     $config['smtp_port'] = EMAIL_FROM_PORT;
+    //     $config['smtp_user'] = EMAIL_FROM_USER;
+    //     $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //     $config['mailtype'] = EMAIL_FROM_mailtype;
+    //     $config['charset'] = EMAIL_FROM_charset;
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
 
     //     $CI->email->initialize($config);
 
-    //     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+    //     $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
     //     $CI->email->to('lhattz.jhunriz@gmail.com');
-    //     // $CI->email->cc('lalata.jhunriz.bscs2019@gmail.com');
-    //     // $CI->email->bcc('lalata.jhunriz.bscs2019@gmail.com');
+    //     // $CI->email->cc(EMAIL_FROM_EMAIL);
+    //     // $CI->email->bcc(EMAIL_FROM_EMAIL);
 
     //     $CI->email->subject('Confirm Email');
     //     // Check if OTP was fetched successfully

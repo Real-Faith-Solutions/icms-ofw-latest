@@ -908,21 +908,23 @@ class Temporary_case extends CI_Controller {
                 $getGlobalDataStatus = $this->Temporary_case_model->getGlobalDataVictimStatus($victimStatus);
 
                 // Load email configuration dynamically
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'smtp.gmail.com';
-                $config['smtp_port'] = 587;
-                $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-                $config['smtp_pass'] = 'shsamihjjdkunaxs';
-                $config['mailtype'] = 'html';
-                $config['charset'] = 'utf-8';
-                $config['newline'] = "\r\n";
-                $config['smtp_crypto'] = 'tls';
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
     
                 $CI->email->initialize($config);
     
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+                $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
                 $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
-                $CI->email->subject('ICMS-OFW UPDATE CASE');
+                $CI->email->subject('[CASE NOTIFICATION] INTEGRATED CASE MANAGEMENT SYSTEM');
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
                 $message .= '<p>Hi! Mr/Mrs <b>'. $tempCase['temporary_complainant_lastname'] . ','. $tempCase['temporary_complainant_firstname'] .'</b> Your case data is been update!. <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.OFW account.</p>'; // Use the fetched email address   
