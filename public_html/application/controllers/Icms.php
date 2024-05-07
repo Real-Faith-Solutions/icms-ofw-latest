@@ -548,13 +548,13 @@ class Icms extends CI_Controller
     //     // Check if there are temporary cases fetched
     //     if ($temporaryCases) {
     //         // Load email configuration dynamically
-    //         $config['protocol'] = 'smtp';
-    //         $config['smtp_host'] = 'smtp.gmail.com';
-    //         $config['smtp_port'] = 587;
-    //         $config['smtp_user'] = EMAIL_FROM_EMAIL;
-    //         $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //         $config['mailtype'] = 'html';
-    //         $config['charset'] = 'utf-8';
+    //         $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //         $config['smtp_host'] = EMAIL_FROM_HOST;
+    //         $config['smtp_port'] = EMAIL_FROM_PORT;
+    //         $config['smtp_user'] = EMAIL_FROM_USER;
+    //         $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //         $config['mailtype'] = EMAIL_FROM_mailtype;
+    //         $config['charset'] = EMAIL_FROM_charset;
     //         $config['newline'] = "\r\n";
     //         $config['smtp_crypto'] = 'tls';
 
@@ -622,13 +622,13 @@ class Icms extends CI_Controller
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
     //     // Load email configuration dynamically
-    //     $config['protocol'] = 'smtp';
-    //     $config['smtp_host'] = 'smtp.gmail.com';
-    //     $config['smtp_port'] = 587;
-    //     $config['smtp_user'] = EMAIL_FROM_EMAIL;
-    //     $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //     $config['mailtype'] = 'html';
-    //     $config['charset'] = 'utf-8';
+    //     $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //     $config['smtp_host'] = EMAIL_FROM_HOST;
+    //     $config['smtp_port'] = EMAIL_FROM_PORT;
+    //     $config['smtp_user'] = EMAIL_FROM_USER;
+    //     $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //     $config['mailtype'] = EMAIL_FROM_mailtype;
+    //     $config['charset'] = EMAIL_FROM_charset;
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
 
@@ -685,13 +685,13 @@ class Icms extends CI_Controller
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
     //     // Load email configuration dynamically
-    //     $config['protocol'] = 'smtp';
-    //     $config['smtp_host'] = 'smtp.gmail.com';
-    //     $config['smtp_port'] = 587;
-    //     $config['smtp_user'] = EMAIL_FROM_EMAIL;
-    //     $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //     $config['mailtype'] = 'html';
-    //     $config['charset'] = 'utf-8';
+    //     $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //     $config['smtp_host'] = EMAIL_FROM_HOST;
+    //     $config['smtp_port'] = EMAIL_FROM_PORT;
+    //     $config['smtp_user'] = EMAIL_FROM_USER;
+    //     $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //     $config['mailtype'] = EMAIL_FROM_mailtype;
+    //     $config['charset'] = EMAIL_FROM_charset;
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
 
