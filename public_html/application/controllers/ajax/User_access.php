@@ -421,7 +421,7 @@ class User_access extends CI_Controller {
 
                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                 $CI->email->to($twofa['user_email']); // Use the fetched email address
-                $CI->email->subject('ICMS-OFW CASE');
+                $CI->email->subject('Your One Time Password');
                 // Construct email message
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
@@ -477,7 +477,7 @@ class User_access extends CI_Controller {
 
                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                 $CI->email->to($twofa['user_email']); // Use the fetched email address
-                $CI->email->subject('ICMS-OFW CASE');
+                $CI->email->subject('Your One Time Password');
                 // Construct email message
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';

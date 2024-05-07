@@ -212,7 +212,7 @@ class Notif extends CI_Controller
                 $msg = "You have successfully filed a complaint. IACAT will conduct further verification for this case. Your reference number is  (TN/CN). Please keep your line open. Thank you";
                 break;
             case "add-remarks";
-                $msg = "Your case with reference number (TN/CN) has a new remark. Please check online at (website) to know more. Thank you.";
+                $msg = "Your case with reference number (TN/CN) has a new remark. Please check online at (public website) to know more. Thank you.";
                 break;
             
         } 
@@ -240,9 +240,11 @@ class Notif extends CI_Controller
             $content = include(MAIL_TEMPLATE . 'notification' . ".php");
             $msg = str_replace(""," Thank you.", $msg);
             $msg = str_replace("(TN/CN)", $case_info['track_number'], $msg);
+            $msg = str_replace("(public website)", ICMS_SITE_URL, $msg);
+            
             $content = str_replace("{{title}}","ICMS CASE UPDATE", $content);
             $content = str_replace("{{content}}", $msg, $content);
-            $content = str_replace("{{content-footer}}","You can view and access your case/report information by this link {{link}}. Please use the case/report number above for the verification.", $content);
+            $content = str_replace("{{content-footer}}","You can view and access your case/report information by this link " . ICMS_SITE_URL. ". Please use the case/report number above for the verification.", $content);
             
             $mail['to'] = array($case_info['email']);
             $mail['subject'] = '[CASE NOTIFICATION] INTEGRATED CASE MANAGEMENT SYSTEM';
@@ -254,6 +256,7 @@ class Notif extends CI_Controller
         // Send SMS 
         if (isset($case_info['mobile_no']) && $check['sms'] == self::SUCCESS_RESPONSE) {
             $msg = str_replace("(TN/CN)", $case_info['track_number'], $msg);
+            $msg = str_replace("(public website)", ICMS_SITE_URL, $msg);
             $number = $case_info['mobile_no'];
             $sms = $this->CI->smsbox->send($number,$msg);
             $case_info['content']['sms'] = $sms;

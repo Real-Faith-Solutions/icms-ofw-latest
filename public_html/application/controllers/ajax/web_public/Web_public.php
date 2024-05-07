@@ -110,7 +110,7 @@ class Web_public extends CI_Controller
             $otp['temporary_case_id'] = $aParam['temporary_case_id'];
 
             $mail['to'] = array('raymark@s2-tech.com');
-            $mail['subject'] = ' One-Time-Password';
+            $mail['subject'] = ' Your One Time Password';
             // $mail['template'] = 'otp';
             $mail['message'] = $otp['otp_code'] . '<br>';
             $mail['message'] .= "please enter this code";
@@ -193,7 +193,7 @@ class Web_public extends CI_Controller
             $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
 
             $mail['to'] = array('raymark@s2-tech.com');
-            $mail['subject'] = ' One-Time-Password';
+            $mail['subject'] = ' Your One Time Password';
             // $mail['template'] = 'otp';
             $mail['message'] = $otp['otp_code'] . '<br>';
             $mail['message'] .= "please enter this code";
@@ -335,7 +335,7 @@ class Web_public extends CI_Controller
         $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
 
         $mail['to'] = array($param['temp_case_info']['temporary_complainant_email_address']);
-        $mail['subject'] = ' One-Time-Password';
+        $mail['subject'] = ' Your One Time Password';
         // $mail['template'] = 'otp';
         $mail['message'] = $otp['otp_code'] . '<br>';
         $mail['message'] .= "please enter this code";
@@ -411,7 +411,7 @@ class Web_public extends CI_Controller
         $otp['temporary_case_id'] = $param['temporary_case_id'];
 
         $mail['to'] = array('raymark@s2-tech.com');
-        $mail['subject'] = ' One-Time-Password';
+        $mail['subject'] = ' Your One Time Password';
         // $mail['template'] = 'otp';
         $mail['message'] = $otp['otp_code'] . '<br>';
         $mail['message'] .= "please enter this code";
@@ -503,7 +503,7 @@ class Web_public extends CI_Controller
 
                     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
                     $CI->email->to($tempCase['temporary_complainant_email_address']);
-                    $CI->email->subject('Confirm Email');
+                    $CI->email->subject('Your One Time Password');
 
                     // Construct email message
                     $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
