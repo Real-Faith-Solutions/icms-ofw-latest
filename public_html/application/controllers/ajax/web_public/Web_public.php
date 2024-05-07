@@ -501,7 +501,7 @@ class Web_public extends CI_Controller
                     // $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
 
-                    $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+                    $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
                     $CI->email->to($tempCase['temporary_complainant_email_address']);
                     $CI->email->subject('Your One Time Password');
 
@@ -565,7 +565,7 @@ class Web_public extends CI_Controller
     //                 $config['protocol'] = 'smtp';
     //                 $config['smtp_host'] = 'smtp.gmail.com';
     //                 $config['smtp_port'] = 587;
-    //                 $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
+    //                 $config['smtp_user'] = EMAIL_FROM_EMAIL;
     //                 $config['smtp_pass'] = 'shsamihjjdkunaxs';
     //                 $config['mailtype'] = 'html';
     //                 $config['charset'] = 'utf-8';
@@ -574,7 +574,7 @@ class Web_public extends CI_Controller
 
     //                 $CI->email->initialize($config);
 
-    //                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+    //                 $CI->email->from(EMAIL_FROM_EMAIL, 'ICMS-IACAT');
     //                 $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
     //                 $CI->email->subject('ICMS-IACAT CASE');
     //                 // Construct email message

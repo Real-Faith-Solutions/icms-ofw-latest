@@ -109,21 +109,21 @@ class Mailbox {
             $CI->load->library('email');
 
             $config = array(
-                            'protocol' => EMAIL_FROM_PROTOCOL,
-                            'smtp_host' => EMAIL_FROM_HOST,
-                            'smtp_port' => EMAIL_FROM_PORT,
-                            'smtp_user' => EMAIL_FROM_USER,
-                            'smtp_pass' => EMAIL_FROM_PASS,
-                            'mailtype' => EMAIL_FROM_mailtype,
-                            'charset' => EMAIL_FROM_charset,
-                            'smtp_crypto' => EMAIL_FROM_smtp_crypto,
-                            'newline' => "\r\n"
-                        );
+                'protocol' => EMAIL_FROM_PROTOCOL,
+                'smtp_host' => EMAIL_FROM_HOST,
+                'smtp_port' => EMAIL_FROM_PORT,
+                'smtp_user' => EMAIL_FROM_USER,
+                'smtp_pass' => EMAIL_FROM_PASS,
+                'mailtype' => EMAIL_FROM_mailtype,
+                'charset' => EMAIL_FROM_charset,
+                'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                'newline' => "\r\n"
+            );
 
             $CI->email->initialize($config);
 
             // Set sender and recipient
-            $CI->email->from(EMAIL_FROM_USER, EMAIL_FROM_NAME);
+            $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
             $CI->email->to($aEmail['to']);
         
             // Set email subject

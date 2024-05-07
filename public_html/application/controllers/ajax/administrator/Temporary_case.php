@@ -922,7 +922,7 @@ class Temporary_case extends CI_Controller {
     
                 $CI->email->initialize($config);
     
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-OFW');
+                $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
                 $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
                 $CI->email->subject('[CASE NOTIFICATION] INTEGRATED CASE MANAGEMENT SYSTEM');
                 // Construct email message
