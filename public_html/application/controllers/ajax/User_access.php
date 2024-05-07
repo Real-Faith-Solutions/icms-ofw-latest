@@ -117,12 +117,13 @@ class User_access extends CI_Controller {
 
                     // Call addTwoFactorAuth function after successful login
                     $aResponse['otp'] = $this->addTwoFactorAuth($access['user_id']);
-                    
+
                     // login page return UI
                     $aResponse['link'] = ADMIN_SITE_URL;
                     $aResponse['link_type'] = 1;
                     // $_SESSION['userData']['loginFrom'] = 'administrator';
                 } else {
+                    $aResponse['otp'] = $this->addTwoFactorAuth($access['user_id']);
                     $aResponse['link'] = AGENCY_SITE_URL;
                     $aResponse['link_type'] = 2;
                     // $_SESSION['userData']['loginFrom'] = 'agency';
