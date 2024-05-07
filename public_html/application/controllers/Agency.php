@@ -529,6 +529,35 @@ class Agency extends CI_Controller {
         }
     }
 
+    public function twofactorauth() {
+
+        if (empty($_GET['user'])) {
+            return redirect('/user_login');
+        }
+
+        $user = $_GET['user'];  
+        $checkSession = $this->checkSession();
+        if ($checkSession) {
+            redirect(SITE_URL . 'dashboard');
+        } else {
+            session_destroy();
+            $aRecordSet = [];
+            $aSEO = array(
+                'page_title' => 'ICMS:twofactorauth',
+                'page_description' => 'User Validation',
+                'page_keyword' => 'Two-factor Authentication'
+            );
+            $aLibraries = array(
+                'plugin' => '',
+                'css' => '',
+                'js' => array('global_methods', 'icms_message')
+            );
+
+            // Pass $user to the view
+            $this->setTemplate('user_twofactor_authentication', array('user' => $user) + $aRecordSet, null, false, false, false, false, false, $aLibraries, $aSEO);
+        }
+    }
+
     private function settings() {
         $this->validateSession();
         $aRecordSet = [];
