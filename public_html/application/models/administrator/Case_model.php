@@ -1542,27 +1542,50 @@ Class Case_model extends CI_Model {
     }
 
     public function addDeployment($aParam) {
-
+        // ICMS OSAEC CODE START
         $sql = "
-                INSERT INTO 
-                    `icms_case_victim_deployment` 
-                SET 
-                    `case_victim_id`='" . $aParam['case_victim_id'] . "', 
-                    `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
-                    `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
-                    `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
-                    `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
-                    `case_victim_deployment_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date']) . ",  
-                    `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
-                    `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
-                    `case_victim_deployment_country_destination`='" . $aParam['victim_deployment_details']['deployment_country'] . "', 
-                    `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
-                    `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
-                    `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
-                    `case_victim_deployment_date_added`= now(), 
-                    `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
-                    `case_victim_deployment_is_active`='1' 
-               ";
+        INSERT INTO 
+            `icms_case_victim_deployment` 
+        SET 
+            `case_victim_id`='" . $aParam['case_victim_id'] . "', 
+            `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
+            `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
+            `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
+            `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
+            `case_victim_deployment_date`= " . ($this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date'] ?? '') ?? '') . ",  
+            `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
+            `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
+            `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
+            `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
+            `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+            `case_victim_deployment_date_added`= now(), 
+            `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
+            `case_victim_deployment_is_active`='1' 
+       ";
+    //    ICMS OSAEC CODE END
+
+        // ICMS IACAT CODE START
+        // $sql = "
+        //         INSERT INTO 
+        //             `icms_case_victim_deployment` 
+        //         SET 
+        //             `case_victim_id`='" . $aParam['case_victim_id'] . "', 
+        //             `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
+        //             `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
+        //             `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
+        //             `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
+        //             `case_victim_deployment_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date']) . ",  
+        //             `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
+        //             `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
+        //             `case_victim_deployment_country_destination`='" . $aParam['victim_deployment_details']['deployment_country'] . "', 
+        //             `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
+        //             `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
+        //             `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+        //             `case_victim_deployment_date_added`= now(), 
+        //             `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
+        //             `case_victim_deployment_is_active`='1' 
+        //        ";
+        // ICMS IACAT CODE END
 
         // $sql = "
         //         INSERT INTO 
