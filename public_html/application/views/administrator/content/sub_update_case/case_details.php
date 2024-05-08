@@ -55,6 +55,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <input type="text" class="form-control numbersOnly case-complainant_contact" id="complainant_contact" name="complainantcontact">
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Alternate Contact Number</label>
+                                <input type="text" maxlength="20" minlength="7" class="form-control case-complainant_contact_alternate numbersOnly" name="complainant_contact_alternate"> 
+                            </div>
+                        </div>
                         <div class="row div-case-complainant_relation_other" style="display: none">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Other:</label>
@@ -65,6 +71,36 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label> Address</label>
                                 <textarea class="form-control valid noSpcStart case-complainant_address" id="complainant_address" rows="4" maxlength="200" aria-invalid="false" name="complainantaddress"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Place of Incident</label>
+                                <textarea class="form-control valid noSpcStart case-complainant_place_of_incident" rows="4" maxlength="100" aria-invalid="false"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Place of Origin</label>
+                                <textarea class="form-control valid noSpcStart case-complainant_place_of_origin" rows="4" maxlength="100" aria-invalid="false"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Place of Destination</label>
+                                <input type="text" maxlength="20" minlength="7" class="form-control case-place_of_destination" name="place_of_destination"> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Date/Time of Incident</label>
+                                <input type="text" class="form-control case-date_time_of_incident datepicker" name="date_time_of_incident" placeholder="MM/DD/YYYY" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Other possible sources of information</label>
+                                <textarea class="form-control valid noSpcStart case-complainant_place_of_origin" rows="4" maxlength="100" aria-invalid="false"></textarea>
                             </div>
                         </div>
                     </div>
@@ -119,22 +155,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                        <fieldset><div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input case-is_illegal_rec noSpcStart" id="ch1">
-                                    <label class="form-check-label " for="ch1" style="color: #e88f15 !important;">Illegal Recruitment
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch1" name="s_violated">
+                                    <label class="form-check-label " for="ch1" style="color: #e88f15 !important;">CSEC 
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input case-is_other_law noSpcStart" id="ch2">
-                                    <label class="form-check-label " for="ch2" style="color: #e88f15 !important;">Other law/s violated
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch2" name="s_violated">
+                                    <label class="form-check-label " for="ch2" style="color: #e88f15 !important;">OSAEC
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group form-check">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch3" name="s_violated">
+                                    <label class="form-check-label " for="ch3" style="color: #e88f15 !important;">Other law/s violated
+                                    </label>
+                                </div>
+                            </div>
+                        </div></fieldset>
                         <div class="row div-other_law_desc" style="display: none;">
                             <div class="form-group col-lg-10 col-md-12 col-sm-12">
                                 <label> Other Law Description </label>
@@ -200,6 +243,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                         <label>Risk assessment</label>
                                         <textarea class="form-control case-risk_assessment noSpcStart" disabled id="area-case-risk-assessment" maxlength="5000" style="height: 150px !important;" placeholder="Risk assessment..."></textarea>
+                                    </div>
+                                    <div class="col-lg-10 col-md-12 col-sm-12">
+                                        <div class=" card card_tbl-container ">
+                                            <div class="row">
+                                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                    <label>Details of coordination with other LEA/agency</label>
+                                                    <textarea class="form-control case-details_of_coordination noSpcStart" disabled id="area-case-details_of_coordination" maxlength="5000" style="height: 150px !important;"  placeholder="Details of coordination with other LEA/agency..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
