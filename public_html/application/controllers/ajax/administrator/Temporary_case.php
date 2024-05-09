@@ -908,24 +908,26 @@ class Temporary_case extends CI_Controller {
                 $getGlobalDataStatus = $this->Temporary_case_model->getGlobalDataVictimStatus($victimStatus);
 
                 // Load email configuration dynamically
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'smtp.gmail.com';
-                $config['smtp_port'] = 587;
-                $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-                $config['smtp_pass'] = 'shsamihjjdkunaxs';
-                $config['mailtype'] = 'html';
-                $config['charset'] = 'utf-8';
-                $config['newline'] = "\r\n";
-                $config['smtp_crypto'] = 'tls';
+                $config = array(
+                    'protocol' => EMAIL_FROM_PROTOCOL,
+                    'smtp_host' => EMAIL_FROM_HOST,
+                    'smtp_port' => EMAIL_FROM_PORT,
+                    'smtp_user' => EMAIL_FROM_USER,
+                    'smtp_pass' => EMAIL_FROM_PASS,
+                    'mailtype' => EMAIL_FROM_mailtype,
+                    'charset' => EMAIL_FROM_charset,
+                    'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+                    'newline' => "\r\n"
+                );
     
                 $CI->email->initialize($config);
     
-                $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+                $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
                 $CI->email->to($tempCase['temporary_complainant_email_address']); // Use the fetched email address
-                $CI->email->subject('ICMS-IACAT UPDATE CASE');
+                $CI->email->subject('[CASE NOTIFICATION] INTEGRATED CASE MANAGEMENT SYSTEM');
                 // Construct email message
                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
-                $message .= '<p>Hi! Mr/Mrs <b>'. $tempCase['temporary_complainant_lastname'] . ','. $tempCase['temporary_complainant_firstname'] .'</b> Your case data is been update!. <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.IACAT account.</p>'; // Use the fetched email address   
+                $message .= '<p>Hi! Mr/Mrs <b>'. $tempCase['temporary_complainant_lastname'] . ','. $tempCase['temporary_complainant_firstname'] .'</b> Your case data is been update!. <strong style="color:#3b5998;">' . $tempCase['temporary_case_number'] . '</strong> to your ICMS.OFW account.</p>'; // Use the fetched email address   
                 $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
                 $message .= '<div style="display: flex; flex-wrap: wrap;">';
                 $message .= '<div style="width: 50%;">';
@@ -1005,9 +1007,9 @@ class Temporary_case extends CI_Controller {
                 $message .= '<p style="font-size: 12px;">';
                 $message .= '<div style="text-align:center;">';
                 $message .= 'from<br>';
-                $message .= 'ICMS.IACAT<br>';
+                $message .= 'ICMS.OFW<br>';
                 $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-                $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+                $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
                 $message .= '</p>';
                 $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
                 $message .= '</div>';
