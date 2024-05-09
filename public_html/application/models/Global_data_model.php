@@ -262,6 +262,75 @@ Class Global_data_model extends CI_Model {
         $aResponse = $this->yel->GetAll($sql);
         return $aResponse;
     }
+    //OSAEC CODE START
+    public function getEthnicGroup() {
+        $sql = " 
+            SELECT 
+                `parameter_count_id`, 
+                `parameter_name`
+            FROm 
+                `icms_global_parameter`
+            WHERE 
+                `parameter_status` = '1' 
+            AND `parameter_type_id`='32'
+            ORDER BY `parameter_name` ASC
+        ";
+
+        $aResponse = $this->yel->GetAll($sql);
+        return $aResponse;
+    }
+
+    public function getDisabilities() {
+        $sql = " 
+            SELECT 
+                `parameter_count_id`, 
+                `parameter_name`
+            FROm 
+                `icms_global_parameter`
+            WHERE 
+                `parameter_status` = '1' 
+            AND `parameter_type_id`='33'
+            ORDER BY `parameter_name` ASC
+        ";
+
+        $aResponse = $this->yel->GetAll($sql);
+        return $aResponse;
+    }
+
+    public function getAllergies() {
+        $sql = " 
+            SELECT 
+                `parameter_count_id`, 
+                `parameter_name`
+            FROm 
+                `icms_global_parameter`
+            WHERE 
+                `parameter_status` = '1' 
+            AND `parameter_type_id`='34'
+            ORDER BY `parameter_name` ASC
+        ";
+
+        $aResponse = $this->yel->GetAll($sql);
+        return $aResponse;
+    }
+
+    public function getIllness() {
+        $sql = " 
+            SELECT 
+                `parameter_count_id`, 
+                `parameter_name`
+            FROm 
+                `icms_global_parameter`
+            WHERE 
+                `parameter_status` = '1' 
+            AND `parameter_type_id`='35'
+            ORDER BY `parameter_name` ASC
+        ";
+
+        $aResponse = $this->yel->GetAll($sql);
+        return $aResponse;
+    }
+//OSAEC CODE END
 
     public function getGovtAgencyAndType() {
         $aResponse = [];
