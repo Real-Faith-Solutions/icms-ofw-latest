@@ -355,7 +355,7 @@ function resendTwofaCode() {
     return;
   }
 
-  var id = rs.data.__session.userData.user_id;
+  var id = rs.data.access.user_id;
 
   // Retrieve resendAttempts from sessionStorage
   var storedAttempts = sessionStorage.getItem('resendAttempts');
@@ -417,8 +417,4 @@ function resendTwofaCode() {
 
 // Attach click event listener to resend button
 $('.btn-resend-twofa').click(resendTwofaCode);
-
-
-
-
 
