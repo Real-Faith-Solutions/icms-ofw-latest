@@ -119,7 +119,7 @@ class Icms extends CI_Controller
 
     public function verification()
     {
-
+        return "hello world!";
         $aRecordSet = [];
         $param = [];
         $param['otp_portal'] = 2;
