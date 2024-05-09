@@ -285,6 +285,7 @@ class User_access extends CI_Controller {
             $aLog['log_link'] = 'user/' . $this->yel->encrypt_param($aParam['user_id']);
             $aLog['log_action'] = 1; // 1= new inserted // 2=update table- show changes
             $aResponse['log'] = $this->audit->create($aLog);
+            $this->ForgotPasswordSendEmail();
         } else {
             $aResponse['result'] = "0";
         }
@@ -508,6 +509,58 @@ class User_access extends CI_Controller {
             // Handle case where no temporary cases are found
             $response = array("success" => false, "message" => "No temporary cases found");
             echo json_encode($response);
+        }
+    }
+
+    function ForgotPasswordSendEmail()
+    {
+        // Load CodeIgniter instance
+        $CI = &get_instance();
+        $CI->load->library('email');
+
+        $userEmail = $_SESSION['userData']['user_email'];
+
+
+        $config = array(
+            'protocol' => EMAIL_FROM_PROTOCOL,
+            'smtp_host' => EMAIL_FROM_HOST,
+            'smtp_port' => EMAIL_FROM_PORT,
+            'smtp_user' => EMAIL_FROM_USER,
+            'smtp_pass' => EMAIL_FROM_PASS,
+            'mailtype' => EMAIL_FROM_mailtype,
+            'charset' => EMAIL_FROM_charset,
+            'smtp_crypto' => EMAIL_FROM_smtp_crypto,
+            'newline' => "\r\n"
+        );
+
+        $CI->email->initialize($config);
+
+        $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
+        $CI->email->to($userEmail);
+        $CI->email->subject('RESET PASSWORD');
+
+        // Construct email message
+        $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
+        $message .= '<p>Hi '. $_SESSION['userData']['user_username'].'</p>';
+        $message .= '<p><strong style="color:black;">Your password has been successfully changed!</strong></p>';
+        $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
+        $message .= '<p style="font-size: 12px;">';
+        $message .= '<div style="text-align:center;">';
+        $message .= 'from<br>';
+        $message .= 'ICMS.OFW<br>';
+        $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
+        $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
+        $message .= '</p>';
+        $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
+        $message .= '</div>';
+        $message .= '</div>';
+        $CI->email->message($message);
+
+        // Send email
+        if ($CI->email->send()) {
+            $response = array("success" => true, "message" => "message Sent");
+        } else {
+            $response = array("success" => false, "message" => "Not Sent");
         }
     }
 
