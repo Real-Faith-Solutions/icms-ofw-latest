@@ -181,7 +181,12 @@ class Icms extends CI_Controller
             }
         }
 
-        $sms = $this->sendSMS();
+        try {
+            $sms = $this->sendSMS();
+        } catch (Exception $e){
+            return $e;
+        }
+        
         
 
 
