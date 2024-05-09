@@ -113,7 +113,7 @@ if (!empty($_SERVER['HTTP_USER_AGENT']) !== false) {
 }
 
 // clean url request | auto redirect for invalid request of url's 
-$route['main_panel'] = array('agency', 'administrator', 'developer', 'icms', 'online');
+$route['main_panel'] = array('agency', 'administrator', 'developer', 'icms');
 if (!empty($this->uri->segment(1))) {
 
     if (in_array($this->uri->segment(1), $route['main_panel']) !== false) {

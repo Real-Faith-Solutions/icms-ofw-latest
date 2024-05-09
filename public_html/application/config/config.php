@@ -57,7 +57,7 @@ if (($_SERVER['SERVER_NAME'] != DOMAIN_NAME) !== FALSE) {
      * STATIC DNS CONFIGURATION
      */
     // Registration of Sub Domain
-    $config['valid_sub_domain'] = array('www', 'agency', 'administrator', 'developer', 'drive', 'icms', 'online');
+    $config['valid_sub_domain'] = array('www', 'agency', 'administrator', 'developer', 'drive', 'icms');
 
 
     // DNS and Router Control
@@ -68,7 +68,6 @@ if (($_SERVER['SERVER_NAME'] != DOMAIN_NAME) !== FALSE) {
         'drive' => 'drive', // Drive API
         'icms' => 'icms', //default Page
         'agency' => 'agency', // Agency Page
-        'online' => 'online' // Online Page
     );
 }
 
@@ -272,6 +271,7 @@ $config['allow_get_array'] = TRUE;
   |
  */
 $config['log_threshold'] = 0;
+$config['display_errors'] = FALSE;
 
 /*
   |--------------------------------------------------------------------------
