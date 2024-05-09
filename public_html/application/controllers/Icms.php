@@ -50,6 +50,51 @@ class Icms extends CI_Controller
     public function sendSMS()
     {
         // Initialize AWS SDK SNS client
+        // $snsClient = new SnsClient([
+        //     'version' => 'latest',
+        //     'region' => 'ap-southeast-1',
+        //     'credentials' => [
+        //         'key' => constant('AWS_ACCESS_KEY'),
+        //         'secret' => constant('AWS_SECRET_KEY'),
+        //     ]
+        // ]);
+
+        // // Initialize response array
+        // $rs = ['flag' => 0, 'message' => []];
+
+        // $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
+        // if ($temporaryCases) {
+        //     foreach ($temporaryCases as $tempCase) {
+        //         if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
+                    
+        //             // Send SMS using AWS SNS
+        //             try {
+        //                 $result = $snsClient->publish([
+        //                     'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
+        //                     'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
+        //                 ]);
+        //                 // If message sent successfully
+        //                 if ($result['@metadata']['statusCode'] == 200) {
+        //                     $rs['flag'] = 1;
+        //                     // If you want to handle multiple successful messages, remove the break statement here
+
+        //                 } else {
+        //                     $rs['flag'] = 0;
+        //                 }
+                        
+        //             } catch (AwsException $e) {
+        //                 // Log the error or handle it appropriately
+        //                 $rs['message']['error'] = $e->getMessage();
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return $rs;
+
+        ####################
+
+        // Initialize AWS SDK
         $snsClient = new SnsClient([
             'version' => 'latest',
             'region' => 'ap-southeast-1',
@@ -59,35 +104,20 @@ class Icms extends CI_Controller
             ]
         ]);
 
-        // Initialize response array
-        $rs = ['flag' => 0, 'message' => []];
+        // Send SMS using AWS SNS
+        try {
+            $result = $snsClient->publish([
+                'Message' => "My name is Joshua",
+                'PhoneNumber' => "639761401847",
+            ]);
 
-        $temporaryCases = $this->Web_public_model->getAllTemporaryCases();
-        if ($temporaryCases) {
-            foreach ($temporaryCases as $tempCase) {
-                if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
-                    
-                    // Send SMS using AWS SNS
-                    try {
-                        $result = $snsClient->publish([
-                            'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
-                            'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
-                        ]);
-                        // If message sent successfully
-                        if ($result['@metadata']['statusCode'] == 200) {
-                            $rs['flag'] = 1;
-                            // If you want to handle multiple successful messages, remove the break statement here
+            // If message sent successfully
+            if ($result['@metadata']['statusCode'] == 200) {
+                $rs['flag'] = 1;
 
-                        } else {
-                            $rs['flag'] = 0;
-                        }
-                        
-                    } catch (AwsException $e) {
-                        // Log the error or handle it appropriately
-                        $rs['message']['error'] = $e->getMessage();
-                    }
-                }
             }
+        } catch (AwsException $e) {
+            $rs['message']['error'] = $e->getMessage();
         }
 
         return $rs;
