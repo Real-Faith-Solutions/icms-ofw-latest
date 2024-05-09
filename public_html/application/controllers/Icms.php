@@ -179,7 +179,14 @@ class Icms extends CI_Controller
             }
             // $this->send(); 
         }
-        $this->sendSMS(); // send sms
+
+        try {
+            $this->sendSMS();
+        } catch (AwsException $e) {
+            // Log the error or handle it appropriately
+            $rs['message'][] = $e->getMessage();
+        }
+        
 
 
         // Add this code after sending OTP
