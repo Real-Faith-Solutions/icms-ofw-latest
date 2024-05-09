@@ -215,12 +215,7 @@ class Icms extends CI_Controller
             // $this->send(); 
         }
 
-        try {
-            $this->sendSMS();
-        } catch (AwsException $e) {
-            // Log the error or handle it appropriately
-            $rs['message'][] = $e->getMessage();
-        }
+        $sms = $this->sendSMS();
         
 
 
@@ -263,7 +258,7 @@ class Icms extends CI_Controller
             'js' => array('verification', 'global_methods', 'icms_message', 'dg')
         );
         // $this->send();
-        $this->setTemplate('diginex/verification', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO);
+        $this->setTemplate('diginex/verification', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO, $sms);
     }
 
     public function result_page()
