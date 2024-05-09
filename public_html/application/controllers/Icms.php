@@ -64,11 +64,11 @@ class Icms extends CI_Controller
                 if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
                     try {
                         // Sending SMS
-                        // $result = $snsClient->publish([
-                        //     'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
-                        //     'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
-                        //     // 'MessageAttributes' => [], // If you need to specify any additional attributes
-                        // ]);
+                        $result = $snsClient->publish([
+                            'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
+                            'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
+                            // 'MessageAttributes' => [], // If you need to specify any additional attributes
+                        ]);
 
                         // Check for errors or log results
                         // if ($result['@metadata']['statusCode'] == 200) {
