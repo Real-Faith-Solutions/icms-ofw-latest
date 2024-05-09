@@ -62,7 +62,7 @@ class Icms extends CI_Controller
         if ($temporaryCases) {
             foreach ($temporaryCases as $tempCase) {
                 if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
-                    // try {
+                    try {
                         // Sending SMS
                         $result = $snsClient->publish([
                             'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
@@ -71,15 +71,15 @@ class Icms extends CI_Controller
                         ]);
 
                         // Check for errors or log results
-                        if ($result['@metadata']['statusCode'] == 200) {
-                            echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code'];
-                        } else {
-                            echo "Failed to send SMS";
-                        }
+                        // if ($result['@metadata']['statusCode'] == 200) {
+                        //     echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code'];
+                        // } else {
+                        //     echo "Failed to send SMS";
+                        // }
 
-                    // } catch (Exception $error) {
-                    //     echo $error;
-                    // }
+                    } catch (Exception $e) {
+                        $rs['message']['error'] = $e->getMessage();
+                    }
                 }
             }
         }
