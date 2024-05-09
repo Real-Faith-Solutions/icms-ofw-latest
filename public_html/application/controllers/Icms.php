@@ -3,6 +3,7 @@
 // page security
 
 use Aws\Sns\SnsClient;
+use Aws\Exception\AwsException;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -77,7 +78,7 @@ class Icms extends CI_Controller
                         //     echo "Failed to send SMS";
                         // }
 
-                    } catch (Exception $e) {
+                    } catch (AwsException $e) {
                         $rs['message']['error'] = $e->getMessage();
                     }
                 }
