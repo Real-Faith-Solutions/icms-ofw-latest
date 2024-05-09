@@ -119,6 +119,7 @@ class Icms extends CI_Controller
 
     public function verification()
     {
+        $this->session->unset_userdata('error_message');
 
         $aRecordSet = [];
         $param = [];
@@ -180,16 +181,8 @@ class Icms extends CI_Controller
                 $this->Web_public_model->saveOTP($otp);
             }
         }
-
-        try {
-            $sms = $this->sendSMS();
-        } catch (Exception $e){
-            return $e;
-        }
+        $sms = $this->sendSMS();
         
-        
-
-
         // Add this code after sending OTP
         // Initialize the variable to store fetched OTP
         $aRecordSet['fetchedOTP'] = 'otp_last_update';
@@ -229,7 +222,7 @@ class Icms extends CI_Controller
             'js' => array('verification', 'global_methods', 'icms_message', 'dg')
         );
         // $this->send();
-        $this->setTemplate('diginex/verification', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO, $sms);
+        $this->setTemplate('diginex/verification', $aRecordSet, null, false, true, false, false, false, $aLibraries, $aSEO);
     }
 
     public function result_page()
