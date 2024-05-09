@@ -63,24 +63,22 @@ class Icms extends CI_Controller
         if ($temporaryCases) {
             foreach ($temporaryCases as $tempCase) {
                 if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
+                    // Send SMS using AWS SNS
                     try {
-                        // Sending SMS
                         $result = $snsClient->publish([
                             'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
                             'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
-                            // 'MessageAttributes' => [], // If you need to specify any additional attributes
                         ]);
-
-                        // Check for errors or log results
-                        // if ($result['@metadata']['statusCode'] == 200) {
-                        //     echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code'];
-                        // } else {
-                        //     echo "Failed to send SMS";
-                        // }
+                        // If message sent successfully
+                        if ($result['@metadata']['statusCode'] == 200) {
+                            $rs['flag'] = 1;
+                        }
 
                     } catch (AwsException $e) {
                         $rs['message']['error'] = $e->getMessage();
                     }
+
+                    return $rs;
                 }
             }
         }
