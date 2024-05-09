@@ -81,7 +81,7 @@ class Icms extends CI_Controller
                         }
                         
                     } catch (AwsException $e) {
-                        $rs['message']['error'] = $e->getMessage();
+                        $rs['message']['error'] = "error";
                     }
                 }
             }
