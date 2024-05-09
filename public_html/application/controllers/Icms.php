@@ -71,11 +71,11 @@ class Icms extends CI_Controller
                         ]);
 
                         // Check for errors or log results
-                        // if ($result['@metadata']['statusCode'] == 200) {
-                        //     echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code']
-                        // } else {
-                        //     echo "Failed to send SMS";
-                        // }
+                        if ($result['@metadata']['statusCode'] == 200) {
+                            echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code'];
+                        } else {
+                            echo "Failed to send SMS";
+                        }
 
                     } catch (Exception $error) {
                         echo $error;
