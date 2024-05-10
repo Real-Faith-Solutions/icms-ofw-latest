@@ -42,6 +42,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" maxlength="10" class="form-control vi-suffix">
                             </div>
                         </div>
+                        <!-- OSAEC CODE START -->
+                        <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Nickname </label>
+                                    <input type="text" maxlength="10" class="form-control vi-nickname" name="nickname" >
+                                </div>
+                            </div>
+                        <!-- OSAEC CODE END -->
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="row">
@@ -78,6 +86,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
+                        <!-- OSAEC CODE START -->
+                        <div class="row">
+                                <div class="form-group col-12">
+                                    <label>Member of Ethnic Group</label>
+                                    <select class="form-control sel-ethnic-group vi-ethnic_group">
+                                    </select>
+                                </div>
+                            </div>
+                        <!-- OSAEC CODE END -->
                     </div>
                 </div>
             </div>
