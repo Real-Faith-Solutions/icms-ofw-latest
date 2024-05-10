@@ -304,9 +304,11 @@ class User_access extends CI_Controller {
             'twofa_portal' => $twofa_portal,
             'twofa_code' => $twofactorcode
         );
+
         $result = $this->User_access_model->addTwoFactorAuto($param);
-        $this->NotificationEmailTwofa($user_id);
-        return $result;
+        // $this->NotificationEmailTwofa($user_id);
+        $response = 1;
+        return $response;
     }
 
     public function ResendTwoFactorAuth() {
@@ -400,7 +402,8 @@ class User_access extends CI_Controller {
         return $aResponse;
     }
 
-    public function NotificationEmailTwofa($user_id){
+    public function NotificationEmailTwofa(){
+        $user_id = $this->input->post('user_id');
         $CI = &get_instance();
         $CI->load->library('email');
         $TwofactorAuth = $this->User_access_model->sendTwoFactorAutoViaEmail($user_id);
