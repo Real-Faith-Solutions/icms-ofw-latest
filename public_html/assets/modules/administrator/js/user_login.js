@@ -82,6 +82,7 @@ function loginUser() {
         if (parseInt(rs.data.aResponse.link_type) === 1) {
           var lnk = rs.data.aResponse.link + "twofactorauth?user=" + user;
             location.assign(lnk);
+            getNotificationEmailTwofa();
         } else if (parseInt(rs.data.aResponse.link_type) === 2) {
 
           var body = "<br>Access Denied! <br><br>";
@@ -355,7 +356,8 @@ function resendTwofaCode() {
     return;
   }
 
-  var id = rs.data.__session.userData.user_id;
+  // var id = rs.data.__session.userData.user_id;
+  var id = rs.data.access.user_id;
 
   // Retrieve resendAttempts from sessionStorage
   var storedAttempts = sessionStorage.getItem('resendAttempts');
@@ -372,7 +374,7 @@ function resendTwofaCode() {
   // Update resendAttempts in sessionStorage
   sessionStorage.setItem('resendAttempts', JSON.stringify(resendAttempts));
 
-  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 15 : 50;
+  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 180 : 1800;
   var timerElement = $('#twofa_count');
   var timer = countdownSeconds;
 
@@ -419,6 +421,39 @@ function resendTwofaCode() {
 $('.btn-resend-twofa').click(resendTwofaCode);
 
 
+// function test() {
+//   var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
+//   var responseData = rs.data.aResponse.otp;
 
+//   if (responseData == 1) {
+//     $.post(
+//       sAjaxAccess,
+//       {
+//         type: "NotificationEmailTwofa",
+  
+//       },
+//       function (rs) {
+  
+//       },
+//       "json"
+//     );
+//   }
+// }
+function getNotificationEmailTwofa() {
+  var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
+  var id = rs.data.access.user_id;
+
+  $.post(
+    sAjaxAccess,
+    {
+      type: "NotificationEmailTwofa",
+      user_id: id
+    },
+    function (rs) {
+          console.log('email was send');
+    },
+    "json"
+  );
+}
 
 
