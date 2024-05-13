@@ -82,6 +82,7 @@ function loginUser() {
         if (parseInt(rs.data.aResponse.link_type) === 1) {
           var lnk = rs.data.aResponse.link + "twofactorauth?user=" + user;
             location.assign(lnk);
+            getNotificationEmailTwofa();
         } else if (parseInt(rs.data.aResponse.link_type) === 2) {
 
           var body = "<br>Access Denied! <br><br>";
@@ -418,3 +419,19 @@ function resendTwofaCode() {
 // Attach click event listener to resend button
 $('.btn-resend-twofa').click(resendTwofaCode);
 
+function getNotificationEmailTwofa() {
+  var rs = JSON.parse(sessionStorage.getItem('loginResponse'));
+  var id = rs.data.access.user_id;
+
+  $.post(
+    sAjaxAccess,
+    {
+      type: "NotificationEmailTwofa",
+      user_id: id
+    },
+    function (rs) {
+          console.log('email was send');
+    },
+    "json"
+  );
+}

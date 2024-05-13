@@ -36,7 +36,7 @@ function redirectToLogin() {
             $(".modal-body-conf").html(rs.data.access_msg);
             $(".modal-footer-conf").html('  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>');
             $('#save_confirm_modal').modal('show');
-        } else if (rs.data.php_validation.flag == "0") {
+        } else if (rs.data.aResponse.php_validation.flag == "0") {
             $(".modal-title-conf").html("Access Denied");
             $(".modal-body-conf").html("Incomplete Values");
             $(".modal-footer-conf").html('  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>');
