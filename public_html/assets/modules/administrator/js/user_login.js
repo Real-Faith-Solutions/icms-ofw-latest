@@ -356,7 +356,7 @@ function resendTwofaCode() {
     return;
   }
 
-  var id = rs.data.__session.userData.user_id;
+  var id = rs.data.access.user_id;
 
   // Retrieve resendAttempts from sessionStorage
   var storedAttempts = sessionStorage.getItem('resendAttempts');
@@ -373,7 +373,7 @@ function resendTwofaCode() {
   // Update resendAttempts in sessionStorage
   sessionStorage.setItem('resendAttempts', JSON.stringify(resendAttempts));
 
-  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 15 : 50;
+  var countdownSeconds = (resendAttempts[resendAttempts.length - 1] <= 2) ? 180 : 1800;
   var timerElement = $('#twofa_count');
   var timer = countdownSeconds;
 
