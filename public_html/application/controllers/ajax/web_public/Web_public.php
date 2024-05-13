@@ -349,7 +349,7 @@ class Web_public extends CI_Controller
         $aRecordSet['flag'] = self::SUCCESS_RESPONSE;
         $aRecordSet['resend_count'] = $lastOTPDetails['resend_count'];
         $aRecordSet['last_update_time'] = $lastOTPDetails['otp_last_update'];
-        $this->send();
+        // $this->send();
         return $aRecordSet;
     }
 
