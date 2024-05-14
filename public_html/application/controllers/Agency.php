@@ -154,13 +154,41 @@ class Agency extends CI_Controller {
         }
     }
 
+    // private function checkSession() {
+    //     if (empty($_SESSION['userData']) == true) {
+    //         $val = false;
+    //     } else {
+    //         $userID = $this->yel->getUserIDByAccessKey($_SESSION['userData']['accessKey']);
+    //         if (empty($userID) == true) {
+    //             $val = false;
+    //         } else {
+    //             $stillActive = $this->yel->getUserAccessIsStillActive($userID);
+    //             if ($stillActive['user_is_active'] == 0 || $stillActive['agency_is_active'] == 0 || $stillActive['agency_branch_is_active'] == 0 || $stillActive['user_level_is_active'] == 0) {
+    //                 $val = false;
+    //             } else {
+    //                 if (isset($_SESSION['userData']['loginFrom']) == true) {
+    //                     if ($_SESSION['panel'] !== $_SESSION['userData']['loginFrom']) {
+    //                         $val = false;
+    //                     } else {
+    //                         $val = true;
+    //                     }
+    //                 } else {
+    //                     $val = false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return $val;
+    // }
+
     private function checkSession() {
         if (empty($_SESSION['userData']) == true) {
-            $val = false;
+          $val = false;
         } else {
+          if (isset($_SESSION['userData']['accessKey'])) {
             $userID = $this->yel->getUserIDByAccessKey($_SESSION['userData']['accessKey']);
             if (empty($userID) == true) {
-                $val = false;
+              $val = false;
             } else {
                 $stillActive = $this->yel->getUserAccessIsStillActive($userID);
                 if ($stillActive['user_is_active'] == 0 || $stillActive['agency_is_active'] == 0 || $stillActive['agency_branch_is_active'] == 0 || $stillActive['user_level_is_active'] == 0) {
@@ -177,9 +205,12 @@ class Agency extends CI_Controller {
                     }
                 }
             }
+          } else {
+            $val = false;
+          }
         }
         return $val;
-    }
+      }
 
     public function email_template_maker() {
         $this->setTemplate('email_template_maker', null, null, false, false, false, false, false, false, false);
