@@ -1568,7 +1568,9 @@ $(document).ready(function () {
         if (id == '4') {
             $('.offender_field_other').show();
         }
-
+        //OSAEC CODE FOR .offender_field_other 
+        $('.offender_field_other').show();
+         //OSAEC CODE FOR .offender_field_other
         $('#modal-update_case_offender').modal('show');
 
     });
@@ -1948,7 +1950,10 @@ $(document).ready(function () {
         if (id == '4') {
             $('.offender_field_other').show();
         }
+        //OSAEC CODE .offender_field_other
+        $('.offender_field_other').show();
     });
+        //OSAEC CCODE .offender_field_other   
     // in update
     $('.u-case-offender_type').click(function () {
         var id = $(this).val();
@@ -1983,8 +1988,8 @@ $(document).ready(function () {
 
 
     /*
-     * Cropping Image
-     */
+    * Cropping Image
+    */
 
     var $uploadCrop,
             tempFilename,
@@ -2733,7 +2738,7 @@ function storeCaseDetails() {
         'is_illegal_rec': $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         'is_other_law': $('.case-is_other_law').is(':checked') ? '1' : '0',
         'other_law_desc': $('.case-other_law_desc').val(),
-        'violated': $('.case-testing').val(),
+        'violated': $("input:radio[name ='s_violated']:checked").val(),
         'acts': acts,
         'means': means,
         'purposes': purposes
@@ -2959,5 +2964,3 @@ function storeCaseOffenderById() {
     getCaseOffenderList();
 
 }
-
-//  ####---- OSAEC INCIDENT DETAILS END ----#### 
