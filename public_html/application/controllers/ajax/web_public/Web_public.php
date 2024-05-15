@@ -401,8 +401,11 @@ class Web_public extends CI_Controller
 
         if ($rs['result'] == 'case') {
             $param['temporary_case_id'] = 'CN-' . $param['case_info']['case_id'];
+            $getTemporaryData = $this->Web_public_model->getTemporaryCaseData($param['case_info']['case_id']);  
+        }else{
+            $getTemporaryData = $this->Web_public_model->getTemporaryCaseData($param['temp_case_info']['temporary_case_id']);   
         }
-
+        
         // send otp
         $otp = [];
         $otp['otp_code'] = mt_rand(100000, 999999);
@@ -410,7 +413,7 @@ class Web_public extends CI_Controller
         $otp['otp_portal'] = 2; // email
         $otp['temporary_case_id'] = $param['temporary_case_id'];
 
-        $mail['to'] = array('raymark@s2-tech.com');
+        $mail['to'] = $getTemporaryData;
         $mail['subject'] = ' Your One Time Password';
         // $mail['template'] = 'otp';
         $mail['message'] = $otp['otp_code'] . '<br>';
@@ -434,7 +437,7 @@ class Web_public extends CI_Controller
         $rs['link'] = '/verification?' . $rs['link'];
 
         $rs['flag'] = self::SUCCESS_RESPONSE;
-        $this->send();
+        // $this->send();
         return $rs;
     }
 
