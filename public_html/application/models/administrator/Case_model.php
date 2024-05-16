@@ -556,6 +556,8 @@ Class Case_model extends CI_Model {
         return $aResponse;
     }
 
+    //OSAEC code added `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "',
+
     public function __addVictimInfo($aParam) {
 
         // Real 
@@ -567,6 +569,7 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= '" . $aParam['victim_personal_info']['first_name'] . "', 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['middle_name']) . ", 
                 `victim_info_last_name`= '" . $aParam['victim_personal_info']['last_name'] . "', 
+                `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "',
                 `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ", 
                 `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['dob']) . ", 
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",  
