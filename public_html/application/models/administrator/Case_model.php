@@ -403,8 +403,7 @@ Class Case_model extends CI_Model {
                     `case_risk_assessment`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['risk_assessment']) . ", 
                     `case_is_illegal_rec`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['is_illegal_rec']) . ", 
                     `case_is_other_law`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['is_other_law']) . ", 
-                    `case_is_other_law_desc`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['other_law_desc']) . ",
-                    `case_violated`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['violated']) . " 
+                    `case_is_other_law_desc`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['other_law_desc']) . ", 
                     `case_status_id`= '1', 
                     `case_date_added`=now(), 
                     `case_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
@@ -569,7 +568,6 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= '" . $aParam['victim_personal_info']['first_name'] . "', 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['middle_name']) . ", 
                 `victim_info_last_name`= '" . $aParam['victim_personal_info']['last_name'] . "', 
-                `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "',
                 `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ", 
                 `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['dob']) . ", 
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",  
@@ -618,7 +616,6 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= '" . $aParam['victim_personal_info']['first_name'] . "', 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['middle_name']) . ", 
                 `victim_info_last_name`= '" . $aParam['victim_personal_info']['last_name'] . "', 
-                `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "',
                 `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ", 
                 `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['dob']) . ", 
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",  
@@ -1701,12 +1698,12 @@ Class Case_model extends CI_Model {
                 SET 
                 `case_id`='" . $aParam['case_id'] . "', 
                 `case_offender_type_id`=" . $this->yel->checkifStringExist($val['offender_type']) . ", 
-                `case_offender_name`=" . $this->yel->checkifStringExist($val['offender_name']) . ", 
-                `case_offender_nationality`=" . $this->yel->checkifStringExist($val['offender_nationality']) . ", 
-                `case_offender_other`=" . $this->yel->checkifStringExist($val['offender_relation']) . ", 
-                `case_offender_address`=" . $this->yel->checkifStringExist($val['offender_address']) . ", 
-                `case_offender_contact_details`=" . $this->yel->checkifStringExist($val['offender_contact']) . ", 
-                `case_offender_remarks`=" . $this->yel->checkifStringExist($val['offender_remarks']) . ", 
+                `case_offender_name`=" . $this->yel->checkifStringExist($val['offender_name'] ?? '') . ", 
+                `case_offender_nationality`=" . $this->yel->checkifStringExist($val['offender_nationality'] ?? '') . ", 
+                `case_offender_other`=" . $this->yel->checkifStringExist($val['offender_relation'] ?? '') . ", 
+                `case_offender_address`=" . $this->yel->checkifStringExist($val['offender_address'] ?? '') . ", 
+                `case_offender_contact_details`=" . $this->yel->checkifStringExist($val['offender_contact'] ?? '') . ", 
+                `case_offender_remarks`=" . $this->yel->checkifStringExist($val['offender_remarks'] ?? '') . ",
                 `case_offender_is_active`= '1' 
                ";
 
