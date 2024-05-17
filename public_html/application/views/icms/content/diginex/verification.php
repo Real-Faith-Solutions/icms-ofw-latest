@@ -13,11 +13,11 @@ error_reporting(0);
     <link rel="stylesheet" href="<?= SITE_ASSETS ?>library/fonts/fontawesome/css/all.css">
     <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/modules/icms/css/verification.css"> -->
 
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/global/template/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/global/template/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="<?= SITE_ASSETS ?>library/fonts/fontawesome/css/all.css">
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/modules/icms/css/result_page.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/modules/icms/css/result_page.css">
 </head>
 
 <body>
