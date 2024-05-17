@@ -1264,7 +1264,7 @@ class Yel {
     }
 
     /**
-     * Generate 4 digit numbers for One-Time-Password
+     * Generate 4 digit numbers for Your One Time Password
      *
      * @return string $OTP
      */

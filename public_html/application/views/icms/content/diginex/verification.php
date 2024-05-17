@@ -12,11 +12,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?= SITE_ASSETS ?>library/fonts/fontawesome/css/all.css">
     <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/modules/icms/css/verification.css"> -->
 
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/global/template/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/global/template/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="<?= SITE_ASSETS ?>library/fonts/fontawesome/css/all.css">
-    <link rel="stylesheet" href="http://iacat-icms.com/assets/modules/icms/css/result_page.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/modules/icms/css/result_page.css">
 </head>
 
 <body>
@@ -63,16 +63,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <small>Please enter the 6-digit verification code we sent</small><br>
                         <form class="mt-1">
                             <div class="d-flex">
-                                <div class="m-auto">
+                             <div class="m-auto">
+                                <input class="inp-code-1 inp-cd mr-1" type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="codeId1" oninput="limitToOneDigit(this)" />
+                                <input class="inp-code-2 inp-cd mr-1" type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="codeId2" oninput="limitToOneDigit(this)" />
+                                <input class="inp-code-3 inp-cd mr-1" type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="codeId3" oninput="limitToOneDigit(this)" />
+                                <input class="inp-code-4 inp-cd mr-1" type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="codeId4" oninput="limitToOneDigit(this)" />
+                                <input class="inp-code-5 inp-cd mr-1" type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="codeId5" oninput="limitToOneDigit(this)" />
+                                <input class="inp-code-6 inp-cd mb-3 mr-1" type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="codeId6" oninput="limitToOneDigit(this)" />
+
+
+
+                                </div>
+
+                            </div>
+
+                      <!-- ######  Original Code Start Here ######-->
+                            <!-- <div class="m-auto">
                                     <input class="inp-code-1 inp-cd mr-1" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                                     <input class="inp-code-2 inp-cd mr-1" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                                     <input class="inp-code-3 inp-cd mr-1" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                                     <input class="inp-code-4 inp-cd mr-1" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                                     <input class="inp-code-5 inp-cd mr-1" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                                     <input class="inp-code-6 inp-cd mb-3 mr-1" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                </div>
-                            </div>
-
+                                </div> -->
+                     <!-- ######  Original Code End Here ######-->
 
                             <br>
                             <button type="button"
@@ -97,3 +111,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+
+
+    <script>
+function limitToOneDigit(input) {
+  if (input.value.length > 1) {
+    input.value = input.value.slice(0,1); // Only keep the first character
+  }
+}
+</script>

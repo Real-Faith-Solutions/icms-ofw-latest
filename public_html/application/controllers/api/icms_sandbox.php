@@ -280,7 +280,7 @@ class icms_sandbox extends CI_Controller {
             $otp['temporary_case_id'] = $aParam['temporary_case_id'];
 
             $mail['to'] = array('raymark@s2-tech.com');
-            $mail['subject'] = ' One-Time-Password';
+            $mail['subject'] = ' Your One Time Password';
             // $mail['template'] = 'otp';
             $mail['message'] = $otp['otp_code'] . '<br>';
             $mail['message'] .= "please enter this code";
@@ -382,7 +382,7 @@ class icms_sandbox extends CI_Controller {
         $otp['temporary_case_id'] = $param['temporary_case_id'];
 
         $mail['to'] = array('raymark@s2-tech.com');
-        $mail['subject'] = ' One-Time-Password';
+        $mail['subject'] = ' Your One Time Password';
         // $mail['template'] = 'otp';
         $mail['message'] = $otp['otp_code'] . '<br>';
         $mail['message'] .= "please enter this code";

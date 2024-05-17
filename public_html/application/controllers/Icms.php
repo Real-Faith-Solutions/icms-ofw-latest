@@ -64,21 +64,19 @@ class Icms extends CI_Controller
                 if ($tempCase['temporary_complainant_preffered_contact_method'] == 1) { // 1 = sms
                     try {
                         // Sending SMS
-                        $result = $snsClient->publish([
-                            'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
-                            // 'PhoneNumber' => '+639761401847', 
-                            'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
-                            // 'MessageAttributes' => [], // If you need to specify any additional attributes
-                        ]);
+                        // $result = $snsClient->publish([
+                        //     'Message' => 'This is Your One Time Password: ' . $tempCase['otp_code'],
+                        //     'PhoneNumber' => $tempCase['temporary_complainant_mobile_number'],
+                        //     // 'MessageAttributes' => [], // If you need to specify any additional attributes
+                        // ]);
 
                         // Check for errors or log results
                         // if ($result['@metadata']['statusCode'] == 200) {
-                        //     echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code'];
-                        //     echo "<br> number :" . $tempCase['temporary_complainant_mobile_number'];
-                        //     echo "<br>temporary_complainant_preffered_contact_method :" . $tempCase['temporary_complainant_preffered_contact_method'];
+                        //     echo "SMS Sent Successfully, OTP:" . $tempCase['otp_code']
                         // } else {
                         //     echo "Failed to send SMS";
                         // }
+
                     } catch (Exception $error) {
                         echo $error;
                     }
@@ -165,7 +163,7 @@ class Icms extends CI_Controller
             $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
 
             $mail['to'] = array($param['temp_case_info']['temporary_complainant_email_address']);
-            $mail['subject'] = ' One-Time-Password';
+            $mail['subject'] = ' Your One Time Password';
             // $mail['template'] = 'otp';
             $mail['message'] = $otp['otp_code'] . '<br>';
             // $mail['message'] .= "please enter this code";
@@ -550,13 +548,13 @@ class Icms extends CI_Controller
     //     // Check if there are temporary cases fetched
     //     if ($temporaryCases) {
     //         // Load email configuration dynamically
-    //         $config['protocol'] = 'smtp';
-    //         $config['smtp_host'] = 'smtp.gmail.com';
-    //         $config['smtp_port'] = 587;
-    //         $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-    //         $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //         $config['mailtype'] = 'html';
-    //         $config['charset'] = 'utf-8';
+    //         $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //         $config['smtp_host'] = EMAIL_FROM_HOST;
+    //         $config['smtp_port'] = EMAIL_FROM_PORT;
+    //         $config['smtp_user'] = EMAIL_FROM_USER;
+    //         $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //         $config['mailtype'] = EMAIL_FROM_mailtype;
+    //         $config['charset'] = EMAIL_FROM_charset;
     //         $config['newline'] = "\r\n";
     //         $config['smtp_crypto'] = 'tls';
 
@@ -570,23 +568,23 @@ class Icms extends CI_Controller
 
     //             // Check if OTP was fetched successfully
     //             if ($fetchedOTP) {
-    //                 $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+    //                 $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
     //                 $CI->email->to($tempCase['temporary_complainant_email_address']);
     //                 $CI->email->subject('Confirm Email');
 
     //                 // Construct email message
     //                 $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
     //                 $message .= '<p>Hi ' . $tempCase['temporary_complainant_firstname'] . ',</p>';
-    //                 $message .= '<p>You recently added <strong style"color:#3b5998;">' . $tempCase['temporary_complainant_email_address'] . '</strong> to your ICMS.IACAT account.</p>';
+    //                 $message .= '<p>You recently added <strong style"color:#3b5998;">' . $tempCase['temporary_complainant_email_address'] . '</strong> to your ICMS.OFW account.</p>';
     //                 $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
     //                 $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $fetchedOTP['otp_code'] . '</p>';
     //                 $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
     //                 $message .= '<p style="font-size: 12px;">';
     //                 $message .= '<div style="text-align:center;">';
     //                 $message .= 'from<br>';
-    //                 $message .= 'ICMS.IACAT<br>';
+    //                 $message .= 'ICMS.OFW<br>';
     //                 $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-    //                 $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+    //                 $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
     //                 $message .= '</p>';
     //                 $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
     //                 $message .= '</div>';
@@ -624,19 +622,19 @@ class Icms extends CI_Controller
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
     //     // Load email configuration dynamically
-    //     $config['protocol'] = 'smtp';
-    //     $config['smtp_host'] = 'smtp.gmail.com';
-    //     $config['smtp_port'] = 587;
-    //     $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-    //     $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //     $config['mailtype'] = 'html';
-    //     $config['charset'] = 'utf-8';
+    //     $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //     $config['smtp_host'] = EMAIL_FROM_HOST;
+    //     $config['smtp_port'] = EMAIL_FROM_PORT;
+    //     $config['smtp_user'] = EMAIL_FROM_USER;
+    //     $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //     $config['mailtype'] = EMAIL_FROM_mailtype;
+    //     $config['charset'] = EMAIL_FROM_charset;
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
 
     //     $CI->email->initialize($config);
 
-    //     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+    //     $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
     //     $CI->email->to('lhattz.jhunriz@gmail.com');
     //     $CI->email->subject('Confirm Email');
 
@@ -645,16 +643,16 @@ class Icms extends CI_Controller
     //         // Construct email message
     //         $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
     //         $message .= '<p>Hi <Name of the User>,</p>';
-    //         $message .= '<p>You recently added <a href="#">'.$iwantfetchtheemailindatabase['temporary_complainant_email_address'] .'</a> to your ICMS.IACAT account.</p>';
+    //         $message .= '<p>You recently added <a href="#">'.$iwantfetchtheemailindatabase['temporary_complainant_email_address'] .'</a> to your ICMS.OFW account.</p>';
     //         $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
     //         $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $fetchedOTP['otp_code'] . '</p>';
     //         $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
     //         $message .= '<p style="font-size: 12px;">';
     //         $message .= '<div style="text-align:center;">';
     //         $message .= 'from<br>';
-    //         $message .= 'ICMS.IACAT<br>';
+    //         $message .= 'ICMS.OFW<br>';
     //         $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-    //         $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+    //         $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
     //         $message .= '</p>';
     //         $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
     //         $message .= '</div>';
@@ -687,22 +685,22 @@ class Icms extends CI_Controller
     //     $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseIdEmail($param['otp_portal']);
 
     //     // Load email configuration dynamically
-    //     $config['protocol'] = 'smtp';
-    //     $config['smtp_host'] = 'smtp.gmail.com';
-    //     $config['smtp_port'] = 587;
-    //     $config['smtp_user'] = 'lalata.jhunriz.bscs2019@gmail.com';
-    //     $config['smtp_pass'] = 'shsamihjjdkunaxs';
-    //     $config['mailtype'] = 'html';
-    //     $config['charset'] = 'utf-8';
+    //     $config['protocol'] = EMAIL_FROM_PROTOCOL;
+    //     $config['smtp_host'] = EMAIL_FROM_HOST;
+    //     $config['smtp_port'] = EMAIL_FROM_PORT;
+    //     $config['smtp_user'] = EMAIL_FROM_USER;
+    //     $config['smtp_pass'] = EMAIL_FROM_PASS;
+    //     $config['mailtype'] = EMAIL_FROM_mailtype;
+    //     $config['charset'] = EMAIL_FROM_charset;
     //     $config['newline'] = "\r\n";
     //     $config['smtp_crypto'] = 'tls';
 
     //     $CI->email->initialize($config);
 
-    //     $CI->email->from('lalata.jhunriz.bscs2019@gmail.com', 'ICMS-IACAT');
+    //     $CI->email->from(EMAIL_FROM_EMAIL, EMAIL_FROM_NAME);
     //     $CI->email->to('lhattz.jhunriz@gmail.com');
-    //     // $CI->email->cc('lalata.jhunriz.bscs2019@gmail.com');
-    //     // $CI->email->bcc('lalata.jhunriz.bscs2019@gmail.com');
+    //     // $CI->email->cc(EMAIL_FROM_EMAIL);
+    //     // $CI->email->bcc(EMAIL_FROM_EMAIL);
 
     //     $CI->email->subject('Confirm Email');
     //     // Check if OTP was fetched successfully
@@ -710,16 +708,16 @@ class Icms extends CI_Controller
     //         // Concatenate the fetched OTP value with the message
     //         $message = '<div style="font-family: Arial, sans-serif; font-size:18px; max-width: 600px; margin: 0 auto; padding: 20px; text-align: left;">';
     //         $message .= '<p>Hi <Name of the User>,</p>';
-    //         $message .= '<p>You recently added <a href="#">sample@gmail.com</a> to your ICMS.IACAT account.</p>';
+    //         $message .= '<p>You recently added <a href="#">sample@gmail.com</a> to your ICMS.OFW account.</p>';
     //         $message .= '<p>Please confirm this email address so that we can update your Account. You may be asked to enter this confirmation code:</p>';
     //         $message .= '<p style="font-weight: bold; font-size: 24px; margin-bottom: 20px; text-align:center;">' . $fetchedOTP['otp_code'] . '</p>';
     //         $message .= '<hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">';
     //         $message .= '<p style="font-size: 12px;">';
     //         $message .= '<div style="text-align:center;">';
     //         $message .= 'from<br>';
-    //         $message .= 'ICMS.IACAT<br>';
+    //         $message .= 'ICMS.OFW<br>';
     //         $message .= 'ICMS, Inc., Attention: Community Support, Philippines.<br>';
-    //         $message .= 'This message was sent to <ICMS.IACAT@gmail.com>.';
+    //         $message .= 'This message was sent to <ICMS.OFW@gmail.com>.';
     //         $message .= '</p>';
     //         $message .= '<p style="font-size: 12px; text-align:center;">To help keep your account secure, please don\'t forward this email. Learn more</p>';
     //         $message .= '</div>';

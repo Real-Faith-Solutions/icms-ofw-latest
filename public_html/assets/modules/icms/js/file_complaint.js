@@ -62,7 +62,7 @@ $('#file_complaint_form').validate({
     submitHandler: function (form) {
 
         add_complaint();
-        ConfirmationGmail();
+        // ConfirmationGmail();
     }
 });
 
@@ -98,50 +98,50 @@ function add_complaint() {
     }, 'json');
 }
 
-// add gmail
+// // add gmail
 
-function ConfirmationGmail() {
-    let data =  dg__objectAssign({
-        type: "ConfirmationGmail",
-        is_victim: $('#file_complaint_form').attr('d-id')
+// function ConfirmationGmail() {
+//     let data =  dg__objectAssign({
+//         type: "ConfirmationGmail",
+//         is_victim: $('#file_complaint_form').attr('d-id')
         
-    },
-        dg__getFormValues({
-            type: "obj",
-            form: "#file_complaint_form"
-        })
-    );
+//     },
+//         dg__getFormValues({
+//             type: "obj",
+//             form: "#file_complaint_form"
+//         })
+//     );
 
-    $.post(sAjaxWebPublic, data, function (rs) {
-        icmsMessage({
-            type: 'msgPreloader',
-            visible: true
-        });
-        if (rs.data.flag != '0') {
-            icmsMessage({
-                type: 'msgSuccess'
-            });
-            // Trigger ConfirmationGmail function upon successful complaint submission
-            $.ajax({
-                url: 'icms.iacat-icms.test/file_complaint/ConfirmationGmail', // Replace with your server-side endpoint URL
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response); // Log the response from the server
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText); // Log any errors
-                }
-            });
-            // Redirect to result page
-            window.location.assign(window.location.protocol + '/result_page?tcid='+ rs.data.tcid + '&ovc='+ rs.data.otp_details.otp_code);
-        } else {
-            icmsMessage({
-                type: 'msgError'
-            });
-        }
-    }, 'json');
-}
+//     $.post(sAjaxWebPublic, data, function (rs) {
+//         icmsMessage({
+//             type: 'msgPreloader',
+//             visible: true
+//         });
+//         if (rs.data.flag != '0') {
+//             icmsMessage({
+//                 type: 'msgSuccess'
+//             });
+//             // Trigger ConfirmationGmail function upon successful complaint submission
+//             $.ajax({
+//                 url: 'icms.iacat-icms.test/file_complaint/ConfirmationGmail', // Replace with your server-side endpoint URL
+//                 type: 'POST',
+//                 dataType: 'json',
+//                 success: function(response) {
+//                     console.log(response); // Log the response from the server
+//                 },
+//                 error: function(xhr, status, error) {
+//                     console.error(xhr.responseText); // Log any errors
+//                 }
+//             });
+//             // Redirect to result page
+//             window.location.assign(window.location.protocol + '/result_page?tcid='+ rs.data.tcid + '&ovc='+ rs.data.otp_details.otp_code);
+//         } else {
+//             icmsMessage({
+//                 type: 'msgError'
+//             });
+//         }
+//     }, 'json');
+// }
 
 
 
@@ -232,6 +232,3 @@ $(document).ready(function () {
     });
 
 });
-
-
-
