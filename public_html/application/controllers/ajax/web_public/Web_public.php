@@ -424,53 +424,34 @@ class Web_public extends CI_Controller
         $mail['message'] = $otp['otp_code'] . '<br>';
         $mail['message'] .= "please enter this code";
 
-        if ($otp['otp_portal'] === 1) {
+
+
+        if ($Method == 1) {
+                            // Initialize AWS SDK SNS client
+            $snsClient = new SnsClient([
+                'version' => 'latest',
+                'region' => 'ap-southeast-1',
+                'credentials' => [
+                    'key' => constant('AWS_ACCESS_KEY'),
+                    'secret' => constant('AWS_SECRET_KEY'),
+                ]
+            ]);
+
+            $result = $snsClient->publish([
+                'Message' => 'This is Your One Time Password: ' . $otp['otp_code'],
+                'PhoneNumber' => $Contact,
+                // 'MessageAttributes' => [], // If you need to specify any additional attributes
+            ]);
+
+            $this->Web_public_model->saveOTP($otp);            
+
+        }else {
             $email_result = $this->mailbox->sendMail($mail);
             // $email_result = $this->mailbox->sendEmailWithTemplate('email_verification', $aEmail);
             $rs['sending_result'] = $email_result['flag'];
             if ($rs['sending_result'] == "1") {
                 $this->Web_public_model->saveOTP($otp);
             }
-        }else {
-                // Initialize AWS SDK SNS client
-                $snsClient = new SnsClient([
-                    'version' => 'latest',
-                    'region' => 'ap-southeast-1',
-                    'credentials' => [
-                        'key' => constant('AWS_ACCESS_KEY'),
-                        'secret' => constant('AWS_SECRET_KEY'),
-                    ]
-                ]);
-
-                $result = $snsClient->publish([
-                    'Message' => 'This is Your One Time Password: ' . $otp['otp_code'],
-                    'PhoneNumber' => $Contact,
-                    // 'MessageAttributes' => [], // If you need to specify any additional attributes
-                ]);
-
-                // test
-                // try {
-                //     // Sending SMS
-                //     $result = $snsClient->publish([
-                //         'Message' => 'This is Your One Time Password: ' . $otp['otp_code'],
-                //         'PhoneNumber' => $Contact,
-                //         // 'MessageAttributes' => [], // If you need to specify any additional attributes
-                //     ]);
-
-                //     // Check for errors or log results
-                //     if ($result['@metadata']['statusCode'] == 200) {
-                //         echo "SMS Sent Successfully, OTP:" . $otp['otp_code'];
-                //     } else {
-                //         echo "Failed to send SMS";
-                //     }
-
-                // } catch (Exception $error) {
-                //     echo $error;
-                // }
-
-                $this->Web_public_model->saveOTP($otp);
-                
-            
         }
 
         // temporary for testing only
