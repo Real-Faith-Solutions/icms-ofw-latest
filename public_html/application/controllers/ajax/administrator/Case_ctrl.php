@@ -2453,14 +2453,15 @@ class Case_ctrl extends CI_Controller {
                     $is_notif = self::SUCCESS_RESPONSE;
                 }
             }
+            
 
-            if ($is_notif == self::SUCCESS_RESPONSE) {
-                $this->notif->sendNotificationToVictim([
-                    "notif_type" => "add-service",
-                    "id_type" => "case_victim_id",
-                    "id" => $aNewParam['case_victim_id']
-                ]);
-            }
+            // if ($is_notif == self::SUCCESS_RESPONSE) {
+            //     $this->notif->sendNotificationToVictim([
+            //         "notif_type" => "add-service",
+            //         "id_type" => "case_victim_id",
+            //         "id" => $aNewParam['case_victim_id']
+            //     ]);
+            // }
 
         } else {
             $aResult['flag'] = self::SUCCESS_RESPONSE;
