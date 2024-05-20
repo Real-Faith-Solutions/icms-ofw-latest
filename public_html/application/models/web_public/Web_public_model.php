@@ -443,7 +443,54 @@ Class Web_public_model extends CI_Model {
             return false;
         }
     }
+
+    public function getTemporaryCaseData($param) {
+
+        $this->db->select('*');
+        $this->db->from('icms_temporary_case');
+        $this->db->where('temporary_case_id', $param);
+        $this->db->limit(1);
+        $query = $this->db->get();
     
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array(); // Fetch only the single row as an associative array
+            return $result['temporary_complainant_email_address']; // Extract the email address
+        } else {
+            return null; // Or provide a specific "no data found" value
+        }
+    }
+
+    public function getTemporaryCaseMethod($param) {
+
+        $this->db->select('temporary_complainant_preffered_contact_method');
+        $this->db->from('icms_temporary_case');
+        $this->db->where('temporary_case_id', $param);
+        $this->db->limit(1);
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result['temporary_complainant_preffered_contact_method'];
+        } else {
+            return null;
+        }
+    }
+
+    public function getTemporaryContact($param) {
+
+        $this->db->select('*');
+        $this->db->from('icms_temporary_case');
+        $this->db->where('temporary_case_id', $param);
+        $this->db->limit(1);
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result['temporary_complainant_mobile_number'];
+        } else {
+            return null;
+        }
+    }
     
 
 }

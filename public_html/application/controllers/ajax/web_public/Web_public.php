@@ -1,12 +1,7 @@
 <?php
 
-/**
- * Case Internal Ajax
- * 
- * @module Ajax Loader
- * @author LBS eBusiness Solutions Corp. 
- * @since 2017
- */
+use Aws\Sns\SnsClient;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Web_public extends CI_Controller
@@ -249,11 +244,11 @@ class Web_public extends CI_Controller
         $lastOTPDetails = $this->Web_public_model->getLastOtpRequestDetails($param);
 
 
-        if ($lastOTPDetails['otp_try'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
-            $rs['result']['otp_try'] = $lastOTPDetails['otp_try'];
-            $rs['message'] = 'Reached retry limit';
-            return $rs;
-        }
+        // if ($lastOTPDetails['otp_try'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
+        //     $rs['result']['otp_try'] = $lastOTPDetails['otp_try'];
+        //     $rs['message'] = 'Reached retry limit';
+        //     return $rs;
+        // }
 
 
         $otpCompare = $this->Web_public_model->submitOTP($param);
@@ -401,26 +396,61 @@ class Web_public extends CI_Controller
 
         if ($rs['result'] == 'case') {
             $param['temporary_case_id'] = 'CN-' . $param['case_info']['case_id'];
+            $getTemporaryData = $this->Web_public_model->getTemporaryCaseData($param['case_info']['case_id']);
+            $Method = $this->Web_public_model->getTemporaryCaseMethod($param['case_info']['case_id']);
+            $Contact = $this->Web_public_model->getTemporaryContact($param['case_info']['case_id']);
+        }else{
+            $getTemporaryData = $this->Web_public_model->getTemporaryCaseData($param['temp_case_info']['temporary_case_id']);
+            $Method = $this->Web_public_model->getTemporaryCaseMethod($param['temp_case_info']['temporary_case_id']);
+            $Contact = $this->Web_public_model->getTemporaryContact($param['temp_case_info']['temporary_case_id']);
         }
-
+        
         // send otp
         $otp = [];
         $otp['otp_code'] = mt_rand(100000, 999999);
         $otp['otp_type'] = 0; // Default 0 = no value
-        $otp['otp_portal'] = 2; // email
+        $otp['otp_portal'] = $Method; // email
         $otp['temporary_case_id'] = $param['temporary_case_id'];
 
-        $mail['to'] = array('raymark@s2-tech.com');
+        $mail['to'] = $getTemporaryData;
         $mail['subject'] = ' Your One Time Password';
         // $mail['template'] = 'otp';
         $mail['message'] = $otp['otp_code'] . '<br>';
         $mail['message'] .= "please enter this code";
-        $email_result = $this->mailbox->sendMail($mail);
-        // $email_result = $this->mailbox->sendEmailWithTemplate('email_verification', $aEmail);
-        $rs['sending_result'] = $email_result['flag'];
-        if ($rs['sending_result'] == "1") {
-            $this->Web_public_model->saveOTP($otp);
-        }
+        // $email_result = $this->mailbox->sendMail($mail);
+        // // $email_result = $this->mailbox->sendEmailWithTemplate('email_verification', $aEmail);
+        // $rs['sending_result'] = $email_result['flag'];
+        // if ($rs['sending_result'] == "1") {
+        //     $this->Web_public_model->saveOTP($otp);
+        // }
+
+        if ($Method == 1) {
+            // Initialize AWS SDK SNS client
+            $snsClient = new SnsClient([
+                'version' => 'latest',
+                'region' => 'ap-southeast-1',
+                'credentials' => [
+                    'key' => constant('AWS_ACCESS_KEY'),
+                    'secret' => constant('AWS_SECRET_KEY'),
+                ]
+            ]);
+
+            $result = $snsClient->publish([
+                'Message' => 'This is Your One Time Password: ' . $otp['otp_code'],
+                'PhoneNumber' => $Contact,
+            // 'MessageAttributes' => [], // If you need to specify any additional attributes
+            ]);
+
+            $this->Web_public_model->saveOTP($otp);            
+
+            }else {
+                    $email_result = $this->mailbox->sendMail($mail);
+                    // $email_result = $this->mailbox->sendEmailWithTemplate('email_verification', $aEmail);
+                    $rs['sending_result'] = $email_result['flag'];
+                    if ($rs['sending_result'] == "1") {
+                    $this->Web_public_model->saveOTP($otp);
+                }
+            }
 
         // temporary for testing only
         $aParam['otp_portal'] =  '2';
@@ -434,7 +464,7 @@ class Web_public extends CI_Controller
         $rs['link'] = '/verification?' . $rs['link'];
 
         $rs['flag'] = self::SUCCESS_RESPONSE;
-        $this->send();
+        // $this->send();
         return $rs;
     }
 

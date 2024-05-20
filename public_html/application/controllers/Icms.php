@@ -142,63 +142,63 @@ class Icms extends CI_Controller
             return redirect('/tracking');
         }
 
-        $lastOTPDetails = $this->Web_public_model->getLastOtpRequestDetails($param);
+        // $lastOTPDetails = $this->Web_public_model->getLastOtpRequestDetails($param);
 
-        $sendOTP = 0;
-        $aRecordSet['suspend'] = 0;
-        if ($lastOTPDetails['otp_try'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
-            $aRecordSet['suspend'] = "2"; //retry limit
-        } else {
-            if ($lastOTPDetails['resend_count'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
-                $aRecordSet['suspend'] = "1"; //resend send limit
-            } else {
-                if (strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-2 minutes")) {
-                    $aRecordSet['suspend'] = "3"; //waiting for resending
-                } else {
-                    $sendOTP = 1;
-                }
-            }
-        }
+        // $sendOTP = 0;
+        // $aRecordSet['suspend'] = 0;
+        // if ($lastOTPDetails['otp_try'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
+        //     $aRecordSet['suspend'] = "2"; //retry limit
+        // } else {
+        //     if ($lastOTPDetails['resend_count'] > 3 && strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-30 minutes")) {
+        //         $aRecordSet['suspend'] = "1"; //resend send limit
+        //     } else {
+        //         if (strtotime($lastOTPDetails['otp_last_update']) >= strtotime("-2 minutes")) {
+        //             $aRecordSet['suspend'] = "3"; //waiting for resending
+        //         } else {
+        //             $sendOTP = 1;
+        //         }
+        //     }
+        // }
 
-        if ($sendOTP == 1) { // email
-            $otp = [];
-            $otp['otp_code'] = mt_rand(100000, 999999);
-            $otp['otp_type'] = 0; // Default 0 = no value
-            $otp['otp_portal'] = 2; // email
-            $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
+        // if ($sendOTP == 1) { // email
+        //     $otp = [];
+        //     $otp['otp_code'] = mt_rand(100000, 999999);
+        //     $otp['otp_type'] = 0; // Default 0 = no value
+        //     $otp['otp_portal'] = 2; // email
+        //     $otp['temporary_case_id'] = $param['temp_case_info']['temporary_case_id'];
 
-            $mail['to'] = array($param['temp_case_info']['temporary_complainant_email_address']);
-            $mail['subject'] = ' Your One Time Password';
-            // $mail['template'] = 'otp';
-            $mail['message'] = $otp['otp_code'] . '<br>';
-            // $mail['message'] .= "please enter this code";
-            // $email_result = $this->mailbox->sendMail($mail);
-            // $email_result = $this->mailbox->sendEmailWithTemplate('email_verification', $aEmail);
-            $aRecordSet['email_result'] = $email_result['flag'];
-            if ($aRecordSet['email_result'] == "1") {
-                $this->Web_public_model->saveOTP($otp);
-            }
-        }
-        $aRecordSet['sms'] = $this->sendSMS();
+        //     $mail['to'] = array($param['temp_case_info']['temporary_complainant_email_address']);
+        //     $mail['subject'] = ' Your One Time Password';
+        //     // $mail['template'] = 'otp';
+        //     $mail['message'] = $otp['otp_code'] . '<br>';
+        //     // $mail['message'] .= "please enter this code";
+        //     // $email_result = $this->mailbox->sendMail($mail);
+        //     // $email_result = $this->mailbox->sendEmailWithTemplate('email_verification', $aEmail);
+        //     $aRecordSet['email_result'] = $email_result['flag'];
+        //     if ($aRecordSet['email_result'] == "1") {
+        //         $this->Web_public_model->saveOTP($otp);
+        //     }
+        // }
+        // // $aRecordSet['sms'] = $this->sendSMS();
         
-        // Add this code after sending OTP
-        // Initialize the variable to store fetched OTP
-        $aRecordSet['fetchedOTP'] = 'otp_last_update';
+        // // Add this code after sending OTP
+        // // Initialize the variable to store fetched OTP
+        // $aRecordSet['fetchedOTP'] = 'otp_last_update';
 
-        // Fetch the OTP for the temporary case number
-        $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseId($param['temp_case_info']['temporary_case_id']);
+        // // Fetch the OTP for the temporary case number
+        // $fetchedOTP = $this->Web_public_model->getOTPByTemporaryCaseId($param['temp_case_info']['temporary_case_id']);
 
-        // Check if OTP was fetched successfully
-        if ($fetchedOTP) {
-            // Update the variable with the fetched OTP code
-            $aRecordSet['fetchedOTP'] = $fetchedOTP['otp_code'];
-        }
+        // // Check if OTP was fetched successfully
+        // if ($fetchedOTP) {
+        //     // Update the variable with the fetched OTP code
+        //     $aRecordSet['fetchedOTP'] = $fetchedOTP['otp_code'];
+        // }
 
 
-        $lastOTPDetails =  $this->Web_public_model->getLastOtpRequestDetails($param);
-        $aRecordSet['lastOTPDetails'] = $lastOTPDetails;
-        $aRecordSet['contactDetails'] = $param['temp_case_info'];
-        $aRecordSet['sendOTP'] = $sendOTP;
+        // $lastOTPDetails =  $this->Web_public_model->getLastOtpRequestDetails($param);
+        // $aRecordSet['lastOTPDetails'] = $lastOTPDetails;
+        // $aRecordSet['contactDetails'] = $param['temp_case_info'];
+        // $aRecordSet['sendOTP'] = $sendOTP;
 
 
         $aSEO = array(
