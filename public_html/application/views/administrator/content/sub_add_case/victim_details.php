@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <label>Nickname </label>
-                                    <input type="text" maxlength="10" class="form-control vi-nickname" name="nickname" >
+                                    <input type="text" maxlength="10" class="form-control vi-nickname" name="victim_info_nickname" >
                                 </div>
                             </div>
                         <!-- OSAEC CODE END -->
