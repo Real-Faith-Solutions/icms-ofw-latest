@@ -96,7 +96,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="row">
                             <div class="form-group col-12">
                                 <label>Member of Ethnic Group</label>
-                                <select class="form-control sel-ethnic_group vi-victim_ethnic_group" name="ethnic_group">
+                                <select class="form-control sel-ethnic_group vi-victim_ethnic_group" name="victim_ethnic_group">
                                 </select>
                             </div>
                         </div>
