@@ -41,7 +41,9 @@ function storeVictimDetails() {
         'assumed_first_name': $('.vi-assumed_first_name').val(),
         'assumed_middle_name': $('.vi-assumed_middle_name').val(),
         'assumed_last_name': $('.vi-assumed_last_name').val(),
-        'assumed_dob': $('.vi-assumed_dob').val()
+        'assumed_dob': $('.vi-assumed_dob').val(),
+        'disability': $('.vi-disability').val(),
+        'disability_value': $('.vi-disability option:selected').attr('data-name'),
     };
 
     _setStorageData(victim_personal_info, 'victim_personal_info');
