@@ -2660,6 +2660,7 @@ function storeCaseDetails() {
         'complainant_remarks': $('.case-complainant_remarks').val(),
         'complainant_place_of_incident': $('.case-complainant_place_of_incident').val(),
         'complainant_place_of_origin': $('.case-complainant_place_of_origin').val(),
+        'complainant_place_of_destination': $('.case_place_of_destination').val()
     };
 
     //Acts
