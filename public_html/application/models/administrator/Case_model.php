@@ -408,7 +408,8 @@ Class Case_model extends CI_Model {
                     `case_date_added`=now(), 
                     `case_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
                     `case_date_modified`=now(), 
-                    `case_modified_by`='" . $this->session->userdata('userData')['user_id'] . "' 
+                    `case_modified_by`='" . $this->session->userdata('userData')['user_id'] . "',
+                    `case_violated`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['violated']) . " 
                ";
 //        echo '<pre>';        echo $sql; exit();
         $aResponse = $this->yel->exec($sql);
