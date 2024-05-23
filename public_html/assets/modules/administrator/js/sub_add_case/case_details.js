@@ -2657,7 +2657,8 @@ function storeCaseDetails() {
         'complainant_relation_other': $('.case-complainant_relation_other').val(),
         'complainant_address': $('.case-complainant_address').val(),
         'complainant_contact': $('.case-complainant_contact').val(),
-        'complainant_remarks': $('.case-complainant_remarks').val()
+        'complainant_remarks': $('.case-complainant_remarks').val(),
+        'complainant_place_of_incident': $('.case-complainant_place_of_incident').val()
     };
 
     //Acts
