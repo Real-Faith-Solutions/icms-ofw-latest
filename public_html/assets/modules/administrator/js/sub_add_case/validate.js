@@ -45,7 +45,9 @@ function storeVictimDetails() {
         'disability': $('.vi-disability').val(),
         'disability_value': $('.vi-disability option:selected').attr('data-name'),
         'allergy': $('.vi-allergy').val(),
-        'allergy_value': $('.vi-allergy option:selected').attr('data-name')
+        'allergy_value': $('.vi-allergy option:selected').attr('data-name'),
+        'hospitality': $('.vi-history_of_illness').val(),
+        'hospitality_value': $('.vi-history_of_illness option:selected').attr('data-name'),
     };
 
     _setStorageData(victim_personal_info, 'victim_personal_info');

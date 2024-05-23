@@ -624,6 +624,7 @@ Class Case_model extends CI_Model {
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",
                 `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
                 `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
+                `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
                 `victim_info_is_assumed`= '0',
                 `victim_info_date_added`= now(), 
                 `victim_info_added_by`= '" . $this->session->userdata('userData')['user_id'] . "', 

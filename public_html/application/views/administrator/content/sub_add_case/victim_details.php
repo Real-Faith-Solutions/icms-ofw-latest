@@ -156,7 +156,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="form-group col-12">           
                                         <label>History of Illness/Hospitalization</label>
-                                        <select class="form-control sel-history_of_illness a-vi-history_of_illness" name="history_of_illness" >
+                                        <select class="form-control sel-history_of_illness vi-history_of_illness"  >
                                         </select>
                                     </div>
                                 </div>
