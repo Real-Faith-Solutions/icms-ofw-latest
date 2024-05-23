@@ -151,7 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="form-group col-12">           
                                         <label>Allergies</label>
-                                        <select class="form-control sel-allergies a-vi-allergies" name="allergies" >
+                                        <select class="form-control sel-allergies vi-allergy" >
                                         </select>
                                     </div>
                                     <div class="form-group col-12">           
