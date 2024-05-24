@@ -1730,6 +1730,7 @@ Class Case_model extends CI_Model {
                 `case_offender_name_of_spouse`=" . $this->yel->checkifStringExist($val['offender_name_of_spouse'] ?? '') . ",
                 `case_offender_socialmedia`=" . $this->yel->checkifStringExist($val['offender_socialmedia'] ?? '') . ",
                 `case_offender_email_address`=" . $this->yel->checkifStringExist($val['offender_email_address'] ?? '') . ",
+                `case_offender_place_of_arrest`=" . $this->yel->checkifStringExist($val['offender_place_of_arrest'] ?? '') . ",
                 `case_offender_is_active`= '1' 
                ";
 
