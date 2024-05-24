@@ -1720,6 +1720,7 @@ Class Case_model extends CI_Model {
                 `case_offender_pob`=" . $this->yel->checkifStringExist($val['offender_pob'] ?? '') . ",
                 `case_offender_dob`=" . $this->yel->checkDateIfExist($val['offender_dob'] ?? '') . ",
                 `case_offenfer_occupation`=" . $this->yel->checkifStringExist($val['offender_occupation'] ?? '') . ",
+                `case_offender_principal_place_of_business`=" . $this->yel->checkifStringExist($val['offender_principal_place_of_business'] ?? '') . ",
                 `case_offender_is_active`= '1' 
                ";
 
