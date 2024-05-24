@@ -2847,7 +2847,8 @@ function storeCaseOffender() {
                 'offender_civil_tatus_type': $('.a-case-offender_civil_status').val(),
                 'offender_previous_case_committed': $('.a-case-offender_previous_case_committed').val(),
                 'offender_name_of_parents': $('.a-case-offender_name_of_parents').val(),
-                'offender_name_of_spouse': $('.a-case-offender_name_of_spouse').val()
+                'offender_name_of_spouse': $('.a-case-offender_name_of_spouse').val(),
+                'offender_socialmedia': $('.a-case-offender_social_media_account').val()
 
             }];
 
