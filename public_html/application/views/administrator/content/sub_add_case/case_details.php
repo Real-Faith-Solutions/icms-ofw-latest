@@ -1577,7 +1577,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <label>Religion</label>
-                                    <input type="text" class="form-control a-case-offender_religion" maxlength="100">
+                                    <select class="form-control a-case-offender_religion sel-religion">
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
