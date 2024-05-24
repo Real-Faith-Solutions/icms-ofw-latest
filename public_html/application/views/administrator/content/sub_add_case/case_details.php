@@ -970,21 +970,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <fieldset><div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
-                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch1" value="CSEC" name="s_violated">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch1" value="CSEC" name="s_violated" required="true">
                                     <label class="form-check-label " for="ch1" style="color: #e88f15 !important;">CSEC 
                                     </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
-                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch2" value="OSAEC" name="s_violated">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch2" value="OSAEC" name="s_violated" required="true">
                                     <label class="form-check-label " for="ch2" style="color: #e88f15 !important;">OSAEC
                                     </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
-                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch3" value="Other law/s violated" name="s_violated">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch3" value="Other law/s violated" name="s_violated" required="true">
                                     <label class="form-check-label " for="ch3" style="color: #e88f15 !important;">Other law/s violated
                                     </label>
                                 </div>
