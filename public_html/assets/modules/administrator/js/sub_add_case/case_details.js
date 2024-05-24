@@ -2832,7 +2832,8 @@ function storeCaseOffender() {
                 'offender_relation': $('.a-case-offender_relation').val(),
                 'offender_address': $('.a-case-offender_address').val(),
                 'offender_contact': $('.a-case-offender_contact').val(),
-                'offender_remarks': $('.a-case-offender_remarks').val()
+                'offender_remarks': $('.a-case-offender_remarks').val(),
+                'offender_alias': $('.a-case-offender_alias').val()
             }];
 
         _setStorageData(victim_case_offender, 'victim_case_offender');
