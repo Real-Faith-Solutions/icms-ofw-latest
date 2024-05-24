@@ -2842,7 +2842,9 @@ function storeCaseOffender() {
                 'offender_gender_type_value': $('.a-case-offender_gender option:selected').val(),
                 'offender_religion': $('.a-case-offender_religion').val(),
                 'offender_religion_type_value': $('.a-case-offender_religion').val(),
-                'offender_race_ethnicity': $('.a-case-offender_race_ethnicity').val()
+                'offender_race_ethnicity': $('.a-case-offender_race_ethnicity').val(),
+                'offender_civil_status': $('.a-case-offender_civil_status').val(),
+                'offender_civil_tatus_type': $('.a-case-offender_civil_status').val()
 
             }];
 
