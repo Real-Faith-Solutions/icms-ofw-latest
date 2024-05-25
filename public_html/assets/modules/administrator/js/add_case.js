@@ -695,6 +695,7 @@ function initialLoad() {
     getReligions();
     getEducationalAttainments();
     getFamilyRelations();
+    getOffenderDescription();
 
     if(temp_data.flag == 1){
         temp_data.is_address = 1;

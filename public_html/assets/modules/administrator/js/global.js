@@ -891,6 +891,31 @@ function getIllness() {
   );
 }
 
+
+function getOffenderDescription() {
+  $.post(
+      sAjaxGlobalData, {
+          type: "getGlobalParameter",
+          parameter_type: "offender_description",
+      },
+      function(rs) {
+          var l = "<option selected value='' disabled>Select Offender Description</option>";
+          $.each(rs.data, function(key, val) {
+              l +=
+                  "<option value='" +
+                  val.parameter_count_id +
+                  "' data-name='" +
+                  val.parameter_name +
+                  "'>" +
+                  val.parameter_name +
+                  "</option>";
+          });
+          $(".sel-offender_is_at_large").html(l);
+      },
+      "json"
+  );
+}
+
 function getAgenciesBranches() {
   $.post(
     sAjaxGlobalData,

@@ -2851,7 +2851,10 @@ function storeCaseOffender() {
                 'offender_socialmedia': $('.a-case-offender_social_media_account').val(),
                 'offender_email_address': $('.a-case-offender_email_address').val(),
                 'offender_place_of_arrest': $('.a-case-offender_place_of_arrest').val(),
-                'offender_date_of_arrest': $('.a-case-offender_date_of_arrest').val()
+                'offender_date_of_arrest': $('.a-case-offender_date_of_arrest').val(),
+                'offender_is_at_large': $('.a-case-offender_at_large').val(),
+                'offender_is_at_large_type_value': $('.a-case-offender_at_large').val()
+                
 
             }];
 

@@ -1640,10 +1640,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <label>If offender is at large</label>
-                                    <select class="form-control a-case-offender_at_large" >
-                                        <option>Body Build</option>
-                                        <option>Height</option>
-                                        <option>Identifying Marks</option>
+                                    <select class="form-control a-case-offender_at_large sel-offender_is_at_large" >
+                                        <!-- <option value="Body Build">Body Build</option>
+                                        <option value="Height">Height</option>
+                                        <option value="Identifying Marks">Identifying Marks</option> -->
                                     </select>
                                 </div>
                             </div>

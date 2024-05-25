@@ -87,6 +87,10 @@ class Case_details extends CI_Controller {
                 $aParam['type_id'] = '35';
                 $aParam['status'] = '1';
                 break;
+            case 'offender_description':
+                $aParam['type_id'] = '36';
+                $aParam['status'] = '1';
+                break;     
                 // OSAEC CODE END
         }
 
