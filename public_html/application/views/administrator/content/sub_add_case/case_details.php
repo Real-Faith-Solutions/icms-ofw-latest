@@ -1501,7 +1501,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                         <div class="offender_field_other" style="display: none;">
-                            <!--
+                            
                             <div class="row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <label>Name of Offender  <font color="red">*</font> </label>
@@ -1535,8 +1535,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                 </div>
                             </div>
-                            -->
-
+                           
                             <div class="row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <label>Alias</label>
