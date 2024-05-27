@@ -1452,6 +1452,8 @@ function storeEmploymentDetails() {
         // employment local addLocalRecruitmentAgencyByManagePhilippines agency
         'employement_local_employment_type': $('.emp-type_of_employment').val(),
         'employement_local_child_case_type': $('.emp-type_of_child_cases').val(),
+        'employement_local_agency_region': $('.emp-type_agency_region').val(),
+        'employement_local_agency_region_type_value': $('.emp-type_agency_region').val(),
 
 
     };

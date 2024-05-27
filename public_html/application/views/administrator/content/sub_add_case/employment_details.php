@@ -1031,7 +1031,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Region  <font color="red">*</font> </label>
-                                                    <select class="form-control sel-regions a-vi-address_region" name="region">
+                                                    <select class="form-control sel-regions emp-type_agency_region a-vi-address_region " name="region">
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">

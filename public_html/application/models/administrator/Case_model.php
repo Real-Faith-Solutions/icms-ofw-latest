@@ -952,6 +952,7 @@ Class Case_model extends CI_Model {
                 `province_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_province']) . ",
                 `recruitment_agency_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employement_local_employment_type']) . ",
                 `recruitment_agency_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employement_local_employment_type']) . ",
+                `recruitment_agency_region`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employement_local_agency_region']) . ",
                 `recruitment_agency_is_local`='1',
                 `recruitment_agency_date_added`=now(), 
                 `recruitment_agency_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
