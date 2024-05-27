@@ -1036,7 +1036,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Province </label>
-                                                    <select class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
+                                                    <select class="form-control sel-provincesByRegionId local-type_agency_region a-vi-address_province" name="province" disabled>
                                                     </select>
                                                 </div>
                                             </div>
