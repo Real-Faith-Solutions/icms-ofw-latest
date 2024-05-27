@@ -1043,12 +1043,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> City </label>
-                                                    <select class="form-control local-type_agency_city sel-cities" name="city" disabled>
+                                                    <select class="form-control local-type_agency_city sel-cities a-vi-address_city" name="city" disabled>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Barangay </label>
-                                                    <select class="form-control sel-barangay a-vi-address_barangay" disabled>
+                                                    <select class="form-control local-type_agency_barangay sel-barangay a-vi-address_barangay" disabled>
                                                     </select>
                                                 </div>
                                             </div>

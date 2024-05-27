@@ -1450,14 +1450,19 @@ function storeEmploymentDetails() {
         'foreign_agency_rep_contact': $('.emp-foreign_agency_rep_contact').val(),
 
         // employment local addLocalRecruitmentAgencyByManagePhilippines agency
-        'employement_local_employment_type': $('.emp-type_of_employment').val(),
-        'employement_local_child_case_type': $('.emp-type_of_child_cases').val(),
-        'employement_local_agency_region': $('.emp-type_agency_region').val(),
-        'employement_local_agency_region_type_value': $('.emp-type_agency_region').val(),
-        'employement_local_agency_province': $('.local-type_agency_region').val(),
-        'employement_local_agency_province_type_value': $('.local-type_agency_region').val(),
-        'employement_local_agency_city': $('.local-type_agency_city').val(),
-        'employement_local_agency_city_type_value': $('.local-type_agency_city').val(),
+        'employment_local_employment_type': $('.emp-type_of_employment').val(),
+        'employment_local_child_case_type': $('.emp-type_of_child_cases').val(),
+        'employment_local_agency_region': $('.emp-type_agency_region').val(),
+        'employment_local_agency_region_type_value': $('.emp-type_agency_region').val(),
+        'employment_local_agency_province': $('.local-type_agency_region').val(),
+        'employment_local_agency_province_type_value': $('.local-type_agency_region').val(),
+        'employment_local_agency_city': $('.local-type_agency_city').val(),
+        'employment_local_agency_city_type_value': $('.local-type_agency_city').val(),
+        'employment_local_agency_barangay': $('.local-type_agency_barangay').val(),
+        'employment_local_agency_barangay_type_value': $('.local-type_agency_barangay').val(),
+        'employment_local_age_started_working': $('.emp-act_age_started_working').val(),
+        'employment_local_agency_salary_per_hour': $('.emp-act_salary_per_hour').val(),
+        'employment_local_agency_reason_for_employment': $('.emp-act_reasons_for_employment').val()
         
 
 
