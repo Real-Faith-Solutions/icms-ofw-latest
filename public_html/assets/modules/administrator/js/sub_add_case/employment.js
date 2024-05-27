@@ -1456,6 +1456,8 @@ function storeEmploymentDetails() {
         'employement_local_agency_region_type_value': $('.emp-type_agency_region').val(),
         'employement_local_agency_province': $('.local-type_agency_region').val(),
         'employement_local_agency_province_type_value': $('.local-type_agency_region').val(),
+        'employement_local_agency_city': $('.local-type_agency_city').val(),
+        'employement_local_agency_city_type_value': $('.local-type_agency_city').val(),
         
 
 
