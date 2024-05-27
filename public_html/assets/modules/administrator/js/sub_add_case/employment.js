@@ -1447,7 +1447,12 @@ function storeEmploymentDetails() {
         // Foreign Recruitment Representative Information 
         'foreign_agency_rep_name': $('.emp-foreign_agency_rep_name').val(),
         'foreign_agency_rep_address': $('.emp-foreign_agency_rep_address').val(),
-        'foreign_agency_rep_contact': $('.emp-foreign_agency_rep_contact').val()
+        'foreign_agency_rep_contact': $('.emp-foreign_agency_rep_contact').val(),
+
+        // employment local addLocalRecruitmentAgencyByManagePhilippines agency
+        'employement_local_employment_type': $('.emp-type_of_employment').val(),
+        'employement_local_child_case_type': $('.emp-type_of_child_cases').val(),
+
 
     };
 

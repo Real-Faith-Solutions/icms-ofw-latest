@@ -2043,7 +2043,9 @@ class Case_ctrl extends CI_Controller {
         }
 
         if (($aNewParam['victim_recruitment_details']['local_agency_id'] == '0') && (!empty($aNewParam['victim_recruitment_details']['local_agency_name']) == true)) {
+            // var_dump($aNewParam);
             $aResponse['local_agency'] = $this->Case_model->addLocalRecruitmentAgency($aNewParam);
+            $aResponse['local_agency'] = $this->Case_model->addLocalRecruitmentAgencyByManagePhilippines($aNewParam);
             $aNewParam['local_agency_id'] = $aResponse['local_agency']['insert_id'];
             $aResponse['local_agency_owner'] = $this->Case_model->addLocalRecruitmentAgencyOwner($aNewParam);
             $aResponse['local_agency_rep'] = $this->Case_model->addLocalRecruitmentAgencyRep($aNewParam);

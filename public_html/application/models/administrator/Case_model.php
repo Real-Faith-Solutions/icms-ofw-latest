@@ -934,6 +934,35 @@ Class Case_model extends CI_Model {
         $aResponse = $this->yel->exec($sql);
         return $aResponse;
     }
+    //Local Employment for Philippine Cases
+    public function addLocalRecruitmentAgencyByManagePhilippines($aParam) {
+
+        $sql = "
+                INSERT INTO 
+                `icms_recruitment_agency_local`
+                SET 
+                `recruitment_agency_name`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_name']) . ", 
+                `recruitment_agency_address`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_address']) . ", 
+                `recruitment_agency_tel_no`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_telephone']) . ", 
+                `recruitment_agency_email`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_email']) . ", 
+                `recruitment_agency_fax_no`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_fax']) . ", 
+                `recruitment_agency_website`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_website']) . ", 
+                `country_id`=" . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_country']) . ", 
+                `region_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_region']) . ", 
+                `province_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_province']) . ",
+                `recruitment_agency_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employement_local_employment_type']) . ",
+                `recruitment_agency_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employement_local_employment_type']) . ",
+                `recruitment_agency_is_local`='1',
+                `recruitment_agency_date_added`=now(), 
+                `recruitment_agency_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+                `recruitment_agency_date_modified`=now(), 
+                `recruitment_agency_modified_by`= '" . $this->session->userdata('userData')['user_id'] . "', 
+                `recruitment_agency_is_active`='1' 
+               ";
+
+        $aResponse = $this->yel->exec($sql);
+        return $aResponse;
+    }
 
     public function addForeignRecruitmentAgencyByManage($aParam) {
 
