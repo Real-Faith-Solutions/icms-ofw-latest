@@ -442,6 +442,12 @@ function getVictimInfoByStorage() {
         $('.vi-assumed-victim_info_dob').val(dateFormatToPicker(vi_assumed.victim_info_dob));
     }
 
+    // display the value of the health status.
+    // $('.vi-victim_ethnic_group').val(vi.victim_info_disability);
+    $('.vi-disability').val(vi.victim_info_disability);
+    $('.vi-allergies').val(vi.victim_info_allergy);
+    $('.vi-history_of_illness').val(vi.victim_info_hospitality);
+
     var victim_contacts = aVictimInfoByCaseId.victim_contact_info;
     var t = '';
     if (victim_contacts.length > 0) {
