@@ -97,6 +97,7 @@ function getComplainantDetails(isAction) {
             $('#case-complainant_place_of_origin').val(list.case_complainant_place_of_origin);
             $('#case-place_of_destination').val(list.case_complainant_place_of_destination);
             $('#case-date_time_of_incident').val(list.case_complainant_date_time_of_incident);
+            $('#case-other_possible_source_info').val(list.case_complainant_other_possible_source);
             $('#complainant_remarks').val(list.case_complainant_remarks);
             $('#complainant_relation_other').val(list.case_complainant_relation_other);
             var relation = list.complainant_relation;
@@ -243,6 +244,7 @@ function setComplainantDetails() {
     var placeoforigin = $('#case-complainant_place_of_origin').val();
     var placeofdestination = $('#case-place_of_destination').val();
     var datetimeofincident = $('#case-date_time_of_incident').val();
+    var othersourceinfo = $('#case-other_possible_source_info').val();
     var remarks = $('#complainant_remarks').val();
     var relationother = $('#complainant_relation_other').val();
     var caseid = $('#case_id').val();
@@ -261,6 +263,7 @@ function setComplainantDetails() {
         placeoforigin: placeoforigin,
         placeofdestination: placeofdestination,
         datetimeofincident: datetimeofincident,
+        othersourceinfo: othersourceinfo,
         remarks: remarks,
         relationother: relationother,
         caseid: caseid,
