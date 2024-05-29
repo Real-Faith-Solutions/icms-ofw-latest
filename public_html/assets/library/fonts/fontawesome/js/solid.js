@@ -562,6 +562,7 @@ $(document).ready(function () {
                     gender: $('.vi-victim_gender').val(),
                     civilStat: $('.vi-victim_civil_status').val(),
                     religion: $('.vi-victim_religion').val(),
+                    nickname: $('.vi-victim_info_nickname').val(),
                 }, function (rs) {
                     $('#btn-manage-personal').click();
                     notifyChangesInReport();

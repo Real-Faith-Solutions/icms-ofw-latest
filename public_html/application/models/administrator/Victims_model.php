@@ -1258,6 +1258,7 @@ Class Victims_model extends CI_Model {
                     `victim_civil_status`= " . $this->yel->checkifStringExist($aParam['civilStat']) . ",
                     `victim_gender`= " . $this->yel->checkifStringExist($aParam['gender']) . ",
                     `victim_religion`= " . $this->yel->checkifStringExist($aParam['religion']) . ",
+                    `victim_info_nickname`= " . $this->yel->checkifStringExist($aParam['nickname']) . ",
                     `victim_modified_by`='" . $_SESSION['userData']['user_id'] . "'
                 WHERE 
                     `victim_id`=" . $aParam['victim_id'] . "

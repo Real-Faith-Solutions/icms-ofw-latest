@@ -442,12 +442,7 @@ function getVictimInfoByStorage() {
         $('.vi-assumed-victim_info_dob').val(dateFormatToPicker(vi_assumed.victim_info_dob));
     }
 
-    // display the value of the health status.
-    // $('.vi-victim_ethnic_group').val(vi.victim_info_disability);
-    $('.vi-disability').val(vi.victim_info_disability);
-    $('.vi-allergies').val(vi.victim_info_allergy);
-    $('.vi-history_of_illness').val(vi.victim_info_hospitality);
-
+    
     var victim_contacts = aVictimInfoByCaseId.victim_contact_info;
     var t = '';
     if (victim_contacts.length > 0) {
@@ -681,6 +676,7 @@ function updateVictimPersonalInformation() {
         gender: $('.vi-victim_gender').val(),
         civilStat: $('.vi-victim_civil_status').val(),
         religion: $('.vi-victim_religion').val(),
+        nickname: $('.vi-victim_info_nickname').val(),
     }, function (rs) {
         getVictimInfoByCaseId(1);
         $('#btn-manage-personal').text("Manage");
