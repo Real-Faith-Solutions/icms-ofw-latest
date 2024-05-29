@@ -88,7 +88,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="row">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Place of Destination</label>
-                                <input type="text" maxlength="20" minlength="7" class="form-control case-place_of_destination" name="place_of_destination"> 
+                                <input type="text" maxlength="20" minlength="7" class="form-control case-place_of_destination" id="case-place_of_destination" name="place_of_destination"> 
                             </div>
                         </div>
                         <div class="row">
