@@ -94,7 +94,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="row">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Date/Time of Incident</label>
-                                <input type="text" class="form-control case-date_time_of_incident datepicker" name="date_time_of_incident" placeholder="MM/DD/YYYY" >
+                                <input type="text" class="form-control case-date_time_of_incident datetimepicker" id="case-date_time_of_incident" name="date_time_of_incident" placeholder="MM/DD/YYYY" >
                             </div>
                         </div>
                         <div class="row">
