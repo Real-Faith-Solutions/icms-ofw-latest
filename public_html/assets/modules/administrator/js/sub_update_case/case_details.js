@@ -92,6 +92,7 @@ function getComplainantDetails(isAction) {
             $('#sel-relation-to-victim').val(list.case_complainant_relation).change();
             $('#complainant_address').val(list.case_complainant_address);
             $('#complainant_contact').val(list.case_complainant_contact_number);
+            $('#complainant_contact_alternate').val(list.case_complainant_alternate_contact_number);
             $('#complainant_remarks').val(list.case_complainant_remarks);
             $('#complainant_relation_other').val(list.case_complainant_relation_other);
             var relation = list.complainant_relation;
@@ -233,6 +234,7 @@ function setComplainantDetails() {
     var relation = $('#sel-relation-to-victim').val();
     var address = $('#complainant_address').val();
     var contact = $('#complainant_contact').val();
+    var alternatecontact = $('#complainant_contact_alternate').val();
     var remarks = $('#complainant_remarks').val();
     var relationother = $('#complainant_relation_other').val();
     var caseid = $('#case_id').val();
@@ -246,6 +248,7 @@ function setComplainantDetails() {
         relation: relation,
         address: address,
         contact: contact,
+        alternatecontact: alternatecontact,
         remarks: remarks,
         relationother: relationother,
         caseid: caseid,
