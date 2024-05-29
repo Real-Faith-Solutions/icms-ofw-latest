@@ -593,6 +593,9 @@ $(document).ready(function () {
                     mname: $('.vi-assumed-victim_info_middle_name').val(),
                     lname: $('.vi-assumed-victim_info_last_name').val(),
                     dob: $('.vi-assumed-victim_info_dob').val(),
+                    disabilities: $('.vi-disability').val(),
+                    allergy: $('.vi-allergies').val(),
+                    illness: $('.vi-history_of_illness').val(),
                 }, function (rs) {
                     //modal for incorect param
                     $('#btn-manage-assumed').click();
