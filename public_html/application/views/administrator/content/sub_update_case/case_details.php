@@ -82,7 +82,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="row">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Place of Origin</label>
-                                <textarea class="form-control valid noSpcStart case-complainant_place_of_origin" rows="4" maxlength="100" aria-invalid="false"></textarea>
+                                <textarea class="form-control valid noSpcStart case-complainant_place_of_origin" id="case-complainant_place_of_origin" rows="4" maxlength="100" aria-invalid="false"></textarea>
                             </div>
                         </div>
                         <div class="row">
