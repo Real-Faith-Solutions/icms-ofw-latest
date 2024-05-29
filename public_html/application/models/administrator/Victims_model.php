@@ -1299,6 +1299,10 @@ Class Victims_model extends CI_Model {
                     `vi`.`victim_info_last_name`,
                     `vi`.`victim_info_suffix`,
                     `vi`.`victim_info_dob`,
+                    `vi`.`victim_info_disability`,
+                    `vi`.`victim_info_allergy`,
+                    `vi`.`victim_info_hospitality`,
+
                    (SELECT `location_name` FROM `icms_global_location` WHERE `location_count_id`=`vi`.`victim_info_city_pob` AND `location_type_id`='4')  as `place_of_birth`
                 FROM 
                     `icms_victim_info` `vi`

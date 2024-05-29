@@ -442,6 +442,10 @@ function getVictimInfoByStorage() {
         $('.vi-assumed-victim_info_dob').val(dateFormatToPicker(vi_assumed.victim_info_dob));
     }
 
+    $('.vi-disability').val(vi_assumed.victim_info_disability);
+    $('.vi-allergies').val(vi_assumed.victim_info_allergy);
+    $('.vi-history_of_illness').val(vi_assumed.victim_info_hospitality);
+
     
     var victim_contacts = aVictimInfoByCaseId.victim_contact_info;
     var t = '';
