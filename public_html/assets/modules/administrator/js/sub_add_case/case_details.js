@@ -2741,6 +2741,7 @@ function storeCaseDetails() {
         'facts': $('.case-facts').val(),
         'evaluation': $('.case-evaluation').val(),
         'risk_assessment': $('.case-risk_assessment').val(),
+        'case_coordination_lea': $('.case-details_of_coordination').val(),
         'is_illegal_rec': $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         'is_other_law': $('.case-is_other_law').is(':checked') ? '1' : '0',
         'other_law_desc': $('.case-other_law_desc').val(),
@@ -2757,12 +2758,17 @@ function storeCaseDetails() {
         'risk-assessment': $('.case-risk_assessment').val()
     };
 
+    var victim_case_coordination_lea = {
+        'risk-case_coordination_lea': $('.case-details_of_coordination').val()
+    };
+
     _setStorageData(victim_complainant_details, 'victim_complainant_details');
 
     _setStorageData(victim_case_details, 'victim_case_details');
 
     _setStorageData(victim_case_evaluation_details, 'victim_case_evaluation_details');
     _setStorageData(victim_case_risk_assessment, 'victim_case_risk_assessment');
+    _setStorageData(victim_case_coordination_lea, 'victim_case_coordination_lea');
 
 //    $('#summary-details-tab1').trigger('click');
 //
