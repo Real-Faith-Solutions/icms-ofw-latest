@@ -198,6 +198,7 @@ function addSetOffenderInfo() {
     var offender_relation = $('.a-case-offender_relation').val();
     var offender_address = $('.a-case-offender_address').val();
     var offender_contact = $('.a-case-offender_contact').val();
+    var offender_pob = $('.a-case-offender_place_of_birth').val();
     var offender_remarks = $('.a-case-offender_remarks').val();
     $.post(sAjaxCaseDetails, {
         type: "addSetOffenderInfo",
@@ -213,6 +214,7 @@ function addSetOffenderInfo() {
         offender_relation: offender_relation,
         offender_address: offender_address,
         offender_contact: offender_contact,
+        offender_pob: offender_pob,
         offender_remarks: offender_remarks
 
     }, function (rs) {
@@ -223,6 +225,7 @@ function addSetOffenderInfo() {
         $('#seloffenderposition').val("").change();
         $('#seloffendernationality').val("").change();
         $('#txtoffendercontact').val("");
+        $('#txtoffenderpob').val("");
         $('#offenderaddress').val("");
         $('#offederremarks').val("");
         notifyChangesInReport();
@@ -339,6 +342,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-position='" + val.offender_type + "'";
                 attribs += "alg-nationality='" + val.case_offender_nationality + "'";
                 attribs += "alg-contact='" + val.case_offender_contact_details + "'";
+                attribs += "alg-pob='" + val.case_offender_pob + "'";
                 attribs += "alg-address='" + val.case_offender_address + "'";
                 attribs += "alg-remarks='" + val.case_offender_remarks + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
@@ -1045,6 +1049,7 @@ $(document).ready(function () {
             $('.a-case-offender_type').val(rs.case_offender_type_id).change();
             $('.a-case-offender_nationality').val(rs.case_offender_nationality).change();
             $('.a-case-offender_contact').val(rs.case_offender_contact_details);
+            $('.a-case-offender_place_of_birth').val(rs.case_offender_pob);
             $('.a-case-offender_address').val(rs.case_offender_address);
             $('.a-case-offender_remarks').val(rs.case_offender_remarks);
         }, 'json');
