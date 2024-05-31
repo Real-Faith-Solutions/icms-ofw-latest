@@ -192,6 +192,7 @@ function addSetOffenderInfo() {
     var offender_type = $('.a-case-offender_type').val();
     var offender_type_name = $('.a-case-offender_type option:selected').text();
     var offender_name = $('.a-case-offender_name').val();
+    var offender_name_alias = $('.a-case-offender_alias').val();
     var offender_nationality = $('.a-case-offender_nationality').val();
     var offender_nationality_name = $('.a-case-offender_nationality option:selected').text();
     var offender_relation = $('.a-case-offender_relation').val();
@@ -206,6 +207,7 @@ function addSetOffenderInfo() {
         offender_type: offender_type,
         offender_type_name: offender_type_name,
         offender_name: offender_name,
+        offender_name_alias: offender_name_alias,
         offender_nationality: offender_nationality,
         offender_nationality_name: offender_nationality_name,
         offender_relation: offender_relation,
@@ -217,6 +219,7 @@ function addSetOffenderInfo() {
         getCaseAllegedOffender();
         $('#modalcontent-add_offender').modal("hide");
         $('#txtoffendername').val("");
+        $('#txtoffendernamealias').val("");
         $('#seloffenderposition').val("").change();
         $('#seloffendernationality').val("").change();
         $('#txtoffendercontact').val("");
@@ -332,6 +335,7 @@ function getCaseAllegedOffender() {
             $.each(rs.data.offender, function (key, val) {
                 var attribs = "";
                 attribs += "alg-name='" + val.case_offender_name + "'";
+                attribs += "alg-namealias='" + val.case_offender_alias + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
                 attribs += "alg-nationality='" + val.case_offender_nationality + "'";
                 attribs += "alg-contact='" + val.case_offender_contact_details + "'";
@@ -1037,6 +1041,7 @@ $(document).ready(function () {
             //success
             var rs = rset.data.offender;
             $('.a-case-offender_name').val(rs.case_offender_name);
+            $('.a-case-offender_alias').val(rs.case_offender_alias);
             $('.a-case-offender_type').val(rs.case_offender_type_id).change();
             $('.a-case-offender_nationality').val(rs.case_offender_nationality).change();
             $('.a-case-offender_contact').val(rs.case_offender_contact_details);

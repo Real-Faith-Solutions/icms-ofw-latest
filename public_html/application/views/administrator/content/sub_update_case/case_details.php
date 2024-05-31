@@ -646,6 +646,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Alias</label>
+                                    <input type="text" class="form-control a-case-offender_alias" name="offender_alias" maxlength="100">
+                                </div>
+                            </div> 
+                                <div class="row">
                                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                         <label>Nationality</label>
                                         <select class="form-control sel-nationality a-case-offender_nationality" >

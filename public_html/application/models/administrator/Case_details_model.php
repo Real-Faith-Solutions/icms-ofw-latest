@@ -317,6 +317,7 @@ Class Case_details_model extends CI_Model {
                 SELECT
                     `co`.`case_offender_id`,
                     `co`.`case_offender_name`,
+                    `co`.`case_offender_alias`,
                     `co`.`case_offender_nationality`,
                     `co`.`case_offender_other`,
                     `co`.`case_offender_address`,
@@ -357,6 +358,7 @@ Class Case_details_model extends CI_Model {
                     `case_id`='" . $aParam['caseid'] . "',
                     `case_offender_type_id`='" . $aParam['offender_type'] . "',
                     `case_offender_name`='" . $aParam['offender_name'] . "',
+                    `case_offender_alias`='" . $aParam['offender_name_alias'] . "',
                     `case_offender_nationality`='" . $aParam['offender_nationality'] . "',
                     `case_offender_address`='" . $aParam['offender_address'] . "',
                     `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
@@ -373,6 +375,7 @@ Class Case_details_model extends CI_Model {
                 SET
                     `case_offender_type_id`='" . $aParam['offender_type'] . "',
                     `case_offender_name`='" . $aParam['offender_name'] . "',
+                    `case_offender_alias`='" . $aParam['offender_name_alias'] . "',
                     `case_offender_nationality`='" . $aParam['offender_nationality'] . "',
                     `case_offender_address`='" . $aParam['offender_address'] . "',
                     `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
@@ -511,6 +514,7 @@ Class Case_details_model extends CI_Model {
         $sql = "
                 SELECT 
                     `co`.`case_offender_name`,
+                    `co`.`case_offender_alias`,
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id`=`co`.`case_offender_type_id` LIMIT 1) as `ofender_type`,
                     (SELECT `nationality` FROM `icms_global_country` WHERE `country_id` = `co`.`case_offender_nationality` LIMIT 1) as `nationality`,
                     `co`.`case_offender_other`,
