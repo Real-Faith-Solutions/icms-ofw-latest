@@ -202,6 +202,7 @@ function addSetOffenderInfo() {
     var offender_occupation = $('.a-case-offender_occupation').val();
     var offender_place_of_business = $('.a-case-offender_principal_place_of_business').val();
     var offender_race_ethnicity = $('.a-case-offender_race_ethnicity').val();
+    var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
     var offender_remarks = $('.a-case-offender_remarks').val();
     $.post(sAjaxCaseDetails, {
         type: "addSetOffenderInfo",
@@ -221,6 +222,7 @@ function addSetOffenderInfo() {
         offender_occupation: offender_occupation,
         offender_place_of_business: offender_place_of_business,
         offender_race_ethnicity: offender_race_ethnicity,
+        offender_previous_case_comitted: offender_previous_case_comitted,
         offender_remarks: offender_remarks
 
     }, function (rs) {
@@ -234,6 +236,7 @@ function addSetOffenderInfo() {
         $('#txtoffenderpob').val("");
         $('#txtoffenderoccupation').val("");
         $('#txtoffenderplaceofbusiness').val("");
+        $('#txtoffenderraceethnicity').val("");
         $('#offenderaddress').val("");
         $('#offederremarks').val("");
         notifyChangesInReport();
@@ -354,6 +357,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-occupation='" + val.case_offender_occupation + "'";
                 attribs += "alg-placeofbusiness='" + val.case_offender_principal_place_of_business + "'";
                 attribs += "alg-raceethnicity='" + val.case_offender_race_ethnicity + "'";
+                attribs += "alg-previouscasecommited='" + val.case_offender_previous_case_commited + "'";
                 attribs += "alg-address='" + val.case_offender_address + "'";
                 attribs += "alg-remarks='" + val.case_offender_remarks + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
@@ -1064,6 +1068,7 @@ $(document).ready(function () {
             $('.a-case-offender_occupation').val(rs.case_offender_occupation);
             $('.a-case-offender_principal_place_of_business').val(rs.case_offender_principal_place_of_business);
             $('.a-case-offender_race_ethnicity').val(rs.case_offender_race_ethnicity);
+            $('.a-case-offender_previous_case_committed').val(rs.case_offender_previous_case_commited);
             $('.a-case-offender_address').val(rs.case_offender_address);
             $('.a-case-offender_remarks').val(rs.case_offender_remarks);
         }, 'json');
