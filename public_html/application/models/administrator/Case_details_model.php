@@ -323,6 +323,7 @@ Class Case_details_model extends CI_Model {
                     `co`.`case_offender_address`,
                     `co`.`case_offender_contact_details`,
                     `co`.`case_offender_pob`,
+                    `co`.`case_offender_occupation`,
                     `co`.`case_offender_remarks`,
                     `co`.`case_offender_type_id`, 
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id` = `co`.`case_offender_type_id`) as `offender_type`
@@ -364,6 +365,7 @@ Class Case_details_model extends CI_Model {
                     `case_offender_address`='" . $aParam['offender_address'] . "',
                     `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
                     `case_offender_pob`= '" . $aParam['offender_pob'] . "',
+                    `case_offender_occupation`= '" . $aParam['offender_occupation'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'";
         $result = $this->yel->exec($sql);
@@ -382,6 +384,7 @@ Class Case_details_model extends CI_Model {
                     `case_offender_address`='" . $aParam['offender_address'] . "',
                     `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
                     `case_offender_pob`= '" . $aParam['offender_pob'] . "',
+                    `case_offender_occupation`= '" . $aParam['offender_occupation'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'
                 WHERE
@@ -524,6 +527,7 @@ Class Case_details_model extends CI_Model {
                     `co`.`case_offender_address`,
                     `co`.`case_offender_contact_details`,
                     `co`.`case_offender_pob`,
+                    `co`.`case_offender_occupation`,
                     `co`.`case_offender_remarks`
                FROM
                     `icms_case_offender` `co`
