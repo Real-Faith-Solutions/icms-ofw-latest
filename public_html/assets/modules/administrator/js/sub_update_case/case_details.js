@@ -205,6 +205,7 @@ function addSetOffenderInfo() {
     var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
     var offender_name_of_parents = $('.a-case-offender_name_of_parents').val();
     var offender_name_of_spouse = $('.a-case-offender_name_of_spouse').val();
+    var offender_socialmedia = $('.a-case-offender_social_media_account').val();
     var offender_remarks = $('.a-case-offender_remarks').val();
     $.post(sAjaxCaseDetails, {
         type: "addSetOffenderInfo",
@@ -226,7 +227,8 @@ function addSetOffenderInfo() {
         offender_race_ethnicity: offender_race_ethnicity,
         offender_previous_case_comitted: offender_previous_case_comitted,
         offender_name_of_parents:offender_name_of_parents,
-        offender_name_of_spouse:offender_name_of_spouse,
+        offender_name_of_spouse: offender_name_of_spouse,
+        offender_socialmedia: offender_socialmedia,
         offender_remarks: offender_remarks
 
     }, function (rs) {
@@ -244,6 +246,7 @@ function addSetOffenderInfo() {
         $('#txtoffenderpreviuouscasecomitted').val("");
         $('#txtoffendernameofparents').val("");
         $('#txtoffendernameofspouse').val("");
+        $('#txtoffendersocmedia').val("");
         $('#offenderaddress').val("");
         $('#offederremarks').val("");
         notifyChangesInReport();
@@ -367,6 +370,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-previouscasecommited='" + val.case_offender_previous_case_commited + "'";
                 attribs += "alg-nameofparents='" + val.case_offender_name_of_parents + "'";
                 attribs += "alg-nameofspouse='" + val.case_offender_name_of_spouse + "'";
+                attribs += "alg-socmed='" + val.case_offender_socialmedia+ "'";
                 attribs += "alg-address='" + val.case_offender_address + "'";
                 attribs += "alg-remarks='" + val.case_offender_remarks + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
@@ -1080,6 +1084,7 @@ $(document).ready(function () {
             $('.a-case-offender_previous_case_committed').val(rs.case_offender_previous_case_commited);
             $('.a-case-offender_name_of_parents').val(rs.case_offender_name_of_parents);
             $('.a-case-offender_name_of_spouse').val(rs.case_offender_name_of_spouse);
+            $('.a-case-offender_social_media_account').val(rs.case_offender_socialmedia);
             $('.a-case-offender_address').val(rs.case_offender_address);
             $('.a-case-offender_remarks').val(rs.case_offender_remarks);
         }, 'json');
