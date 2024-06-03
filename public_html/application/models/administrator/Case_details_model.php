@@ -330,6 +330,7 @@ Class Case_details_model extends CI_Model {
                     `co`.`case_offender_name_of_parents`,
                     `co`.`case_offender_name_of_spouse`,
                     `co`.`case_offender_socialmedia`,
+                    `co`.`case_offender_email_address`,
                     `co`.`case_offender_remarks`,
                     `co`.`case_offender_type_id`, 
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id` = `co`.`case_offender_type_id`) as `offender_type`
@@ -378,6 +379,7 @@ Class Case_details_model extends CI_Model {
                     `case_offender_name_of_parents`= '" . $aParam['offender_name_of_parents'] . "',
                     `case_offender_name_of_spouse`= '" . $aParam['offender_name_of_spouse'] . "',
                     `case_offender_socialmedia`= '" . $aParam['offender_socialmedia'] . "',
+                    `case_offender_email_address`= '" . $aParam['offender_email_address'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'";
         $result = $this->yel->exec($sql);
@@ -403,6 +405,7 @@ Class Case_details_model extends CI_Model {
                     `case_offender_name_of_parents`= '" . $aParam['offender_name_of_parents'] . "',
                     `case_offender_name_of_spouse`= '" . $aParam['offender_name_of_spouse'] . "',
                     `case_offender_socialmedia`= '" . $aParam['offender_socialmedia'] . "',
+                    `case_offender_email_address`= '" . $aParam['offender_email_address'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'
                 WHERE
@@ -552,6 +555,7 @@ Class Case_details_model extends CI_Model {
                     `co`.`case_offender_name_of_parents`,
                     `co`.`case_offender_name_of_spouse`,
                     `co`.`case_offender_socialmedia`,
+                    `co`.`case_offender_email_address`,
                     `co`.`case_offender_remarks`
                FROM
                     `icms_case_offender` `co`
