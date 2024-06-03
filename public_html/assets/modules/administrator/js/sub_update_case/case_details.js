@@ -207,6 +207,7 @@ function addSetOffenderInfo() {
     var offender_name_of_spouse = $('.a-case-offender_name_of_spouse').val();
     var offender_socialmedia = $('.a-case-offender_social_media_account').val();
     var offender_email_address = $('.a-case-offender_email_address').val();
+    var offender_place_of_arrest = $('.a-case-offender_place_of_arrest').val();
     var offender_remarks = $('.a-case-offender_remarks').val();
     $.post(sAjaxCaseDetails, {
         type: "addSetOffenderInfo",
@@ -231,6 +232,7 @@ function addSetOffenderInfo() {
         offender_name_of_spouse: offender_name_of_spouse,
         offender_socialmedia: offender_socialmedia,
         offender_email_address: offender_email_address,
+        offender_place_of_arrest: offender_place_of_arrest,
         offender_remarks: offender_remarks
 
     }, function (rs) {
@@ -250,6 +252,7 @@ function addSetOffenderInfo() {
         $('#txtoffendernameofspouse').val("");
         $('#txtoffendersocmedia').val("");
         $('#txtoffenderemailaddress').val("");
+        $('#txtoffenderplaceofarrest').val("");
         $('#offenderaddress').val("");
         $('#offederremarks').val("");
         notifyChangesInReport();
@@ -375,6 +378,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-nameofspouse='" + val.case_offender_name_of_spouse + "'";
                 attribs += "alg-socmed='" + val.case_offender_socialmedia+ "'";
                 attribs += "alg-emailaddress='" + val.case_offender_email_address+ "'";
+                attribs += "alg-placeofarrest='" + val.case_offender_place_of_arrest+ "'";
                 attribs += "alg-address='" + val.case_offender_address + "'";
                 attribs += "alg-remarks='" + val.case_offender_remarks + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
@@ -1090,6 +1094,7 @@ $(document).ready(function () {
             $('.a-case-offender_name_of_spouse').val(rs.case_offender_name_of_spouse);
             $('.a-case-offender_social_media_account').val(rs.case_offender_socialmedia);
             $('.a-case-offender_email_address').val(rs.case_offender_email_address);
+            $('.a-case-offender_place_of_arrest').val(rs.case_offender_place_of_arrest);
             $('.a-case-offender_address').val(rs.case_offender_address);
             $('.a-case-offender_remarks').val(rs.case_offender_remarks);
         }, 'json');
