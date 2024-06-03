@@ -368,6 +368,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-namealias='" + val.case_offender_alias + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
                 attribs += "alg-nationality='" + val.case_offender_nationality + "'";
+                attribs += "alg-relation='" + val.case_offender_other + "'";
                 attribs += "alg-contact='" + val.case_offender_contact_details + "'";
                 attribs += "alg-pob='" + val.case_offender_pob + "'";
                 attribs += "alg-occupation='" + val.case_offender_occupation + "'";
@@ -1084,6 +1085,7 @@ $(document).ready(function () {
             $('.a-case-offender_alias').val(rs.case_offender_alias);
             $('.a-case-offender_type').val(rs.case_offender_type_id).change();
             $('.a-case-offender_nationality').val(rs.case_offender_nationality).change();
+            $('.a-case-offender_relation').val(rs.case_offender_other).change();
             $('.a-case-offender_contact').val(rs.case_offender_contact_details);
             $('.a-case-offender_place_of_birth').val(rs.case_offender_pob);
             $('.a-case-offender_occupation').val(rs.case_offender_occupation);
