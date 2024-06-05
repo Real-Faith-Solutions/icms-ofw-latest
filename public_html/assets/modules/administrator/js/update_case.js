@@ -21,7 +21,7 @@ function getUpdateCaseGlobalParameter() {
         });
 
         var info = rs.data.info;
-
+        
         // Sex 
         buildOptionDetailsParameter({
             aData: info.sex,
@@ -100,6 +100,14 @@ function getUpdateCaseGlobalParameter() {
             aData: info.family_relation,
             sLabel: 'Select next of kin',
             sClass: 'sel-relation',
+            sId: '',
+        });
+
+        // Offender Description
+        buildOptionDetailsParameter({
+            aData: info.Offender_Description,
+            sLabel: 'Select Offender Description',
+            sClass: 'sel-offender_is_at_large',
             sId: '',
         });
 

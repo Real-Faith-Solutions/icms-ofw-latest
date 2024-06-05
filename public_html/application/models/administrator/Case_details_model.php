@@ -337,6 +337,7 @@ Class Case_details_model extends CI_Model {
                     `co`.`case_offender_email_address`,
                     `co`.`case_offender_place_of_arrest`,
                     `co`.`case_offender_date_of_arrest`,
+                    `co`.`case_offender_is_at_large`,
                     `co`.`case_offender_remarks`,
                     `co`.`case_offender_type_id`, 
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id` = `co`.`case_offender_type_id`) as `offender_type`
@@ -390,8 +391,9 @@ Class Case_details_model extends CI_Model {
                     `case_offender_name_of_spouse`= '" . $aParam['offender_name_of_spouse'] . "',
                     `case_offender_socialmedia`= '" . $aParam['offender_socialmedia'] . "',
                     `case_offender_email_address`= '" . $aParam['offender_email_address'] . "',
-                    `case_offender_place_of_arrest`= '" . $aParam['offender_date_of_arrest'] . "',
+                    `case_offender_place_of_arrest`= '" . $aParam['offender_place_of_arrest'] . "',
                     `case_offender_date_of_arrest`= " . $this->yel->checkDateIfExist($aParam['offender_dob']) . ",
+                    `case_offender_is_at_large`= '" . $aParam['offender_at_large'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'";
         $result = $this->yel->exec($sql);
@@ -424,6 +426,7 @@ Class Case_details_model extends CI_Model {
                     `case_offender_email_address`= '" . $aParam['offender_email_address'] . "',
                     `case_offender_place_of_arrest`= '" . $aParam['offender_place_of_arrest'] . "',
                     `case_offender_date_of_arrest`= " . $this->yel->checkDateIfExist($aParam['offender_dob']) . ",
+                    `case_offender_is_at_large`= '" . $aParam['offender_at_large'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'
                 WHERE
@@ -580,6 +583,7 @@ Class Case_details_model extends CI_Model {
                     `co`.`case_offender_email_address`,
                     `co`.`case_offender_place_of_arrest`,
                     `co`.`case_offender_date_of_arrest`,
+                    `co`.`case_offender_is_at_large`,
                     `co`.`case_offender_remarks`
                FROM
                     `icms_case_offender` `co`
