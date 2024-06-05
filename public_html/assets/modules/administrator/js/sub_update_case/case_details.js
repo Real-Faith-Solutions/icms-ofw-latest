@@ -207,6 +207,7 @@ function addSetOffenderInfo() {
     var offender_religion = $('.a-case-offender_religion').val();
     var offender_religion_name = $('.a-case-offender_religion option:selected').text();
     var offender_race_ethnicity = $('.a-case-offender_race_ethnicity').val();
+    var offender_civil_status = $('.a-case-offender_civil_status').val();
     var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
     var offender_name_of_parents = $('.a-case-offender_name_of_parents').val();
     var offender_name_of_spouse = $('.a-case-offender_name_of_spouse').val();
@@ -239,6 +240,7 @@ function addSetOffenderInfo() {
         offender_religion: offender_religion,
         offender_religion_name: offender_religion_name,
         offender_race_ethnicity: offender_race_ethnicity,
+        offender_civil_status: offender_civil_status,
         offender_previous_case_comitted: offender_previous_case_comitted,
         offender_name_of_parents:offender_name_of_parents,
         offender_name_of_spouse: offender_name_of_spouse,
@@ -261,6 +263,7 @@ function addSetOffenderInfo() {
         $('#txtoffendergender').val("");
         $('#txtoffendereligion').val("");
         $('#txtoffenderraceethnicity').val("");
+        $('#txtoffendercivilstatus').val("");
         $('#txtoffenderpreviuouscasecomitted').val("");
         $('#txtoffendernameofparents').val("");
         $('#txtoffendernameofspouse').val("");
@@ -392,6 +395,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-gender='" + val.case_offender_gender + "'";
                 attribs += "alg-religion='" + val.case_offender_religion + "'";
                 attribs += "alg-raceethnicity='" + val.case_offender_race_ethnicity + "'";
+                attribs += "alg-racecivilstatus='" + val.case_offender_civil_status+ "'";
                 attribs += "alg-previouscasecommited='" + val.case_offender_previous_case_commited + "'";
                 attribs += "alg-nameofparents='" + val.case_offender_name_of_parents + "'";
                 attribs += "alg-nameofspouse='" + val.case_offender_name_of_spouse + "'";
@@ -1113,6 +1117,7 @@ $(document).ready(function () {
             $('.a-case-offender_gender').val(rs.case_offender_gender).change();
             $('.a-case-offender_religion').val(rs.case_offender_religion).change();
             $('.a-case-offender_race_ethnicity').val(rs.case_offender_race_ethnicity);
+            $('.a-case-offender_civil_status').val(rs.case_offender_civil_status);
             $('.a-case-offender_previous_case_committed').val(rs.case_offender_previous_case_commited);
             $('.a-case-offender_name_of_parents').val(rs.case_offender_name_of_parents);
             $('.a-case-offender_name_of_spouse').val(rs.case_offender_name_of_spouse);
