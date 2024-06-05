@@ -202,8 +202,8 @@ function addSetOffenderInfo() {
     var offender_dob = $('.a-case-offender_date_of_birth').val();
     var offender_occupation = $('.a-case-offender_occupation').val();
     var offender_place_of_business = $('.a-case-offender_principal_place_of_business').val();
-    var offender_gender = $('.a-case-offender_nationality').val();
-    var offender_gender_name = $('.a-case-offender_nationality option:selected').text();
+    var offender_gender = $('.a-case-offender_gender').val();
+    var offender_gender_name = $('.a-case-offender_gender option:selected').text();
     var offender_race_ethnicity = $('.a-case-offender_race_ethnicity').val();
     var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
     var offender_name_of_parents = $('.a-case-offender_name_of_parents').val();
