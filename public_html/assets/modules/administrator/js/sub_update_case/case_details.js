@@ -204,6 +204,8 @@ function addSetOffenderInfo() {
     var offender_place_of_business = $('.a-case-offender_principal_place_of_business').val();
     var offender_gender = $('.a-case-offender_gender').val();
     var offender_gender_name = $('.a-case-offender_gender option:selected').text();
+    var offender_religion = $('.a-case-offender_religion').val();
+    var offender_religion_name = $('.a-case-offender_religion option:selected').text();
     var offender_race_ethnicity = $('.a-case-offender_race_ethnicity').val();
     var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
     var offender_name_of_parents = $('.a-case-offender_name_of_parents').val();
@@ -234,6 +236,8 @@ function addSetOffenderInfo() {
         offender_place_of_business: offender_place_of_business,
         offender_gender: offender_gender,
         offender_gender_name: offender_gender_name,
+        offender_religion: offender_religion,
+        offender_religion_name: offender_religion_name,
         offender_race_ethnicity: offender_race_ethnicity,
         offender_previous_case_comitted: offender_previous_case_comitted,
         offender_name_of_parents:offender_name_of_parents,
@@ -254,6 +258,8 @@ function addSetOffenderInfo() {
         $('#txtoffenderpob').val("");
         $('#txtoffenderoccupation').val("");
         $('#txtoffenderplaceofbusiness').val("");
+        $('#txtoffendergender').val("");
+        $('#txtoffendereligion').val("");
         $('#txtoffenderraceethnicity').val("");
         $('#txtoffenderpreviuouscasecomitted').val("");
         $('#txtoffendernameofparents').val("");
@@ -384,6 +390,7 @@ function getCaseAllegedOffender() {
                 attribs += "alg-occupation='" + val.case_offender_occupation + "'";
                 attribs += "alg-placeofbusiness='" + val.case_offender_principal_place_of_business + "'";
                 attribs += "alg-gender='" + val.case_offender_gender + "'";
+                attribs += "alg-religion='" + val.case_offender_religion + "'";
                 attribs += "alg-raceethnicity='" + val.case_offender_race_ethnicity + "'";
                 attribs += "alg-previouscasecommited='" + val.case_offender_previous_case_commited + "'";
                 attribs += "alg-nameofparents='" + val.case_offender_name_of_parents + "'";
@@ -1104,6 +1111,7 @@ $(document).ready(function () {
             $('.a-case-offender_occupation').val(rs.case_offender_occupation);
             $('.a-case-offender_principal_place_of_business').val(rs.case_offender_principal_place_of_business);
             $('.a-case-offender_gender').val(rs.case_offender_gender).change();
+            $('.a-case-offender_religion').val(rs.case_offender_religion).change();
             $('.a-case-offender_race_ethnicity').val(rs.case_offender_race_ethnicity);
             $('.a-case-offender_previous_case_committed').val(rs.case_offender_previous_case_commited);
             $('.a-case-offender_name_of_parents').val(rs.case_offender_name_of_parents);
