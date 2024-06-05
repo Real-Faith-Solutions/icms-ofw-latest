@@ -155,7 +155,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                             </div>
                         </div>
-                        <fieldset><div class="row">
+                        <fieldset><div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
                                     <input type="radio" class="form-check-input case-violated noSpcStart" id="ch1" name="s_violated">
@@ -165,8 +165,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch4" name="s_violated">
+                                    <label class="form-check-label " for="ch4" style="color: #e88f15 !important;">CSAEM
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group form-check">
                                     <input type="radio" class="form-check-input case-violated noSpcStart" id="ch2" name="s_violated">
-                                    <label class="form-check-label " for="ch2" style="color: #e88f15 !important;">OSAEC
+                                    <label class="form-check-label" for="ch2" style="color: #e88f15 !important;">OSAEC
                                     </label>
                                 </div>
                             </div>
