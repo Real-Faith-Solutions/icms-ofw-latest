@@ -346,6 +346,7 @@ function getCaseEvaluation(isAction) {
         rs = html_entity_decode(rs);
         $('#area-evaluation').val(rs.data.evaluation.case_evaluation);
         $('#area-case-risk-assessment').val(rs.data.evaluation.case_risk_assessment);
+        $('#area-case-details_of_coordination').val(rs.data.evaluation.case_coordination_detail_lea);
         $('.div-priority_level .form-check-input[value="' + rs.data.evaluation.case_priority_level_id + '"]').attr('checked', true)
         aInitialValues["case_priority_level_id"] = rs.data.evaluation.case_priority_level_id;
         aInitialValues["case_evaluation"] = '';
@@ -366,10 +367,12 @@ function setCaseEvaluation() {
     var caseid = $('#case_id').val();
     var evaluation = $('#area-evaluation').val();
     var risk_assessment = $('#area-case-risk-assessment').val();
+    var case_coordination_lea = $('#area-case-details_of_coordination').val();
     $.post(sAjaxCaseDetails, {
         type: "setCaseEvaluation",
         evaluation: evaluation,
         risk_assessment: risk_assessment,
+        case_coordination_lea: case_coordination_lea,
         caseid: caseid,
     }, function (rs) {
         getCaseEvaluation('1');
@@ -1323,6 +1326,7 @@ $(document).ready(function () {
                         // no update 
                         $('#area-evaluation').prop('disabled', true);
                         $('#area-case-risk-assessment').prop('disabled', true);
+                        $('#area-case-details_of_coordination').prop('disabled', true);
                         $('#btn-save-evaluation').addClass('hide');
                         //save
                         $('#btn-manage-evaluation').text("Manage");
@@ -1437,6 +1441,7 @@ $(document).ready(function () {
                         // no update 
                         $('#area-evaluation').prop('disabled', true);
                         $('#area-case-risk-assessment').prop('disabled', true);
+                        $('#area-case-details_of_coordination').prop('disabled', true);
                         $('#btn-save-evaluation').addClass('hide');
                         //save
                         $('#btn-manage-evaluation').text("Manage");
