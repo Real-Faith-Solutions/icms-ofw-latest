@@ -949,7 +949,7 @@ $(document).ready(function () {
     // return top 
     returnTop();
     //check if there is unfinish case encoded 
-    //checkStoredData();
+    checkStoredData();
 
     //get global, location and transaction data
     initialLoad();
@@ -962,10 +962,10 @@ $(document).ready(function () {
 
 
     //------------PRELOADER_----------//
-//    $('#loadMeloader').modal('show');
-//    setTimeout(function () {
-//        $('#loadMeloader').modal('hide');
-//    }, 1000);
+   $('#loadMeloader').modal('show');
+   setTimeout(function () {
+       $('#loadMeloader').modal('hide');
+   }, 1000);
     //-----------end of preloader-------//
 
     // date picker 
