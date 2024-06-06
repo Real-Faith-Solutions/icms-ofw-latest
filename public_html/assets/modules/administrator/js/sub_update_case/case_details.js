@@ -157,6 +157,27 @@ function  setActMeansPurpose() {
         purpose_ctr++;
     });
     var caseid = $('#case_id').val();
+
+    var rd1 = $('#ch1').is(':checked') ? 'CSEC' : '0';
+    var rd2 = $('#ch2').is(':checked') ? 'OSAEC' : '0';
+    var rd3 = $('#ch3').is(':checked') ? 'Other law/s violated' : '0';
+    var rd4 = $('#ch4').is(':checked') ? 'CSAEM' : '0';
+    
+    var form_of_Law = '';
+    
+    if (rd1 !== '0') {
+        form_of_Law += rd1;
+    }
+    if (rd2 !== '0') {
+        form_of_Law += rd2;
+    }
+    if (rd3 !== '0') {
+        form_of_Law += rd3;
+    }
+    if (rd4 !== '0') {
+        form_of_Law += rd4;
+    }
+
     $.post(sAjaxCaseDetails, {
         type: "setActMeansPurpose",
         acts: acts,
@@ -168,7 +189,7 @@ function  setActMeansPurpose() {
         is_illegal_rec: $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         is_other_law: $('.case-is_other_law').is(':checked') ? '1' : '0',
         other_law_desc: $('.case-other_law_desc').val(),
-
+        form_of_Law: form_of_Law,
     }, function (rs) {
         // msg alert
         notifyChangesInReport();
@@ -368,11 +389,13 @@ function setCaseEvaluation() {
     var evaluation = $('#area-evaluation').val();
     var risk_assessment = $('#area-case-risk-assessment').val();
     var case_coordination_lea = $('#area-case-details_of_coordination').val();
+    var case_violated = $('#area-case-details_of_coordination').val();
     $.post(sAjaxCaseDetails, {
         type: "setCaseEvaluation",
         evaluation: evaluation,
         risk_assessment: risk_assessment,
         case_coordination_lea: case_coordination_lea,
+        case_violated: case_violated,
         caseid: caseid,
     }, function (rs) {
         getCaseEvaluation('1');
@@ -1008,27 +1031,38 @@ $(document).ready(function () {
             }
         },
         submitHandler: function (form) {
-
-            var aCurrentValues = "";
-            aCurrentValues = getFormValues('frm-act-means-purpose');
-            if (aCurrentValues == aInitialValues['incident_details']) {
-                icmsMessage({
-                    type: "msgWarning",
-                    body: "No changes has been made.",
-                });
-            } else {
-                icmsMessage({
-                    type: "msgConfirmation",
-                    title: "You are about to update Means, Act and Purpose",
-                    onConfirm: function () {
-                        setActMeansPurpose();
-                        activateAMP(0);
-                    }
-                });
-            }
+            icmsMessage({
+                type: "msgConfirmation",
+                title: "You are about to update Means, Act and Purpose",
+                onConfirm: function () {
+                    setActMeansPurpose();
+                    activateAMP(0);
+                }
+            });
+             
+            //---- Remove the code has been made only the remarks is working ---//
+            // var aCurrentValues = "";
+            // aCurrentValues = getFormValues('frm-act-means-purpose');
+            // console.log(aInitialValues['incident_details']);
+            // if (aCurrentValues == aInitialValues['incident_details']) {
+            //     icmsMessage({
+            //         type: "msgWarning",
+            //         body: "No changes has been made.",
+            //     });
+            // } else {
+            //     icmsMessage({
+            //         type: "msgConfirmation",
+            //         title: "You are about to update Means, Act and Purpose",
+            //         onConfirm: function () {
+            //             setActMeansPurpose();
+            //             activateAMP(0);
+            //         }
+            //     });
+            // }
 
         }
     });
+
     $('#tbl-offender-list').delegate('.ellipse-action', 'click', function (e) {
         var id = $(this).attr('data-id');
         if ($('#id-' + id).is(":visible")) {
