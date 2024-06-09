@@ -44,6 +44,8 @@ function storeVictimDetails() {
         'assumed_dob': $('.vi-assumed_dob').val(),
         'disability': $('.vi-disability').val(),
         'disability_value': $('.vi-disability option:selected').attr('data-name'),
+        'allergy': $('.vi-allergy').val(),
+        'allergy_value': $('.vi-allergy option:selected').attr('data-name'),
         
     };
 
