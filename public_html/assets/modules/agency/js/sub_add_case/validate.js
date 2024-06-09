@@ -34,11 +34,14 @@ function storeVictimDetails() {
         'civil': $('.vi-civil').val(),
         'civil_value': $('.vi-civil option:selected').attr('data-name'),
         'religion': $('.vi-religion').val(),
+        'ethnic_group': $('.vi-ethnic_group').val(),
+        'ethnic_group_value': $('.vi-ethnic_group option:selected').attr('data-name'),
         'religion_value': $('.vi-religion option:selected').attr('data-name'),
         'assumed_first_name': $('.vi-assumed_first_name').val(),
         'assumed_middle_name': $('.vi-assumed_middle_name').val(),
         'assumed_last_name': $('.vi-assumed_last_name').val(),
-        'assumed_dob': $('.vi-assumed_dob').val()
+        'assumed_dob': $('.vi-assumed_dob').val(),
+        
     };
 
     _setStorageData(victim_personal_info, 'victim_personal_info');
