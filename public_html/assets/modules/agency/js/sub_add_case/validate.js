@@ -25,6 +25,7 @@ function storeVictimDetails() {
         'first_name': $('.vi-first_name').val(),
         'middle_name': $('.vi-middle_name').val(),
         'last_name': $('.vi-last_name').val(),
+        'nickname': $('.vi-nickname').val(),
         'dob': $('.vi-dob').val(),
         'pob': $('.vi-pob').val(),
         'pob_value': $('.vi-pob option:selected').attr('data-name'),
