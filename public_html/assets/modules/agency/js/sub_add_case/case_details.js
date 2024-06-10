@@ -1168,6 +1168,7 @@ function storeCaseDetails() {
         'complainant_relation_value': $('.case-complainant_relation option:selected').attr('data-name'),
         'complainant_relation_other': $('.case-complainant_relation_other').val(),
         'complainant_address': $('.case-complainant_address').val(),
+        'complainant_place_of_incident': $('.case-complainant_place_of_incident').val(),
         'complainant_contact': $('.case-complainant_contact').val(),
         'complainant_remarks': $('.case-complainant_remarks').val()
     };

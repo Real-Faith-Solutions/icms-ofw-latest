@@ -68,6 +68,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <textarea class="form-control valid noSpcStart case-complainant_address" rows="4" maxlength="100" aria-invalid="false"></textarea>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Place of Incident</label>
+                                <textarea class="form-control valid noSpcStart case-complainant_place_of_incident" rows="4" maxlength="100" aria-invalid="false"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
