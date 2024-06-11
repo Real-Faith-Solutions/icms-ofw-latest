@@ -707,6 +707,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Religion</label>
+                                    <select class="form-control a-case-offender_religion sel-religion">
+                                    </select>
+                                </div>
+                            </div>
 
                             </div>
                             <div class="row">

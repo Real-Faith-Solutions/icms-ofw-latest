@@ -1351,7 +1351,9 @@ function storeCaseOffender() {
                 'offender_occupation': $('.a-case-offender_occupation').val(),
                 'offender_principal_place_of_business': $('.a-case-offender_principal_place_of_business').val(),
                 'offender_gender': $('.a-case-offender_gender').val(),
-                'offender_gender_type_value': $('.a-case-offender_gender option:selected').val()
+                'offender_gender_type_value': $('.a-case-offender_gender option:selected').val(),
+                'offender_religion': $('.a-case-offender_religion').val(),
+                'offender_religion_type_value': $('.a-case-offender_religion').val()
                 
             }];
 
