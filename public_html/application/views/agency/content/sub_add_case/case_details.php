@@ -86,6 +86,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" maxlength="20" minlength="7" class="form-control case_place_of_destination"> 
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Date/Time of Incident</label>
+                                <input type="text" class="form-control case-date_time_of_incident datetimepicker" name="date_time_of_incident" placeholder="MM/DD/YYYY" >
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
