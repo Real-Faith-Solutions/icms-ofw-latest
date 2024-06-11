@@ -714,6 +714,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Race/ethnicity</label>
+                                    <input type="text" class="form-control a-case-offender_race_ethnicity" maxlength="100">
+                                </div>
+                            </div>
 
                             </div>
                             <div class="row">

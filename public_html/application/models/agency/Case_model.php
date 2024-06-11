@@ -1677,8 +1677,9 @@ Class Case_model extends CI_Model {
                 `case_offender_dob`=" . $this->yel->checkDateIfExist($val['offender_dob'] ?? '') . ",
                 `case_offender_occupation`=" . $this->yel->checkifStringExist($val['offender_occupation'] ?? '') . ",
                 `case_offender_principal_place_of_business`=" . $this->yel->checkifStringExist($val['offender_principal_place_of_business'] ?? '') . ",
+                `case_offender_gender`=" . $this->yel->checkifStringExist($val['offender_gender'] ?? '') . ",
                 `case_offender_religion`=" . $this->yel->checkifStringExist($val['offender_religion'] ?? '') . ",
-                `case_offender_gender`=" . $this->yel->checkifStringExist($val['offender_gender'] ?? '') . ",   
+                `case_offender_race_ethnicity`=" . $this->yel->checkifStringExist($val['offender_race_ethnicity'] ?? '') . ",   
                 `case_offender_is_active`= '1' 
                 ";
 

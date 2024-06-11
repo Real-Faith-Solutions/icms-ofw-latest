@@ -1353,7 +1353,8 @@ function storeCaseOffender() {
                 'offender_gender': $('.a-case-offender_gender').val(),
                 'offender_gender_type_value': $('.a-case-offender_gender option:selected').val(),
                 'offender_religion': $('.a-case-offender_religion').val(),
-                'offender_religion_type_value': $('.a-case-offender_religion').val()
+                'offender_religion_type_value': $('.a-case-offender_religion').val(),
+                'offender_race_ethnicity': $('.a-case-offender_race_ethnicity').val()
                 
             }];
 
