@@ -1173,7 +1173,8 @@ function storeCaseDetails() {
         'complainant_contact': $('.case-complainant_contact').val(),
         'complainant_remarks': $('.case-complainant_remarks').val(),
         'complainant_place_of_destination': $('.case_place_of_destination').val(),
-        'complainant_date_time_of_incident': $('.case-date_time_of_incident').val()
+        'complainant_date_time_of_incident': $('.case-date_time_of_incident').val(),
+        'complainant_other_possible_source_info': $('.case-other_possible_source_info').val()
         
     };
 

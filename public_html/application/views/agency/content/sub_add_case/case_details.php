@@ -92,6 +92,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" class="form-control case-date_time_of_incident datetimepicker" name="date_time_of_incident" placeholder="MM/DD/YYYY" >
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Other possible sources of information</label>
+                                <textarea class="form-control valid noSpcStart case-other_possible_source_info" rows="4" maxlength="100" aria-invalid="false"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
