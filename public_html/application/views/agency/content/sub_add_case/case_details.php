@@ -682,6 +682,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <input type="text" class="form-control a-case-offender_place_of_birth" maxlength="100">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Date of Birth</label>
+                                    <input type="text" class="form-control a-case-offender_date_of_birth datepicker" maxlength="100">
+                                </div>
+                            </div>
 
                             </div>
                             <div class="row">
@@ -690,6 +696,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <textarea class="form-control a-case-offender_remarks noSpcStart" maxlength="1000" rows="5" cols="150" ></textarea>
                                 </div>
                             </div>
+                            
                             
 
                     </div>
