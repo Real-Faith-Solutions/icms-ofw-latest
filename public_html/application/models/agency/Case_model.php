@@ -1664,16 +1664,17 @@ Class Case_model extends CI_Model {
                 INSERT INTO 
                 `icms_case_offender` 
                 SET 
-                `case_id`='" . $aParam['case_id'] . "', 
+                 `case_id`='" . $aParam['case_id'] . "', 
                 `case_offender_type_id`=" . $this->yel->checkifStringExist($val['offender_type']) . ", 
-                `case_offender_name`=" . $this->yel->checkifStringExist($val['offender_name']) . ", 
-                `case_offender_nationality`=" . $this->yel->checkifStringExist($val['offender_nationality']) . ", 
-                `case_offender_other`=" . $this->yel->checkifStringExist($val['offender_relation']) . ", 
-                `case_offender_address`=" . $this->yel->checkifStringExist($val['offender_address']) . ", 
-                `case_offender_contact_details`=" . $this->yel->checkifStringExist($val['offender_contact']) . ", 
-                `case_offender_remarks`=" . $this->yel->checkifStringExist($val['offender_remarks']) . ", 
+                `case_offender_name`=" . $this->yel->checkifStringExist($val['offender_name'] ?? '') . ", 
+                `case_offender_nationality`=" . $this->yel->checkifStringExist($val['offender_nationality'] ?? '') . ", 
+                `case_offender_other`=" . $this->yel->checkifStringExist($val['offender_relation'] ?? '') . ", 
+                `case_offender_address`=" . $this->yel->checkifStringExist($val['offender_address'] ?? '') . ", 
+                `case_offender_contact_details`=" . $this->yel->checkifStringExist($val['offender_contact'] ?? '') . ", 
+                `case_offender_remarks`=" . $this->yel->checkifStringExist($val['offender_remarks'] ?? '') . ",
+                `case_offender_alias`=" . $this->yel->checkifStringExist($val['offender_alias'] ?? '') . ",
                 `case_offender_is_active`= '1' 
-               ";
+                ";
 
         $aResponse = $this->yel->exec($sql);
 

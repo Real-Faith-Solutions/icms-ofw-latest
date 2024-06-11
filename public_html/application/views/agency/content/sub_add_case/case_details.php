@@ -668,17 +668,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <label>Contact Number</label>
                                     <input type="text" class="form-control numbersOnly a-case-offender_contact" maxlength="20" minlength="7"  name="offender_contact" >
-
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <label>Remarks</label>
-                                <textarea class="form-control a-case-offender_remarks noSpcStart" maxlength="1000" rows="5" cols="150" ></textarea>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Alias</label>
+                                    <input type="text" class="form-control a-case-offender_alias" name="offender_alias" maxlength="100">
+                                </div>
                             </div>
-                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control a-case-offender_remarks noSpcStart" maxlength="1000" rows="5" cols="150" ></textarea>
+                                </div>
+                            </div>
 
                     </div>
                     <div class="content-footer float-right  match-buttons">
