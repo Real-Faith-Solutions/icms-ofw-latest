@@ -1349,7 +1349,9 @@ function storeCaseOffender() {
                 'offender_remarks': $('.a-case-offender_remarks').val(),
                 'offender_dob': $('.a-case-offender_date_of_birth').val(),
                 'offender_occupation': $('.a-case-offender_occupation').val(),
-                'offender_principal_place_of_business': $('.a-case-offender_principal_place_of_business').val()
+                'offender_principal_place_of_business': $('.a-case-offender_principal_place_of_business').val(),
+                'offender_gender': $('.a-case-offender_gender').val(),
+                'offender_gender_type_value': $('.a-case-offender_gender option:selected').val()
                 
             }];
 
