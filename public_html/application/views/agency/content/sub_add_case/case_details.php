@@ -694,6 +694,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <input type="text" class="form-control a-case-offender_occupation" maxlength="100">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Principal Place of Business</label>
+                                    <input type="text" class="form-control a-case-offender_principal_place_of_business" maxlength="100">
+                                </div>
+                            </div>
 
                             </div>
                             <div class="row">
