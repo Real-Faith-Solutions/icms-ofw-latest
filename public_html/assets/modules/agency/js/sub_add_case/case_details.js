@@ -1347,7 +1347,8 @@ function storeCaseOffender() {
                 'offender_alias': $('.a-case-offender_alias').val(),
                 'offender_pob': $('.a-case-offender_place_of_birth').val(),
                 'offender_remarks': $('.a-case-offender_remarks').val(),
-                'offender_dob': $('.a-case-offender_date_of_birth').val()
+                'offender_dob': $('.a-case-offender_date_of_birth').val(),
+                'offender_occupation': $('.a-case-offender_occupation').val()
             }];
 
         _setStorageData(victim_case_offender, 'victim_case_offender');
