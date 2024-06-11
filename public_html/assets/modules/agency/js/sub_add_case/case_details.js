@@ -1345,6 +1345,7 @@ function storeCaseOffender() {
                 'offender_address': $('.a-case-offender_address').val(),
                 'offender_contact': $('.a-case-offender_contact').val(),
                 'offender_alias': $('.a-case-offender_alias').val(),
+                'offender_pob': $('.a-case-offender_place_of_birth').val(),
                 'offender_remarks': $('.a-case-offender_remarks').val()
             }];
 
