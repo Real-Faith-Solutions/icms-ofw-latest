@@ -1356,7 +1356,9 @@ function storeCaseOffender() {
                 'offender_religion_type_value': $('.a-case-offender_religion').val(),
                 'offender_race_ethnicity': $('.a-case-offender_race_ethnicity').val(),
                 'offender_civil_status': $('.a-case-offender_civil_status').val(),
-                'offender_civil_tatus_type': $('.a-case-offender_civil_status').val()
+                'offender_civil_tatus_type': $('.a-case-offender_civil_status').val(),
+                'offender_civil_tatus_type': $('.a-case-offender_civil_status').val(),
+                'offender_previous_case_committed': $('.a-case-offender_previous_case_committed').val()
                 
                 
             }];
