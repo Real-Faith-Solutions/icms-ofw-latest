@@ -789,7 +789,7 @@ function getSex() {
           "</option>";
       });
       $(".sel-sex").html(l);
-      //$(".sel-sex-select2").select2();
+      // $(".sel-sex-select2").select2();
     },
     "json"
   );

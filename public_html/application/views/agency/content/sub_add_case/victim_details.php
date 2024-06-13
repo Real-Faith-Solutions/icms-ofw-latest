@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12 form-salary">
                                 <label>Civil Status <font color="red"> <b>*</b> </font> </label>
-                                <select class="form-control  sel-civil vi-civil" name="vi_civil_status">
+                                <select class="form-control sel-civil vi-civil" name="vi_civil_status">
                                     <option selected="">Civil Status</option>
                                 </select>
                             </div>
