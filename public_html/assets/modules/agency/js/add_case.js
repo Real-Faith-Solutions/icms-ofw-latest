@@ -948,14 +948,15 @@ $(document).ready(function () {
 
     // return top 
     returnTop();
+
     //check if there is unfinish case encoded 
-    //checkStoredData();
+    checkStoredData();
 
     //get global, location and transaction data
     initialLoad();
 
     // delete stored data 
-    clearStoredData();
+    // clearStoredData();
 
     // confirmation in reloading/exiting site 
     confirmReloading();
