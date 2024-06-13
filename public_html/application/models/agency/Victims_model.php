@@ -1254,20 +1254,21 @@ Class Victims_model extends CI_Model {
      * by:dev_andy
      */
 
-    public function setVictimInfoByVictimID($aParam) {
+     public function setVictimInfoByVictimID($aParam) {
 
         $sql = " 
                 UPDATE 
                     `icms_victim`
                 SET 
-                    `victim_civil_status`='" . $aParam['civilStat'] . "',
-                    `victim_gender`='" . $aParam['gender'] . "',
-                    `victim_religion`='" . $aParam['religion'] . "',
+                    `victim_civil_status`= " . $this->yel->checkifStringExist($aParam['civilStat']) . ",
+                    `victim_gender`= " . $this->yel->checkifStringExist($aParam['gender']) . ",
+                    `victim_religion`= " . $this->yel->checkifStringExist($aParam['religion']) . ",
+                    `victim_info_nickname`= " . $this->yel->checkifStringExist($aParam['nickname']) . ",
+                    `victim_ethnic_group`= " . $this->yel->checkifStringExist($aParam['ethnicgroup']) . ",
                     `victim_modified_by`='" . $_SESSION['userData']['user_id'] . "'
                 WHERE 
                     `victim_id`=" . $aParam['victim_id'] . "
               ";
-        
         $aResponse = $this->yel->exec($sql);
         return $aResponse;
     }
