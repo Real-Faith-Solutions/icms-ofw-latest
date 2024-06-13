@@ -695,6 +695,7 @@ function initialLoad() {
     getReligions();
     getEducationalAttainments();
     getFamilyRelations();
+    getOffenderDescription();
 
 //    getVictimsFromValidation();
 
