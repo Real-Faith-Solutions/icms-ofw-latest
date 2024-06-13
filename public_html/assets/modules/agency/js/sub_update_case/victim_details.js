@@ -684,7 +684,7 @@ function updateVictimPersonalInformation() {
         civilStat: $('.vi-victim_civil_status').val(),
         religion: $('.vi-victim_religion').val(),
         nickname: $('.vi-victim_info_nickname').val(),
-        ethnicgroup: $('.vi-victim_ethnic_group').val(),
+        ethnic_group: $('.vi-victim_ethnic_group').val(),
     }, function (rs) {
         getVictimInfoByCaseId(1);
         $('#btn-manage-personal').text("Manage");

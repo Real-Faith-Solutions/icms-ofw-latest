@@ -1259,7 +1259,7 @@ Class Victims_model extends CI_Model {
                     `victim_gender`= " . $this->yel->checkifStringExist($aParam['gender']) . ",
                     `victim_religion`= " . $this->yel->checkifStringExist($aParam['religion']) . ",
                     `victim_info_nickname`= " . $this->yel->checkifStringExist($aParam['nickname']) . ",
-                    `victim_ethnic_group`= " . $this->yel->checkifStringExist($aParam['ethnicgroup']) . ",
+                    `victim_ethnic_group`= " . $this->yel->checkifStringExist($aParam['ethnic_group']) . ",
                     `victim_modified_by`='" . $_SESSION['userData']['user_id'] . "'
                 WHERE 
                     `victim_id`=" . $aParam['victim_id'] . "
