@@ -758,6 +758,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <input type="email" class="form-control a-case-offender_email_address" maxlength="100">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Place of arrest (If arrested)</label>
+                                    <input type="text" class="form-control a-case-offender_place_of_arrest" maxlength="100">
+                                </div>
+                            </div>
 
                             </div>
                             <div class="row">
