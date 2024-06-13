@@ -1363,7 +1363,8 @@ function storeCaseOffender() {
                 'offender_name_of_spouse': $('.a-case-offender_name_of_spouse').val(),
                 'offender_socialmedia': $('.a-case-offender_social_media_account').val(),
                 'offender_email_address': $('.a-case-offender_email_address').val(),
-                'offender_place_of_arrest': $('.a-case-offender_place_of_arrest').val()
+                'offender_place_of_arrest': $('.a-case-offender_place_of_arrest').val(),
+                'offender_date_of_arrest': $('.a-case-offender_date_of_arrest').val()
                 
                 
             }];
