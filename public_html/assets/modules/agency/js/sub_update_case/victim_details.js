@@ -442,6 +442,9 @@ function getVictimInfoByStorage() {
         $('.vi-assumed-victim_info_dob').val(dateFormatToPicker(vi_assumed.victim_info_dob));
     }
 
+    $('.vi-disability').val(vi_assumed.victim_info_disability);
+    $('.vi-allergies').val(vi_assumed.victim_info_allergy);
+    $('.vi-history_of_illness').val(vi_assumed.victim_info_hospitality);
     
 
     var victim_contacts = aVictimInfoByCaseId.victim_contact_info;
@@ -651,6 +654,9 @@ function updateVictimAssumed() {
         mname: $('.vi-assumed-victim_info_middle_name').val(),
         lname: $('.vi-assumed-victim_info_last_name').val(),
         dob: $('.vi-assumed-victim_info_dob').val(),
+        disabilities: $('.vi-disability').val(),
+        allergy: $('.vi-allergies').val(),
+        illness: $('.vi-history_of_illness').val(),
     }, function (rs) {
         getVictimInfoByCaseId(1);
         $('#btn-manage-assumed').text("Manage");
