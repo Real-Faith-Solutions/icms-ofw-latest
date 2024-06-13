@@ -56,6 +56,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" maxlength="20" minlength="7" class="form-control case-complainant_contact numbersOnly" name="complainant_contact"> 
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Alternate Contact Number</label>
+                                <input type="text" maxlength="20" minlength="7" class="form-control case-complainant_contact_alternate numbersOnly" name="complainant_contact_alternate" id="complainant_contact_alternate"> 
+                            </div>
+                        </div>
                         <div class="row div-case-complainant_relation_other" style="display: none;">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Other:</label>
