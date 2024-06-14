@@ -18,6 +18,7 @@ Class Case_details_model extends CI_Model {
                     (SELECT `parameter_name` FROM `icms_global_parameter` WHERE `parameter_type_id` = '8' AND `parameter_count_id`=`cc`.`case_complainant_relation` LIMIT 1) as `complainant_relation`,
                     `cc`.`case_complainant_relation_other`,
                     `cc`.`case_complainant_address`,
+                    `cc`.`case_complainant_place_of_incident`,
                     `cc`.`case_complainant_remarks`,
                     `cc`.`case_complainant_date_complained`
                 FROM
@@ -41,6 +42,7 @@ Class Case_details_model extends CI_Model {
                 (SELECT `parameter_name` FROM `icms_global_parameter` WHERE `parameter_type_id` = '8' AND `parameter_count_id`=`cc`.`case_complainant_relation` LIMIT 1) as `complainant_relation`,
                 `cc`.`case_complainant_relation_other` as `relation_desc`,
                 `cc`.`case_complainant_address`,
+                `cc`.`case_complainant_place_of_incident`,
                 `cc`.`case_complainant_remarks`
             FROM
                 `icms_case_complainant` `cc`
@@ -64,7 +66,8 @@ Class Case_details_model extends CI_Model {
                 `case_complainant_alternate_contact_number`=" .$this->yel->checkifStringExist($aParam['alternatecontact']) . ",  
                 `case_complainant_relation`= " .$this->yel->checkifStringExist($aParam['relation']) . ",  
                 `case_complainant_relation_other`= " .$this->yel->checkifStringExist($aParam['relationother']) . ", 
-                `case_complainant_address`= " .$this->yel->checkifStringExist($aParam['address']) . ", 
+                `case_complainant_address`= " .$this->yel->checkifStringExist($aParam['address']) . ",
+                `case_complainant_place_of_incident`=" .$this->yel->checkifStringExist($aParam['placeofincident']) . ", 
                 `case_complainant_date_complained`= " . $this->yel->checkDateIfExist($aParam['datecomplained']) . ",
                 `case_complainant_modified_by`='" . $_SESSION['userData']['user_id'] . "'
             WHERE
@@ -87,6 +90,7 @@ Class Case_details_model extends CI_Model {
                 `case_complainant_relation`='" . $aParam['relation'] . "',
                 `case_complainant_relation_other`='" . $aParam['relationother'] . "',
                 `case_complainant_address`='" . $aParam['address'] . "',
+                `case_complainant_place_of_incident`='" . $aParam['placeofincident'] . "',
                 `case_complainant_remarks`='" . $aParam['remarks'] . "',
                 `case_complainant_added_by`='" . $_SESSION['userData']['user_id'] . "',
                 `case_complainant_date_complained`='" . $aParam['datecomplained'] . "'
