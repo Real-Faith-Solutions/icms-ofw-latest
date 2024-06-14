@@ -1258,6 +1258,7 @@ function storeCaseDetails() {
         'is_illegal_rec': $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         'is_other_law': $('.case-is_other_law').is(':checked') ? '1' : '0',
         'other_law_desc': $('.case-other_law_desc').val(),
+        'violated': $("input:radio[name ='s_violated']:checked").val(),
         'acts': acts,
         'means': means,
         'purposes': purposes

@@ -137,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input case-is_illegal_rec noSpcStart" id="ch1">
@@ -152,7 +152,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <fieldset><div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group form-check">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch1" value="CSEC" name="s_violated" required="true">
+                                    <label class="form-check-label " for="ch1" style="color: #e88f15 !important;">CSEC 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group form-check">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch2" value="OSAEC" name="s_violated" required="true">
+                                    <label class="form-check-label " for="ch2" style="color: #e88f15 !important;">OSAEC
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group form-check">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch4" value="CSAEM" name="s_violated" required="true">
+                                    <label class="form-check-label " for="ch4" style="color: #e88f15 !important;">CSAEM
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group form-check">
+                                    <input type="radio" class="form-check-input case-violated noSpcStart" id="ch3" value="Other law/s violated" name="s_violated" required="true">
+                                    <label class="form-check-label " for="ch3" style="color: #e88f15 !important;">Other law/s violated
+                                    </label>
+                                </div>
+                            </div>
+                        </div></fieldset>
                         <div class="row div-other_law_desc" style="display: none;">
                             <div class="form-group col-lg-10 col-md-12 col-sm-12">
                                 <label> Other Law Description </label>
