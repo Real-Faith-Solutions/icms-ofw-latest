@@ -192,11 +192,31 @@ function addSetOffenderInfo() {
     var offender_type = $('.a-case-offender_type').val();
     var offender_type_name = $('.a-case-offender_type option:selected').text();
     var offender_name = $('.a-case-offender_name').val();
+    var offender_name_alias = $('.a-case-offender_alias').val();
     var offender_nationality = $('.a-case-offender_nationality').val();
     var offender_nationality_name = $('.a-case-offender_nationality option:selected').text();
     var offender_relation = $('.a-case-offender_relation').val();
     var offender_address = $('.a-case-offender_address').val();
     var offender_contact = $('.a-case-offender_contact').val();
+    var offender_pob = $('.a-case-offender_place_of_birth').val();
+    var offender_dob = $('.a-case-offender_date_of_birth').val();
+    var offender_occupation = $('.a-case-offender_occupation').val();
+    var offender_place_of_business = $('.a-case-offender_principal_place_of_business').val();
+    var offender_gender = $('.a-case-offender_gender').val();
+    var offender_gender_name = $('.a-case-offender_gender option:selected').text();
+    var offender_religion = $('.a-case-offender_religion').val();
+    var offender_religion_name = $('.a-case-offender_religion option:selected').text();
+    var offender_race_ethnicity = $('.a-case-offender_race_ethnicity').val();
+    var offender_civil_status = $('.a-case-offender_civil_status').val();
+    var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
+    var offender_name_of_parents = $('.a-case-offender_name_of_parents').val();
+    var offender_name_of_spouse = $('.a-case-offender_name_of_spouse').val();
+    var offender_socialmedia = $('.a-case-offender_social_media_account').val();
+    var offender_email_address = $('.a-case-offender_email_address').val();
+    var offender_place_of_arrest = $('.a-case-offender_place_of_arrest').val();
+    var offender_date_of_arrest = $('.a-case-offender_date_of_arrest').val();
+    var offender_at_large = $('.a-case-offender_at_large').val();
+    var offender_at_large_name = $('.a-case-offender_at_large option:selected').text();
     var offender_remarks = $('.a-case-offender_remarks').val();
     $.post(sAjaxCaseDetails, {
         type: "addSetOffenderInfo",
@@ -206,20 +226,56 @@ function addSetOffenderInfo() {
         offender_type: offender_type,
         offender_type_name: offender_type_name,
         offender_name: offender_name,
+        offender_name_alias: offender_name_alias,
         offender_nationality: offender_nationality,
         offender_nationality_name: offender_nationality_name,
         offender_relation: offender_relation,
         offender_address: offender_address,
         offender_contact: offender_contact,
+        offender_pob: offender_pob,
+        offender_dob: offender_dob,
+        offender_date_of_arrest: offender_date_of_arrest,
+        offender_occupation: offender_occupation,
+        offender_place_of_business: offender_place_of_business,
+        offender_gender: offender_gender,
+        offender_gender_name: offender_gender_name,
+        offender_religion: offender_religion,
+        offender_religion_name: offender_religion_name,
+        offender_race_ethnicity: offender_race_ethnicity,
+        offender_civil_status: offender_civil_status,
+        offender_previous_case_comitted: offender_previous_case_comitted,
+        offender_name_of_parents:offender_name_of_parents,
+        offender_name_of_spouse: offender_name_of_spouse,
+        offender_socialmedia: offender_socialmedia,
+        offender_email_address: offender_email_address,
+        offender_place_of_arrest: offender_place_of_arrest,
+        offender_at_large: offender_at_large,
+        offender_at_large_name: offender_at_large_name,
         offender_remarks: offender_remarks
 
     }, function (rs) {
         getCaseAllegedOffender();
         $('#modalcontent-add_offender').modal("hide");
         $('#txtoffendername').val("");
+        $('#txtoffendernamealias').val("");
         $('#seloffenderposition').val("").change();
         $('#seloffendernationality').val("").change();
         $('#txtoffendercontact').val("");
+        $('#txtoffenderpob').val("");
+        $('#txtoffenderoccupation').val("");
+        $('#txtoffenderplaceofbusiness').val("");
+        $('#txtoffendergender').val("");
+        $('#txtoffendereligion').val("");
+        $('#txtoffenderraceethnicity').val("");
+        $('#txtoffendercivilstatus').val("");
+        $('#txtoffenderpreviuouscasecomitted').val("");
+        $('#txtoffendernameofparents').val("");
+        $('#txtoffendernameofspouse').val("");
+        $('#txtoffendersocmedia').val("");
+        $('#txtoffenderemailaddress').val("");
+        $('#txtoffenderplaceofarrest').val("");
+        $('#txtoffenderdateofarrest').val("");
+        $('#txtoffenderisatlarge').val("");
         $('#offenderaddress').val("");
         $('#offederremarks').val("");
         notifyChangesInReport();
@@ -332,9 +388,27 @@ function getCaseAllegedOffender() {
             $.each(rs.data.offender, function (key, val) {
                 var attribs = "";
                 attribs += "alg-name='" + val.case_offender_name + "'";
+                attribs += "alg-namealias='" + val.case_offender_alias + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
                 attribs += "alg-nationality='" + val.case_offender_nationality + "'";
+                attribs += "alg-relation='" + val.case_offender_other + "'";
                 attribs += "alg-contact='" + val.case_offender_contact_details + "'";
+                attribs += "alg-pob='" + val.case_offender_pob + "'";
+                attribs += "alg-dob='" + val.case_offender_dob + "'";
+                attribs += "alg-occupation='" + val.case_offender_occupation + "'";
+                attribs += "alg-placeofbusiness='" + val.case_offender_principal_place_of_business + "'";
+                attribs += "alg-gender='" + val.case_offender_gender + "'";
+                attribs += "alg-religion='" + val.case_offender_religion + "'";
+                attribs += "alg-raceethnicity='" + val.case_offender_race_ethnicity + "'";
+                attribs += "alg-racecivilstatus='" + val.case_offender_civil_status+ "'";
+                attribs += "alg-previouscasecommited='" + val.case_offender_previous_case_commited + "'";
+                attribs += "alg-nameofparents='" + val.case_offender_name_of_parents + "'";
+                attribs += "alg-nameofspouse='" + val.case_offender_name_of_spouse + "'";
+                attribs += "alg-socmed='" + val.case_offender_socialmedia+ "'";
+                attribs += "alg-emailaddress='" + val.case_offender_email_address+ "'";
+                attribs += "alg-placeofarrest='" + val.case_offender_place_of_arrest+ "'";
+                attribs += "alg-dateofarrest='" + val.case_offender_date_of_arrest+ "'";
+                attribs += "alg-isatlarge='" + val.case_offender_is_at_large+ "'";
                 attribs += "alg-address='" + val.case_offender_address + "'";
                 attribs += "alg-remarks='" + val.case_offender_remarks + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
@@ -1037,9 +1111,27 @@ $(document).ready(function () {
             //success
             var rs = rset.data.offender;
             $('.a-case-offender_name').val(rs.case_offender_name);
+            $('.a-case-offender_alias').val(rs.case_offender_alias);
             $('.a-case-offender_type').val(rs.case_offender_type_id).change();
             $('.a-case-offender_nationality').val(rs.case_offender_nationality).change();
+            $('.a-case-offender_relation').val(rs.case_offender_other).change();
             $('.a-case-offender_contact').val(rs.case_offender_contact_details);
+            $('.a-case-offender_place_of_birth').val(rs.case_offender_pob);
+            $('.a-case-offender_date_of_birth').val(rs.case_offender_dob);
+            $('.a-case-offender_occupation').val(rs.case_offender_occupation);
+            $('.a-case-offender_principal_place_of_business').val(rs.case_offender_principal_place_of_business);
+            $('.a-case-offender_gender').val(rs.case_offender_gender).change();
+            $('.a-case-offender_religion').val(rs.case_offender_religion).change();
+            $('.a-case-offender_race_ethnicity').val(rs.case_offender_race_ethnicity);
+            $('.a-case-offender_civil_status').val(rs.case_offender_civil_status);
+            $('.a-case-offender_previous_case_committed').val(rs.case_offender_previous_case_commited);
+            $('.a-case-offender_name_of_parents').val(rs.case_offender_name_of_parents);
+            $('.a-case-offender_name_of_spouse').val(rs.case_offender_name_of_spouse);
+            $('.a-case-offender_social_media_account').val(rs.case_offender_socialmedia);
+            $('.a-case-offender_email_address').val(rs.case_offender_email_address);
+            $('.a-case-offender_place_of_arrest').val(rs.case_offender_place_of_arrest);
+            $('.a-case-offender_date_of_arrest').val(rs.case_offender_date_of_arrest);
+            $('.a-case-offender_at_large').val(rs.case_offender_is_at_large);
             $('.a-case-offender_address').val(rs.case_offender_address);
             $('.a-case-offender_remarks').val(rs.case_offender_remarks);
         }, 'json');

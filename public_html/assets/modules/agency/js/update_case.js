@@ -95,6 +95,14 @@ function getUpdateCaseGlobalParameter() {
             sId: '',
         });
 
+         // Offender Description
+         buildOptionDetailsParameter({
+            aData: info.Offender_Description,
+            sLabel: 'Select Offender Description',
+            sClass: 'sel-offender_is_at_large',
+            sId: '',
+        });
+
         // Next of Kin 
         buildOptionDetailsParameter({
             aData: info.family_relation,

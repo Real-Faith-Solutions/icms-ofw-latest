@@ -312,15 +312,55 @@ Class Case_details_model extends CI_Model {
         return $result;
     }
 
+    // public function getCaseAllegedOffender($aParam) {
+    //     $sql = "
+    //             SELECT
+    //                 `co`.`case_offender_id`,
+    //                 `co`.`case_offender_name`,
+    //                 `co`.`case_offender_nationality`,
+    //                 `co`.`case_offender_other`,
+    //                 `co`.`case_offender_address`,
+    //                 `co`.`case_offender_contact_details`,
+    //                 `co`.`case_offender_remarks`,
+    //                 `co`.`case_offender_type_id`, 
+    //                 (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id` = `co`.`case_offender_type_id`) as `offender_type`
+    //             FROM
+    //                 `icms_case_offender` `co`
+    //             WHERE
+    //                 `co`.`case_id` = '" . $aParam['caseid'] . "'
+    //             AND `case_offender_is_active`='1'
+    //         ";
+
+    //     $result = $this->yel->GetAll($sql);
+
+    //     return $result;
+    // }
     public function getCaseAllegedOffender($aParam) {
         $sql = "
                 SELECT
                     `co`.`case_offender_id`,
                     `co`.`case_offender_name`,
+                    `co`.`case_offender_alias`,
                     `co`.`case_offender_nationality`,
                     `co`.`case_offender_other`,
                     `co`.`case_offender_address`,
                     `co`.`case_offender_contact_details`,
+                    `co`.`case_offender_pob`,
+                    `co`.`case_offender_dob`,
+                    `co`.`case_offender_occupation`,
+                    `co`.`case_offender_principal_place_of_business`,
+                    `co`.`case_offender_gender`,
+                    `co`.`case_offender_religion`,
+                    `co`.`case_offender_race_ethnicity`,
+                    `co`.`case_offender_civil_status`,
+                    `co`.`case_offender_previous_case_commited`,
+                    `co`.`case_offender_name_of_parents`,
+                    `co`.`case_offender_name_of_spouse`,
+                    `co`.`case_offender_socialmedia`,
+                    `co`.`case_offender_email_address`,
+                    `co`.`case_offender_place_of_arrest`,
+                    `co`.`case_offender_date_of_arrest`,
+                    `co`.`case_offender_is_at_large`,
                     `co`.`case_offender_remarks`,
                     `co`.`case_offender_type_id`, 
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id` = `co`.`case_offender_type_id`) as `offender_type`
@@ -349,6 +389,23 @@ Class Case_details_model extends CI_Model {
         return $result;
     }
 
+    // public function addOffenderInfo($aParam) {
+    //     $sql = "
+    //             INSERT INTO
+    //                 `icms_case_offender`
+    //             SET
+    //                 `case_id`='" . $aParam['caseid'] . "',
+    //                 `case_offender_type_id`='" . $aParam['offender_type'] . "',
+    //                 `case_offender_name`='" . $aParam['offender_name'] . "',
+    //                 `case_offender_nationality`='" . $aParam['offender_nationality'] . "',
+    //                 `case_offender_address`='" . $aParam['offender_address'] . "',
+    //                 `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
+    //                 `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
+    //                 `case_offender_remarks`='" . $aParam['offender_remarks'] . "'";
+    //     $result = $this->yel->exec($sql);
+    //     return $result;
+    // }
+
     public function addOffenderInfo($aParam) {
         $sql = "
                 INSERT INTO
@@ -357,14 +414,49 @@ Class Case_details_model extends CI_Model {
                     `case_id`='" . $aParam['caseid'] . "',
                     `case_offender_type_id`='" . $aParam['offender_type'] . "',
                     `case_offender_name`='" . $aParam['offender_name'] . "',
+                    `case_offender_alias`='" . $aParam['offender_name_alias'] . "',
                     `case_offender_nationality`='" . $aParam['offender_nationality'] . "',
                     `case_offender_address`='" . $aParam['offender_address'] . "',
                     `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
+                    `case_offender_pob`= '" . $aParam['offender_pob'] . "',
+                    `case_offender_dob`= " . $this->yel->checkDateIfExist($aParam['offender_dob']) . ",
+                    `case_offender_occupation`= '" . $aParam['offender_occupation'] . "',
+                    `case_offender_principal_place_of_business`= '" . $aParam['offender_place_of_business'] . "',
+                    `case_offender_race_ethnicity`= '" . $aParam['offender_race_ethnicity'] . "',
+                    `case_offender_civil_status`= '" . $aParam['offender_civil_status'] . "',
+                    `case_offender_previous_case_commited`= '" . $aParam['offender_previous_case_comitted'] . "',
+                    `case_offender_gender`= '" . $aParam['offender_gender'] . "',
+                    `case_offender_religion`= '" . $aParam['offender_religion'] . "',
+                    `case_offender_name_of_parents`= '" . $aParam['offender_name_of_parents'] . "',
+                    `case_offender_name_of_spouse`= '" . $aParam['offender_name_of_spouse'] . "',
+                    `case_offender_socialmedia`= '" . $aParam['offender_socialmedia'] . "',
+                    `case_offender_email_address`= '" . $aParam['offender_email_address'] . "',
+                    `case_offender_place_of_arrest`= '" . $aParam['offender_place_of_arrest'] . "',
+                    `case_offender_date_of_arrest`= " . $this->yel->checkDateIfExist($aParam['offender_dob']) . ",
+                    `case_offender_is_at_large`= '" . $aParam['offender_at_large'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'";
         $result = $this->yel->exec($sql);
         return $result;
     }
+
+    // public function setOffenderInfo($aParam) {
+    //     $sql = "
+    //             Update
+    //                 `icms_case_offender`
+    //             SET
+    //                 `case_offender_type_id`='" . $aParam['offender_type'] . "',
+    //                 `case_offender_name`='" . $aParam['offender_name'] . "',
+    //                 `case_offender_nationality`='" . $aParam['offender_nationality'] . "',
+    //                 `case_offender_address`='" . $aParam['offender_address'] . "',
+    //                 `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
+    //                 `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
+    //                 `case_offender_remarks`='" . $aParam['offender_remarks'] . "'
+    //             WHERE
+    //                 `case_offender_id` = '" . $aParam['offenderid'] . "'";
+    //     $result = $this->yel->exec($sql);
+    //     return $result;
+    // }
 
     public function setOffenderInfo($aParam) {
         $sql = "
@@ -373,9 +465,26 @@ Class Case_details_model extends CI_Model {
                 SET
                     `case_offender_type_id`='" . $aParam['offender_type'] . "',
                     `case_offender_name`='" . $aParam['offender_name'] . "',
+                    `case_offender_alias`='" . $aParam['offender_name_alias'] . "',
                     `case_offender_nationality`='" . $aParam['offender_nationality'] . "',
                     `case_offender_address`='" . $aParam['offender_address'] . "',
                     `case_offender_contact_details`= '" . $aParam['offender_contact'] . "',
+                    `case_offender_pob`= '" . $aParam['offender_pob'] . "',
+                    `case_offender_dob`= " . $this->yel->checkDateIfExist($aParam['offender_dob']) . ",
+                    `case_offender_occupation`= '" . $aParam['offender_occupation'] . "',
+                    `case_offender_principal_place_of_business`= '" . $aParam['offender_place_of_business'] . "',
+                    `case_offender_race_ethnicity`= '" . $aParam['offender_race_ethnicity'] . "',
+                    `case_offender_civil_status`= '" . $aParam['offender_civil_status'] . "',
+                    `case_offender_previous_case_commited`= '" . $aParam['offender_previous_case_comitted'] . "',
+                    `case_offender_gender`= '" . $aParam['offender_gender'] . "',
+                    `case_offender_religion`= '" . $aParam['offender_religion'] . "',
+                    `case_offender_name_of_parents`= '" . $aParam['offender_name_of_parents'] . "',
+                    `case_offender_name_of_spouse`= '" . $aParam['offender_name_of_spouse'] . "',
+                    `case_offender_socialmedia`= '" . $aParam['offender_socialmedia'] . "',
+                    `case_offender_email_address`= '" . $aParam['offender_email_address'] . "',
+                    `case_offender_place_of_arrest`= '" . $aParam['offender_place_of_arrest'] . "',
+                    `case_offender_date_of_arrest`= " . $this->yel->checkDateIfExist($aParam['offender_dob']) . ",
+                    `case_offender_is_at_large`= '" . $aParam['offender_at_large'] . "',
                     `case_offender_other`= " . $this->yel->checkifStringExist($aParam['offender_relation']) . ",
                     `case_offender_remarks`='" . $aParam['offender_remarks'] . "'
                 WHERE
@@ -507,15 +616,51 @@ Class Case_details_model extends CI_Model {
         return $result;
     }
 
+    // public function getOffenderInfo($aParam) {
+    //     $sql = "
+    //             SELECT 
+    //                 `co`.`case_offender_name`,
+    //                 (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id`=`co`.`case_offender_type_id` LIMIT 1) as `ofender_type`,
+    //                 (SELECT `nationality` FROM `icms_global_country` WHERE `country_id` = `co`.`case_offender_nationality` LIMIT 1) as `nationality`,
+    //                 `co`.`case_offender_other`,
+    //                 `co`.`case_offender_address`,
+    //                 `co`.`case_offender_contact_details`,
+    //                 `co`.`case_offender_remarks`
+    //            FROM
+    //                 `icms_case_offender` `co`
+    //             WHERE
+    //                 `case_offender_id` = '" . $aParam['offenderid'] . "'
+    //             LIMIT 1";
+    //     $result = $this->yel->GetRow($sql);
+    //     return $result;
+    // }
+
     public function getOffenderInfo($aParam) {
         $sql = "
                 SELECT 
                     `co`.`case_offender_name`,
+                    `co`.`case_offender_alias`,
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '10' AND `transaction_parameter_count_id`=`co`.`case_offender_type_id` LIMIT 1) as `ofender_type`,
                     (SELECT `nationality` FROM `icms_global_country` WHERE `country_id` = `co`.`case_offender_nationality` LIMIT 1) as `nationality`,
                     `co`.`case_offender_other`,
                     `co`.`case_offender_address`,
                     `co`.`case_offender_contact_details`,
+                    `co`.`case_offender_pob`,
+                    `co`.`case_offender_dob`,
+                    `co`.`case_offender_occupation`,
+                    `co`.`case_offender_principal_place_of_business`,
+                    `co`.`case_offender_race_ethnicity`,
+                    `co`.`case_offender_civil_status`,
+                    `co`.`case_offender_previous_case_commited`,
+                    `co`.`case_offender_gender`,
+                    `co`.`offender_religion`,
+                    `co`.`case_offender_name_of_parents`,
+                    `co`.`case_offender_name_of_spouse`,
+                    `co`.`case_offender_socialmedia`,
+                    `co`.`case_offender_email_address`,
+                    `co`.`case_offender_place_of_arrest`,
+                    `co`.`case_offender_date_of_arrest`,
+                    `co`.`case_offender_is_at_large`,
                     `co`.`case_offender_remarks`
                FROM
                     `icms_case_offender` `co`
