@@ -19,6 +19,7 @@ Class Case_details_model extends CI_Model {
                     `cc`.`case_complainant_relation_other`,
                     `cc`.`case_complainant_address`,
                     `cc`.`case_complainant_place_of_incident`,
+                    `cc`.`case_complainant_place_of_origin`,
                     `cc`.`case_complainant_remarks`,
                     `cc`.`case_complainant_date_complained`
                 FROM
@@ -43,6 +44,7 @@ Class Case_details_model extends CI_Model {
                 `cc`.`case_complainant_relation_other` as `relation_desc`,
                 `cc`.`case_complainant_address`,
                 `cc`.`case_complainant_place_of_incident`,
+                `cc`.`case_complainant_place_of_origin`,
                 `cc`.`case_complainant_remarks`
             FROM
                 `icms_case_complainant` `cc`
@@ -67,7 +69,8 @@ Class Case_details_model extends CI_Model {
                 `case_complainant_relation`= " .$this->yel->checkifStringExist($aParam['relation']) . ",  
                 `case_complainant_relation_other`= " .$this->yel->checkifStringExist($aParam['relationother']) . ", 
                 `case_complainant_address`= " .$this->yel->checkifStringExist($aParam['address']) . ",
-                `case_complainant_place_of_incident`=" .$this->yel->checkifStringExist($aParam['placeofincident']) . ", 
+                `case_complainant_place_of_incident`=" .$this->yel->checkifStringExist($aParam['placeofincident']) . ",
+                `case_complainant_place_of_origin`=" .$this->yel->checkifStringExist($aParam['placeoforigin']) . ", 
                 `case_complainant_date_complained`= " . $this->yel->checkDateIfExist($aParam['datecomplained']) . ",
                 `case_complainant_modified_by`='" . $_SESSION['userData']['user_id'] . "'
             WHERE
@@ -91,6 +94,7 @@ Class Case_details_model extends CI_Model {
                 `case_complainant_relation_other`='" . $aParam['relationother'] . "',
                 `case_complainant_address`='" . $aParam['address'] . "',
                 `case_complainant_place_of_incident`='" . $aParam['placeofincident'] . "',
+                `case_complainant_place_of_origin`='" . $aParam['placeoforigin'] . "',
                 `case_complainant_remarks`='" . $aParam['remarks'] . "',
                 `case_complainant_added_by`='" . $_SESSION['userData']['user_id'] . "',
                 `case_complainant_date_complained`='" . $aParam['datecomplained'] . "'
