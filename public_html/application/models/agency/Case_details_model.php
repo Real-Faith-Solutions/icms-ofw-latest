@@ -13,6 +13,7 @@ Class Case_details_model extends CI_Model {
                     `cc`.`case_complainant_source_id`,
                     (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '9' AND `transaction_parameter_count_id`=`cc`.`case_complainant_source_id` LIMIT 1) as `complainant_source`,
                     `cc`.`case_complainant_contact_number`,
+                    `cc`.`case_complainant_alternate_contact_number`,
                     `cc`.`case_complainant_relation`,
                     (SELECT `parameter_name` FROM `icms_global_parameter` WHERE `parameter_type_id` = '8' AND `parameter_count_id`=`cc`.`case_complainant_relation` LIMIT 1) as `complainant_relation`,
                     `cc`.`case_complainant_relation_other`,
@@ -35,6 +36,7 @@ Class Case_details_model extends CI_Model {
             SELECT
                 `cc`.`case_complainant_name`,
                 `cc`.`case_complainant_contact_number`,
+                `cc`.`case_complainant_alternate_contact_number`,
                 (SELECT `transaction_parameter_name` FROM `icms_transaction_parameter` WHERE `transaction_parameter_type_id` = '9' AND `transaction_parameter_count_id`=`cc`.`case_complainant_source_id` LIMIT 1) as `complainant_source`,
                 (SELECT `parameter_name` FROM `icms_global_parameter` WHERE `parameter_type_id` = '8' AND `parameter_count_id`=`cc`.`case_complainant_relation` LIMIT 1) as `complainant_relation`,
                 `cc`.`case_complainant_relation_other` as `relation_desc`,
@@ -58,7 +60,8 @@ Class Case_details_model extends CI_Model {
             SET
                 `case_complainant_source_id`='" . $aParam['complainsource'] . "',
                 `case_complainant_name`= " .$this->yel->checkifStringExist($aParam['complainantname']) . ",  
-                `case_complainant_contact_number`=" .$this->yel->checkifStringExist($aParam['contact']) . ",  
+                `case_complainant_contact_number`=" .$this->yel->checkifStringExist($aParam['contact']) . ",
+                `case_complainant_alternate_contact_number`=" .$this->yel->checkifStringExist($aParam['alternatecontact']) . ",  
                 `case_complainant_relation`= " .$this->yel->checkifStringExist($aParam['relation']) . ",  
                 `case_complainant_relation_other`= " .$this->yel->checkifStringExist($aParam['relationother']) . ", 
                 `case_complainant_address`= " .$this->yel->checkifStringExist($aParam['address']) . ", 
@@ -80,6 +83,7 @@ Class Case_details_model extends CI_Model {
                 `case_complainant_source_id`='" . $aParam['complainsource'] . "',
                 `case_complainant_name`='" . $aParam['complainantname'] . "',
                 `case_complainant_contact_number`='" . $aParam['contact'] . "',
+                `case_complainant_alternate_contact_number`='" . $aParam['alternatecontact'] . "',
                 `case_complainant_relation`='" . $aParam['relation'] . "',
                 `case_complainant_relation_other`='" . $aParam['relationother'] . "',
                 `case_complainant_address`='" . $aParam['address'] . "',

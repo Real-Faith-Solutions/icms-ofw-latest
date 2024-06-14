@@ -218,6 +218,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                         </div>
                                     </div>
+                                    <div class="col-lg-10 col-md-12 col-sm-12">
+                                        <div class=" card card_tbl-container ">
+                                            <div class="row">
+                                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                    <label>Details of coordination with other LEA/agency</label>
+                                                    <textarea class="form-control case-details_of_coordination noSpcStart" maxlength="5000" style="height: 150px !important;"  placeholder="Details of coordination with other LEA/agency..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade " id="tab-offender" role="tabpanel" aria-labelledby="list-offender-list">
