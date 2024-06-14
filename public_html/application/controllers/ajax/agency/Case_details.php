@@ -296,7 +296,7 @@ class Case_details extends CI_Controller {
         $aResponse['case_is_illegal_rec'] = $caseInfo['case_is_illegal_rec'];
         $aResponse['case_is_other_law'] = $caseInfo['case_is_other_law'];
         $aResponse['case_is_other_law_desc'] = $caseInfo['case_is_other_law_desc'];
-
+        $aResponse['case_violated'] = $caseInfo['case_violated'];
         $aResponse['acts'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 1);
         $aResponse['means'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 3);
         $aResponse['purpose'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 2);
@@ -336,6 +336,7 @@ class Case_details extends CI_Controller {
 
         //update brief summary
         $aResponse['summary'] = $this->Case_details_model->setBriefFactOfTheCase($aParam);
+        $aResponse['form_of_Law'] = $this->Case_details_model->setViolation($aParam);
 
         // update is illegal rec, is other law, other law desc 
         $aResponse['case_details'] = $this->Case_details_model->setCaseOtherDetails($aParam);

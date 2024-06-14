@@ -274,7 +274,9 @@ Class Case_details_model extends CI_Model {
                     `case_is_illegal_rec`, 
                     `case_is_other_law`, 
                     `case_is_other_law_desc`, 
-                    `case_priority_level_id`
+                    `case_priority_level_id`,
+                    `case_violated`
+
                 FROM
                     `icms_case`
                 WHERE
@@ -282,6 +284,19 @@ Class Case_details_model extends CI_Model {
             ";
 
         $result = $this->yel->GetRow($sql);
+        return $result;
+    }
+
+    public function setViolation($aParam) {
+        $sql = "
+                UPDATE 
+                    `icms_case`
+                SET
+                    `case_violated`='" . $aParam['form_of_Law'] . "'
+                WHERE
+                    `case_id` = '" . $aParam['caseid'] . "'
+            ";
+        $result = $this->yel->exec($sql);
         return $result;
     }
 
