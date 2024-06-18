@@ -270,7 +270,8 @@ Class Case_details_model extends CI_Model {
         $sql = "
                 SELECT
                     `case_evaluation`,
-                    `case_risk_assessment`, 
+                    `case_risk_assessment`,
+                    `case_coordination_detail_lea`, 
                     `case_is_illegal_rec`, 
                     `case_is_other_law`, 
                     `case_is_other_law_desc`, 
@@ -306,7 +307,8 @@ Class Case_details_model extends CI_Model {
                     `icms_case`
                 SET
                     `case_evaluation`='" . $aParam['evaluation'] . "',
-                    `case_risk_assessment`='" . $aParam['risk_assessment'] . "'
+                    `case_risk_assessment`='" . $aParam['risk_assessment'] . "',
+                    `case_coordination_detail_lea`='" . $aParam['case_coordination_lea'] . "'
                 WHERE
                     `case_id` = '" . $aParam['caseid'] . "'";
         $result = $this->yel->exec($sql);
