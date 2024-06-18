@@ -1569,7 +1569,16 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_salary_foreign_iso`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['currency']) . ", 
                 `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary_in_peso']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['working_hours']) . ", 
-                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ", 
+                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ",
+                `employee_local_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_employment_type']) . ",
+                `employee_local_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_child_case_type']) . ",
+                `employee_local_region`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_region']) . ",
+                `employee_local_province`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_province']) . ",
+                `employee_local_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_city']) . ",
+                `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
+                `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
+                `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ",  
                 `case_victim_employment_details_is_actual`= '" . $val . "' 
                ";
 
@@ -1591,6 +1600,15 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_salary_in_peso']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_working_hours']) . ", 
                 `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_days_of_work']) . ", 
+                `employee_local_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_employment_type']) . ",
+                `employee_local_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_child_case_type']) . ",
+                `employee_local_region`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_region']) . ",
+                `employee_local_province`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_province']) . ",
+                `employee_local_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_city']) . ",
+                `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
+                `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
+                `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
                 `case_victim_employment_details_is_actual`='1' 
                ";
         $aResponse = $this->yel->exec($sql2);
