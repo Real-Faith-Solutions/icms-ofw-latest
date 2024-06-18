@@ -2350,7 +2350,16 @@ Class Case_model extends CI_Model {
                    `icved`.`case_victim_employment_details_salary_in_local`,
                    `icved`.`case_victim_employment_details_working_hours`,
                    `icved`.`case_victim_employment_details_working_in_out`,
-                   `icved`.`case_victim_employment_details_working_days`
+                   `icved`.`case_victim_employment_details_working_days`,
+                   `icved`.`employee_local_type_of_employment`,
+                   `icved`.`employee_local_type_of_child_cases`,
+                   `icved`.`employee_local_region`,
+                   `icved`.`employee_local_province`,
+                   `icved`.`employee_local_city`,
+                   `icved`.`employee_local_barangay`,
+                   `icved`.`employee_local_age_started_working`,
+                   `icved`.`employee_local_salary_per_hour`,
+                   `icved`.`employee_local_reason_for_employment`
                 FROM 
                    `icms_case_victim_employment` `icve`,
                    `icms_case_victim_employment_details` `icved`

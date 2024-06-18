@@ -326,12 +326,26 @@ function getEmploymentInformation(is_contract) {
 
         if (is_contract == "1") {
             loadEmployment_contract(rs);
+            loadLocal_Employment(rs);
             aInitialValues["employment_actual_work"] = getFormValues('frm-emp-contract');
         } else {
             loadEmployment_actual(rs);
             aInitialValues["employment_diff_contract"] = getFormValues('frm-emp-noncontract');
         }
     }, 'json');
+}
+
+function loadLocal_Employment(rs) {
+
+
+    $('.emp-act_age_started_working').val(rs.employee_local_age_started_working);
+    $('.emp-act_salary_per_hour').val(rs.employee_local_salary_per_hour);
+    $('.emp-act_reasons_for_employment').val(rs.employee_local_reason_for_employment);
+
+
+    $('#btn-save-contract').attr('datacveid', rs.case_victim_employment_id);
+    $('#btn-save-contract').attr('datacvedetid', rs.case_victim_employment_details_id);
+
 }
 
 function loadEmployment_contract(rs) {
@@ -353,6 +367,7 @@ function loadEmployment_contract(rs) {
     $('.emp-case_victim_employment_details_salary_in_local').val(rs.case_victim_employment_details_salary_in_local);
     $('.emp-case_victim_employment_details_job_title').val(rs.case_victim_employment_details_job_title);
     $('.emp-case_victim_employment_details_working_days').val(rs.case_victim_employment_details_working_days);
+    $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
     $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
     $('#btn-save-contract').attr('datacveid', rs.case_victim_employment_id);
     $('#btn-save-contract').attr('datacvedetid', rs.case_victim_employment_details_id);
