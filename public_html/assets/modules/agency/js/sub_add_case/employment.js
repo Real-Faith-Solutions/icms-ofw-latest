@@ -248,7 +248,23 @@ function storeEmploymentDetails() {
         'act_salary_in_peso': $('.emp-act_salary_in_peso').val(),
         'act_position': $('.emp-act_position').val(),
         'act_days_of_work': $('.emp-act_days_of_work').val(),
-        'act_working_hours': $('.emp-act_working_hours').val()
+        'act_working_hours': $('.emp-act_working_hours').val(),
+
+        'employment_local_employment_type': $('#emp-act_type_of_employment').val(),
+        'employment_local_child_case_type': $('#emp-act_type_of_child_cases').val(),
+
+
+        'employment_local_agency_region': $('.emp-type_agency_region').val(),
+        'employment_local_agency_region_type_value': $('.emp-type_agency_region').val(),
+        'employment_local_agency_province': $('.local-type_agency_region').val(),
+        'employment_local_agency_province_type_value': $('.local-type_agency_region').val(),
+        'employment_local_agency_city': $('.local-type_agency_city').val(),
+        'employment_local_agency_city_type_value': $('.local-type_agency_city').val(),
+        'employment_local_agency_barangay': $('.local-type_agency_barangay').val(),
+        'employment_local_agency_barangay_type_value': $('.local-type_agency_barangay').val(),
+        'employment_local_age_started_working': $('.emp-act_age_started_working').val(),
+        'employment_local_agency_salary_per_hour': $('.emp-act_salary_per_hour').val(),
+        'employment_local_agency_reason_for_employment': $('.emp-act_reasons_for_employment').val()
     };
 
     var victim_employer_details = {

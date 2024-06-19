@@ -336,7 +336,6 @@ function getEmploymentInformation(is_contract) {
 }
 
 function loadLocal_Employment(rs) {
-    console.log(rs);
 
     $('#emp-act_type_of_employment').val(rs.employee_local_type_of_employment);
     $('#emp-act_type_of_child_cases').val(rs.employee_local_type_of_child_cases);
