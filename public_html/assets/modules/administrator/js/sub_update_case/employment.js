@@ -336,16 +336,20 @@ function getEmploymentInformation(is_contract) {
 }
 
 function loadLocal_Employment(rs) {
+    console.log(rs);
 
-
+    $('#emp-act_type_of_employment').val(rs.employee_local_type_of_employment);
+    $('#emp-act_type_of_child_cases').val(rs.employee_local_type_of_child_cases);
+    // $('.a-vi-address_region').val(rs.employee_local_region);
+    // $('#localProvince').val(rs.employee_local_province);
+    // $('.a-vi-address_city').val(rs.employee_local_city);
     $('.emp-act_age_started_working').val(rs.employee_local_age_started_working);
     $('.emp-act_salary_per_hour').val(rs.employee_local_salary_per_hour);
     $('.emp-act_reasons_for_employment').val(rs.employee_local_reason_for_employment);
 
 
-    $('#btn-save-contract').attr('datacveid', rs.case_victim_employment_id);
-    $('#btn-save-contract').attr('datacvedetid', rs.case_victim_employment_details_id);
-
+    $('#btn-save-local_employer').attr('datacveid', rs.case_victim_employment_id);
+    $('#btn-save-local_employer').attr('datacvedetid', rs.case_victim_employment_details_id);
 }
 
 function loadEmployment_contract(rs) {

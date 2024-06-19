@@ -1118,25 +1118,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                                                    <label> Region  <font color="red">*</font> </label>
-                                                    <select id="emp-region" disabled class="form-control sel-regions a-vi-address_region" name="region">
+                                                    <label> Region <font color="red">*</font> </label>
+                                                    <select class="form-control sel-regions a-vi-address_region" name="region">
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Province </label>
-                                                    <select class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
+                                                    <select id="localProvince" class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> City </label>
-                                                    <select class="form-control sel-cities a-vi-address_city" name="city" disabled>
+                                                    <select class="form-control sel-cities sel-citiesByProvinceId a-vi-address_city" name="city" disabled>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Barangay </label>
-                                                    <select class="form-control sel-barangay a-vi-address_barangay" disabled>
+                                                    <select class="form-control sel-barangay sel-barangayByCityId a-vi-address_barangay" disabled>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1144,7 +1144,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
                                                     <label>Age Started Working</label>
                                                     <input type="text" maxlength="2" id="emp-age_started_working" disabled name="emp_act_age_started_working" class="form-control number emp-act_age_started_working">
-                                                </div>
+                                        </div>
                                                 <div class="form-group col-lg-4 col-md-4 col-sm-12">
                                                     <label> Salary per Hour</label>
                                                     <input type="text" maxlength="20" id="emp-salary_per_hour" disabled name="emp_act_salary_per_hour" class="form-control emp-act_salary_per_hour decimal" placeholder="Salary per hour">
