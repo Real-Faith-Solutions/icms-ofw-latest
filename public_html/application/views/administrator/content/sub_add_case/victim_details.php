@@ -159,6 +159,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <select class="form-control sel-history_of_illness vi-history_of_illness"  >
                                         </select>
                                     </div>
+                                    <div class="form-group col-12">
+                                        <label> Other History of Illness/Hospitalization</label>
+                                        <input type="text" maxlength="50" class="form-control vi-other_info_hospitalization" >
+                                    </div>
                                 </div>
                             </div>
                             <!-- OSAEC adding Input Fields Health Status Disability Allergies History of Illness/Hospitalization end -->

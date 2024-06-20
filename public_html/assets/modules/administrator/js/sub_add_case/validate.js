@@ -48,6 +48,7 @@ function storeVictimDetails() {
         'allergy_value': $('.vi-allergy option:selected').attr('data-name'),
         'hospitality': $('.vi-history_of_illness').val(),
         'hospitality_value': $('.vi-history_of_illness option:selected').attr('data-name'),
+        'other_hospitalization_history': $('.vi-other_info_hospitalization').val(),
     };
 
     _setStorageData(victim_personal_info, 'victim_personal_info');
