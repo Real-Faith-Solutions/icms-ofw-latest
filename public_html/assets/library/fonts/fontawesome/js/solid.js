@@ -596,6 +596,7 @@ $(document).ready(function () {
                     disabilities: $('.vi-disability').val(),
                     allergy: $('.vi-allergies').val(),
                     illness: $('.vi-history_of_illness').val(),
+                    other_history_hospitalization:  $('.vi-other_info_hospitalization').val(),
                 }, function (rs) {
                     //modal for incorect param
                     $('#btn-manage-assumed').click();
