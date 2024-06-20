@@ -431,7 +431,8 @@ Class Victims_model extends CI_Model {
                 `victim_info_first_name`='" . $aParam['assumed_victim_info_first_name'] . "', 
                 `victim_info_middle_name`='" . $aParam['assumed_victim_info_middle_name'] . "', 
                 `victim_info_last_name`='" . $aParam['assumed_victim_info_last_name'] . "', 
-                `victim_info_dob`='" . date("Y-m-d", strtotime($aParam['assumed_victim_info_dob'])) . "', 
+                `victim_info_dob`='" . date("Y-m-d", strtotime($aParam['assumed_victim_info_dob'])) . "',
+                `other_victim_info_hospitalization`='" . $aParam['other_victim_info_hospitalization'] . "', 
                 `victim_info_date_modified`=now(), 
                 `victim_info_modified_by`='" . $this->session->userdata('userData')['user_id'] . "' 
                 WHERE 
