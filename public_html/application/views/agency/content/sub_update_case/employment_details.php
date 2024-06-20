@@ -1103,8 +1103,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label>Type of Employment</label>
                                                     <select id="emp-act_type_of_employment" disabled class="form-control emp-type_of_employment sel-type_of_employment">
                                                         <option selected disabled>Select Employment Type</option>
-                                                        <option>Formal</option>
-                                                        <option>Informal</option>
+                                                        <option value="Formal">Formal</option>
+                                                        <option value="Informal">Informal</option>
+                                                        <option value="Part-time employment">Part-time employment</option>
+                                                        <option value="Apprenticeship">Apprenticeship</option>
+                                                        <option value="Traineeship">Traineeship</option>
+                                                        <option value="Internship">Internship</option>
+                                                        <option value="Casual employment">Casual employment</option>
+                                                        <option value="Employment on commission">Employment on commission</option>
+                                                        <option value="Contract employment">Contract employment</option>
+                                                        <option value="Probation"> Probation</option>
+                                                        <option value="Seasonal employment">Seasonal employment</option>
+                                                        <option value="Leased employment">Leased employment</option>
+                                                        <option value="Contingent employment">Contingent employment</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12 form-currency">

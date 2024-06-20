@@ -357,6 +357,8 @@ function loadEmployment_contract(rs) {
     $('.emp-case_victim_employment_details_job_title').val(rs.case_victim_employment_details_job_title);
     $('.emp-case_victim_employment_details_working_days').val(rs.case_victim_employment_details_working_days);
     $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
+    $('.emp-type_of_employment').val(rs.employee_local_type_of_employment);
+    $('.emp-type_of_child_cases').val(rs.employee_local_type_of_child_cases);
     $('.emp-act_age_started_working').val(rs.employee_local_age_started_working);
     $('.emp-act_salary_per_hour').val(rs.employee_local_salary_per_hour);
     $('.emp-act_reasons_for_employment').val(rs.employee_local_reason_for_employment);
@@ -1448,6 +1450,8 @@ $(document).ready(function () {
                             var jobtitle = $('.emp-case_victim_employment_details_job_title').val();
                             var working_days = $('.emp-case_victim_employment_details_working_days').val();
                             var working_hours = $('.emp-case_victim_employment_details_working_hours').val();
+                            var type_employment_local = $('.emp-type_of_employment').val();
+                            var type_child_case_local = $('.emp-type_of_child_cases').val();
                             var age_started_working_local = $('.emp-act_age_started_working').val();
                             var salary_per_hour_local = $('.emp-act_salary_per_hour').val();
                             var reasons_for_employment_local = $('.emp-act_reasons_for_employment').val();
@@ -1465,6 +1469,8 @@ $(document).ready(function () {
                                 jobtitle: jobtitle,
                                 working_days: working_days,
                                 working_hours: working_hours,
+                                type_employment_local:type_employment_local,
+                                type_child_case_local:type_child_case_local,
                                 age_started_working_local: age_started_working_local,
                                 salary_per_hour_local:salary_per_hour_local,
                                 reasons_for_employment_local:reasons_for_employment_local,
