@@ -1370,6 +1370,124 @@ $(document).ready(function () {
 
         }
     });
+
+
+    //OSAEC CODE START
+    $('#btn-cancel-local_employer').click(function () {
+        $(this).addClass("hide");
+        $('#btn-update-local_employer').text("Manage");
+        $('#btn-update-local_employer').attr("dataaction", 'toenabled');
+        $('#area-local_employer').prop('disabled', true);
+    });
+    $('#btn-manage-local_employer').click(function () {
+        var caption = $('#btn-manage-local_employer').text();
+        if (caption == "Manage") {
+
+// for manage 
+            $('#emp-act_employed_unemployed').prop('disabled', false);
+            $('#emp-act_type_of_employment').prop('disabled', false);
+            $('#emp-act_type_of_child_cases').prop('disabled', false);
+            $('#emp-region').prop('disabled', false);
+            $('#emp-age_started_working').prop('disabled', false);
+            $('#emp-salary_per_hour').prop('disabled', false);
+            $('#emp-reasons_for_employment').prop('disabled', false);
+            $('#btn-save-local_employer').removeClass('hide');
+            $('#btn-manage-local_employer').text("Cancel");
+        } else {
+
+// for cancel 
+
+            aCurrentValues = '';
+            aCurrentValues = getFormValues('fmr-manage-evaluation');
+            if (aCurrentValues == aInitialValues['case_evaluation']) {
+// no update 
+                $('#emp-act_employed_unemployed').prop('disabled', true);
+                $('#emp-act_type_of_employment').prop('disabled', true);
+                $('#emp-act_type_of_child_cases').prop('disabled', true);
+                $('#emp-region').prop('disabled', true);
+                $('#emp-age_started_working').prop('disabled', true);
+                $('#emp-salary_per_hour').prop('disabled', true);
+                $('#emp-reasons_for_employment').prop('disabled', true);
+                $('#btn-save-local_employer').addClass('hide');
+                //save
+                $('#btn-manage-local_employer').text("Manage");
+            } else {
+// have an update
+                icmsMessage({
+                    type: "msgConfirmation",
+                    title: "You made some changes. Do you want to disregard changes?",
+                    body: "Click yes button if you want to continue",
+                    LblBtnConfirm: "Yes",
+                    onConfirm: function () {
+
+                        // no update 
+                        $('#emp-act_employed_unemployed').prop('disabled', true);
+                        $('#emp-act_type_of_employment').prop('disabled', true);
+                        $('#emp-act_type_of_child_cases').prop('disabled', true);
+                        $('#emp-region').prop('disabled', true);
+                        $('#emp-age_started_working').prop('disabled', true);
+                        $('#emp-salary_per_hour').prop('disabled', true);
+                        $('#emp-reasons_for_employment').prop('disabled', true);
+                        $('#btn-save-local_employer').addClass('hide');
+                        //save
+                        $('#btn-manage-local_employer').text("Manage");
+                        resetFormJQueryValidation('fmr-manage-evaluation');
+                        getCaseEvaluation();
+                    }
+                });
+            }
+
+        }
+    });
+    $('#btn-save-local_employer').click(function () {
+        $('#fmr-manage-evaluation').submit();
+    });
+    // update form case evaluataion risk assessment 
+    $('#fmr-manage-evaluation').validate({
+        rules: {
+
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error);
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function (form) {
+
+            aCurrentValues = '';
+            aCurrentValues = getFormValues('fmr-manage-evaluation');
+            if (aCurrentValues == aInitialValues['case_evaluation']) {
+                icmsMessage({
+                    type: "msgWarning",
+                    body: "No changes has been made.",
+                });
+            } else {
+                icmsMessage({
+                    type: "msgConfirmation",
+                    title: "You are about to update Case Evaluation & Risk Assessment",
+                    onConfirm: function () {
+
+                        // no update 
+                        $('#area-evaluation').prop('disabled', true);
+                        $('#area-case-risk-assessment').prop('disabled', true);
+                        $('#area-case-details_of_coordination').prop('disabled', true);
+                        $('#btn-save-evaluation').addClass('hide');
+                        //save
+                        $('#btn-manage-evaluation').text("Manage");
+                        setCaseEvaluation();
+                    }
+                });
+            }
+
+
+        }
+    });
+//OSAEC CODE END
+
     $('#form-add_offender').validate({
         rules: {
             offender_type: {required: true},
