@@ -2425,6 +2425,7 @@ Class Case_model extends CI_Model {
                   `case_victim_employment_details_salary_foreign_iso`='" . $aParam['foreign_iso'] . "',
                   `case_victim_employment_details_salary_in_local` ='" . $aParam['salary_local'] . "',
                   `case_victim_employment_details_working_hours`='" . $aParam['working_hours'] . "',
+                  `case_victim_employment_details_working_days`='" . $aParam['working_days'] . "',
                   `employee_local_type_of_employment`='" . $aParam['type_employment_local'] . "',
                   `employee_local_type_of_child_cases`='" . $aParam['type_child_case_local'] . "',
                   `employee_local_age_started_working`='" . $aParam['age_started_working_local'] . "',
