@@ -1078,7 +1078,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="tab-content tab-employment_main pl-0">
         <div class="tab-pane fade show active" id="employment_local" role="tabpanel" aria-labelledby="recent-case-tab">
             <div class="tab-content tab-inner px-0 pt-0 " >
-                <form id="form-update_employment_info" onSubmit="return false;" >
+                <form id="form-update_employment_info_local" onSubmit="return false;" >
                     <input type="hidden" class="vi-session_id">
 
                     <div class="form-content">
