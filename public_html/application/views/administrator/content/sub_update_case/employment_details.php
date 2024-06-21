@@ -1152,7 +1152,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label> Barangay </label>
                                                     <select class="form-control sel-barangay sel-barangayByCityId a-vi-address_barangay" disabled>
                                                     </select>
-                                                    <input type="text" id="barangay_local_id" class="barangay_local_id"/>
+                                                    <input type="hidden" id="barangay_local_id" class="barangay_local_id"/>
                                                 </div>
                                             </div>
                                             <div class="row">
