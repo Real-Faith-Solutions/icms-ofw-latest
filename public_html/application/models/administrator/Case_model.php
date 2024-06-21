@@ -2429,6 +2429,9 @@ Class Case_model extends CI_Model {
                   `employee_local_type_of_employment`='" . $aParam['type_employment_local'] . "',
                   `employee_local_type_of_child_cases`='" . $aParam['type_child_case_local'] . "',
                   `employee_local_region`='" . $aParam['region_local'] . "',
+                  `employee_local_province`='" . $aParam['province_local'] . "',
+                  `employee_local_city`='" . $aParam['city_local'] . "',
+                  `employee_local_barangay`='" . $aParam['barangay_local'] . "',
                   `employee_local_age_started_working`='" . $aParam['age_started_working_local'] . "',
                   `employee_local_salary_per_hour`='" . $aParam['salary_per_hour_local'] . "',
                   `employee_local_reason_for_employment`='" . $aParam['reasons_for_employment_local'] . "'

@@ -1138,6 +1138,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label> Province </label>
                                                     <select id="localProvince" class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
                                                     </select>
+                                                    <input type="hidden" id="province_local_id" class="province_local_id"/>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -1145,11 +1146,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label> City </label>
                                                     <select class="form-control sel-cities sel-citiesByProvinceId a-vi-address_city" name="city" disabled>
                                                     </select>
+                                                    <input type="hidden" id="city_local_id" class="city_local_id"/>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Barangay </label>
                                                     <select class="form-control sel-barangay sel-barangayByCityId a-vi-address_barangay" disabled>
                                                     </select>
+                                                    <input type="text" id="barangay_local_id" class="barangay_local_id"/>
                                                 </div>
                                             </div>
                                             <div class="row">
