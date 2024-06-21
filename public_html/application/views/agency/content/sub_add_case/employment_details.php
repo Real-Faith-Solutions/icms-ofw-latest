@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-is_documented" value="1" name="is_employment_documented" id="rdo-documented">
-                                <label class="form-check-label employment_documented" for="rdo-documented" style="color:#e88f13 !important;">Regular Victim<br>
+                                <label class="form-check-label employment_documented" for="rdo-documented" style="color:#e88f13 !important;">Documented<br>
                                     <small class="card-desc"> Victim's employment is regular. </small>
 
                                 </label>
@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-is_documented" value="0" name="is_employment_documented" id="rdo-undocumented">
-                                <label class="form-check-label employment_documented" for="rdo-undocumented" style="color:#e88f13 !important;">Irregular Victim<br>
+                                <label class="form-check-label employment_documented" for="rdo-undocumented" style="color:#e88f13 !important;">Non documented<br>
                                     <small class="card-desc"> Victim's employment is irregular. </small>
 
                                 </label>
