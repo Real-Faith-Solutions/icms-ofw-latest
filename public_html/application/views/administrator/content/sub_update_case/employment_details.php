@@ -1132,6 +1132,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label> Region <font color="red">*</font> </label>
                                                     <select class="form-control sel-regions a-vi-address_region" name="region">
                                                     </select>
+                                                    <input type="hidden" id="region_local_id" class="region_local_id"/>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Province </label>
