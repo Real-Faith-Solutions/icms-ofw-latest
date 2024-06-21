@@ -619,7 +619,8 @@ Class Case_model extends CI_Model {
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",
                 `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
                 `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
-                `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",  
+                `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
+                `other_victim_info_hospitalization`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['other_hospitalization_history']) . ",  
                 `victim_info_is_assumed`= '0',
                 `victim_info_date_added`= now(), 
                 `victim_info_added_by`= '" . $this->session->userdata('userData')['user_id'] . "', 
@@ -645,6 +646,7 @@ Class Case_model extends CI_Model {
                 `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
                 `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
                 `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
+                `other_victim_info_hospitalization`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['other_hospitalization_history']) . ",
                 `victim_info_date_added`=now(), 
                 `victim_info_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
                 `victim_info_added_by_govt_agency`='" . $this->session->userdata('userData')['agency_branch_id'] . "', 
@@ -696,7 +698,8 @@ Class Case_model extends CI_Model {
                     `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ",
                     `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
                     `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
-                    `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ", 
+                    `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
+                    `other_victim_info_hospitalization`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['other_hospitalization_history']) . ", 
                     `victim_info_is_assumed`='1', 
                     `victim_info_date_added`=now(), 
                     `victim_info_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
@@ -1526,7 +1529,16 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_salary_foreign_iso`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['currency']) . ", 
                 `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary_in_peso']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['working_hours']) . ", 
-                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ", 
+                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ",
+                `employee_local_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_employment_type']) . ",
+                `employee_local_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_child_case_type']) . ",
+                `employee_local_region`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_region']) . ",
+                `employee_local_province`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_province']) . ",
+                `employee_local_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_city']) . ",
+                `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
+                `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
+                `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
                 `case_victim_employment_details_is_actual`= '" . $val . "' 
                ";
 
@@ -1547,7 +1559,16 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_salary_foreign_iso`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_currency']) . ", 
                 `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_salary_in_peso']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_working_hours']) . ", 
-                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_days_of_work']) . ", 
+                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_days_of_work']) . ",
+                `employee_local_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_employment_type']) . ",
+                `employee_local_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_child_case_type']) . ",
+                `employee_local_region`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_region']) . ",
+                `employee_local_province`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_province']) . ",
+                `employee_local_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_city']) . ",
+                `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
+                `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
+                `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
                 `case_victim_employment_details_is_actual`='1' 
                ";
         $aResponse = $this->yel->exec($sql2);
@@ -2244,7 +2265,16 @@ Class Case_model extends CI_Model {
                    `icved`.`case_victim_employment_details_salary_in_local`,
                    `icved`.`case_victim_employment_details_working_hours`,
                    `icved`.`case_victim_employment_details_working_in_out`,
-                   `icved`.`case_victim_employment_details_working_days`
+                   `icved`.`case_victim_employment_details_working_days`,
+                   `icved`.`employee_local_type_of_employment`,
+                   `icved`.`employee_local_type_of_child_cases`,
+                   `icved`.`employee_local_region`,
+                   `icved`.`employee_local_province`,
+                   `icved`.`employee_local_city`,
+                   `icved`.`employee_local_barangay`,
+                   `icved`.`employee_local_age_started_working`,
+                   `icved`.`employee_local_salary_per_hour`,
+                   `icved`.`employee_local_reason_for_employment`
                 FROM 
                    `icms_case_victim_employment` `icve`,
                    `icms_case_victim_employment_details` `icved`
@@ -2307,7 +2337,12 @@ Class Case_model extends CI_Model {
                   `case_victim_employment_details_salary_foreign_iso`='" . $aParam['foreign_iso'] . "',
                   `case_victim_employment_details_salary_in_local` ='" . $aParam['salary_local'] . "',
                   `case_victim_employment_details_working_hours`='" . $aParam['working_hours'] . "',
-                  `case_victim_employment_details_working_days`='" . $aParam['working_days'] . "'
+                  `case_victim_employment_details_working_days`='" . $aParam['working_days'] . "',
+                  `employee_local_type_of_employment`='" . $aParam['type_employment_local'] . "',
+                  `employee_local_type_of_child_cases`='" . $aParam['type_child_case_local'] . "',
+                  `employee_local_age_started_working`='" . $aParam['age_started_working_local'] . "',
+                  `employee_local_salary_per_hour`='" . $aParam['salary_per_hour_local'] . "',
+                  `employee_local_reason_for_employment`='" . $aParam['reasons_for_employment_local'] . "'
                 WHERE
                     `case_victim_employment_details_id`='" . $aParam['datacvedetid'] . "'
               ";

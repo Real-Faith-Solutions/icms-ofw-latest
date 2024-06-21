@@ -430,7 +430,8 @@ Class Victims_model extends CI_Model {
                 SET 
                 `victim_info_first_name`='" . $aParam['assumed_victim_info_first_name'] . "', 
                 `victim_info_middle_name`='" . $aParam['assumed_victim_info_middle_name'] . "', 
-                `victim_info_last_name`='" . $aParam['assumed_victim_info_last_name'] . "', 
+                `victim_info_last_name`='" . $aParam['assumed_victim_info_last_name'] . "',
+                `other_victim_info_hospitalization`='" . $aParam['other_victim_info_hospitalization'] . "', 
                 `victim_info_dob`='" . date("Y-m-d", strtotime($aParam['assumed_victim_info_dob'])) . "', 
                 `victim_info_date_modified`=now(), 
                 `victim_info_modified_by`='" . $this->session->userdata('userData')['user_id'] . "' 
@@ -1328,6 +1329,7 @@ Class Victims_model extends CI_Model {
                     `victim_info_disability`=" . $this->yel->checkifStringExist($aParam['disabilities']) . ",
                     `victim_info_allergy`=" . $this->yel->checkifStringExist($aParam['allergy']) . ",
                     `victim_info_hospitality`=" . $this->yel->checkifStringExist($aParam['illness']) . ",
+                    `other_victim_info_hospitalization`=" . $this->yel->checkifStringExist($aParam['other_history_hospitalization']) . ",
                     `victim_info_modified_by`='" . $_SESSION['userData']['user_id'] . "'
                 WHERE 
                     `victim_id`=" . $aParam['victim_id'] . "

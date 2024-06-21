@@ -312,6 +312,7 @@ function getEmployerInformation() {
         $('#btn-save-employer').attr('dataempid', rs.employer_id);
 
         aInitialValues["employmer_details"] = getFormValues('frm-employer_details');
+        aInitialValues["employmer_details"] = getFormValues('form-update_employment_info_local');
     }, 'json');
 }
 
@@ -326,8 +327,8 @@ function getEmploymentInformation(is_contract) {
 
         if (is_contract == "1") {
             loadEmployment_contract(rs);
-            loadLocal_Employment(rs);
             aInitialValues["employment_actual_work"] = getFormValues('frm-emp-contract');
+            aInitialValues["employment_actual_work_local"] = getFormValues('form-update_employment_info_local');
         } else {
             loadEmployment_actual(rs);
             aInitialValues["employment_diff_contract"] = getFormValues('frm-emp-noncontract');
@@ -335,18 +336,6 @@ function getEmploymentInformation(is_contract) {
     }, 'json');
 }
 
-function loadLocal_Employment(rs) {
-
-
-    $('.emp-act_age_started_working').val(rs.employee_local_age_started_working);
-    $('.emp-act_salary_per_hour').val(rs.employee_local_salary_per_hour);
-    $('.emp-act_reasons_for_employment').val(rs.employee_local_reason_for_employment);
-
-
-    $('#btn-save-contract').attr('datacveid', rs.case_victim_employment_id);
-    $('#btn-save-contract').attr('datacvedetid', rs.case_victim_employment_details_id);
-
-}
 
 function loadEmployment_contract(rs) {
 
@@ -368,7 +357,11 @@ function loadEmployment_contract(rs) {
     $('.emp-case_victim_employment_details_job_title').val(rs.case_victim_employment_details_job_title);
     $('.emp-case_victim_employment_details_working_days').val(rs.case_victim_employment_details_working_days);
     $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
-    $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
+    $('.emp-type_of_employment').val(rs.employee_local_type_of_employment);
+    $('.emp-type_of_child_cases').val(rs.employee_local_type_of_child_cases);
+    $('.emp-act_age_started_working').val(rs.employee_local_age_started_working);
+    $('.emp-act_salary_per_hour').val(rs.employee_local_salary_per_hour);
+    $('.emp-act_reasons_for_employment').val(rs.employee_local_reason_for_employment);
     $('#btn-save-contract').attr('datacveid', rs.case_victim_employment_id);
     $('#btn-save-contract').attr('datacvedetid', rs.case_victim_employment_details_id);
 
@@ -1379,6 +1372,11 @@ $(document).ready(function () {
                         var jobtitle = $('.emp-case_victim_employment_details_job_title').val();
                         var working_days = $('.emp-case_victim_employment_details_working_days').val();
                         var working_hours = $('.emp-case_victim_employment_details_working_hours').val();
+                        var type_employment_local = $('.emp-type_of_employment').val();
+                        var type_child_case_local = $('.emp-type_of_child_cases').val();
+                        var age_started_working_local = $('.emp-act_age_started_working').val();
+                        var salary_per_hour_local = $('.emp-act_salary_per_hour').val();
+                        var reasons_for_employment_local = $('.emp-act_reasons_for_employment').val();
                         var datacveid = $('#btn-save-contract').attr('datacveid');
                         var datacvedetid = $('#btn-save-contract').attr('datacvedetid');
                         $.post(sAjaxCase, {
@@ -1393,6 +1391,11 @@ $(document).ready(function () {
                             jobtitle: jobtitle,
                             working_days: working_days,
                             working_hours: working_hours,
+                            type_employment_local:type_employment_local,
+                            type_child_case_local:type_child_case_local,
+                            age_started_working_local: age_started_working_local,
+                            salary_per_hour_local:salary_per_hour_local,
+                            reasons_for_employment_local:reasons_for_employment_local,
                             datacveid: datacveid,
                             datacvedetid: datacvedetid,
                         }, function (rs) {
@@ -1416,6 +1419,94 @@ $(document).ready(function () {
     $("#btn-save-contract").click(function () {
         $('#frm-emp-contract').submit();
     });
+
+    // local start 
+    $('#form-update_employment_info_local').validate({
+        rules: {
+            emp_sel_eet_country : {required: true}
+        },
+        messages: {},
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error);
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function (form) {
+
+            sCurrent = getFormValues('form-update_employment_info_local');
+
+            if (sCurrent != aInitialValues["employment_actual_work"]) {
+                icmsMessage({
+                    type: "msgConfirmation",
+                    title: "You are about to update local employment details (Employment Details Based on Victim’s contract) ",
+                    onConfirm: function () {
+                        icmsMessage({
+                            type: "msgPreloader",
+                            body: "Saving... Please wait!",
+                            visible: true
+                        });
+
+                        var is_documented = $("input[name='rdo_doc_employment']:checked").val();
+                        var country_id = $('#emp-sel-eet-country').val();
+                        var city = $('.emp-case_victim_employment_city').val();
+                        var foreign_iso = $('.emp-case_victim_employment_details_salary_foreign_iso').val();
+                        var salary_foreign = $('.emp-case_victim_employment_details_salary_in_foreign').val();
+                        var salary_local = $('.emp-case_victim_employment_details_salary_in_local').val();
+                        var jobtitle = $('.emp-case_victim_employment_details_job_title').val();
+                        var working_days = $('.emp-case_victim_employment_details_working_days').val();
+                        var working_hours = $('.emp-case_victim_employment_details_working_hours').val();
+                        var type_employment_local = $('.emp-type_of_employment').val();
+                        var type_child_case_local = $('.emp-type_of_child_cases').val();
+                        var age_started_working_local = $('.emp-act_age_started_working').val();
+                        var salary_per_hour_local = $('.emp-act_salary_per_hour').val();
+                        var reasons_for_employment_local = $('.emp-act_reasons_for_employment').val();
+                        var datacveid = $('#btn-save-contract').attr('datacveid');
+                        var datacvedetid = $('#btn-save-contract').attr('datacvedetid');
+                        $.post(sAjaxCase, {
+                            type: "setCaseVictimEmploymentDetails",
+                            case_id: $('#case_id').val(),
+                            is_documented: is_documented,
+                            country_id: country_id,
+                            city: city,
+                            foreign_iso: foreign_iso,
+                            salary_foreign: salary_foreign,
+                            salary_local: salary_local,
+                            jobtitle: jobtitle,
+                            working_days: working_days,
+                            working_hours: working_hours,
+                            type_employment_local:type_employment_local,
+                            type_child_case_local:type_child_case_local,
+                            age_started_working_local: age_started_working_local,
+                            salary_per_hour_local:salary_per_hour_local,
+                            reasons_for_employment_local:reasons_for_employment_local,
+                            datacveid: datacveid,
+                            datacvedetid: datacvedetid,
+                        }, function (rs) {
+                            getEmploymentInformation(1);
+                            disabledInputs();
+                            notifyChangesInReport();
+                            $('#sel_occupationsemp_case_victim_employment_details_job_title').show();
+                            $("#sel_occupationsemp_case_victim_employment_details_job_title_chosen").hide();
+                        }, 'json');
+                    }
+                });
+            } else {
+                icmsMessage({
+                    type: "msgWarning",
+                    body: "No changes has been made.",
+                });
+            }
+        }
+    });
+
+    $("#btn-save-local_employer").click(function () {
+        $('#form-update_employment_info_local').submit();
+    });
+    // end
 
     $('#frm-emp-noncontract').validate({
         rules: {},

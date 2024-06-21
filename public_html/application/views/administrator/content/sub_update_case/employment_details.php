@@ -1078,7 +1078,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="tab-content tab-employment_main pl-0">
         <div class="tab-pane fade show active" id="employment_local" role="tabpanel" aria-labelledby="recent-case-tab">
             <div class="tab-content tab-inner px-0 pt-0 " >
-                <form id="form-update_employment_info" onSubmit="return false;" >
+                <form id="form-update_employment_info_local" onSubmit="return false;" >
                     <input type="hidden" class="vi-session_id">
 
                     <div class="form-content">
@@ -1102,9 +1102,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label>Type of Employment</label>
                                                     <select id="emp-act_type_of_employment" disabled class="form-control emp-type_of_employment sel-type_of_employment">
-                                                        <option selected disabled>Select Employment Type</option>
-                                                        <option>Formal</option>
-                                                        <option>Informal</option>
+                                                    <option selected disabled>Select Employment Type</option>
+                                                    <option value="Formal">Formal</option>
+                                                    <option value="Informal">Informal</option>
+                                                    <option value="Part-time employment">Part-time employment</option>
+                                                    <option value="Apprenticeship">Apprenticeship</option>
+                                                    <option value="Traineeship">Traineeship</option>
+                                                    <option value="Internship">Internship</option>
+                                                    <option value="Casual employment">Casual employment</option>
+                                                    <option value="Employment on commission">Employment on commission</option>
+                                                    <option value="Contract employment">Contract employment</option>
+                                                    <option value="Probation"> Probation</option>
+                                                    <option value="Seasonal employment">Seasonal employment</option>
+                                                    <option value="Leased employment">Leased employment</option>
+                                                    <option value="Contingent employment">Contingent employment</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12 form-currency">
@@ -1118,25 +1129,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                                                    <label> Region  <font color="red">*</font> </label>
-                                                    <select id="emp-region" disabled class="form-control sel-regions a-vi-address_region" name="region">
+                                                    <label> Region <font color="red">*</font> </label>
+                                                    <select class="form-control sel-regions a-vi-address_region" name="region">
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Province </label>
-                                                    <select class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
+                                                    <select id="localProvince" class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> City </label>
-                                                    <select class="form-control sel-cities a-vi-address_city" name="city" disabled>
+                                                    <select class="form-control sel-cities sel-citiesByProvinceId a-vi-address_city" name="city" disabled>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Barangay </label>
-                                                    <select class="form-control sel-barangay a-vi-address_barangay" disabled>
+                                                    <select class="form-control sel-barangay sel-barangayByCityId a-vi-address_barangay" disabled>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1144,7 +1155,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
                                                     <label>Age Started Working</label>
                                                     <input type="text" maxlength="2" id="emp-age_started_working" disabled name="emp_act_age_started_working" class="form-control number emp-act_age_started_working">
-                                                </div>
+                                        </div>
                                                 <div class="form-group col-lg-4 col-md-4 col-sm-12">
                                                     <label> Salary per Hour</label>
                                                     <input type="text" maxlength="20" id="emp-salary_per_hour" disabled name="emp_act_salary_per_hour" class="form-control emp-act_salary_per_hour decimal" placeholder="Salary per hour">
