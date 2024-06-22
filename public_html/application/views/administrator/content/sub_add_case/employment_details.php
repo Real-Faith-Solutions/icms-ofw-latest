@@ -934,32 +934,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 </script>
 
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group form-check">
-                        <input type="radio" class="form-check-input emp-is_employed" value="0" name="is_employment_employed" id="rdo-employed" onchange="showIsEmployed();">
-                        <label class="form-check-label employment_employed" for="rdo-employed" style="color:#e88f13 !important;">
-                            <small class="card-desc"> EMPLOYED </small>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group form-check">
+                        <input type="radio" class="form-check-input emp-is_unemployed" value="0" name="is_employment_employed" id="rdo-employed" onchange="showIsEmployed();" required="true">
+                            <label class="form-check-label employment_employed" for="rdo-employed" style="color:#e88f13 !important;">
+                                <small class="card-desc"> EMPLOYED </small>
 
-                        </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group form-check">
-                        <input type="radio" class="form-check-input emp-is_unemployed" value="1" name="is_employment_employed" id="rdo-unemployed" onchange="showIsEmployed();">
-                        <label class="form-check-label employment_unemployed" for="rdo-unemployed" style="color:#e88f13 !important;">
-                            <small class="card-desc"> UNEMPLOYED </small>
-                        </label>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group form-check">
+                            <input type="radio" class="form-check-input emp-is_unemployed" value="1" name="is_employment_employed" id="rdo-employed" onchange="showIsEmployed();" required="true" checked>
+                            <label class="form-check-label employment_unemployed" for="rdo-unemployed" style="color:#e88f13 !important;">
+                                <small class="card-desc"> UNEMPLOYED </small>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
 
 <div id="employment_container">
     <div class="row">

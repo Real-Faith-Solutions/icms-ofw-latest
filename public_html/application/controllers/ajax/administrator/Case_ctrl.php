@@ -2171,6 +2171,7 @@ class Case_ctrl extends CI_Controller {
     }
 
     private function addCaseEmploymentDetails($aNewParam) {
+
         $aResponse = [];
         $aResult = [];
         //Add Employment Details Based on the contract 
