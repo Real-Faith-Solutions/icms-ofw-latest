@@ -63,7 +63,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
                     <!-- #### Reduce Input Field Start #### -->
-                    <!--<div class="row mx-2">
+                    <div class="row mx-2">
                         
                          <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Employer's Name / Company Name</label>
@@ -72,19 +72,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </ul>
                         </div> 
                         
-                    </div> -->
+                    </div>
                     <!-- #### Reduce Input Field End #### -->
 
 
                      <!-- #### Reduce Input Field Start #### -->
-                    <!-- <div class="row mx-2">
+                    <div class="row mx-2">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Local Recruitment Agency</label>
                             <input type="text" maxlength="50" class="form-control v-local_recruitment_agency">
                             <ul class="list-group c-out" id="validate-local-search">
                             </ul>
                         </div>
-                    </div> -->
+                    </div>
                       <!-- #### Reduce Input Field End #### -->
 
 
@@ -98,24 +98,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
                          <!-- #### Reduce Input Field Start #### -->
-                        <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary">
                             <label>Country of Deployment <font color="red"> <b>*</b> </font> </label>
                             <select class="form-control v-deployment_country sel-country">
                             </select>
-                        </div> -->
+                        </div>
 
                           <!-- #### Reduce Input Field End #### -->
                     </div>
                     
                 <!-- #### Reduce Input Field Start #### -->
-                    <!-- 
+                    
                     <div class="row mx-2">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Type of Complaint</label>
                             <select class="form-control sel-traffic_purpose v-traffic_purpose">
                             </select>
                         </div>
-                    </div> -->
+                    </div>
                   <!-- #### Reduce Input Field End #### -->
 
                 </div>
