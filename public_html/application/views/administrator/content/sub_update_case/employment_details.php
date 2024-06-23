@@ -1032,6 +1032,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
             }
         }
     }
+
+
+
 </script>
 
 <div class="row">
@@ -1080,6 +1083,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="tab-content tab-inner px-0 pt-0 " >
                 <form id="form-update_employment_info_local" onSubmit="return false;" >
                     <input type="hidden" class="vi-session_id">
+                    <input type="hidden"  class="fetch_employed" id="fetch_employed">
 
                     <div class="form-content">
                         <div class="row">
