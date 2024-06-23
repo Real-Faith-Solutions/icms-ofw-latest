@@ -1538,7 +1538,9 @@ Class Case_model extends CI_Model {
                 `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
                 `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
                 `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
-                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ",
+                `employee_local_employed_or_unemployed`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employee_local_employed_or_unemployed']) . ",  
+
                 `case_victim_employment_details_is_actual`= '" . $val . "' 
                ";
 
@@ -1568,7 +1570,8 @@ Class Case_model extends CI_Model {
                 `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
                 `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
                 `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
-                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ",
+                `employee_local_employed_or_unemployed`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employee_local_employed_or_unemployed']) . ",
                 `case_victim_employment_details_is_actual`='1' 
                ";
         $aResponse = $this->yel->exec($sql2);
