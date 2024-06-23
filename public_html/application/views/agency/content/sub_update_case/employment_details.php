@@ -1080,6 +1080,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="tab-content tab-inner px-0 pt-0 " >
                 <form id="form-update_employment_info_local" onSubmit="return false;" >
                     <input type="hidden" class="vi-session_id">
+                    <input type="hidden"  class="fetch_employed" id="fetch_employed">
 
                     <div class="form-content">
                         <div class="row">
@@ -1132,11 +1133,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label> Region <font color="red">*</font> </label>
                                                     <select class="form-control sel-regions a-vi-address_region" name="region">
                                                     </select>
+                                                    <input type="hidden" id="region_local_id" class="region_local_id"/>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Province </label>
                                                     <select id="localProvince" class="form-control sel-provincesByRegionId a-vi-address_province" name="province" disabled>
                                                     </select>
+                                                    <input type="hidden" id="province_local_id" class="province_local_id"/>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -1144,11 +1147,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <label> City </label>
                                                     <select class="form-control sel-cities sel-citiesByProvinceId a-vi-address_city" name="city" disabled>
                                                     </select>
+                                                    <input type="hidden" id="city_local_id" class="city_local_id"/>
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
                                                     <label> Barangay </label>
                                                     <select class="form-control sel-barangay sel-barangayByCityId a-vi-address_barangay" disabled>
                                                     </select>
+                                                    <input type="hidden" id="barangay_local_id" class="barangay_local_id"/>
                                                 </div>
                                             </div>
                                             <div class="row">

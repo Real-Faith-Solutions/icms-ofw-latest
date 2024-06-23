@@ -357,6 +357,39 @@ function loadEmployment_contract(rs) {
     $('.emp-case_victim_employment_details_job_title').val(rs.case_victim_employment_details_job_title);
     $('.emp-case_victim_employment_details_working_days').val(rs.case_victim_employment_details_working_days);
     $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
+
+    $('.region_local_id, .a-vi-address_region').val(rs.employee_local_region);
+    $('.a-vi-address_region').change(function() {
+        $('.region_local_id').val($(this).val());
+    });
+
+    $('.province_local_id, .a-vi-address_province').attr("option","selected").val(rs.employee_local_province);
+    $('.a-vi-address_province').change(function() {
+        $('.province_local_id').val($(this).val());
+    });
+
+    $('.city_local_id, .a-vi-address_city').attr("option","selected").val(rs.employee_local_city);
+    $('.a-vi-address_city').change(function() {
+        $('.city_local_id').val($(this).val());
+    });
+
+    $('.barangay_local_id, .a-vi-address_barangay').attr("option","selected").val(rs.employee_local_barangay);
+    $('.a-vi-address_barangay').change(function() {
+        $('.barangay_local_id').val($(this).val());
+    });
+
+    var employement = rs.employee_local_employed_or_unemployed;
+    $('.fetch_employed').val();
+    if (employement === "EMPLOYED") {
+        $('#rdo-employed').prop('checked', true);
+        $('.fetch_employed').val("0");
+    } else {
+        $('#rdo-unemployed').prop('checked', true);
+        $('.fetch_employed').val("1");
+    }
+
+
+
     $('.emp-type_of_employment').val(rs.employee_local_type_of_employment);
     $('.emp-type_of_child_cases').val(rs.employee_local_type_of_child_cases);
     $('.emp-act_age_started_working').val(rs.employee_local_age_started_working);
@@ -1374,9 +1407,14 @@ $(document).ready(function () {
                         var working_hours = $('.emp-case_victim_employment_details_working_hours').val();
                         var type_employment_local = $('.emp-type_of_employment').val();
                         var type_child_case_local = $('.emp-type_of_child_cases').val();
+                        var region_local = $('.region_local_id').val();
+                        var province_local = $('.province_local_id').val();
+                        var city_local = $('.city_local_id').val();
+                        var barangay_local = $('.barangay_local_id').val();
                         var age_started_working_local = $('.emp-act_age_started_working').val();
                         var salary_per_hour_local = $('.emp-act_salary_per_hour').val();
                         var reasons_for_employment_local = $('.emp-act_reasons_for_employment').val();
+                        var employee_local_employed_or_unemployed = $('.fetch_employed').val() === "0" ? "EMPLOYED" : "UNEMPLOYED";
                         var datacveid = $('#btn-save-contract').attr('datacveid');
                         var datacvedetid = $('#btn-save-contract').attr('datacvedetid');
                         $.post(sAjaxCase, {
@@ -1393,9 +1431,14 @@ $(document).ready(function () {
                             working_hours: working_hours,
                             type_employment_local:type_employment_local,
                             type_child_case_local:type_child_case_local,
+                            region_local:region_local,
+                            province_local:province_local,
+                            city_local:city_local,
+                            barangay_local:barangay_local,
                             age_started_working_local: age_started_working_local,
                             salary_per_hour_local:salary_per_hour_local,
                             reasons_for_employment_local:reasons_for_employment_local,
+                            employee_local_employed_or_unemployed:employee_local_employed_or_unemployed,
                             datacveid: datacveid,
                             datacvedetid: datacvedetid,
                         }, function (rs) {
@@ -1462,9 +1505,14 @@ $(document).ready(function () {
                             var working_hours = $('.emp-case_victim_employment_details_working_hours').val();
                             var type_employment_local = $('.emp-type_of_employment').val();
                             var type_child_case_local = $('.emp-type_of_child_cases').val();
+                            var region_local = $('.region_local_id').val();
+                            var province_local = $('.province_local_id').val();
+                            var city_local = $('.city_local_id').val();
+                            var barangay_local = $('.barangay_local_id').val();
                             var age_started_working_local = $('.emp-act_age_started_working').val();
                             var salary_per_hour_local = $('.emp-act_salary_per_hour').val();
                             var reasons_for_employment_local = $('.emp-act_reasons_for_employment').val();
+                            var employee_local_employed_or_unemployed = $('.fetch_employed').val() === "0" ? "EMPLOYED" : "UNEMPLOYED";
                             var datacveid = $('#btn-save-contract').attr('datacveid');
                             var datacvedetid = $('#btn-save-contract').attr('datacvedetid');
                             $.post(sAjaxCase, {
@@ -1481,9 +1529,14 @@ $(document).ready(function () {
                                 working_hours: working_hours,
                                 type_employment_local:type_employment_local,
                                 type_child_case_local:type_child_case_local,
+                                region_local:region_local,
+                                province_local:province_local,
+                                city_local:city_local,
+                                barangay_local:barangay_local,
                                 age_started_working_local: age_started_working_local,
                                 salary_per_hour_local:salary_per_hour_local,
                                 reasons_for_employment_local:reasons_for_employment_local,
+                                employee_local_employed_or_unemployed:employee_local_employed_or_unemployed,
                                 datacveid: datacveid,
                                 datacvedetid: datacvedetid,
                             }, function (rs) {
@@ -2334,6 +2387,12 @@ $(document).ready(function () {
     $('#emp-sel-province').change(function () {
         var id = $(this).val();
         getCitiesByProvinceID(id);
+    });
+
+    // local employment convert
+
+    $('input[type=radio][name=is_employment_employed]').change(function(){
+        $('#fetch_employed').val(this.value);
     });
 
 });// end of doc ready
