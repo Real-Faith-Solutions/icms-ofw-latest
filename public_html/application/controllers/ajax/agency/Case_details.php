@@ -70,6 +70,28 @@ class Case_details extends CI_Controller {
                 $aParam['type_id'] = '8';
                 $aParam['status'] = '1';
                 break;
+            // OSAEC CODE START
+            case 'ethnicgroup':
+                $aParam['type_id'] = '32';
+                $aParam['status'] = '1';
+                break;
+            case 'disabilities':
+                $aParam['type_id'] = '33';
+                $aParam['status'] = '1';
+                break;
+            case 'allergies':
+                $aParam['type_id'] = '34';
+                $aParam['status'] = '1';
+                break;
+            case 'illness':
+                $aParam['type_id'] = '35';
+                $aParam['status'] = '1';
+                break;
+            case 'offender_description':
+                $aParam['type_id'] = '36';
+                $aParam['status'] = '1';
+                break;     
+                // OSAEC CODE END    
         }
 
         return $aParam;
@@ -111,8 +133,13 @@ class Case_details extends CI_Controller {
         $aResponse['info']['sex'] = $this->getGlobalParameter('sex');
         $aResponse['info']['civil_status'] = $this->getGlobalParameter('civil');
         $aResponse['info']['religion'] = $this->getGlobalParameter('religion');
+        $aResponse['info']['ethnicgroup'] = $this->getGlobalParameter('ethnicgroup');
+        $aResponse['info']['disabilities'] = $this->getGlobalParameter('disabilities');
+        $aResponse['info']['allergies'] = $this->getGlobalParameter('allergies');
+        $aResponse['info']['illness'] = $this->getGlobalParameter('illness');
         $aResponse['info']['educational_attainment'] = $this->getGlobalParameter('education');
         $aResponse['info']['family_relation'] = $this->getGlobalParameter('nextofkin');
+        $aResponse['info']['Offender_Description'] = $this->getGlobalParameter('offender_description');
 
         // victim information // Transaction Parameter 
         $aResponse['info']['contact_type'] = $this->getTransactionParameter('contact');
@@ -269,7 +296,7 @@ class Case_details extends CI_Controller {
         $aResponse['case_is_illegal_rec'] = $caseInfo['case_is_illegal_rec'];
         $aResponse['case_is_other_law'] = $caseInfo['case_is_other_law'];
         $aResponse['case_is_other_law_desc'] = $caseInfo['case_is_other_law_desc'];
-
+        $aResponse['case_violated'] = $caseInfo['case_violated'];
         $aResponse['acts'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 1);
         $aResponse['means'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 3);
         $aResponse['purpose'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 2);
@@ -309,6 +336,7 @@ class Case_details extends CI_Controller {
 
         //update brief summary
         $aResponse['summary'] = $this->Case_details_model->setBriefFactOfTheCase($aParam);
+        $aResponse['form_of_Law'] = $this->Case_details_model->setViolation($aParam);
 
         // update is illegal rec, is other law, other law desc 
         $aResponse['case_details'] = $this->Case_details_model->setCaseOtherDetails($aParam);

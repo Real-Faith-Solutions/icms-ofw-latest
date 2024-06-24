@@ -196,7 +196,24 @@ Class Dashboard_model extends CI_Model {
 
         return $aResponse;
     }
+    //OSAEC CODE START
+    public function getCaseViolatedCount($caseViolated) {
 
+        $aResponse = [];
+
+        $sSequel = "
+            SELECT
+                FORMAT(CEIL(COUNT(1)),0) as `cnt`
+            FROM
+                `icms_case`
+            WHERE 
+                `case_violated` = '" . $caseViolated . "'
+            ";
+        $aResponse = $this->yel->GetOne($sSequel);
+
+        return $aResponse;
+    }
+   //OSAEC CODE END
     public function getStagnantCaseCount() {
 
         $aResponse = [];
@@ -239,7 +256,33 @@ Class Dashboard_model extends CI_Model {
 
         return $aResponse;
     }
-    
+    //OSAEC CODE START
+    public function getCaseViolated($caseViolated) {
+        $aResponse = [];
+
+        $sSequel = "
+                SELECT 
+                    `ic`.`case_number`,
+                    `ic`.`case_priority_level_id`,
+                    (SELECT COUNT(1)  
+                     FROM `icms_case_victim` `icc` WHERE `icc`.`case_id` = `ic`.`case_id`
+                     LIMIT 1 ) as `victim_count`, 
+                    DATE_FORMAT(`ic`.`case_date_added`, '%M %d, %Y %r') as `case_date_added`,
+                    (SELECT CONCAT(`ab`.`agency_branch_name`, ' (',(SELECT `agency_abbr` FROM `icms_agency` WHERE `agency_id` = `ab`.`agency_id` LIMIT 1),')') FROM `icms_agency_branch` `ab` WHERE `ab`.`agency_branch_id` = (SELECT `agency_branch_id` FROM `icms_user` WHERE `user_id` = `ic`.`case_added_by` LIMIT 1) LIMIT 1) as `filed_by_agency`                  
+                FROM 
+                    `icms_case`  `ic` 
+                WHERE 
+                    `ic`.`case_violated` = '" . $caseViolated . "'
+                ORDER BY 
+                    `case_date_added` DESC
+                LIMIT 3
+            ";
+
+        $aResponse = $this->yel->GetAll($sSequel);
+
+        return $aResponse;
+    }
+    //OSAEC CODE END
     public function getHighPriorityCase() {
         $aResponse = [];
 

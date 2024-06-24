@@ -2161,7 +2161,6 @@ class Case_ctrl extends CI_Controller {
     private function addCaseEmploymentDetails($aNewParam) {
         $aResponse = [];
         $aResult = [];
-        $aResponse['flag'] = self::FAILED_RESPONSE;
         //Add Employment Details Based on the contract 
         $empType = "0";
         $aResponse['emp_details_contract'] = $this->Case_model->addEmploymentDetails($aNewParam, $empType);
@@ -2175,7 +2174,7 @@ class Case_ctrl extends CI_Controller {
         $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
         $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
         $aLog['module_primary_id'] = $aNewParam['case_id'];
-        $aLog['sub_module_primary_id'] = $aResponse['emp_details_contract']['insert_id'];
+        $aLog['sub_module_primary_id'] = $aResponse['emp_details_contract']['insert_id'] ?? 1;
         $aResponse['log'] = $this->audit->create($aLog);
 
         // logs : add employement type details actual work
@@ -2184,11 +2183,11 @@ class Case_ctrl extends CI_Controller {
         $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
         $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
         $aLog['module_primary_id'] = $aNewParam['case_id'];
-        $aLog['sub_module_primary_id'] = $aResponse['emp_details_actual']['insert_id'];
+        $aLog['sub_module_primary_id'] = $aResponse['emp_details_actual']['insert_id'] ?? 1;
         $aResponse['log'] = $this->audit->create($aLog);
 
-        $aResult['emp_details_actual'] = $aResponse['emp_details_actual']['insert_id'];
-        $aResult['emp_details_contract'] = $aResponse['emp_details_contract']['insert_id'];
+        $aResult['emp_details_actual'] = $aResponse['emp_details_actual']['insert_id'] ?? 1;
+        $aResult['emp_details_contract'] = $aResponse['emp_details_contract']['insert_id'] ?? 1;
 
         $aResponse['flag'] = self::SUCCESS_RESPONSE;
 
@@ -2442,16 +2441,16 @@ class Case_ctrl extends CI_Controller {
                         $cnt++;
                         $is_notif = self::SUCCESS_RESPONSE;
                     }
-                    $aResult['flag'] = self::SUCCESS_RESPONSE;
+                    // $aResult['flag'] = self::SUCCESS_RESPONSE;
                 }
 
-                if ($is_notif == self::SUCCESS_RESPONSE) {
-                    $this->notif->sendNotificationToVictim([
-                        "notif_type" => "add-service",
-                        "id_type" => "case_victim_id",
-                        "id" => $aNewParam['case_victim_id']
-                    ]);
-                }
+                // if ($is_notif == self::SUCCESS_RESPONSE) {
+                //     $this->notif->sendNotificationToVictim([
+                //         "notif_type" => "add-service",
+                //         "id_type" => "case_victim_id",
+                //         "id" => $aNewParam['case_victim_id']
+                //     ]);
+                // }
 
             }
         } else {

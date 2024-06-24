@@ -685,12 +685,17 @@ function initialLoad() {
     getProvinces();
 
     getSex();
+    getEthnicGroup();
+    getDisabilities();
+    getAllergies();
+    getIllness();
     getCivilStatus();
     getCasePurposes();
     getContactTypes();
     getReligions();
     getEducationalAttainments();
     getFamilyRelations();
+    getOffenderDescription();
 
     if(temp_data.flag == 1){
         temp_data.is_address = 1;

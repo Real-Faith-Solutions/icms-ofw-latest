@@ -60,14 +60,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <input type="text" maxlength="50" class="form-control v-offender_name">
                         </div>
                     </div>
+
+
+                    <!-- #### Reduce Input Field Start #### -->
                     <div class="row mx-2">
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        
+                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Employer's Name / Company Name</label>
                             <input type="text" maxlength="50" class="form-control v-employer_name">
                             <ul class="list-group c-out" id="validate-employer-search">
                             </ul>
-                        </div>
+                        </div> 
+                        
                     </div>
+                    <!-- #### Reduce Input Field End #### -->
+
+
+                     <!-- #### Reduce Input Field Start #### -->
                     <div class="row mx-2">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Local Recruitment Agency</label>
@@ -76,6 +85,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </ul>
                         </div>
                     </div>
+                      <!-- #### Reduce Input Field End #### -->
+
+
                     <div class="row mx-2">
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 form-currency hide">
                             <label>Date of Deployment <font color="red"> <b>*</b> </font> </label>
@@ -83,12 +95,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 placeholder="MM/DD/YYYY">
                         </div>
                         <!--<div class="form-group col-lg-6 col-md-6 col-sm-6 form-salary">-->
+
+
+                         <!-- #### Reduce Input Field Start #### -->
                         <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary">
                             <label>Country of Deployment <font color="red"> <b>*</b> </font> </label>
                             <select class="form-control v-deployment_country sel-country">
                             </select>
                         </div>
+
+                          <!-- #### Reduce Input Field End #### -->
                     </div>
+                    
+                <!-- #### Reduce Input Field Start #### -->
+                    
                     <div class="row mx-2">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Type of Complaint</label>
@@ -96,6 +116,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </select>
                         </div>
                     </div>
+                  <!-- #### Reduce Input Field End #### -->
+
                 </div>
             </div>
             <div class="form-actions">

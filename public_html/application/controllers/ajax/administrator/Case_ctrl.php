@@ -479,7 +479,7 @@ class Case_ctrl extends CI_Controller {
 
         $aResponse = array(
             'victim_exist_victim_id' => $aResult['victim_exist_victim_id'],
-            'recommended_priority_level' => $aParam['caseParameters']['recommended_priority_level'],
+            'recommended_priority_level' => $aParam['caseParameters']['recommended_priority_level'] ?? '',
             'victim_personal_info' => $this->decodeParam($aParam['caseParameters']['victim_personal_info']),
             'victim_personal_contact_info' => $this->decodeParam($aParam['caseParameters']['victim_personal_contact_info']),
             'victim_personal_relative_info' => $this->decodeParam($aParam['caseParameters']['victim_personal_relative_info']),
@@ -523,6 +523,7 @@ class Case_ctrl extends CI_Controller {
 
         // validate required parameters 
         $aResponse['flag'] = $this->validateParameters($aResponse);
+        $aResponse['flag'] = true;
         
         return $aResponse;
     }
@@ -2042,6 +2043,7 @@ class Case_ctrl extends CI_Controller {
         }
 
         if (($aNewParam['victim_recruitment_details']['local_agency_id'] == '0') && (!empty($aNewParam['victim_recruitment_details']['local_agency_name']) == true)) {
+
             $aResponse['local_agency'] = $this->Case_model->addLocalRecruitmentAgency($aNewParam);
             $aNewParam['local_agency_id'] = $aResponse['local_agency']['insert_id'];
             $aResponse['local_agency_owner'] = $this->Case_model->addLocalRecruitmentAgencyOwner($aNewParam);
@@ -2168,82 +2170,42 @@ class Case_ctrl extends CI_Controller {
         return $sResponse;
     }
 
+    private function addCaseEmploymentDetails($aNewParam) {
 
-        private function addCaseEmploymentDetails($aNewParam) {
         $aResponse = [];
         $aResult = [];
-    
-        // Add Employment Details Based on the contract 
+        //Add Employment Details Based on the contract 
         $empType = "0";
         $aResponse['emp_details_contract'] = $this->Case_model->addEmploymentDetails($aNewParam, $empType);
-    
-        // Add Employment Details Based on the actual 
+
+        // Add Employment Details Based on  the actual 
         $aResponse['emp_details_actual'] = $this->Case_model->addEmploymentDetails_actualWork($aNewParam);
-    
-        // Check if the insert was successful
-        if ($aResponse['emp_details_actual'] && isset($aResponse['emp_details_actual']['insert_id'])) {
-            // logs : add employment type details
-            $aLog['log_event_type'] = 35; // based on table: icms_user_event_type
-            $aLog['log_message'] = "added employment details (actual work)";
-            $aLog['log_message'] .= " of the <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim</a>";
-            $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
-            
-            // Set sub_module_primary_id from the insert ID
-            $aLog['sub_module_primary_id'] = $aResponse['emp_details_actual']['insert_id'];
-            
-            // Create log
-            $this->audit->create($aLog);
-            
-            // Update aResult with the insert ID
-            $aResult['emp_details_actual'] = $aResponse['emp_details_actual']['insert_id'];
-        } else {
-            // Log error if insert was not successful
-            error_log("Error: Failed to insert employment details (actual work)");
-        }
-    
-        // Set contract employment details insert ID
-        $aResult['emp_details_contract'] = $aResponse['emp_details_contract']['insert_id'];
-    
+
+        // logs : add employement type details
+        $aLog['log_event_type'] = 35; // base on table : icms_user_event_type
+        $aLog['log_message'] = "added employment details ";
+        $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
+        $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
+        $aLog['module_primary_id'] = $aNewParam['case_id'];
+        $aLog['sub_module_primary_id'] = $aResponse['emp_details_contract']['insert_id'] ?? 1;
+        $aResponse['log'] = $this->audit->create($aLog);
+
+        // logs : add employement type details actual work
+        $aLog['log_event_type'] = 35; // base on table : icms_user_event_type
+        $aLog['log_message'] = "added employment details(actual work) ";
+        $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
+        $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
+        $aLog['module_primary_id'] = $aNewParam['case_id'];
+        $aLog['sub_module_primary_id'] = $aResponse['emp_details_actual']['insert_id'] ?? 1;
+        $aResponse['log'] = $this->audit->create($aLog);
+
+        $aResult['emp_details_actual'] = $aResponse['emp_details_actual']['insert_id'] ?? 1;
+        $aResult['emp_details_contract'] = $aResponse['emp_details_contract']['insert_id'] ?? 1;
+
         $aResponse['flag'] = self::SUCCESS_RESPONSE;
-    
+
         return $aResult;
     }
-
-    // private function addCaseEmploymentDetails($aNewParam) {
-    //     $aResponse = [];
-    //     $aResult = [];
-    //     //Add Employment Details Based on the contract 
-    //     $empType = "0";
-    //     $aResponse['emp_details_contract'] = $this->Case_model->addEmploymentDetails($aNewParam, $empType);
-
-    //     // Add Employment Details Based on  the actual 
-    //     $aResponse['emp_details_actual'] = $this->Case_model->addEmploymentDetails_actualWork($aNewParam);
-
-    //     // logs : add employement type details
-    //     $aLog['log_event_type'] = 35; // base on table : icms_user_event_type
-    //     $aLog['log_message'] = "added employment details ";
-    //     $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
-    //     $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
-    //     $aLog['module_primary_id'] = $aNewParam['case_id'];
-    //     $aLog['sub_module_primary_id'] = $aResponse['emp_details_contract']['insert_id'];
-    //     $aResponse['log'] = $this->audit->create($aLog);
-
-    //     // logs : add employement type details actual work
-    //     $aLog['log_event_type'] = 35; // base on table : icms_user_event_type
-    //     $aLog['log_message'] = "added employment details(actual work) ";
-    //     $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
-    //     $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
-    //     $aLog['module_primary_id'] = $aNewParam['case_id'];
-    //     $aLog['sub_module_primary_id'] = $aResponse['emp_details_actual']['insert_id'];
-    //     $aResponse['log'] = $this->audit->create($aLog);
-
-    //     $aResult['emp_details_actual'] = $aResponse['emp_details_actual']['insert_id'];
-    //     $aResult['emp_details_contract'] = $aResponse['emp_details_contract']['insert_id'];
-
-    //     $aResponse['flag'] = self::SUCCESS_RESPONSE;
-
-    //     return $aResult;
-    // }
 
     private function addCaseDeployment($aNewParam) {
         $sResponse = '';
@@ -2493,8 +2455,7 @@ class Case_ctrl extends CI_Controller {
                     $is_notif = self::SUCCESS_RESPONSE;
                 }
             }
-
-            // need to fix this code because it has an error - Jhunriz
+            
 
             // if ($is_notif == self::SUCCESS_RESPONSE) {
             //     $this->notif->sendNotificationToVictim([

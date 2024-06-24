@@ -78,19 +78,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <input type="text" name="v_deployed_date" class="form-control datepicker v-deployed_date" placeholder="MM/DD/YYYY">
                         </div>
                         <!--<div class="form-group col-lg-6 col-md-6 col-sm-6 form-salary">-->
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary">
+                        <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary">
                             <label>Country of  Deployment <font color="red"> <b>*</b> </font> </label>
                             <select class="form-control v-deployment_country sel-country">
                             </select>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="row mx-2">
+                    <!-- <div class="row mx-2">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label>Type of Complaint</label>
                             <select class="form-control sel-traffic_purpose v-traffic_purpose">
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="form-actions">

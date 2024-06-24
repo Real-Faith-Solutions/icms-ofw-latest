@@ -795,6 +795,127 @@ function getSex() {
   );
 }
 
+function getEthnicGroup() {
+  $.post(
+      sAjaxGlobalData, {
+          type: "getGlobalParameter",
+          parameter_type: "ethnicgroup",
+      },
+      function(rs) {
+          var l = "<option selected value='' disabled>Select Ethnic Group</option>";
+          $.each(rs.data, function(key, val) {
+              l +=
+                  "<option value='" +
+                  val.parameter_count_id +
+                  "' data-name='" +
+                  val.parameter_name +
+                  "'>" +
+                  val.parameter_name +
+                  "</option>";
+          });
+          $(".sel-ethnic-group").html(l);
+      },
+      "json"
+  );
+}
+
+function getDisabilities() {
+  $.post(
+      sAjaxGlobalData, {
+          type: "getGlobalParameter",
+          parameter_type: "disabilities",
+      },
+      function(rs) {
+          var l = "<option selected value='' disabled>Select Disability</option>";
+          $.each(rs.data, function(key, val) {
+              l +=
+                  "<option value='" +
+                  val.parameter_count_id +
+                  "' data-name='" +
+                  val.parameter_name +
+                  "'>" +
+                  val.parameter_name +
+                  "</option>";
+          });
+          $(".sel-disablity").html(l);
+      },
+      "json"
+  );
+}
+
+function getAllergies() {
+  $.post(
+      sAjaxGlobalData, {
+          type: "getGlobalParameter",
+          parameter_type: "allergies",
+      },
+      function(rs) {
+          var l = "<option selected value='' disabled>Select Allergies</option>";
+          $.each(rs.data, function(key, val) {
+              l +=
+                  "<option value='" +
+                  val.parameter_count_id +
+                  "' data-name='" +
+                  val.parameter_name +
+                  "'>" +
+                  val.parameter_name +
+                  "</option>";
+          });
+          $(".sel-allergies").html(l);
+      },
+      "json"
+  );
+}
+
+function getIllness() {
+  $.post(
+      sAjaxGlobalData, {
+          type: "getGlobalParameter",
+          parameter_type: "illness",
+      },
+      function(rs) {
+          var l = "<option selected value='' disabled>Select Illness</option>";
+          $.each(rs.data, function(key, val) {
+              l +=
+                  "<option value='" +
+                  val.parameter_count_id +
+                  "' data-name='" +
+                  val.parameter_name +
+                  "'>" +
+                  val.parameter_name +
+                  "</option>";
+          });
+          $(".sel-history_of_illness").html(l);
+      },
+      "json"
+  );
+}
+
+
+function getOffenderDescription() {
+  $.post(
+      sAjaxGlobalData, {
+          type: "getGlobalParameter",
+          parameter_type: "offender_description",
+      },
+      function(rs) {
+          var l = "<option selected value='' disabled>Select Offender Description</option>";
+          $.each(rs.data, function(key, val) {
+              l +=
+                  "<option value='" +
+                  val.parameter_count_id +
+                  "' data-name='" +
+                  val.parameter_name +
+                  "'>" +
+                  val.parameter_name +
+                  "</option>";
+          });
+          $(".sel-offender_is_at_large").html(l);
+      },
+      "json"
+  );
+}
+
 function getAgenciesBranches() {
   $.post(
     sAjaxGlobalData,

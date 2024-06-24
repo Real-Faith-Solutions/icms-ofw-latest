@@ -45,6 +45,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <input type="text" class="form-control vi-victim_info_suffix" name="suffix" maxlength="20">
                             </div>
                         </div>
+                       <!-- OSAEC NEW CODE Start  -->
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Nickname </label>
+                                <input type="text" maxlength="10" class="form-control vi-victim_info_nickname" name="nickname" >
+                            </div>
+                        </div>
+                        <!-- OSAEC NEW CODE END -->
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="row">
@@ -60,13 +68,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
+                        <!-- OSAEC NEW CODE START NOTE: SEX CHANGE TO GENDER -->
                         <div class="row">
                             <div class="form-group col-lg-6 col-md-12 col-sm-12 form-currency">
-                                <label>Sex <font color="red">*</font> </label>
+                                <label>Gender<font color="red">*</font> </label>
                                 <select  class="form-control sel-sex vi-victim_gender" name="sex">
-                                    <option selected="">Sex</option>
+                                    <option selected="">Gender</option>
                                 </select>
                             </div>
+                          <!-- OSAEC NEW CODE END NOTE: SEX CHANGE TO GENDER -->    
                             <div class="form-group col-lg-6 col-md-12 col-sm-12 form-salary">
                                 <label>Civil Status <font color="red">*</font>  </label>
                                 <select  class="form-control  sel-civil vi-victim_civil_status" name="civil_status">
@@ -74,7 +84,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
-
+                       
                         <div class="row">
                             <div class="form-group col-12">
                                 <label>Religion </label>
@@ -82,6 +92,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
+                          <!-- OSAEC NEW CODE START -->
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label>Member of Ethnic Group</label>
+                                <select class="form-control sel-ethnic_group vi-victim_ethnic_group" name="victim_ethnic_group">
+                                </select>
+                            </div>
+                        </div>
+                          <!-- OSAEC NEW CODE END-->
 
                     </div>
                 </div>              
@@ -127,6 +146,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <input type="text" class="form-control datepicker vi-assumed-victim_info_dob" name="dob" placeholder="MM/DD/YYYY">
                                         </div>
                                     </div>
+                                  <!-- OSAEC NEW CODE START-->
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class=" card-sub-title txt-W-500">Health Status<br> 
+                                                <small class="card-desc"> Fill in Health Status information. </small> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fake-info-content_form">
+                                        <div class="row">
+                                            <div class="form-group col-12">           
+                                                <label>Disability</label>
+                                                <select class="form-control vi-disability" name="disability" >
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-12">           
+                                                <label>Allergies</label>
+                                                <select class="form-control vi-allergies" name="allergies" >
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-12">           
+                                                <label>History of Illness/Hospitalization</label>
+                                                <select class="form-control vi-history_of_illness" name="history_of_illness" >
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label> Other History of Illness/Hospitalization</label>
+                                                <input type="text" maxlength="50" class="form-control vi-other_info_hospitalization" >
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                      <!-- OSAEC NEW CODE END -->
                                 </form>
                                 <div class="content-footer float-right mt-0">
                                     <button class="btn btn-update" id="btn-manage-assumed">Manage</button>
@@ -148,7 +200,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <a class="list-group-item list-group-item-action active" id="list-contact_info" data-toggle="list" href="#tab-contact_info" role="tab" aria-controls="home">Contact Information<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#tab-education" role="tab" aria-controls="profile">Educational Background<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#tab-address_info" role="tab" aria-controls="messages">Address Information<font color="red"> <b>*</b> </font><span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Next of Kin<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
+                <!-- OSAEC CODE START NEXT OF KIN CHANGE TO Victim's Guardians's Information-->
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Victim's Guardian's Information<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
+                <!-- OSAEC CODE END NEXT OF KIN CHANGE TO Victim's Guardians's Information -->
             </div>
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12">
@@ -264,15 +318,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <br>
                             <div class="card card_tbl-container">
                                 <div class="card_tbl-action">
-
-                                    <div class=" card-sub-title"> Victim's Next of Kin <span class="txt-orange"> (Maximum of 10 entries) </span><br> 
+                                 <!-- OSAEC NEW CODE START NOTE: Next of Kin CHANGE TO Victim's Guardian Information -->
+                                    <div class=" card-sub-title"> Victim's Guardian's Information <span class="txt-orange"> (Maximum of 10 entries) </span><br> 
                                         <small class="card-desc"> Victim’s closest living relative/s or closest relation.  </small> 
                                         <hr class="card-sub-title_border">
                                     </div>
 
                                     <div class="tbl_info card-sub-title">
-                                        <span class="">Next of Kin List</span>
+                                        <span class="">Guardian's List</span>
                                     </div>
+                                    <!-- OSAEC NEW CODE END NOTE: Next of Kin CHANGE TO Victim's Guardian Information -->
                                     <button type="button" class="btn  btn-secondary-light_blue  btn-add_relative float-right tbl_info"><i class="fa fa-plus"></i> Add Next of kin</button>
                                 </div>
                                 <table class="table">

@@ -51,7 +51,11 @@ class Dashboard extends CI_Controller {
         $aResponse['tip_case'] = $this->Dashboard_model->getTIPReportCount();
                 
         $aResponse['non_tip_case'] = $this->Dashboard_model->getNonTIPReportCount();
-
+         // Code OSAEC Added START
+        $aResponse['case_csec'] = $this->Dashboard_model->getCaseViolatedCount('csec');
+        $aResponse['case_osaec'] = $this->Dashboard_model->getCaseViolatedCount('osaec');
+        $aResponse['case_others'] = $this->Dashboard_model->getCaseViolatedCount('Other law/s violated');
+        // Code OSAEC Added END
         return $aResponse;
     }
 

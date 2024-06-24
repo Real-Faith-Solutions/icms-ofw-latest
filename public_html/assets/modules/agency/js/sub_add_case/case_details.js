@@ -1168,8 +1168,15 @@ function storeCaseDetails() {
         'complainant_relation_value': $('.case-complainant_relation option:selected').attr('data-name'),
         'complainant_relation_other': $('.case-complainant_relation_other').val(),
         'complainant_address': $('.case-complainant_address').val(),
+        'complainant_place_of_incident': $('.case-complainant_place_of_incident').val(),
+        'complainant_place_of_origin': $('.case-complainant_place_of_origin').val(),
         'complainant_contact': $('.case-complainant_contact').val(),
-        'complainant_remarks': $('.case-complainant_remarks').val()
+        'complainant_alternate_contact': $('.case-complainant_contact_alternate').val(),
+        'complainant_remarks': $('.case-complainant_remarks').val(),
+        'complainant_place_of_destination': $('.case_place_of_destination').val(),
+        'complainant_date_time_of_incident': $('.case-date_time_of_incident').val(),
+        'complainant_other_possible_source_info': $('.case-other_possible_source_info').val()
+        
     };
 
     //Acts
@@ -1247,9 +1254,11 @@ function storeCaseDetails() {
         'facts': $('.case-facts').val(),
         'evaluation': $('.case-evaluation').val(),
         'risk_assessment': $('.case-risk_assessment').val(),
+        'case_coordination_lea': $('.case-details_of_coordination').val(),
         'is_illegal_rec': $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         'is_other_law': $('.case-is_other_law').is(':checked') ? '1' : '0',
         'other_law_desc': $('.case-other_law_desc').val(),
+        'violated': $("input:radio[name ='s_violated']:checked").val(),
         'acts': acts,
         'means': means,
         'purposes': purposes
@@ -1262,12 +1271,17 @@ function storeCaseDetails() {
         'risk-assessment': $('.case-risk_assessment').val()
     };
 
+    var victim_case_coordination_lea = {
+        'risk-case_coordination_lea': $('.case-details_of_coordination').val()
+    };
+
     _setStorageData(victim_complainant_details, 'victim_complainant_details');
 
     _setStorageData(victim_case_details, 'victim_case_details');
 
     _setStorageData(victim_case_evaluation_details, 'victim_case_evaluation_details');
     _setStorageData(victim_case_risk_assessment, 'victim_case_risk_assessment');
+    _setStorageData(victim_case_coordination_lea, 'victim_case_coordination_lea');
 
 //    $('#summary-details-tab1').trigger('click');
 //
@@ -1338,7 +1352,31 @@ function storeCaseOffender() {
                 'offender_relation': $('.a-case-offender_relation').val(),
                 'offender_address': $('.a-case-offender_address').val(),
                 'offender_contact': $('.a-case-offender_contact').val(),
-                'offender_remarks': $('.a-case-offender_remarks').val()
+                'offender_alias': $('.a-case-offender_alias').val(),
+                'offender_pob': $('.a-case-offender_place_of_birth').val(),
+                'offender_remarks': $('.a-case-offender_remarks').val(),
+                'offender_dob': $('.a-case-offender_date_of_birth').val(),
+                'offender_occupation': $('.a-case-offender_occupation').val(),
+                'offender_principal_place_of_business': $('.a-case-offender_principal_place_of_business').val(),
+                'offender_gender': $('.a-case-offender_gender').val(),
+                'offender_gender_type_value': $('.a-case-offender_gender option:selected').val(),
+                'offender_religion': $('.a-case-offender_religion').val(),
+                'offender_religion_type_value': $('.a-case-offender_religion').val(),
+                'offender_race_ethnicity': $('.a-case-offender_race_ethnicity').val(),
+                'offender_civil_status': $('.a-case-offender_civil_status').val(),
+                'offender_civil_tatus_type': $('.a-case-offender_civil_status').val(),
+                'offender_civil_tatus_type': $('.a-case-offender_civil_status').val(),
+                'offender_previous_case_committed': $('.a-case-offender_previous_case_committed').val(),
+                'offender_name_of_parents': $('.a-case-offender_name_of_parents').val(),
+                'offender_name_of_spouse': $('.a-case-offender_name_of_spouse').val(),
+                'offender_socialmedia': $('.a-case-offender_social_media_account').val(),
+                'offender_email_address': $('.a-case-offender_email_address').val(),
+                'offender_place_of_arrest': $('.a-case-offender_place_of_arrest').val(),
+                'offender_date_of_arrest': $('.a-case-offender_date_of_arrest').val(),
+                'offender_is_at_large': $('.a-case-offender_at_large').val(),
+                'offender_is_at_large_type_value': $('.a-case-offender_at_large').val()
+                
+                
             }];
 
         _setStorageData(victim_case_offender, 'victim_case_offender');

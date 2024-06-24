@@ -391,6 +391,7 @@ Class Case_model extends CI_Model {
         return $aResponse;
     }
 
+    // OSAEC CODE ADDED to icms_case `case_violated`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['violated']) . "
     public function addCase($aParam) {
         $sql = "
                 INSERT INTO 
@@ -399,7 +400,8 @@ Class Case_model extends CI_Model {
                     `case_priority_level_id`= '" . $aParam['recommended_priority_level'] . "', 
                     `case_facts`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['facts']) . ", 
                     `case_evaluation`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['evaluation']) . ", 
-                    `case_risk_assessment`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['risk_assessment']) . ", 
+                    `case_risk_assessment`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['risk_assessment']) . ",
+                    `case_coordination_detail_lea`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['case_coordination_lea']) . ",  
                     `case_is_illegal_rec`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['is_illegal_rec']) . ", 
                     `case_is_other_law`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['is_other_law']) . ", 
                     `case_is_other_law_desc`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['other_law_desc']) . ", 
@@ -407,7 +409,8 @@ Class Case_model extends CI_Model {
                     `case_date_added`=now(), 
                     `case_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
                     `case_date_modified`=now(), 
-                    `case_modified_by`='" . $this->session->userdata('userData')['user_id'] . "' 
+                    `case_modified_by`='" . $this->session->userdata('userData')['user_id'] . "',
+                    `case_violated`= " . $this->yel->checkifStringExist($aParam['victim_case_details']['violated']) . " 
                ";
 //        echo '<pre>';        echo $sql; exit();
         $aResponse = $this->yel->exec($sql);
@@ -510,11 +513,13 @@ Class Case_model extends CI_Model {
                 SET 
                     `victim_civil_status`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['civil']) . ", 
                     `victim_gender`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['sex']) . ", 
-                    `victim_religion`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['religion']) . ", 
+                    `victim_religion`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['religion']) . ",
+                    `victim_info_nickname`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['nickname']) . ",
+                    `victim_ethnic_group`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['ethnic_group']) . ",
                     `victim_date_added`= now(), 
                     `victim_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
                     `victim_date_modified`=now(), 
-                    `victim_modified_by`='" . $this->session->userdata('userData')['user_id'] . "' 
+                    `victim_modified_by`='" . $this->session->userdata('userData')['user_id'] . "'
                ";
 
         $aResponse = $this->yel->exec($sql);
@@ -554,6 +559,8 @@ Class Case_model extends CI_Model {
         return $aResponse;
     }
 
+    //OSAEC code added `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "',
+
     public function __addVictimInfo($aParam) {
 
         // Real 
@@ -565,7 +572,8 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= '" . $aParam['victim_personal_info']['first_name'] . "', 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['middle_name']) . ", 
                 `victim_info_last_name`= '" . $aParam['victim_personal_info']['last_name'] . "', 
-                `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ", 
+                `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ",
+                `victim_info_nickname`= '" . $aParam['victim_personal_info']['victim_info_nickname'] . "',
                 `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['dob']) . ", 
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",  
                 `victim_info_is_assumed`= '0',
@@ -587,7 +595,7 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_first_name']) . ", 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_middle_name']) . ", 
                 `victim_info_last_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_last_name']) . ", 
-                `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ", 
+                `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ",
                 `victim_info_is_assumed`='1', 
                 `victim_info_date_added`=now(), 
                 `victim_info_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
@@ -613,9 +621,14 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= '" . $aParam['victim_personal_info']['first_name'] . "', 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['middle_name']) . ", 
                 `victim_info_last_name`= '" . $aParam['victim_personal_info']['last_name'] . "', 
-                `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ", 
+                `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ",
+                `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "', 
                 `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['dob']) . ", 
-                `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",  
+                `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",
+                `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
+                `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
+                `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
+                `other_victim_info_hospitalization`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['other_hospitalization_history']) . ",
                 `victim_info_is_assumed`= '0',
                 `victim_info_date_added`= now(), 
                 `victim_info_added_by`= '" . $this->session->userdata('userData')['user_id'] . "', 
@@ -635,7 +648,11 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_first_name']) . ", 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_middle_name']) . ", 
                 `victim_info_last_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_last_name']) . ", 
-                `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ", 
+                `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ",
+                `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
+                `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
+                `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
+                `other_victim_info_hospitalization`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['other_hospitalization_history']) . ", 
                 `victim_info_is_assumed`='1', 
                 `victim_info_date_added`=now(), 
                 `victim_info_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
@@ -659,7 +676,8 @@ Class Case_model extends CI_Model {
                 `victim_info_first_name`= '" . $aParam['victim_personal_info']['first_name'] . "', 
                 `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['middle_name']) . ", 
                 `victim_info_last_name`= '" . $aParam['victim_personal_info']['last_name'] . "', 
-                `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ", 
+                `victim_info_suffix`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['suffix']) . ",
+                `victim_info_nickname`= '" . $aParam['victim_personal_info']['nickname'] . "', 
                 `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['dob']) . ", 
                 `victim_info_city_pob`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['pob']) . ",  
                 `victim_info_is_assumed`= '0',
@@ -684,7 +702,11 @@ Class Case_model extends CI_Model {
                     `victim_info_first_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_first_name']) . ", 
                     `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_middle_name']) . ", 
                     `victim_info_last_name`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['assumed_last_name']) . ", 
-                    `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ", 
+                    `victim_info_dob`= " . $this->yel->checkDateIfExist($aParam['victim_personal_info']['assumed_dob']) . ",
+                    `victim_info_disability`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['disability']) . ",
+                    `victim_info_allergy`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['allergy']) . ",
+                    `victim_info_hospitality`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['hospitality']) . ",
+                    `other_victim_info_hospitalization`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['other_hospitalization_history']) . ",
                     `victim_info_is_assumed`='1', 
                     `victim_info_date_added`=now(), 
                     `victim_info_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
@@ -885,7 +907,16 @@ Class Case_model extends CI_Model {
                 `recruitment_agency_website`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_website']) . ", 
                 `country_id`=" . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_country']) . ", 
                 `region_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_region']) . ", 
-                `province_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_province']) . ", 
+                `province_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_province']) . ",
+                `recruitment_agency_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_employment_type']) . ",
+                `recruitment_agency_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_child_case_type']) . ",
+                `recruitment_agency_region`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_agency_region']) . ",
+                `recruitment_agency_province`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_agency_province']) . ",
+                `recruitment_agency_city`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_agency_city']) . ",
+                `recruitment_agency_barangay`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_agency_barangay']) . ",
+                `recruitment_agency_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_age_started_working']) . ",
+                `recruitment_agency_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_agency_salary_per_hour']) . ",
+                `recruitment_agency_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['employment_local_agency_reason_for_employment']) . ",  
                 `recruitment_agency_is_local`='1', 
                 `recruitment_agency_date_added`=now(), 
                 `recruitment_agency_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
@@ -920,6 +951,33 @@ Class Case_model extends CI_Model {
                 `recruitment_agency_modified_by`= '" . $this->session->userdata('userData')['user_id'] . "', 
                 `recruitment_agency_is_active`='1' 
          ";
+        $aResponse = $this->yel->exec($sql);
+        return $aResponse;
+    }
+    //Local Employment for Philippine Cases
+    public function addLocalRecruitmentAgencyByManagePhilippines($aParam) {
+
+        $sql = "
+                INSERT INTO 
+                `icms_recruitment_agency_local`
+                SET 
+                `recruitment_agency_name`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_name']) . ", 
+                `recruitment_agency_address`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_address']) . ", 
+                `recruitment_agency_tel_no`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_telephone']) . ", 
+                `recruitment_agency_email`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_email']) . ", 
+                `recruitment_agency_fax_no`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_fax']) . ", 
+                `recruitment_agency_website`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_website']) . ", 
+                `country_id`=" . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_country']) . ", 
+                `region_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_region']) . ", 
+                `province_id`= " . $this->yel->checkifStringExist($aParam['victim_recruitment_details']['local_agency_province']) . ",
+                `recruitment_agency_is_local`='1',
+                `recruitment_agency_date_added`=now(), 
+                `recruitment_agency_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+                `recruitment_agency_date_modified`=now(), 
+                `recruitment_agency_modified_by`= '" . $this->session->userdata('userData')['user_id'] . "', 
+                `recruitment_agency_is_active`='1' 
+               ";
+
         $aResponse = $this->yel->exec($sql);
         return $aResponse;
     }
@@ -1514,7 +1572,16 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_salary_foreign_iso`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['currency']) . ", 
                 `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary_in_peso']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['working_hours']) . ", 
-                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ", 
+                `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ",
+                `employee_local_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_employment_type']) . ",
+                `employee_local_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_child_case_type']) . ",
+                `employee_local_region`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_region']) . ",
+                `employee_local_province`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_province']) . ",
+                `employee_local_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_city']) . ",
+                `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
+                `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
+                `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
+                `employee_local_employed_or_unemployed`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employee_local_employed_or_unemployed']) . ",  
                 `case_victim_employment_details_is_actual`= '" . $val . "' 
                ";
 
@@ -1536,33 +1603,66 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_salary_in_peso']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_working_hours']) . ", 
                 `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_days_of_work']) . ", 
+                `employee_local_type_of_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_employment_type']) . ",
+                `employee_local_type_of_child_cases`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_child_case_type']) . ",
+                `employee_local_region`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_region']) . ",
+                `employee_local_province`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_province']) . ",
+                `employee_local_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_city']) . ",
+                `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
+                `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
+                `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ",
+                `employee_local_employed_or_unemployed`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employee_local_employed_or_unemployed']) . ", 
                 `case_victim_employment_details_is_actual`='1' 
                ";
         $aResponse = $this->yel->exec($sql2);
     }
 
     public function addDeployment($aParam) {
-
+        // ICMS OSAEC CODE START
         $sql = "
-                INSERT INTO 
-                    `icms_case_victim_deployment` 
-                SET 
-                    `case_victim_id`='" . $aParam['case_victim_id'] . "', 
-                    `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
-                    `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
-                    `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
-                    `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
-                    `case_victim_deployment_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date']) . ",  
-                    `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
-                    `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
-                    `case_victim_deployment_country_destination`='" . $aParam['victim_deployment_details']['deployment_country'] . "', 
-                    `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
-                    `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
-                    `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
-                    `case_victim_deployment_date_added`= now(), 
-                    `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
-                    `case_victim_deployment_is_active`='1' 
-               ";
+        INSERT INTO 
+            `icms_case_victim_deployment` 
+        SET 
+            `case_victim_id`='" . $aParam['case_victim_id'] . "', 
+            `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
+            `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
+            `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
+            `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
+            `case_victim_deployment_date`= " . ($this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date'] ?? '') ?? '') . ",  
+            `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
+            `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
+            `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
+            `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
+            `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+            `case_victim_deployment_date_added`= now(), 
+            `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
+            `case_victim_deployment_is_active`='1' 
+       ";
+    //    ICMS OSAEC CODE END
+
+        // ICMS IACAT CODE START
+        // $sql = "
+        //         INSERT INTO 
+        //             `icms_case_victim_deployment` 
+        //         SET 
+        //             `case_victim_id`='" . $aParam['case_victim_id'] . "', 
+        //             `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
+        //             `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
+        //             `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
+        //             `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
+        //             `case_victim_deployment_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date']) . ",  
+        //             `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
+        //             `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
+        //             `case_victim_deployment_country_destination`='" . $aParam['victim_deployment_details']['deployment_country'] . "', 
+        //             `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
+        //             `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
+        //             `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+        //             `case_victim_deployment_date_added`= now(), 
+        //             `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
+        //             `case_victim_deployment_is_active`='1' 
+        //        ";
+        // ICMS IACAT CODE END
 
         // $sql = "
         //         INSERT INTO 
@@ -1648,10 +1748,16 @@ Class Case_model extends CI_Model {
                 `case_victim_id`='" . $aParam['case_victim_id'] . "', 
                 `case_complainant_source_id`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_source']) . ", 
                 `case_complainant_name`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_name']) . ", 
-                `case_complainant_contact_number`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_contact']) . ", 
+                `case_complainant_contact_number`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_contact']) . ",
+                `case_complainant_alternate_contact_number`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_alternate_contact']) . ", 
                 `case_complainant_relation`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_relation']) . ", 
-                `case_complainant_address`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_address']) . ", 
-                `case_complainant_date_complained`=" . $this->yel->checkDateIfExist($aParam['victim_complainant_details']['date_complained']) . ", 
+                `case_complainant_address`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_address']) . ",
+                `case_complainant_place_of_incident`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_place_of_incident']) . ",
+                `case_complainant_place_of_origin`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_place_of_origin']) . ",
+                `case_complainant_place_of_destination`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_place_of_destination']) . ",
+                `case_complainant_date_time_of_incident`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_date_time_of_incident']) . ",
+                `case_complainant_date_complained`=" . $this->yel->checkDateIfExist($aParam['victim_complainant_details']['date_complained']) . ",
+                `case_complainant_other_possible_source`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_other_possible_source_info']) . ",
                 `case_complainant_relation_other`=" . $this->yel->checkifStringExist($aParam['victim_complainant_details']['complainant_relation_other']) . ", 
                 `case_complainant_date_added`= now(), 
                 `case_complainant_added_by`='" . $this->session->userdata('userData')['user_id'] . "',  
@@ -1672,12 +1778,29 @@ Class Case_model extends CI_Model {
                 SET 
                 `case_id`='" . $aParam['case_id'] . "', 
                 `case_offender_type_id`=" . $this->yel->checkifStringExist($val['offender_type']) . ", 
-                `case_offender_name`=" . $this->yel->checkifStringExist($val['offender_name']) . ", 
-                `case_offender_nationality`=" . $this->yel->checkifStringExist($val['offender_nationality']) . ", 
-                `case_offender_other`=" . $this->yel->checkifStringExist($val['offender_relation']) . ", 
-                `case_offender_address`=" . $this->yel->checkifStringExist($val['offender_address']) . ", 
-                `case_offender_contact_details`=" . $this->yel->checkifStringExist($val['offender_contact']) . ", 
-                `case_offender_remarks`=" . $this->yel->checkifStringExist($val['offender_remarks']) . ", 
+                `case_offender_name`=" . $this->yel->checkifStringExist($val['offender_name'] ?? '') . ", 
+                `case_offender_nationality`=" . $this->yel->checkifStringExist($val['offender_nationality'] ?? '') . ", 
+                `case_offender_other`=" . $this->yel->checkifStringExist($val['offender_relation'] ?? '') . ", 
+                `case_offender_address`=" . $this->yel->checkifStringExist($val['offender_address'] ?? '') . ", 
+                `case_offender_contact_details`=" . $this->yel->checkifStringExist($val['offender_contact'] ?? '') . ",
+                `case_offender_remarks`=" . $this->yel->checkifStringExist($val['offender_remarks'] ?? '') . ", 
+                `case_offender_alias`=" . $this->yel->checkifStringExist($val['offender_alias'] ?? '') . ",
+                `case_offender_pob`=" . $this->yel->checkifStringExist($val['offender_pob'] ?? '') . ",
+                `case_offender_dob`=" . $this->yel->checkDateIfExist($val['offender_dob'] ?? '') . ",
+                `case_offender_occupation`=" . $this->yel->checkifStringExist($val['offender_occupation'] ?? '') . ",
+                `case_offender_principal_place_of_business`=" . $this->yel->checkifStringExist($val['offender_principal_place_of_business'] ?? '') . ",
+                `case_offender_gender`=" . $this->yel->checkifStringExist($val['offender_gender'] ?? '') . ",
+                `case_offender_religion`=" . $this->yel->checkifStringExist($val['offender_religion'] ?? '') . ",
+                `case_offender_race_ethnicity`=" . $this->yel->checkifStringExist($val['offender_race_ethnicity'] ?? '') . ",
+                `case_offender_civil_status`=" . $this->yel->checkifStringExist($val['offender_civil_status'] ?? '') . ",
+                `case_offender_previous_case_commited`=" . $this->yel->checkifStringExist($val['offender_previous_case_committed'] ?? '') . ",
+                `case_offender_name_of_parents`=" . $this->yel->checkifStringExist($val['offender_name_of_parents'] ?? '') . ",
+                `case_offender_name_of_spouse`=" . $this->yel->checkifStringExist($val['offender_name_of_spouse'] ?? '') . ",
+                `case_offender_socialmedia`=" . $this->yel->checkifStringExist($val['offender_socialmedia'] ?? '') . ",
+                `case_offender_email_address`=" . $this->yel->checkifStringExist($val['offender_email_address'] ?? '') . ",
+                `case_offender_place_of_arrest`=" . $this->yel->checkifStringExist($val['offender_place_of_arrest'] ?? '') . ",
+                `case_offender_date_of_arrest`=" . $this->yel->checkDateIfExist($val['offender_date_of_arrest'] ?? '') . ",
+                `case_offender_is_at_large`=" . $this->yel->checkifStringExist($val['offender_is_at_large'] ?? '') . ",
                 `case_offender_is_active`= '1' 
                ";
 
@@ -2231,7 +2354,17 @@ Class Case_model extends CI_Model {
                    `icved`.`case_victim_employment_details_salary_in_local`,
                    `icved`.`case_victim_employment_details_working_hours`,
                    `icved`.`case_victim_employment_details_working_in_out`,
-                   `icved`.`case_victim_employment_details_working_days`
+                   `icved`.`case_victim_employment_details_working_days`,
+                   `icved`.`employee_local_type_of_employment`,
+                   `icved`.`employee_local_type_of_child_cases`,
+                   `icved`.`employee_local_region`,
+                   `icved`.`employee_local_province`,
+                   `icved`.`employee_local_city`,
+                   `icved`.`employee_local_barangay`,
+                   `icved`.`employee_local_age_started_working`,
+                   `icved`.`employee_local_salary_per_hour`,
+                   `icved`.`employee_local_reason_for_employment`,
+                   `icved`.`employee_local_employed_or_unemployed`
                 FROM 
                    `icms_case_victim_employment` `icve`,
                    `icms_case_victim_employment_details` `icved`
@@ -2294,7 +2427,17 @@ Class Case_model extends CI_Model {
                   `case_victim_employment_details_salary_foreign_iso`='" . $aParam['foreign_iso'] . "',
                   `case_victim_employment_details_salary_in_local` ='" . $aParam['salary_local'] . "',
                   `case_victim_employment_details_working_hours`='" . $aParam['working_hours'] . "',
-                  `case_victim_employment_details_working_days`='" . $aParam['working_days'] . "'
+                  `case_victim_employment_details_working_days`='" . $aParam['working_days'] . "',
+                  `employee_local_type_of_employment`='" . $aParam['type_employment_local'] . "',
+                  `employee_local_type_of_child_cases`='" . $aParam['type_child_case_local'] . "',
+                  `employee_local_region`='" . $aParam['region_local'] . "',
+                  `employee_local_province`='" . $aParam['province_local'] . "',
+                  `employee_local_city`='" . $aParam['city_local'] . "',
+                  `employee_local_barangay`='" . $aParam['barangay_local'] . "',
+                  `employee_local_age_started_working`='" . $aParam['age_started_working_local'] . "',
+                  `employee_local_salary_per_hour`='" . $aParam['salary_per_hour_local'] . "',
+                  `employee_local_reason_for_employment`='" . $aParam['reasons_for_employment_local'] . "',
+                  `employee_local_employed_or_unemployed`='" . $aParam['employee_local_employed_or_unemployed'] . "'
                 WHERE
                     `case_victim_employment_details_id`='" . $aParam['datacvedetid'] . "'
               ";

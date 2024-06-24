@@ -63,6 +63,46 @@ function getUpdateCaseGlobalParameter() {
             sId: '',
         });
 
+        // ethic 
+        buildOptionDetailsParameter({
+            aData: info.ethnicgroup,
+            sLabel: 'Select Ethic',
+            sClass: 'sel-ethnic_group',
+            sId: '',
+        });
+
+        // disabilities 
+        buildOptionDetailsParameter({
+            aData: info.disabilities,
+            sLabel: 'Select Disabilties',
+            sClass: 'vi-disability',
+            sId: '',
+        });
+
+        // allergies 
+        buildOptionDetailsParameter({
+            aData: info.allergies,
+            sLabel: 'Select Allergy',
+            sClass: 'vi-allergies',
+            sId: '',
+        });
+
+        // illness 
+        buildOptionDetailsParameter({
+            aData: info.illness,
+            sLabel: 'Select History of Illness/Hospitalization',
+            sClass: 'vi-history_of_illness',
+            sId: '',
+        });
+
+         // Offender Description
+         buildOptionDetailsParameter({
+            aData: info.Offender_Description,
+            sLabel: 'Select Offender Description',
+            sClass: 'sel-offender_is_at_large',
+            sId: '',
+        });
+
         // Next of Kin 
         buildOptionDetailsParameter({
             aData: info.family_relation,

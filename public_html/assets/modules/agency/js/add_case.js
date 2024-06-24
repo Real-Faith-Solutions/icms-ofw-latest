@@ -685,12 +685,17 @@ function initialLoad() {
     getProvinces();
 
     getSex();
+    getEthnicGroup();
+    getDisabilities();
+    getAllergies();
+    getIllness();
     getCivilStatus();
     getCasePurposes();
     getContactTypes();
     getReligions();
     getEducationalAttainments();
     getFamilyRelations();
+    getOffenderDescription();
 
 //    getVictimsFromValidation();
 
@@ -729,7 +734,10 @@ function loadVictimInfoIfExist() {
 
             var aVContent = rs.data.content;
             var aVDetails = rs.data.victim_details;
+            var globalData = rs.data.Global_data;
 
+            // console.log(aVDetails);
+            
             $('.vi-first_name').val(aVContent.real.victim_info_first_name);
             $('.vi-middle_name').val(aVContent.real.victim_info_middle_name);
             $('.vi-last_name').val(aVContent.real.victim_info_last_name);
@@ -737,9 +745,12 @@ function loadVictimInfoIfExist() {
 
             $('.vi-dob').val(aVContent.real.victim_info_dob);
             $('.vi-pob').val(aVContent.real.victim_info_city_pob).change();
-            $('.vi-sex').val(aVDetails.victim_gender).change();
-            $('.vi-civil').val(aVDetails.victim_civil_status).change();
-            $('.vi-religion').val(aVDetails.victim_religion).change();
+            // $('.vi-sex').val(aVDetails.victim_gender).change();
+            // $('.vi-civil').val(aVDetails.victim_civil_status).change();
+            // $('.vi-religion').val(aVDetails.victim_religion).change();
+            $('.vi-sex').val(aVDetails.gender_name == aVDetails.gender_name ? globalData.gender_name : "").change();
+            $('.vi-civil').val(aVDetails.civil_status_name == aVDetails.civil_status_name ? globalData.civil_status_name : "").change();
+            $('.vi-religion').val(aVDetails.region_name == aVDetails.region_name ? globalData.region_name : "").change();
 
             $('.vi-assumed_first_name ').val(aVContent.assumed.victim_info_first_name);
             $('.vi-assumed_middle_name').val(aVContent.assumed.victim_info_middle_name);
@@ -1460,10 +1471,10 @@ $(document).ready(function () {
                 $('#employment-details-tab1').trigger('click');
                 $('#employment-details-tab1').attr('disabled', false);
                 returnTop();
-                
+
                 let is_set = $("#form-update_employment_info").attr('data-chosen'); 
-                    if(!is_set){
-                     $("#form-update_employment_info").attr('data-chosen','1'); 
+                if(!is_set){
+                    $("#form-update_employment_info").attr('data-chosen','1'); 
                     // set up chosen js 
                     $("#emp-act_position").chosen(); 
                     $("#emp-position").chosen(); 
@@ -1915,20 +1926,20 @@ $(document).ready(function () {
     });
 
     //  continue to add new report 
-//    $('.btn-fr_validate').click(function () {
-//        icmsMessage({
-//            type: 'msgConfirmation',
-//            title: 'There is no existing report and victim, you are about to file a new report. ',
-//            body: 'Click continue button if you wish to continue.',
-//            LblBtnConfirm: 'Continue',
-//            LblBtnCancel: 'Cancel',
-//            onConfirm: function () {
-//                $('#victims-details-tab1').click();
-//                $('#victims-details-tab1').attr('disabled', false);
-//                setDetailsBasedOnValidate();
-//            },
-//        });
-//    });
+   $('.btn-fr_validate').click(function () {
+       icmsMessage({
+           type: 'msgConfirmation',
+           title: 'There is no existing report and victim, you are about to file a new report. ',
+           body: 'Click continue button if you wish to continue.',
+           LblBtnConfirm: 'Continue',
+           LblBtnCancel: 'Cancel',
+           onConfirm: function () {
+               $('#victims-details-tab1').click();
+               $('#victims-details-tab1').attr('disabled', false);
+               setDetailsBasedOnValidate();
+           },
+       });
+   });
 
     // change label in add victim contact type
     $('.a-vi-contact_type').change(function () {

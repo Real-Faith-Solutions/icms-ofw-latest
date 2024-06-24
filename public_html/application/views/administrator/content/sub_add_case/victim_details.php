@@ -42,6 +42,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" maxlength="10" class="form-control vi-suffix">
                             </div>
                         </div>
+                        <!-- OSAEC CODE START -->
+                        <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Nickname </label>
+                                    <input type="text" maxlength="10" class="form-control vi-nickname" name="victim_info_nickname" >
+                                </div>
+                            </div>
+                        <!-- OSAEC CODE END -->
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="row">
@@ -78,6 +86,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
+                        <!-- OSAEC CODE START -->
+                        <div class="row">
+                                <div class="form-group col-12">
+                                    <label>Member of Ethnic Group</label>
+                                    <select class="form-control sel-ethnic-group vi-ethnic_group">
+                                    </select>
+                                </div>
+                            </div>
+                        <!-- OSAEC CODE END -->
                     </div>
                 </div>
             </div>
@@ -116,6 +133,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" name="v_adob" class="form-control datepicker vi-assumed_dob" placeholder="MM/DD/YYYY">
                                     </div>
                                 </div>
+
+                            <!-- OSAEC adding Input Fields Health Status Disability Allergies History of Illness/Hospitalization start  -->
+                                <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class=" card-sub-title txt-W-500">Health Status<br> 
+                                        <small class="card-desc"> Fill in Health Status information. </small> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fake-info-content_form">
+                                <div class="row">
+                                    <div class="form-group col-12">           
+                                        <label>Disability</label>
+                                        <select class="form-control sel-disablity vi-disability">
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group col-12">           
+                                        <label>Allergies</label>
+                                        <select class="form-control sel-allergies vi-allergy" >
+                                        </select>
+                                    </div> -->
+                                    <div class="form-group col-12">           
+                                        <label>History of Illness</label>
+                                        <select class="form-control sel-history_of_illness vi-history_of_illness"  >
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label>History of Hospitalization</label>
+                                        <input type="text" maxlength="50" class="form-control vi-other_info_hospitalization" >
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- OSAEC adding Input Fields Health Status Disability Allergies History of Illness/Hospitalization end -->
+
                             </div>
                         </div>
                     </div>
@@ -139,7 +190,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="list-group-item list-group-item-action active" id="list-contact_info" data-toggle="list" href="#tab-contact_info" role="tab" aria-controls="home">Contact Information<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#tab-education" role="tab" aria-controls="profile">Educational Background<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#tab-address_info" role="tab" aria-controls="messages">Address Information <font color="red"> <b>*</b> </font> <span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
-                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Next of Kin<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
+                            <!-- #####OSAEC change label to Guardians Information from Next of Kin #####                     -->
+                            <!-- <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Next of Kin<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a> -->
+                            <!-- #####OSAEC change label to Guardians Information from Next of Kin #####                     -->
+
+                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#tab-next_kin" role="tab" aria-controls="settings">Guardian's Information<span class="float-right hide"> <i class="fa fa-caret-right" aria-hidden="true"></i></span></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12">
@@ -268,18 +323,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="tab-pane fade" id="tab-next_kin" role="tabpanel"
                                 aria-labelledby="list-settings-list">
                                 <br><br>
-                                <div class=" card-sub-title"> Victim's Next of Kin <span class="txt-orange"> (Maximum of
+
+                                <!-- ####OSAEC Change label from Victim's Next of Kin to Victim's Guardian's Information ##### -->
+                                <!-- <div class=" card-sub-title"> Victim's Next of Kin <span class="txt-orange"> (Maximum of
+                                        10 entries) </span><br>
+                                    <small class="card-desc"> Victim’s closest living relative/s or closest relation.
+                                    </small>
+                                    <hr class="card-sub-title_border">
+                                </div> -->
+                                <!-- ##### OSAEC Change label from Victim's Next of Kin to Victim's Guardian's Information ##### -->
+                                <div class=" card-sub-title">Victim's Guardian's Information <span class="txt-orange"> (Maximum of
                                         10 entries) </span><br>
                                     <small class="card-desc"> Victim’s closest living relative/s or closest relation.
                                     </small>
                                     <hr class="card-sub-title_border">
                                 </div>
+
                                 <div class="row form-row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="card card_tbl-container">
                                             <div class="card_tbl-action">
                                                 <div class="tbl_info card-sub-title">
-                                                    <span class="">Next of Kin List</span>
+                                                    <!-- ####OSAEC change label for Next of Kin List to Guardian's List #### -->
+                                                    <!-- <span class="">Next of Kin List</span> -->
+                                                    <!-- #### OSAEC change label for Next of Kin List to Guardian's List  #### -->
+
+                                                    <span class="">Guardian's List</span>
                                                 </div>
                                                 <button type="button"
                                                     class="btn btn-secondary-light_blue  btn-add_relative float-right tbl_info"><i

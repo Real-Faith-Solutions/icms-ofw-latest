@@ -92,6 +92,12 @@ function getComplainantDetails(isAction) {
             $('#sel-relation-to-victim').val(list.case_complainant_relation).change();
             $('#complainant_address').val(list.case_complainant_address);
             $('#complainant_contact').val(list.case_complainant_contact_number);
+            $('#complainant_contact_alternate').val(list.case_complainant_alternate_contact_number);
+            $('#case-complainant_place_of_incident').val(list.case_complainant_place_of_incident);
+            $('#case-complainant_place_of_origin').val(list.case_complainant_place_of_origin);
+            $('#case-place_of_destination').val(list.case_complainant_place_of_destination);
+            $('#case-date_time_of_incident').val(list.case_complainant_date_time_of_incident);
+            $('#case-other_possible_source_info').val(list.case_complainant_other_possible_source);
             $('#complainant_remarks').val(list.case_complainant_remarks);
             $('#complainant_relation_other').val(list.case_complainant_relation_other);
             var relation = list.complainant_relation;
@@ -151,6 +157,27 @@ function  setActMeansPurpose() {
         purpose_ctr++;
     });
     var caseid = $('#case_id').val();
+
+    var rd1 = $('#ch1').is(':checked') ? 'CSEC' : '0';
+    var rd2 = $('#ch2').is(':checked') ? 'OSAEC' : '0';
+    var rd3 = $('#ch3').is(':checked') ? 'Other law/s violated' : '0';
+    var rd4 = $('#ch4').is(':checked') ? 'CSAEM' : '0';
+
+    var form_of_Law = '';
+
+    if (rd1 !== '0') {
+        form_of_Law += rd1;
+    }
+    if (rd2 !== '0') {
+        form_of_Law += rd2;
+    }
+    if (rd3 !== '0') {
+        form_of_Law += rd3;
+    }
+    if (rd4 !== '0') {
+        form_of_Law += rd4;
+    }
+
     $.post(sAjaxCaseDetails, {
         type: "setActMeansPurpose",
         acts: acts,
@@ -162,6 +189,7 @@ function  setActMeansPurpose() {
         is_illegal_rec: $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         is_other_law: $('.case-is_other_law').is(':checked') ? '1' : '0',
         other_law_desc: $('.case-other_law_desc').val(),
+        form_of_Law:form_of_Law,
 
     }, function (rs) {
         // msg alert
@@ -186,11 +214,31 @@ function addSetOffenderInfo() {
     var offender_type = $('.a-case-offender_type').val();
     var offender_type_name = $('.a-case-offender_type option:selected').text();
     var offender_name = $('.a-case-offender_name').val();
+    var offender_name_alias = $('.a-case-offender_alias').val();
     var offender_nationality = $('.a-case-offender_nationality').val();
     var offender_nationality_name = $('.a-case-offender_nationality option:selected').text();
     var offender_relation = $('.a-case-offender_relation').val();
     var offender_address = $('.a-case-offender_address').val();
     var offender_contact = $('.a-case-offender_contact').val();
+    var offender_pob = $('.a-case-offender_place_of_birth').val();
+    var offender_dob = $('.a-case-offender_date_of_birth').val();
+    var offender_occupation = $('.a-case-offender_occupation').val();
+    var offender_place_of_business = $('.a-case-offender_principal_place_of_business').val();
+    var offender_gender = $('.a-case-offender_gender').val();
+    var offender_gender_name = $('.a-case-offender_gender option:selected').text();
+    var offender_religion = $('.a-case-offender_religion').val();
+    var offender_religion_name = $('.a-case-offender_religion option:selected').text();
+    var offender_race_ethnicity = $('.a-case-offender_race_ethnicity').val();
+    var offender_civil_status = $('.a-case-offender_civil_status').val();
+    var offender_previous_case_comitted = $('.a-case-offender_previous_case_committed').val();
+    var offender_name_of_parents = $('.a-case-offender_name_of_parents').val();
+    var offender_name_of_spouse = $('.a-case-offender_name_of_spouse').val();
+    var offender_socialmedia = $('.a-case-offender_social_media_account').val();
+    var offender_email_address = $('.a-case-offender_email_address').val();
+    var offender_place_of_arrest = $('.a-case-offender_place_of_arrest').val();
+    var offender_date_of_arrest = $('.a-case-offender_date_of_arrest').val();
+    var offender_at_large = $('.a-case-offender_at_large').val();
+    var offender_at_large_name = $('.a-case-offender_at_large option:selected').text();
     var offender_remarks = $('.a-case-offender_remarks').val();
     $.post(sAjaxCaseDetails, {
         type: "addSetOffenderInfo",
@@ -200,20 +248,56 @@ function addSetOffenderInfo() {
         offender_type: offender_type,
         offender_type_name: offender_type_name,
         offender_name: offender_name,
+        offender_name_alias: offender_name_alias,
         offender_nationality: offender_nationality,
         offender_nationality_name: offender_nationality_name,
         offender_relation: offender_relation,
         offender_address: offender_address,
         offender_contact: offender_contact,
+        offender_pob: offender_pob,
+        offender_dob: offender_dob,
+        offender_date_of_arrest: offender_date_of_arrest,
+        offender_occupation: offender_occupation,
+        offender_place_of_business: offender_place_of_business,
+        offender_gender: offender_gender,
+        offender_gender_name: offender_gender_name,
+        offender_religion: offender_religion,
+        offender_religion_name: offender_religion_name,
+        offender_race_ethnicity: offender_race_ethnicity,
+        offender_civil_status: offender_civil_status,
+        offender_previous_case_comitted: offender_previous_case_comitted,
+        offender_name_of_parents:offender_name_of_parents,
+        offender_name_of_spouse: offender_name_of_spouse,
+        offender_socialmedia: offender_socialmedia,
+        offender_email_address: offender_email_address,
+        offender_place_of_arrest: offender_place_of_arrest,
+        offender_at_large: offender_at_large,
+        offender_at_large_name: offender_at_large_name,
         offender_remarks: offender_remarks
 
     }, function (rs) {
         getCaseAllegedOffender();
         $('#modalcontent-add_offender').modal("hide");
         $('#txtoffendername').val("");
+        $('#txtoffendernamealias').val("");
         $('#seloffenderposition').val("").change();
         $('#seloffendernationality').val("").change();
         $('#txtoffendercontact').val("");
+        $('#txtoffenderpob').val("");
+        $('#txtoffenderoccupation').val("");
+        $('#txtoffenderplaceofbusiness').val("");
+        $('#txtoffendergender').val("");
+        $('#txtoffendereligion').val("");
+        $('#txtoffenderraceethnicity').val("");
+        $('#txtoffendercivilstatus').val("");
+        $('#txtoffenderpreviuouscasecomitted').val("");
+        $('#txtoffendernameofparents').val("");
+        $('#txtoffendernameofspouse').val("");
+        $('#txtoffendersocmedia').val("");
+        $('#txtoffenderemailaddress').val("");
+        $('#txtoffenderplaceofarrest').val("");
+        $('#txtoffenderdateofarrest').val("");
+        $('#txtoffenderisatlarge').val("");
         $('#offenderaddress').val("");
         $('#offederremarks').val("");
         notifyChangesInReport();
@@ -233,6 +317,12 @@ function setComplainantDetails() {
     var relation = $('#sel-relation-to-victim').val();
     var address = $('#complainant_address').val();
     var contact = $('#complainant_contact').val();
+    var alternatecontact = $('#complainant_contact_alternate').val();
+    var placeofincident = $('#case-complainant_place_of_incident').val();
+    var placeoforigin = $('#case-complainant_place_of_origin').val();
+    var placeofdestination = $('#case-place_of_destination').val();
+    var datetimeofincident = $('#case-date_time_of_incident').val();
+    var othersourceinfo = $('#case-other_possible_source_info').val();
     var remarks = $('#complainant_remarks').val();
     var relationother = $('#complainant_relation_other').val();
     var caseid = $('#case_id').val();
@@ -246,6 +336,12 @@ function setComplainantDetails() {
         relation: relation,
         address: address,
         contact: contact,
+        alternatecontact: alternatecontact,
+        placeofincident: placeofincident,
+        placeoforigin: placeoforigin,
+        placeofdestination: placeofdestination,
+        datetimeofincident: datetimeofincident,
+        othersourceinfo: othersourceinfo,
         remarks: remarks,
         relationother: relationother,
         caseid: caseid,
@@ -272,6 +368,7 @@ function getCaseEvaluation(isAction) {
         rs = html_entity_decode(rs);
         $('#area-evaluation').val(rs.data.evaluation.case_evaluation);
         $('#area-case-risk-assessment').val(rs.data.evaluation.case_risk_assessment);
+        $('#area-case-details_of_coordination').val(rs.data.evaluation.case_coordination_detail_lea);
         $('.div-priority_level .form-check-input[value="' + rs.data.evaluation.case_priority_level_id + '"]').attr('checked', true)
         aInitialValues["case_priority_level_id"] = rs.data.evaluation.case_priority_level_id;
         aInitialValues["case_evaluation"] = '';
@@ -292,10 +389,14 @@ function setCaseEvaluation() {
     var caseid = $('#case_id').val();
     var evaluation = $('#area-evaluation').val();
     var risk_assessment = $('#area-case-risk-assessment').val();
+    var case_coordination_lea = $('#area-case-details_of_coordination').val();
+    var case_violated = $('#area-case-details_of_coordination').val();
     $.post(sAjaxCaseDetails, {
         type: "setCaseEvaluation",
         evaluation: evaluation,
         risk_assessment: risk_assessment,
+        case_violated: case_violated,
+        case_coordination_lea: case_coordination_lea,
         caseid: caseid,
     }, function (rs) {
         getCaseEvaluation('1');
@@ -314,9 +415,27 @@ function getCaseAllegedOffender() {
             $.each(rs.data.offender, function (key, val) {
                 var attribs = "";
                 attribs += "alg-name='" + val.case_offender_name + "'";
+                attribs += "alg-namealias='" + val.case_offender_alias + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
                 attribs += "alg-nationality='" + val.case_offender_nationality + "'";
+                attribs += "alg-relation='" + val.case_offender_other + "'";
                 attribs += "alg-contact='" + val.case_offender_contact_details + "'";
+                attribs += "alg-pob='" + val.case_offender_pob + "'";
+                attribs += "alg-dob='" + val.case_offender_dob + "'";
+                attribs += "alg-occupation='" + val.case_offender_occupation + "'";
+                attribs += "alg-placeofbusiness='" + val.case_offender_principal_place_of_business + "'";
+                attribs += "alg-gender='" + val.case_offender_gender + "'";
+                attribs += "alg-religion='" + val.case_offender_religion + "'";
+                attribs += "alg-raceethnicity='" + val.case_offender_race_ethnicity + "'";
+                attribs += "alg-racecivilstatus='" + val.case_offender_civil_status+ "'";
+                attribs += "alg-previouscasecommited='" + val.case_offender_previous_case_commited + "'";
+                attribs += "alg-nameofparents='" + val.case_offender_name_of_parents + "'";
+                attribs += "alg-nameofspouse='" + val.case_offender_name_of_spouse + "'";
+                attribs += "alg-socmed='" + val.case_offender_socialmedia+ "'";
+                attribs += "alg-emailaddress='" + val.case_offender_email_address+ "'";
+                attribs += "alg-placeofarrest='" + val.case_offender_place_of_arrest+ "'";
+                attribs += "alg-dateofarrest='" + val.case_offender_date_of_arrest+ "'";
+                attribs += "alg-isatlarge='" + val.case_offender_is_at_large+ "'";
                 attribs += "alg-address='" + val.case_offender_address + "'";
                 attribs += "alg-remarks='" + val.case_offender_remarks + "'";
                 attribs += "alg-position='" + val.offender_type + "'";
@@ -615,6 +734,11 @@ function getCaseTIP() {
         $("#cd-sel-means option:selected").prop("selected", false);
         $("#cd-sel-purposes option:selected").prop("selected", false);
         
+        $("#ch1").prop("checked", rs.data.case_violated == "CSEC" ? true : false);
+        $("#ch2").prop("checked", rs.data.case_violated == "OSAEC" ? true : false);
+        $("#ch3").prop("checked", rs.data.case_violated == "Other law/s violated" ? true : false);
+        $("#ch4").prop("checked", rs.data.case_violated == "CSAEM" ? true : false);
+        
         rs = html_entity_decode(rs);
         activateAMP('1');
         $('#cd-sel-acts').chosen("destroy");
@@ -909,23 +1033,31 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
 
-            var aCurrentValues = "";
-            aCurrentValues = getFormValues('frm-act-means-purpose');
-            if (aCurrentValues == aInitialValues['incident_details']) {
-                icmsMessage({
-                    type: "msgWarning",
-                    body: "No changes has been made.",
-                });
-            } else {
-                icmsMessage({
-                    type: "msgConfirmation",
-                    title: "You are about to update Means, Act and Purpose",
-                    onConfirm: function () {
-                        setActMeansPurpose();
-                        activateAMP(0);
-                    }
-                });
-            }
+            icmsMessage({
+                type: "msgConfirmation",
+                title: "You are about to update Means, Act and Purpose",
+                onConfirm: function () {
+                    setActMeansPurpose();
+                    activateAMP(0);
+                }
+            });
+            // var aCurrentValues = "";
+            // aCurrentValues = getFormValues('frm-act-means-purpose');
+            // if (aCurrentValues == aInitialValues['incident_details']) {
+            //     icmsMessage({
+            //         type: "msgWarning",
+            //         body: "No changes has been made.",
+            //     });
+            // } else {
+            //     icmsMessage({
+            //         type: "msgConfirmation",
+            //         title: "You are about to update Means, Act and Purpose",
+            //         onConfirm: function () {
+            //             setActMeansPurpose();
+            //             activateAMP(0);
+            //         }
+            //     });
+            // }
 
         }
     });
@@ -1019,9 +1151,27 @@ $(document).ready(function () {
             //success
             var rs = rset.data.offender;
             $('.a-case-offender_name').val(rs.case_offender_name);
+            $('.a-case-offender_alias').val(rs.case_offender_alias);
             $('.a-case-offender_type').val(rs.case_offender_type_id).change();
             $('.a-case-offender_nationality').val(rs.case_offender_nationality).change();
+            $('.a-case-offender_relation').val(rs.case_offender_other).change();
             $('.a-case-offender_contact').val(rs.case_offender_contact_details);
+            $('.a-case-offender_place_of_birth').val(rs.case_offender_pob);
+            $('.a-case-offender_date_of_birth').val(rs.case_offender_dob);
+            $('.a-case-offender_occupation').val(rs.case_offender_occupation);
+            $('.a-case-offender_principal_place_of_business').val(rs.case_offender_principal_place_of_business);
+            $('.a-case-offender_gender').val(rs.case_offender_gender).change();
+            $('.a-case-offender_religion').val(rs.case_offender_religion).change();
+            $('.a-case-offender_race_ethnicity').val(rs.case_offender_race_ethnicity);
+            $('.a-case-offender_civil_status').val(rs.case_offender_civil_status);
+            $('.a-case-offender_previous_case_committed').val(rs.case_offender_previous_case_commited);
+            $('.a-case-offender_name_of_parents').val(rs.case_offender_name_of_parents);
+            $('.a-case-offender_name_of_spouse').val(rs.case_offender_name_of_spouse);
+            $('.a-case-offender_social_media_account').val(rs.case_offender_socialmedia);
+            $('.a-case-offender_email_address').val(rs.case_offender_email_address);
+            $('.a-case-offender_place_of_arrest').val(rs.case_offender_place_of_arrest);
+            $('.a-case-offender_date_of_arrest').val(rs.case_offender_date_of_arrest);
+            $('.a-case-offender_at_large').val(rs.case_offender_is_at_large);
             $('.a-case-offender_address').val(rs.case_offender_address);
             $('.a-case-offender_remarks').val(rs.case_offender_remarks);
         }, 'json');
@@ -1133,6 +1283,7 @@ $(document).ready(function () {
 // for manage 
             $('#area-evaluation').prop('disabled', false);
             $('#area-case-risk-assessment').prop('disabled', false);
+            $('#area-case-details_of_coordination').prop('disabled', false);
             $('#btn-save-evaluation').removeClass('hide');
             $('#btn-manage-evaluation').text("Cancel");
         } else {
@@ -1160,6 +1311,7 @@ $(document).ready(function () {
                         // no update 
                         $('#area-evaluation').prop('disabled', true);
                         $('#area-case-risk-assessment').prop('disabled', true);
+                        $('#area-case-details_of_coordination').prop('disabled', true);
                         $('#btn-save-evaluation').addClass('hide');
                         //save
                         $('#btn-manage-evaluation').text("Manage");
@@ -1206,6 +1358,7 @@ $(document).ready(function () {
                         // no update 
                         $('#area-evaluation').prop('disabled', true);
                         $('#area-case-risk-assessment').prop('disabled', true);
+                        $('#area-case-details_of_coordination').prop('disabled', true);
                         $('#btn-save-evaluation').addClass('hide');
                         //save
                         $('#btn-manage-evaluation').text("Manage");
@@ -1217,6 +1370,124 @@ $(document).ready(function () {
 
         }
     });
+
+
+    //OSAEC CODE START
+    $('#btn-cancel-local_employer').click(function () {
+        $(this).addClass("hide");
+        $('#btn-update-local_employer').text("Manage");
+        $('#btn-update-local_employer').attr("dataaction", 'toenabled');
+        $('#area-local_employer').prop('disabled', true);
+    });
+    $('#btn-manage-local_employer').click(function () {
+        var caption = $('#btn-manage-local_employer').text();
+        if (caption == "Manage") {
+
+// for manage 
+            $('#emp-act_employed_unemployed').prop('disabled', false);
+            $('#emp-act_type_of_employment').prop('disabled', false);
+            $('#emp-act_type_of_child_cases').prop('disabled', false);
+            $('#emp-region').prop('disabled', false);
+            $('#emp-age_started_working').prop('disabled', false);
+            $('#emp-salary_per_hour').prop('disabled', false);
+            $('#emp-reasons_for_employment').prop('disabled', false);
+            $('#btn-save-local_employer').removeClass('hide');
+            $('#btn-manage-local_employer').text("Cancel");
+        } else {
+
+// for cancel 
+
+            aCurrentValues = '';
+            aCurrentValues = getFormValues('fmr-manage-evaluation');
+            if (aCurrentValues == aInitialValues['case_evaluation']) {
+// no update 
+                $('#emp-act_employed_unemployed').prop('disabled', true);
+                $('#emp-act_type_of_employment').prop('disabled', true);
+                $('#emp-act_type_of_child_cases').prop('disabled', true);
+                $('#emp-region').prop('disabled', true);
+                $('#emp-age_started_working').prop('disabled', true);
+                $('#emp-salary_per_hour').prop('disabled', true);
+                $('#emp-reasons_for_employment').prop('disabled', true);
+                $('#btn-save-local_employer').addClass('hide');
+                //save
+                $('#btn-manage-local_employer').text("Manage");
+            } else {
+// have an update
+                icmsMessage({
+                    type: "msgConfirmation",
+                    title: "You made some changes. Do you want to disregard changes?",
+                    body: "Click yes button if you want to continue",
+                    LblBtnConfirm: "Yes",
+                    onConfirm: function () {
+
+                        // no update 
+                        $('#emp-act_employed_unemployed').prop('disabled', true);
+                        $('#emp-act_type_of_employment').prop('disabled', true);
+                        $('#emp-act_type_of_child_cases').prop('disabled', true);
+                        $('#emp-region').prop('disabled', true);
+                        $('#emp-age_started_working').prop('disabled', true);
+                        $('#emp-salary_per_hour').prop('disabled', true);
+                        $('#emp-reasons_for_employment').prop('disabled', true);
+                        $('#btn-save-local_employer').addClass('hide');
+                        //save
+                        $('#btn-manage-local_employer').text("Manage");
+                        resetFormJQueryValidation('fmr-manage-evaluation');
+                        getCaseEvaluation();
+                    }
+                });
+            }
+
+        }
+    });
+    $('#btn-save-local_employer').click(function () {
+        $('#fmr-manage-evaluation').submit();
+    });
+    // update form case evaluataion risk assessment 
+    $('#fmr-manage-evaluation').validate({
+        rules: {
+
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error);
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function (form) {
+
+            aCurrentValues = '';
+            aCurrentValues = getFormValues('fmr-manage-evaluation');
+            if (aCurrentValues == aInitialValues['case_evaluation']) {
+                icmsMessage({
+                    type: "msgWarning",
+                    body: "No changes has been made.",
+                });
+            } else {
+                icmsMessage({
+                    type: "msgConfirmation",
+                    title: "You are about to update Case Evaluation & Risk Assessment",
+                    onConfirm: function () {
+
+                        // no update 
+                        $('#area-evaluation').prop('disabled', true);
+                        $('#area-case-risk-assessment').prop('disabled', true);
+                        $('#area-case-details_of_coordination').prop('disabled', true);
+                        $('#btn-save-evaluation').addClass('hide');
+                        //save
+                        $('#btn-manage-evaluation').text("Manage");
+                        setCaseEvaluation();
+                    }
+                });
+            }
+
+
+        }
+    });
+//OSAEC CODE END
+
     $('#form-add_offender').validate({
         rules: {
             offender_type: {required: true},
