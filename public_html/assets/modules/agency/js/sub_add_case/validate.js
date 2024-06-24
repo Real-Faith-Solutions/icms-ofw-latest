@@ -41,7 +41,12 @@ function storeVictimDetails() {
         'assumed_first_name': $('.vi-assumed_first_name').val(),
         'assumed_middle_name': $('.vi-assumed_middle_name').val(),
         'assumed_last_name': $('.vi-assumed_last_name').val(),
-        'assumed_dob': $('.vi-assumed_dob').val()
+        'assumed_dob': $('.vi-assumed_dob').val(),
+        'disability': $('.vi-disability').val(),
+        'disability_value': $('.vi-disability option:selected').attr('data-name'),
+        'hospitality': $('.vi-history_of_illness').val(),
+        'hospitality_value': $('.vi-history_of_illness option:selected').attr('data-name'),
+        'other_hospitalization_history': $('.vi-other_info_hospitalization').val(),
     };
 
     _setStorageData(victim_personal_info, 'victim_personal_info');
