@@ -145,18 +145,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <select class="form-control sel-disablity vi-disability">
                                         </select>
                                     </div>
-                                    <div class="form-group col-12">           
+                                    <!-- <div class="form-group col-12">           
                                         <label>Allergies</label>
                                         <select class="form-control sel-allergies vi-allergy" >
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group col-12">           
-                                        <label>History of Illness/Hospitalization</label>
+                                        <label>History of Illness</label>
                                         <select class="form-control sel-history_of_illness vi-history_of_illness"  >
                                         </select>
                                     </div>
                                     <div class="form-group col-12">
-                                        <label> Other History of Illness/Hospitalization</label>
+                                        <label>History of Hospitalization</label>
                                         <input type="text" maxlength="50" class="form-control vi-other_info_hospitalization" >
                                     </div>
                                 </div>
