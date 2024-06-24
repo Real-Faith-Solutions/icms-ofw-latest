@@ -75,7 +75,8 @@
                                             </div>
                                                <!---Adding <span class="text-danger"> *</span> to show to the user it is required-->
                                             <div class="form-group">
-                                                <label for="">Contact Number </label><span class="text-danger"> *</span>
+                                                <label for="">Contact Number </label><span class="text-danger"> * </span>
+                                                <span class="text-danger">Country Code</span>
                                                 <input type="text" class="form-control"
                                                     id="inp-temporary_victim_mobile_number"
                                                     name="temporary_victim_mobile_number" placeholder="e.g. +639394567128">
