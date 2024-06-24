@@ -264,7 +264,8 @@ function storeEmploymentDetails() {
         'employment_local_agency_barangay_type_value': $('.local-type_agency_barangay').val(),
         'employment_local_age_started_working': $('.emp-act_age_started_working').val(),
         'employment_local_agency_salary_per_hour': $('.emp-act_salary_per_hour').val(),
-        'employment_local_agency_reason_for_employment': $('.emp-act_reasons_for_employment').val()
+        'employment_local_agency_reason_for_employment': $('.emp-act_reasons_for_employment').val(),
+        'employee_local_employed_or_unemployed': $('input[name="is_employment_employed"]:checked').val() === "0" ? "EMPLOYED" : "UNEMPLOYED",
     };
 
     var victim_employer_details = {

@@ -1538,7 +1538,9 @@ Class Case_model extends CI_Model {
                 `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
                 `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
                 `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
-                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ",
+                `employee_local_employed_or_unemployed`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employee_local_employed_or_unemployed']) . ",  
+
                 `case_victim_employment_details_is_actual`= '" . $val . "' 
                ";
 
@@ -1568,7 +1570,8 @@ Class Case_model extends CI_Model {
                 `employee_local_barangay`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_barangay']) . ",
                 `employee_local_age_started_working`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_age_started_working']) . ",
                 `employee_local_salary_per_hour`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_salary_per_hour']) . ",
-                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ", 
+                `employee_local_reason_for_employment`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employment_local_agency_reason_for_employment']) . ",
+                `employee_local_employed_or_unemployed`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['employee_local_employed_or_unemployed']) . ",
                 `case_victim_employment_details_is_actual`='1' 
                ";
         $aResponse = $this->yel->exec($sql2);
@@ -2274,7 +2277,8 @@ Class Case_model extends CI_Model {
                    `icved`.`employee_local_barangay`,
                    `icved`.`employee_local_age_started_working`,
                    `icved`.`employee_local_salary_per_hour`,
-                   `icved`.`employee_local_reason_for_employment`
+                   `icved`.`employee_local_reason_for_employment`,
+                   `icved`.`employee_local_employed_or_unemployed`
                 FROM 
                    `icms_case_victim_employment` `icve`,
                    `icms_case_victim_employment_details` `icved`
@@ -2340,9 +2344,14 @@ Class Case_model extends CI_Model {
                   `case_victim_employment_details_working_days`='" . $aParam['working_days'] . "',
                   `employee_local_type_of_employment`='" . $aParam['type_employment_local'] . "',
                   `employee_local_type_of_child_cases`='" . $aParam['type_child_case_local'] . "',
+                  `employee_local_region`='" . $aParam['region_local'] . "',
+                  `employee_local_province`='" . $aParam['province_local'] . "',
+                  `employee_local_city`='" . $aParam['city_local'] . "',
+                  `employee_local_barangay`='" . $aParam['barangay_local'] . "',
                   `employee_local_age_started_working`='" . $aParam['age_started_working_local'] . "',
                   `employee_local_salary_per_hour`='" . $aParam['salary_per_hour_local'] . "',
-                  `employee_local_reason_for_employment`='" . $aParam['reasons_for_employment_local'] . "'
+                  `employee_local_reason_for_employment`='" . $aParam['reasons_for_employment_local'] . "',
+                  `employee_local_employed_or_unemployed`='" . $aParam['employee_local_employed_or_unemployed'] . "'
                 WHERE
                     `case_victim_employment_details_id`='" . $aParam['datacvedetid'] . "'
               ";
