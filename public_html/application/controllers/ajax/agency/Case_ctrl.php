@@ -2158,6 +2158,43 @@ class Case_ctrl extends CI_Controller {
         return $sResponse;
     }
 
+    // private function addCaseEmploymentDetails($aNewParam) {
+    //     $aResponse = [];
+    //     $aResult = [];
+    //     $aResponse['flag'] = self::FAILED_RESPONSE;
+    //     //Add Employment Details Based on the contract 
+    //     $empType = "0";
+    //     $aResponse['emp_details_contract'] = $this->Case_model->addEmploymentDetails($aNewParam, $empType);
+
+    //     // Add Employment Details Based on  the actual 
+    //     $aResponse['emp_details_actual'] = $this->Case_model->addEmploymentDetails_actualWork($aNewParam);
+
+    //     // logs : add employement type details
+    //     $aLog['log_event_type'] = 35; // base on table : icms_user_event_type
+    //     $aLog['log_message'] = "added employment details ";
+    //     $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
+    //     $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
+    //     $aLog['module_primary_id'] = $aNewParam['case_id'];
+    //     $aLog['sub_module_primary_id'] = $aResponse['emp_details_contract']['insert_id'];
+    //     $aResponse['log'] = $this->audit->create($aLog);
+
+    //     // logs : add employement type details actual work
+    //     $aLog['log_event_type'] = 35; // base on table : icms_user_event_type
+    //     $aLog['log_message'] = "added employment details(actual work) ";
+    //     $aLog['log_message'] .= " of the  <a href='victim_list/" . $this->yel->encrypt_param($aNewParam['victim_id']) . "'>victim </a>";
+    //     $aLog['log_message'] .= " for the case report <a href='update_case/" . $this->yel->encrypt_param($aNewParam['case_id']) . "'>" . $aNewParam['case_number'] . "</a>";
+    //     $aLog['module_primary_id'] = $aNewParam['case_id'];
+    //     $aLog['sub_module_primary_id'] = $aResponse['emp_details_actual']['insert_id'];
+    //     $aResponse['log'] = $this->audit->create($aLog);
+
+    //     $aResult['emp_details_actual'] = $aResponse['emp_details_actual']['insert_id'];
+    //     $aResult['emp_details_contract'] = $aResponse['emp_details_contract']['insert_id'];
+
+    //     $aResponse['flag'] = self::SUCCESS_RESPONSE;
+
+    //     return $aResult;
+    // }
+
     private function addCaseEmploymentDetails($aNewParam) {
         $aResponse = [];
         $aResult = [];

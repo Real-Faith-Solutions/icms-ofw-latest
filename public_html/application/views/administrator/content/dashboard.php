@@ -130,6 +130,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
+
+            <br/>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3  px-2">
+                <div class=" card-stats shadow-sm p-3  bg-white rounded" >
+                    <div class="row no-gutters case">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <p class="stat-header">CSEC Reports </p>
+                            <span class="header-case_csec header-count">-</span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 float-right stats-icon">
+                            <i class="fa fa-briefcase dashboard-icon-total" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <div class=" card-stats shadow-sm p-3  bg-white rounded" >
+                    <div class="row no-gutters case">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <p class="stat-header">CSAEM Reports </p>
+                            <span class="header-case_csaem header-count">-</span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 float-right stats-icon">
+                            <i class="fa fa-briefcase dashboard-icon-total" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3  px-2">
+                <div class=" card-stats shadow-sm p-3  bg-white rounded" >
+                    <div class="row no-gutters case">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <p class="stat-header">OSAEC Reports</p>
+                            <span class="header-case_osaec header-count">-</span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 float-right stats-icon">
+                        <i class="fa fa-briefcase dashboard-icon-total" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3  px-2">
+                <div class=" card-stats shadow-sm p-3  bg-white rounded" >
+                    <div class="row no-gutters case">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <p class="stat-header">Others Reports</p>
+                            <span class="header-case_others header-count">-</span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 float-right stats-icon">
+                        <i class="fa fa-briefcase dashboard-icon-total" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 
