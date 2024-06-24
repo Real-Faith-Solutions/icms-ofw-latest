@@ -510,7 +510,9 @@ Class Case_model extends CI_Model {
                 SET 
                     `victim_civil_status`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['civil']) . ", 
                     `victim_gender`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['sex']) . ", 
-                    `victim_religion`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['religion']) . ", 
+                    `victim_religion`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['religion']) . ",
+                    `victim_info_nickname`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['nickname']) . ",
+                    `victim_ethnic_group`= " . $this->yel->checkifStringExist($aParam['victim_personal_info']['ethnic_group']) . ",
                     `victim_date_added`= now(), 
                     `victim_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
                     `victim_date_modified`=now(), 
