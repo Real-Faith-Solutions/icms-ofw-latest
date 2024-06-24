@@ -162,6 +162,7 @@ function  setActMeansPurpose() {
         is_illegal_rec: $('.case-is_illegal_rec ').is(':checked') ? '1' : '0',
         is_other_law: $('.case-is_other_law').is(':checked') ? '1' : '0',
         other_law_desc: $('.case-other_law_desc').val(),
+        
 
     }, function (rs) {
         // msg alert
@@ -614,6 +615,11 @@ function getCaseTIP() {
         $("#cd-sel-acts option:selected").prop("selected", false);
         $("#cd-sel-means option:selected").prop("selected", false);
         $("#cd-sel-purposes option:selected").prop("selected", false);
+
+        $("#ch1").prop("checked", rs.data.case_violated == "CSEC" ? true : false);
+        $("#ch2").prop("checked", rs.data.case_violated == "OSAEC" ? true : false);
+        $("#ch3").prop("checked", rs.data.case_violated == "Other law/s violated" ? true : false);
+        $("#ch4").prop("checked", rs.data.case_violated == "CSAEM" ? true : false);
         
         rs = html_entity_decode(rs);
         activateAMP('1');
