@@ -711,7 +711,7 @@ function clearEmployerDetails() {
 
 $(document).ready(function () {
 
-    getCountryISO();
+    // getCountryISO();
     getEmploymentType();
     getDepartureType();
     getPortOfExit();
@@ -880,29 +880,29 @@ $(document).ready(function () {
 
             var departure = $("#emp-sel-departure").val();
             var emp_sel_eer_country = $("#emp-sel-eer-country").val();
-            if (departure == "0") {
-                icmsMessage({
-                    type: 'msgWarning',
-                    body: '<center> Departure type is required. </center>',
-                    caption: 'Close',
-                });
-            } else {
+            // if (departure == "0") {
+            //     icmsMessage({
+            //         type: 'msgWarning',
+            //         body: '<center> Departure type is required. </center>',
+            //         caption: 'Close',
+            //     });
+            // } else {
 
-                if (emp_sel_eer_country == "") {
-                    icmsMessage({
-                        type: 'msgWarning',
-                        body: '<center>Country of deployment (Based on contract) in employment details is required.</center>',
-                        caption: 'Close',
-                    });
-                } else {
+            //     if (emp_sel_eer_country == "") {
+            //         icmsMessage({
+            //             type: 'msgWarning',
+            //             body: '<center>Country of deployment (Based on contract) in employment details is required.</center>',
+            //             caption: 'Close',
+            //         });
+            //     } else {
                     storeEmploymentDetails();
                     $('.step-trigger').attr('disabled', true);
                     $('#case-details-tab1').attr('disabled', false);
                     $('#case-details-tab1').trigger('click');
                     returnTop();
-                }
+            //     }
 
-            }
+            // }
 
         }
 
