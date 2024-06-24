@@ -310,6 +310,7 @@ class Case_details extends CI_Controller {
 
         //update brief summary
         $aResponse['summary'] = $this->Case_details_model->setBriefFactOfTheCase($aParam);
+        $aResponse['form_of_Law'] = $this->Case_details_model->setViolation($aParam);
 
         // update is illegal rec, is other law, other law desc 
         $aResponse['case_details'] = $this->Case_details_model->setCaseOtherDetails($aParam);
