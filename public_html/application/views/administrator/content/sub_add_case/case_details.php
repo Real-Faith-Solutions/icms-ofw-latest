@@ -101,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </select>
                             </div>
                         </div>
-                        <fieldset><div class="col-lg-2 col-md-2 col-sm-2">
+                        <fieldset><div class="col">
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="form-group form-check">
                                     <input type="radio" class="form-check-input case-violated noSpcStart" id="ch1" value="CSEC" name="s_violated" required="true">
