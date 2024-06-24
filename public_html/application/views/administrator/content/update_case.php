@@ -372,7 +372,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <td id="empt-occupation"></td>
                         </tr>
                         <tr>
-                            <td>Salary in Peso</td>
+                            <td>Salary per hour</td>
                             <td>:</td>
                             <td id="empt-salary-peso"></td>
                         </tr>
@@ -438,7 +438,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <td id="empt-u-occupation"></td>
                         </tr>
                         <tr>
-                            <td>Salary in Peso</td>
+                            <td>Salary per hour</td>
                             <td>:</td>
                             <td id="empt-u-salary-peso"></td>
                         </tr>

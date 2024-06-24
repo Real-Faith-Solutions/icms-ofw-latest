@@ -159,12 +159,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <option value="PHP" selected>PHP</option>
                                             </select>
                                         </div>
+
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type">
+                                            <label>Employment Type</label>
+                                            <select id="emp-sel-eer-employment-type" name="emp_sel_eer_employment-type" class="form-control text-capital emp-employment_type"></select>
+                                        </div>
+
                                         <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" maxlength="20" name="emp_act_salary" class="form-control decimal emp-act_salary">
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                            <label> Salary per hour </label>
                                             <input type="text" maxlength="20" name="emp_act_salary_in_peso" class="form-control decimal emp-act_salary_in_peso" id="emp-act_salary">
                                         </div>
                                     </div>
@@ -216,12 +222,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <option value="PHP" selected>PHP</option>
                                             </select>
                                         </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency" style="display:none">
+                                            <label>Employment Type</label>
+                                            <select id="emp-sel-employment-type"  class="form-control text-capital emp-employment_type"></select>
+                                        </div>
+                                        
                                         <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" maxlength="20" class="form-control decimal emp-salary" name="emp_salary" id="emp-salary">
                                         </div>
                                         <div class="form-group col-lg-4 col-md-6  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                            <label> Salary per hour </label>
                                             <input type="text" maxlength="20" class="form-control decimal  emp-salary_in_peso" name="emp_salary_in_peso" id="emp-salary_in_peso">
                                         </div>
                                     </div>
