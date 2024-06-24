@@ -167,10 +167,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <label>Currency</label>
                                             <select id="emp-sel-eet-currency" class="form-control text-capital emp-case_victim_employment_details_salary_foreign_iso" disabled="true"></select>
                                         </div>
+
+
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type" style="display: none;">
+                                            <label>Employment Type</label>
+                                            <select id="emp-sel-employment-type" type="text" class="form-control emp-case_victim_employment_details_employment_type" disabled="true"></select>
+                                        </div>
+
                                         <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
+
+
                                         <div class="form-group col-lg-4 col-md-4  col-sm-12">
                                             <label> Salary per hour </label>
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_local" disabled="true">
@@ -228,6 +237,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <label>Currency</label>
                                             <select id="emp-sel-actual-currency" class="form-control text-capital emp-act-case_victim_employment_details_salary_foreign_iso" disabled="true"> </select>
                                         </div>
+
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type" style="display: none;">
+                                            <label>Employment Type</label>
+                                            <select id="" type="text" class="form-control emp-act-case_victim_employment_details_employment_type" disabled="true"></select>
+                                        </div>
+
+
                                         <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" class="form-control decimal emp-act-case_victim_employment_details_salary_in_foreign" disabled="true">

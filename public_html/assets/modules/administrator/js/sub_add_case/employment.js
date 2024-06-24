@@ -36,6 +36,7 @@ function getEmploymentType() {
             l += "<option value='" + val.parameter_count_id + "' data-name='" + val.parameter_name + "'>" + val.parameter_name + " </option>";
         });
         $('#emp-sel-employment-type').html(l);
+        $('#emp-sel-eer-employment-type').html(l);
     }, 'json');
 }
 

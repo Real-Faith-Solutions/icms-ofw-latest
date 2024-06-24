@@ -347,6 +347,7 @@ function loadEmployment_contract(rs) {
     if (rs.country_id >= 1) {
         $('#emp-sel-eet-country').val(rs.country_id).change();
     }
+    $('.emp-case_victim_employment_details_employment_type').val(rs.case_victim_employment_type);
     $('.emp-case_victim_employment_city').val(rs.case_victim_employment_city);
     $('.emp-case_victim_employment_details_salary_foreign_iso').val(rs.case_victim_employment_details_salary_foreign_iso);
     $('.emp-case_victim_employment_details_salary_in_foreign').val(rs.case_victim_employment_details_salary_in_foreign);
@@ -484,6 +485,7 @@ function getEmploymentType() {
             l += "<option value='" + val.parameter_count_id + "' data-name='" + val.parameter_name + "'>" + val.parameter_name + " </option>";
         });
         $('#emp-sel-employment-type').html(l);
+        $('#emp-sel-eer-employment-type').html(l);
     }, 'json');
 }
 
@@ -1357,7 +1359,9 @@ $(document).ready(function () {
 
                         var is_documented = $("input[name='rdo_doc_employment']:checked").val();
                         var country_id = $('#emp-sel-eet-country').val();
+                        var employment_type = $('#emp-case_victim_employment_details_employment_type').val();
                         var city = $('.emp-case_victim_employment_city').val();
+
                         var foreign_iso = $('.emp-case_victim_employment_details_salary_foreign_iso').val();
                         var salary_foreign = $('.emp-case_victim_employment_details_salary_in_foreign').val();
                         var salary_local = $('.emp-case_victim_employment_details_salary_in_local').val();
@@ -1372,6 +1376,7 @@ $(document).ready(function () {
                             is_documented: is_documented,
                             country_id: country_id,
                             city: city,
+                            employment_type: employment_type,
                             foreign_iso: foreign_iso,
                             salary_foreign: salary_foreign,
                             salary_local: salary_local,
