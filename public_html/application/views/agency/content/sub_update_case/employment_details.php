@@ -172,7 +172,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                            <label> Salary per hour </label>
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_local" disabled="true">
                                         </div>
                                     </div>
@@ -233,7 +233,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <input type="text" class="form-control decimal emp-act-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                            <label> Salary per hour </label>
                                             <input type="text" class="form-control decimal emp-act-case_victim_employment_details_salary_in_local" disabled="true">
                                         </div>
                                     </div>

@@ -164,7 +164,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <input type="text" maxlength="20" name="emp_act_salary" class="form-control decimal emp-act_salary">
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                            <label> Salary per hour </label>
                                             <input type="text" maxlength="20" name="emp_act_salary_in_peso" class="form-control decimal emp-act_salary_in_peso" id="emp-act_salary">
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <input type="text" maxlength="20" class="form-control decimal emp-salary" name="emp_salary" id="emp-salary">
                                         </div>
                                         <div class="form-group col-lg-4 col-md-6  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                            <label> Salary per hour </label>
                                             <input type="text" maxlength="20" class="form-control decimal  emp-salary_in_peso" name="emp_salary_in_peso" id="emp-salary_in_peso">
                                         </div>
                                     </div>
