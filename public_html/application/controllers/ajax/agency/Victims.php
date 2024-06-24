@@ -20,6 +20,7 @@ class Victims extends CI_Controller {
         // load models
         $this->load->model('administrator/Victims_model');
         $this->load->model('administrator/Case_details_model');
+        $this->load->model('Global_data_model');
     }
 
     /**
@@ -1288,6 +1289,7 @@ class Victims extends CI_Controller {
 
         // get victim details
         $aResponse['victim_details'] = $this->Victims_model->getVitimInfoById($aParam);
+        $aResponse['Global_data'] = $this->Global_data_model->getGlobalDataVictimInformation($aParam);
 
         if ($aResponse['victim_details']) {
             // optional for getting the other victim details
