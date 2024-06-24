@@ -62,6 +62,31 @@ function getUpdateCaseGlobalParameter() {
             sClass: 'sel-religion',
             sId: '',
         });
+        
+          // ethic 
+          buildOptionDetailsParameter({
+            aData: info.ethnicgroup,
+            sLabel: 'Select Ethic',
+            sClass: 'sel-ethnic_group',
+            sId: '',
+        });
+
+        // disabilities 
+        buildOptionDetailsParameter({
+            aData: info.disabilities,
+            sLabel: 'Select Disabilties',
+            sClass: 'vi-disability',
+            sId: '',
+        });
+
+        // illness 
+        buildOptionDetailsParameter({
+            aData: info.illness,
+            sLabel: 'Select History of Illness/Hospitalization',
+            sClass: 'vi-history_of_illness',
+            sId: '',
+        });   
+
 
         // Next of Kin 
         buildOptionDetailsParameter({

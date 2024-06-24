@@ -133,6 +133,9 @@ class Case_details extends CI_Controller {
         $aResponse['info']['sex'] = $this->getGlobalParameter('sex');
         $aResponse['info']['civil_status'] = $this->getGlobalParameter('civil');
         $aResponse['info']['religion'] = $this->getGlobalParameter('religion');
+        $aResponse['info']['ethnicgroup'] = $this->getGlobalParameter('ethnicgroup');
+        $aResponse['info']['disabilities'] = $this->getGlobalParameter('disabilities');
+        $aResponse['info']['illness'] = $this->getGlobalParameter('illness');
         $aResponse['info']['educational_attainment'] = $this->getGlobalParameter('education');
         $aResponse['info']['family_relation'] = $this->getGlobalParameter('nextofkin');
 
