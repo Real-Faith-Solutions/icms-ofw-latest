@@ -653,6 +653,10 @@ function updateVictimAssumed() {
         mname: $('.vi-assumed-victim_info_middle_name').val(),
         lname: $('.vi-assumed-victim_info_last_name').val(),
         dob: $('.vi-assumed-victim_info_dob').val(),
+        disabilities: $('.vi-disability').val(),
+        allergy: $('.vi-allergies').val(),
+        illness: $('.vi-history_of_illness').val(),
+        other_history_hospitalization:  $('.vi-other_info_hospitalization').val(),
     }, function (rs) {
         getVictimInfoByCaseId(1);
         $('#btn-manage-assumed').text("Manage");
@@ -679,7 +683,8 @@ function updateVictimPersonalInformation() {
         gender: $('.vi-victim_gender').val(),
         civilStat: $('.vi-victim_civil_status').val(),
         religion: $('.vi-victim_religion').val(),
-        ethnicgroup: $('.vi-victim_ethnic_group').val(),
+        nickname: $('.vi-victim_info_nickname').val(),
+        ethnic_group: $('.vi-victim_ethnic_group').val(),
     }, function (rs) {
         getVictimInfoByCaseId(1);
         $('#btn-manage-personal').text("Manage");
