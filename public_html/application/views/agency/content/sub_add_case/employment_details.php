@@ -49,8 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="bg-form-grey py-2">
                     <div class="row px-3">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Employer's Details
-                            </div>
+                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Employer's Details </div>
                         </div>
                     </div>
                     <div class=" px-3">
@@ -81,15 +80,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                         <div class="row div-employer_form">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="display: none;">
                                 <label> Country </label>
                                 <select class="form-control text-capital emp-employer_country employers_country">
+                                    <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row div-employer_form">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <label> City </label>
+                                <label> Address </label>
                                 <input type="text" maxlength="50" class="form-control emp-employer_city" name="emp-employer_city">
                             </div>
                         </div>
@@ -102,12 +102,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
+
             <!--EMPLOYMENT  DETAILS BASED OF CONTRACT -->
             <div class="col-lg-8 col-md-8 col-sm-12 pl-5">
                 <div class="row ">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class=" card-sub-title txt-W-500" > Employment Details
-                        </div>
+                        <div class=" card-sub-title txt-W-500" > Employment Details </div>
                     </div>
                 </div>
                 <div class="">
@@ -141,22 +141,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none;">
                                             <label> Country of Deployment  <font color="red"> <b>*</b> </font> </label>
                                             <select id="emp-sel-eer-country" name="emp_sel_eer_country" class="form-control text-capital emp-act_country">
+                                                <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
-                                            <label>City </label> 
+                                            <label>Address </label> 
                                             <input type="text" maxlength="50" id="emp-sel-eer-city" class="form-control emp-city" name="emp_sel_eer_city">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency" style="display: none;">
                                             <label>Currency</label>
-                                            <select id="emp-sel-eer-currency"  class="form-control text-capital emp-currency"></select>
+                                            <select id="emp-sel-eer-currency"  class="form-control text-capital emp-currency">
+                                                <option value="PHP" selected>PHP</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" maxlength="20" name="emp_act_salary" class="form-control decimal emp-act_salary">
                                         </div>
@@ -195,23 +198,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none;">
                                             <label> Country of Deployment </label>
                                             <select id="emp-sel-eet-country" class="form-control text-capital emp-country">
+                                                <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
-                                            <label>Employment City  </label> 
+                                            <label>Address  </label> 
                                             <input type="text" maxlength="50" class="form-control  emp-city" name="emp_city" id="emp-sel-eet-city">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency">
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency" style="display: none;">
                                             <label>Currency</label>
                                             <select id="emp-sel-eet-currency"  class="form-control text-capital emp-currency">
+                                                <option value="PHP" selected>PHP</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary">
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" maxlength="20" class="form-control decimal emp-salary" name="emp_salary" id="emp-salary">
                                         </div>
@@ -256,8 +261,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="bg-form-grey py-2">
                     <div class="row px-3">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Recruitment Agency's Details
-                            </div>
+                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Recruitment Agency's Details </div>
                         </div>
                     </div>
                     <div class=" px-3">
@@ -271,9 +275,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <!--local_agency_country-->
                         <div class="row ">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="display:none">
                                 <label> Country </label>
-                                <select class="form-control emp-local_agency_country" disabled><option value="173" selected>Philippines</option></select>
+                                <select class="form-control emp-local_agency_country" readonly><option value="173" selected>Philippines</option></select>
                             </div>
                         </div>
                         <div class="row div-agency_local_form">
@@ -318,8 +322,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-lg-8 col-md-6 col-sm-12 form-padding-left">
                 <div class="row ">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class=" card-sub-title txt-W-500" > Other Agency's Details
-                        </div>
+                        <div class=" card-sub-title txt-W-500" > Other Agency's Details </div>
                     </div>
                 </div>
                 <div class="div-agency_local_form">
@@ -434,9 +437,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
-    <!------------------->
-    <div class="form-content mt-5">
-
+    
+    <!-- Foreign Recruitment Agency -->
+    <div class="form-content mt-5" style="display: none;">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class=" card-sub-title txt-W-500 " >Foreign Recruitment Agency<br> 
@@ -584,7 +587,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <div class="form-content mt-5 ">
+    <!-- Other Employment Details -->
+    <div class="form-content mt-5 " style="display: none;">
         <div class="employment-info-sub_forms">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -832,12 +836,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="content-footer float-right  match-buttons">
-            <button type="button" class="btn btn-previous_tab return-top" data-tab="victims">Previous</button>
-            <button type="submit" class="btn btn-primary-orange btn-next " data-tab="case-details-tab1" style="margin-left:0px;">Next</button>
-        </div>
     </div>
+
+    <hr>
+    <div class="content-footer float-right  match-buttons">
+        <button type="button" class="btn btn-previous_tab return-top" data-tab="victims">Previous</button>
+        <button type="submit" class="btn btn-primary-orange btn-next " data-tab="case-details-tab1" style="margin-left:0px;">Next</button>
+    </div>
+
 </form>
 
 

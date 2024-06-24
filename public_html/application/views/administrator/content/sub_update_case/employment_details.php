@@ -82,7 +82,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12" style="display:none">
                                     <label> Employer Country </label>
                                     <select id="emp-sel-eer-country" class="form-control text-capital emp-employer-employer_country_id" disabled="true">
                                     </select>
@@ -153,7 +153,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none;">
                                             <label> Country of Deployment <font color="red"> <b>*</b> </font></label>
                                             <select id="emp-sel-eet-country" name="emp_sel_eet_country" class="form-control text-capital emp-country_id" disabled="true"></select>
                                         </div>
@@ -163,11 +163,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency" style="display: none;">
                                             <label>Currency</label>
                                             <select id="emp-sel-eet-currency" class="form-control text-capital emp-case_victim_employment_details_salary_foreign_iso" disabled="true"></select>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
@@ -214,7 +214,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none;">
                                             <label> Country of Deployment </label>
                                             <select id="emp-sel-actual-country" class="form-control text-capital emp-act-country_id" disabled="true"></select>
                                         </div>
@@ -224,11 +224,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency" style="display: none;">
                                             <label>Currency</label>
                                             <select id="emp-sel-actual-currency" class="form-control text-capital emp-act-case_victim_employment_details_salary_foreign_iso" disabled="true"> </select>
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
                                             <label>Salary</label>
                                             <input type="text" class="form-control decimal emp-act-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
@@ -284,8 +284,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <div class="py-2 bg-white">
                     <div class="row px-3">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Recruitment Agency's Details
-                            </div>
+                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Recruitment Agency's Details </div>
                         </div>
                     </div>
                     <div class=" px-3">
@@ -301,7 +300,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                         <!--local_agency_country-->
                         <div class="row ">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="display: none;">
                                 <label> Country </label>
                                 <select class="form-control emp-local-country_id" disabled="true">
                                     <option value="173" selected>Philippines</option>
@@ -476,6 +475,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 <!-- ================= FOREIGN Recruitment Details NEW CODE  =============== -->
+<!--
 <div class="form-content mt-5 border">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -506,7 +506,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <ul class="list-group c-out" style="width: 100%; overflow: scroll; max-height: 300px; display: none;" id="ra-foreign-search"></ul> 
                             </div>
                         </div>
-                        <!--local_agency_country-->
+                        
                         <div class="row ">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label> Country </label>
@@ -634,11 +634,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </div>
     </div>
-    <!-- =================== -->
-</div><!-- ================= FOREIGN Recruitment Details NEW CODE  =============== -->
+</div>
+-->
+<!-- ================= FOREIGN Recruitment Details NEW CODE  =============== -->
 <!--//-->
 
 
+<!-- Update Other Employment Details -->
+<!--
 <div class="row mt-5 ">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="employment-info-sub_forms">
@@ -729,8 +732,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                             <input type="text" class="form-control  datepicker emp-case_victim_deployment_date" name="case_victim_deployment_date" disabled placeholder="MM/DD/YYYY">
                                                         </div>
                                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 div-deployment_arrival_date">
-                                                            <!--<label> Arrival Date <font color="red"> <b>*</b> </font> </label>-->
-                                                            <label> Arrival Date </label>
+                                                            <label> Arrival Date <font color="red"> <b>*</b> </font> </label>
                                                             <input type="text" class="form-control  datepicker emp-case_victim_deployment_arrival_date" name="case_victim_deployment_arrival_date" disabled placeholder="MM/DD/YYYY">
                                                         </div>
                                                     </div>
@@ -890,8 +892,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <hr>
     </div>
 </div>
+-->
 
-
+<!-- start of modal -->
 <div class="modal fade" id="modal-transit-country" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
