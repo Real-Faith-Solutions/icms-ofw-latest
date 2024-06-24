@@ -155,11 +155,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 </select>
                                             </div>
                                             <div class="form-group col-12">           
-                                                <label>Allergies</label>
-                                                <select class="form-control vi-allergies" name="allergies" >
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-12">           
                                                 <label>History of Illness/Hospitalization</label>
                                                 <select class="form-control vi-history_of_illness" name="history_of_illness" >
                                                 </select>

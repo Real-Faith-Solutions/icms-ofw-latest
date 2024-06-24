@@ -442,6 +442,10 @@ function getVictimInfoByStorage() {
         $('.vi-assumed-victim_info_dob').val(dateFormatToPicker(vi_assumed.victim_info_dob));
     }
 
+    $('.vi-disability').val(vi_assumed.victim_info_disability);
+    $('.vi-history_of_illness').val(vi_assumed.victim_info_hospitality);
+    $('.vi-other_info_hospitalization').val(vi_assumed.other_victim_info_hospitalization);
+
     var victim_contacts = aVictimInfoByCaseId.victim_contact_info;
     var t = '';
     if (victim_contacts.length > 0) {
@@ -675,6 +679,7 @@ function updateVictimPersonalInformation() {
         gender: $('.vi-victim_gender').val(),
         civilStat: $('.vi-victim_civil_status').val(),
         religion: $('.vi-victim_religion').val(),
+        ethnicgroup: $('.vi-victim_ethnic_group').val(),
     }, function (rs) {
         getVictimInfoByCaseId(1);
         $('#btn-manage-personal').text("Manage");
