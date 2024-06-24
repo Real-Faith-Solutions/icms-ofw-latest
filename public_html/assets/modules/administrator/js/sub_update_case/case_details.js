@@ -613,6 +613,11 @@ function getCaseTIP() {
         $("#cd-sel-means option:selected").prop("selected", false);
         $("#cd-sel-purposes option:selected").prop("selected", false);
 
+        $("#ch1").prop("checked", rs.data.case_violated == "CSEC" ? true : false);
+        $("#ch2").prop("checked", rs.data.case_violated == "OSAEC" ? true : false);
+        $("#ch3").prop("checked", rs.data.case_violated == "Other law/s violated" ? true : false);
+        $("#ch4").prop("checked", rs.data.case_violated == "CSAEM" ? true : false);
+
         rs = html_entity_decode(rs);
         activateAMP('1');
         $('#cd-sel-acts').chosen("destroy");

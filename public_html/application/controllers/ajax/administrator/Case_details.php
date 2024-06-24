@@ -269,6 +269,7 @@ class Case_details extends CI_Controller {
         $aResponse['case_is_illegal_rec'] = $caseInfo['case_is_illegal_rec'];
         $aResponse['case_is_other_law'] = $caseInfo['case_is_other_law'];
         $aResponse['case_is_other_law_desc'] = $caseInfo['case_is_other_law_desc'];
+        $aResponse['case_violated'] = $caseInfo['case_violated'];
 
         $aResponse['acts'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 1);
         $aResponse['means'] = $this->Case_details_model->getActsMeansPurposeByCaseID($aParam, 3);

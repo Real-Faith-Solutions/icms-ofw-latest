@@ -250,7 +250,8 @@ Class Case_details_model extends CI_Model {
                     `case_is_illegal_rec`, 
                     `case_is_other_law`, 
                     `case_is_other_law_desc`, 
-                    `case_priority_level_id`
+                    `case_priority_level_id`,
+                    `case_violated`
                 FROM
                     `icms_case`
                 WHERE
