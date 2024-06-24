@@ -357,28 +357,31 @@ function loadEmployment_contract(rs) {
     $('.emp-case_victim_employment_details_job_title').val(rs.case_victim_employment_details_job_title);
     $('.emp-case_victim_employment_details_working_days').val(rs.case_victim_employment_details_working_days);
     $('.emp-case_victim_employment_details_working_hours').val(rs.case_victim_employment_details_working_hours);
+    $('.region_local_id').val(rs.employee_local_region);
+    $('.province_local_id').val(rs.employee_local_province);
+    $('.city_local_id').val(rs.employee_local_city);
+    $('.barangay_local_id').val(rs.employee_local_barangay);
 
-    $('.region_local_id, .a-vi-address_region').val(rs.employee_local_region);
-    $('.a-vi-address_region').change(function() {
+    $('.region_local').val(rs.employee_local_region);
+    $('.region_local').change(function() {
         $('.region_local_id').val($(this).val());
     });
 
-    $('.province_local_id, .a-vi-address_province').attr("option","selected").val(rs.employee_local_province);
-    $('.a-vi-address_province').change(function() {
+    $(' .province_local').val(rs.employee_local_province);
+    $('.province_local').change(function() {
         $('.province_local_id').val($(this).val());
     });
 
-    $('.city_local_id, .a-vi-address_city').attr("option","selected").val(rs.employee_local_city);
-    $('.a-vi-address_city').change(function() {
+    $('.city_local').val(rs.employee_local_city);
+    $('.city_local').change(function() {
         $('.city_local_id').val($(this).val());
     });
 
-    $('.barangay_local_id, .a-vi-address_barangay').attr("option","selected").val(rs.employee_local_barangay);
-    $('.a-vi-address_barangay').change(function() {
+    $('.barangay_local').val(rs.employee_local_barangay);
+    $('.barangay_local').change(function() {
         $('.barangay_local_id').val($(this).val());
     });
-
-
+    
 
     $('.emp-type_of_employment').val(rs.employee_local_type_of_employment);
     $('.emp-type_of_child_cases').val(rs.employee_local_type_of_child_cases);
@@ -2366,6 +2369,125 @@ $(document).ready(function () {
         var id = $(this).val();
         getCitiesByProvinceID(id);
     });
+
+    // local address
+
+
+    function getProvincesByRegionId(id) {
+        $.post(
+            sAjaxGlobalData,
+            {
+                type: "getProvinceByRegionID",
+                region_id: id,
+            },
+            function (rs) {
+                var l = "<option value='' selected>Select Province</option>";
+                $.each(rs.data, function (key, val) {
+                    if (val.location_count_id) {
+                        l +=
+                            "<option value='" +
+                            val.location_count_id +
+                            "' data-name='" +
+                            val.location_name +
+                            "'>" +
+                            val.location_name +
+                            "</option>";
+                    }
+                });
+                $(".sel-provincesByRegionId").html(l);
+            },
+            "json"
+        );
+    }
+
+    // Function to get cities by province ID
+    function getCityByProvinceId(id) {
+        $.post(
+            sAjaxGlobalData,
+            {
+                type: "getCityByProvinceId",
+                province_id: id,
+            },
+            function (rs) {
+                var l = "<option selected value='' >Select City</option>";
+                $.each(rs.data, function (key, val) {
+                    if (val.location_count_id) {
+                        l +=
+                            "<option value='" +
+                            val.location_count_id +
+                            "' data-name='" +
+                            val.location_name +
+                            "'>" +
+                            val.location_name +
+                            "</option>";
+                    }
+                });
+                $(".sel-cities").html(l);
+            },
+            "json"
+        );
+    }
+
+    // Function to get barangays by city ID
+    function getBrgyByCityID(id) {
+        $.post(
+            sAjaxGlobalData,
+            {
+                type: "getBrgyByCityID",
+                city_id: id,
+            },
+            function (rs) {
+                var l = "<option selected value='' >Select Barangay</option>";
+                $.each(rs.data, function (key, val) {
+                    l +=
+                        "<option value='" +
+                        val.location_count_id +
+                        "' data-name='" +
+                        val.location_name +
+                        "'>" +
+                        val.location_name +
+                        "</option>";
+                });
+                $(".sel-barangay").html(l);
+            },
+            "json"
+        );
+    }
+
+        $(document).ready(function() {
+            // Event listener for region selection
+            $(".sel-regions").change(function() {
+                var regionId = $(this).val();
+                if (regionId) {
+                    getProvincesByRegionId(regionId);
+                } else {
+                    $(".sel-provincesByRegionId").html("<option value='' selected>Select Province</option>");
+                    $(".sel-cities").html("<option value='' selected>Select City</option>");
+                    $(".sel-barangay").html("<option value='' selected>Select Barangay</option>");
+                }
+            });
+
+            // Event listener for province selection
+            $(".sel-provincesByRegionId").change(function() {
+                var provinceId = $(this).val();
+                if (provinceId) {
+                    getCityByProvinceId(provinceId);
+                } else {
+                    $(".sel-cities").html("<option value='' selected>Select City</option>");
+                    $(".sel-barangay").html("<option value='' selected>Select Barangay</option>");
+                }
+            });
+
+            // Event listener for city selection
+            $(".sel-cities").change(function() {
+                var cityId = $(this).val();
+                if (cityId) {
+                    getBrgyByCityID(cityId);
+                } else {
+                    $(".sel-barangay").html("<option value='' selected>Select Barangay</option>");
+                }
+            });
+        });
 
 
 });// end of doc ready
