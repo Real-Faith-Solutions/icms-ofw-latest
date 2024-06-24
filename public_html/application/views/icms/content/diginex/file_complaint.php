@@ -79,7 +79,7 @@
                                                 <span class="text-danger">Country Code</span>
                                                 <input type="text" class="form-control"
                                                     id="inp-temporary_victim_mobile_number"
-                                                    name="temporary_victim_mobile_number" placeholder="e.g. 639394567128">
+                                                    name="temporary_victim_mobile_number" placeholder="e.g. +639394567128">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Sex </label><span class="text-danger"> *</span>
