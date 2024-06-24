@@ -685,10 +685,6 @@ function initialLoad() {
     getProvinces();
 
     getSex();
-    getEthnicGroup();
-    getDisabilities();
-    getAllergies();
-    getIllness();
     getCivilStatus();
     getCasePurposes();
     getContactTypes();
