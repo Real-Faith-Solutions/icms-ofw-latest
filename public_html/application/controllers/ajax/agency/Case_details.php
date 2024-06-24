@@ -70,7 +70,29 @@ class Case_details extends CI_Controller {
                 $aParam['type_id'] = '8';
                 $aParam['status'] = '1';
                 break;
+            case 'ethnicgroup':
+                $aParam['type_id'] = '32';
+                $aParam['status'] = '1';
+                break;
+            case 'disabilities':
+                $aParam['type_id'] = '33';
+                $aParam['status'] = '1';
+                break;
+            case 'allergies':
+                $aParam['type_id'] = '34';
+                $aParam['status'] = '1';
+                break;
+            case 'illness':
+                $aParam['type_id'] = '35';
+                $aParam['status'] = '1';
+                break;
+            case 'offender_description':
+                $aParam['type_id'] = '36';
+                $aParam['status'] = '1';
+                break;
+                
         }
+
 
         return $aParam;
     }
@@ -111,6 +133,9 @@ class Case_details extends CI_Controller {
         $aResponse['info']['sex'] = $this->getGlobalParameter('sex');
         $aResponse['info']['civil_status'] = $this->getGlobalParameter('civil');
         $aResponse['info']['religion'] = $this->getGlobalParameter('religion');
+        $aResponse['info']['ethnicgroup'] = $this->getGlobalParameter('ethnicgroup');
+        $aResponse['info']['disabilities'] = $this->getGlobalParameter('disabilities');
+        $aResponse['info']['illness'] = $this->getGlobalParameter('illness');
         $aResponse['info']['educational_attainment'] = $this->getGlobalParameter('education');
         $aResponse['info']['family_relation'] = $this->getGlobalParameter('nextofkin');
 

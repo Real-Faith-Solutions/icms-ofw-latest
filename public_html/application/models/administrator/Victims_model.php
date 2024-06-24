@@ -1258,6 +1258,8 @@ Class Victims_model extends CI_Model {
                     `victim_civil_status`= " . $this->yel->checkifStringExist($aParam['civilStat']) . ",
                     `victim_gender`= " . $this->yel->checkifStringExist($aParam['gender']) . ",
                     `victim_religion`= " . $this->yel->checkifStringExist($aParam['religion']) . ",
+                    `victim_info_nickname`= " . $this->yel->checkifStringExist($aParam['nickname']) . ",
+                    `victim_ethnic_group`= " . $this->yel->checkifStringExist($aParam['ethnic_group']) . ",
                     `victim_modified_by`='" . $_SESSION['userData']['user_id'] . "'
                 WHERE 
                     `victim_id`=" . $aParam['victim_id'] . "
@@ -1297,6 +1299,9 @@ Class Victims_model extends CI_Model {
                     `vi`.`victim_info_last_name`,
                     `vi`.`victim_info_suffix`,
                     `vi`.`victim_info_dob`,
+                    `vi`.`victim_info_disability`,
+                    `vi`.`victim_info_allergy`,
+                    `vi`.`victim_info_hospitality`,
                    (SELECT `location_name` FROM `icms_global_location` WHERE `location_count_id`=`vi`.`victim_info_city_pob` AND `location_type_id`='4')  as `place_of_birth`
                 FROM 
                     `icms_victim_info` `vi`
@@ -1319,6 +1324,9 @@ Class Victims_model extends CI_Model {
                     `victim_info_middle_name`= " . $this->yel->checkifStringExist($aParam['mname']) . ",
                     `victim_info_last_name`= " . $this->yel->checkifStringExist($aParam['lname']) . ",
                     `victim_info_dob`=" . $this->yel->checkifStringExist($aParam['dob']) . ",
+                    `victim_info_disability`=" . $this->yel->checkifStringExist($aParam['disabilities']) . ",
+                    `victim_info_hospitality`=" . $this->yel->checkifStringExist($aParam['illness']) . ",
+                    `other_victim_info_hospitalization`=" . $this->yel->checkifStringExist($aParam['other_history_hospitalization']) . ",
                     `victim_info_modified_by`='" . $_SESSION['userData']['user_id'] . "'
                 WHERE 
                     `victim_id`=" . $aParam['victim_id'] . "
