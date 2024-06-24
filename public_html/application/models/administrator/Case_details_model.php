@@ -140,6 +140,19 @@ Class Case_details_model extends CI_Model {
         return $result;
     }
 
+    public function setViolation($aParam) {
+        $sql = "
+                UPDATE 
+                    `icms_case`
+                SET
+                    `case_violated`='" . $aParam['form_of_Law'] . "'
+                WHERE
+                    `case_id` = '" . $aParam['caseid'] . "'
+            ";
+        $result = $this->yel->exec($sql);
+        return $result;
+    }
+
     public function getBriefFactOfTheCase($aParam) {
         $sql = "
                 SELECT 
