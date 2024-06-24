@@ -10,6 +10,8 @@ public_html/vendor
 
 public_html/application/config/constants.php
 
+icms_drive/*
+
 # Compiled Java class files
 *.class
 
