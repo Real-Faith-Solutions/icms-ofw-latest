@@ -1502,17 +1502,21 @@ Class Case_model extends CI_Model {
     }
 
     public function addEmploymentDetails($aParam, $val) {
+
+        // `country_id`= '173' => fix to philippines
+        // `case_victim_employment_details_salary_foreign_iso`= 'PHP', 
+        
         $sql = "
                 INSERT INTO 
                 `icms_case_victim_employment_details` 
                 SET 
                 `case_victim_employment_id`= '" . $aParam['case_victim_employment_id'] . "', 
                 `case_victim_employment_details_job_title`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['position']) . ", 
-                `country_id`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['country']) . ", 
+                `country_id`= '173', 
                 `case_victim_employment_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['city']) . ", 
                 `case_victim_employment_details_salary_in_foreign`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary']) . ", 
-                `case_victim_employment_details_salary_foreign_iso`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['currency']) . ", 
-                `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary_in_peso']) . ", 
+                `case_victim_employment_details_salary_foreign_iso`= 'PHP', 
+                `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['working_hours']) . ", 
                 `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['days_of_work']) . ", 
                 `case_victim_employment_details_is_actual`= '" . $val . "' 
@@ -1531,9 +1535,9 @@ Class Case_model extends CI_Model {
                 `case_victim_employment_details_job_title`=  " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_position']) . ", 
                 `country_id`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_country']) . ", 
                 `case_victim_employment_city`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_city']) . ", 
-                `case_victim_employment_details_salary_in_foreign`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_salary']) . ", 
-                `case_victim_employment_details_salary_foreign_iso`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_currency']) . ", 
-                `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_salary_in_peso']) . ", 
+                `case_victim_employment_details_salary_in_foreign`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary']) . ", 
+                `case_victim_employment_details_salary_foreign_iso`= 'PHP', 
+                `case_victim_employment_details_salary_in_local`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['salary']) . ", 
                 `case_victim_employment_details_working_hours`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_working_hours']) . ", 
                 `case_victim_employment_details_working_days`= " . $this->yel->checkifStringExist($aParam['victim_employment_info']['act_days_of_work']) . ", 
                 `case_victim_employment_details_is_actual`='1' 
@@ -1543,26 +1547,26 @@ Class Case_model extends CI_Model {
 
     public function addDeployment($aParam) {
 
-        $sql = "
-                INSERT INTO 
-                    `icms_case_victim_deployment` 
-                SET 
-                    `case_victim_id`='" . $aParam['case_victim_id'] . "', 
-                    `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
-                    `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
-                    `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
-                    `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
-                    `case_victim_deployment_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date']) . ",  
-                    `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
-                    `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
-                    `case_victim_deployment_country_destination`='" . $aParam['victim_deployment_details']['deployment_country'] . "', 
-                    `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
-                    `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
-                    `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
-                    `case_victim_deployment_date_added`= now(), 
-                    `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
-                    `case_victim_deployment_is_active`='1' 
-               ";
+        // $sql = "
+        //         INSERT INTO 
+        //             `icms_case_victim_deployment` 
+        //         SET 
+        //             `case_victim_id`='" . $aParam['case_victim_id'] . "', 
+        //             `case_victim_deployment_document_is_falsified`='" . $aParam['victim_deployment_details']['deployment_document_is_falsified'] . "', 
+        //             `case_victim_deployment_type`='" . $aParam['victim_deployment_details']['deployment_departure_type'] . "', 
+        //             `case_victim_deployment_escorted_person_name`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_name']) . ", 
+        //             `case_victim_deployment_escorted_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_escort_description']) . ", 
+        //             `case_victim_deployment_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_date']) . ",  
+        //             `case_victim_deployment_arrival_date`= " . $this->yel->checkDateIfExist($aParam['victim_deployment_details']['deployment_arrival_date']) . ",  
+        //             `case_victim_visa_category_id`='" . $aParam['victim_deployment_details']['deployment_visa_category'] . "', 
+        //             `case_victim_deployment_country_destination`='" . $aParam['victim_deployment_details']['deployment_country'] . "', 
+        //             `port_id`=" . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit']) . ", 
+        //             `case_victim_deployment_other_port_details`= " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['port_of_exit_description']) . ", 
+        //             `case_victim_deployment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
+        //             `case_victim_deployment_date_added`= now(), 
+        //             `case_victim_deployment_remark` = " . $this->yel->checkifStringExist($aParam['victim_deployment_details']['deployment_remark']) . ",
+        //             `case_victim_deployment_is_active`='1' 
+        //        ";
 
         // $sql = "
         //         INSERT INTO 
@@ -1585,9 +1589,9 @@ Class Case_model extends CI_Model {
         //        ";
 
 
-        $aResponse = $this->yel->exec($sql);
+        // $aResponse = $this->yel->exec($sql);
 
-        return $aResponse;
+        // return $aResponse;
     }
 
     public function addPassport($aParam) {

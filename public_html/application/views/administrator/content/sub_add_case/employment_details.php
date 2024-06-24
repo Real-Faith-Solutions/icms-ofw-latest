@@ -102,6 +102,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
+
             <!--EMPLOYMENT  DETAILS BASED OF CONTRACT -->
             <div class="col-lg-8 col-md-8 col-sm-12 pl-5">
                 <div class="row ">
@@ -140,31 +141,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <!-- <input type="text" maxlength="100" class="form-control emp-act_position" id="emp-act_position"> -->
                                         </div>
                                     </div>
+
+                                    
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+
+                                        <!-- <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display:none">
                                             <label> Country of Deployment  <font color="red"> <b>*</b> </font> </label>
                                             <select id="emp-sel-eer-country" name="emp_sel_eer_country" class="form-control text-capital emp-act_country">
+                                                <option value="173">Philippines</option>
                                             </select>
-                                        </div>
+                                        </div> -->
+                                        
+                                        <!-- 173 = PHILIPPINES -->
+                                        <input type="hidden" id="emp-sel-eer-country" name="emp_sel_eer_country" class="form-control text-capital emp-act_country" value="173"/>
+
+
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
                                             <label>City </label> 
                                             <input type="text" maxlength="50" id="emp-sel-eer-city" class="form-control emp-city" name="emp_sel_eer_city">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
+
+                                        <!-- <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
                                             <label>Currency</label>
                                             <select id="emp-sel-eer-currency"  class="form-control text-capital emp-currency"></select>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                        </div> -->
+                                        <input type="hidden" id="emp-sel-eer-currency"  class="form-control text-capital emp-currency" value="PHP"/>
+
+
+                                        <!-- Salary in foreign -->
+                                        <!-- <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
                                             <label>Salary</label>
                                             <input type="text" maxlength="20" name="emp_act_salary" class="form-control decimal emp-act_salary">
-                                        </div>
+                                        </div> -->
+
+                                        <!-- Salary in Peso -->
                                         <div class="form-group col-lg-4 col-md-4  col-sm-12">
                                             <label> Salary in Peso </label>
                                             <input type="text" maxlength="20" name="emp_act_salary_in_peso" class="form-control decimal emp-act_salary_in_peso" id="emp-act_salary">
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label> Days per week</label>
@@ -195,30 +213,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+
+                                        <!-- <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label> Country of Deployment </label>
                                             <select id="emp-sel-eet-country" class="form-control text-capital emp-country">
                                             </select>
-                                        </div>
+                                        </div> -->
+
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
                                             <label>Employment City  </label> 
                                             <input type="text" maxlength="50" class="form-control  emp-city" name="emp_city" id="emp-sel-eet-city">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency">
+
+                                        <!-- <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency">
                                             <label>Currency</label>
                                             <select id="emp-sel-eet-currency"  class="form-control text-capital emp-currency">
                                             </select>
-                                        </div>
+                                        </div> -->
+
                                         <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary">
                                             <label>Salary</label>
                                             <input type="text" maxlength="20" class="form-control decimal emp-salary" name="emp_salary" id="emp-salary">
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-6  col-sm-12">
+
+                                        <!-- <div class="form-group col-lg-4 col-md-6  col-sm-12">
                                             <label> Salary in Peso </label>
                                             <input type="text" maxlength="20" class="form-control decimal  emp-salary_in_peso" name="emp_salary_in_peso" id="emp-salary_in_peso">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -242,6 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 
 
+    <!-- Local Recruitment -->
     <div class="form-content mt-5">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -434,8 +458,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
-    <!------------------->
-    <div class="form-content mt-5">
+
+    <!--Foreign Recruitment Agency-->
+    <div class="form-content mt-5" style="display: none">
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -521,11 +546,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </nav>
                         </div>
                     </div>
+
                     <div class="tab-content tab-employment pl-0" >
                         <div class="tab-pane fade show active " id="F_owner_details" role="tabpanel" aria-labelledby="recent-case-tab">
                             <div class="tab-content tab-inner px-0 pt-0 " >
-
-
                                 <div class="inner-form-body py-3">
                                     <div class="">
                                         <div class="row  ">
@@ -579,12 +603,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="form-content mt-5 ">
+
+    <!-- Other Employment Details -->
+    <!-- <div class="form-content mt-5 " style="display: none">
         <div class="employment-info-sub_forms">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -683,7 +711,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <input type="text" class="form-control datepicker emp-deployment_date" name="emp_deployment_date" id="emp_deployment_date" name="emp_deployment_date" placeholder="MM/DD/YYYY" >
                                                     </div>
                                                     <div class="form-group col-lg-12 col-md-12 col-sm-12 div-deployment_arrival_date">
-                                                        <!--<label> Arrival Date <font color="red"> <b>*</b> </font> </label>-->
+                                                        <label> Arrival Date <font color="red"> <b>*</b> </font> </label>
                                                         <label> Arrival Date </label>
                                                         <input type="text" class="form-control datepicker emp-deployment_arrival_date" name="emp_deployment_arrival_date"  id="emp_deployment_arrival_date" placeholder="MM/DD/YYYY" >
                                                     </div>                                                   
@@ -709,7 +737,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <input type="checkbox" class="form-check-input emp-similar_to_victim" id="emp_similar_to_victim">
                                             <label class="form-check-label employment_documented" for="emp_similar_to_victim" style='color: #e88f15 !important;'>Check if the victim's passport details are similar to victim's personal information.
                                                 <br>
-                                                <!--<small class="card-desc"> Passport details will be auto populated.  </small>-->
+                                                <small class="card-desc"> Passport details will be auto populated.  </small>
 
                                             </label>
 
@@ -837,11 +865,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <button type="button" class="btn btn-previous_tab return-top" data-tab="victims">Previous</button>
             <button type="submit" class="btn btn-primary-orange btn-next " data-tab="case-details-tab1" style="margin-left:0px;">Next</button>
         </div>
+    </div> -->
+   
+    
+    <!-- meron dito para sa required fields, 176 = Philippines -->
+    <!-- <input type="hidden" maxlength="50" class="form-control emp-foreign_agency_name" name="inp_emp_foreign_agency_name" data-id="0" autocomplete="off"> -->
+
+    <!-- 173 = Philippines -->
+    <input type="hidden" id="emp-sel-departure" name="emp_sel_departure" class="form-control text-capital emp-deployment_departure_type" value="173">
+
+    <hr>
+    <div class="content-footer float-right match-buttons">
+        <button type="button" class="btn btn-previous_tab return-top" data-tab="victims">Previous</button>
+        <button type="submit" class="btn btn-primary-orange btn-next " data-tab="case-details-tab1" style="margin-left:0px;">Next</button>
     </div>
 </form>
 
 
-<!--Start Modal Transit--> 
+<!--Start Modal Transit
 
 <div class="modal fade" id="modal-transit-country"  role="dialog" data-backdrop="static">
     <div class="modal-dialog" role="document">
@@ -895,4 +936,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </div>
 
-<!--End Modal Transit-->
+
+End Modal Transit-->
