@@ -680,7 +680,7 @@ function clearStoredData() {
 
 
 function initialLoad() {
-    getCountries();
+    // getCountries();
     getRegions();
     getProvinces();
 
