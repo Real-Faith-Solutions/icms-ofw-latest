@@ -485,13 +485,27 @@ Class Users_model extends CI_Model {
                FROM
                     `icms_user`
                WHERE
-                    `user_email`= '" . $aParam['email'] . "' AND 
-                    `agency_branch_id`='" . $aParam['agencyid'] . "'
+                    `user_email`= '" . $aParam['email'] . "'
              ";
 
         $result = $this->yel->GetOne($sql);
         return $result;
     }
+
+    // public function getUserEmailAvailability($aParam) {
+    //     $sql = "
+    //             SELECT  
+    //                 COUNT(1)
+    //            FROM
+    //                 `icms_user`
+    //            WHERE
+    //                 `user_email`= '" . $aParam['email'] . "' AND 
+    //                 `agency_branch_id`='" . $aParam['agencyid'] . "'
+    //          ";
+
+    //     $result = $this->yel->GetOne($sql);
+    //     return $result;
+    // }
 
     public function getResetPasswordStatus($aParam) {
         $sql = "
