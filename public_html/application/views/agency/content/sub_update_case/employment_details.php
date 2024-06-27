@@ -22,16 +22,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-is_documented rdo_de" value="1" name="rdo_doc_employment" id="rdo_documented_employment">
-                                <label class="form-check-label employment_documented" for="rdo_documented_employment" style="color:#e88f13 !important;">Regular Employment details<br>
-                                    <small class="card-desc"> Victim's employment is regular. </small>
+                                <label class="form-check-label employment_documented" for="rdo_documented_employment" style="color:#e88f13 !important;">Employed<br>
+                                    <small class="card-desc"> Victim is employed. </small>
                                 </label>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-case_victim_employment_is_documented rdo_de" value="0" name="rdo_doc_employment" id="rdo_undocumented_employment">
-                                <label class="form-check-label employment_documented" for="rdo_undocumented_employment" style="color:#e88f13 !important;">Irregular Employment details<br>
-                                    <small class="card-desc"> Victim's employment is irregular. </small>
+                                <label class="form-check-label employment_documented" for="rdo_undocumented_employment" style="color:#e88f13 !important;">Unemployed<br>
+                                    <small class="card-desc"> Victim is unemployed. </small>
                                 </label>
                             </div>
                         </div>
