@@ -478,20 +478,6 @@ Class Users_model extends CI_Model {
         return $result;
     }
 
-    public function getUserEmailAvailability($aParam) {
-        $sql = "
-                SELECT  
-                    COUNT(1)
-               FROM
-                    `icms_user`
-               WHERE
-                    `user_email`='" . $aParam['email'] . "'
-             ";
-        //exit($sql);
-        $result = $this->yel->GetOne($sql);
-        return $result;
-    }
-
     // public function getUserEmailAvailability($aParam) {
     //     $sql = "
     //             SELECT  
@@ -499,13 +485,43 @@ Class Users_model extends CI_Model {
     //            FROM
     //                 `icms_user`
     //            WHERE
-    //                 `user_email`= '" . $aParam['email'] . "' AND 
-    //                 `agency_branch_id`='" . $aParam['agencyid'] . "'
+    //                 `user_email`='" . $aParam['email'] . "'
     //          ";
-
+    //     //exit($sql);
     //     $result = $this->yel->GetOne($sql);
     //     return $result;
     // }
+
+    // get the user agency id for the update 
+
+    public function getUserEmailAgencyIdByUserId($aParam) {
+    $sql = "
+        SELECT  
+            agency_branch_id
+       FROM
+            `icms_user`
+       WHERE
+            `user_id`= '" . $aParam['user_id'] . "'
+        ";
+
+    $result = $this->yel->GetOne($sql);
+    return $result;
+    }
+
+    public function getUserEmailAvailability($aParam) {
+        $sql = "
+                SELECT  
+                    COUNT(1)
+               FROM
+                    `icms_user`
+               WHERE
+                    `user_email`= '" . $aParam['email'] . "' AND 
+                    `agency_branch_id`='" . $aParam['agencyid'] . "'
+             ";
+
+        $result = $this->yel->GetOne($sql);
+        return $result;
+    }
 
     public function getResetPasswordStatus($aParam) {
         $sql = "

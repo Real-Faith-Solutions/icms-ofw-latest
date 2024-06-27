@@ -1155,6 +1155,7 @@ $('#frm-user-details').validate({
     },
     submitHandler: function (form) {
         $('#modalUpdateUser').modal('hide');
+        var user_id = $('.btn-update').attr('data-id');
 
         if ($('#txt_email').val() == $('#txt_email').attr('orgemail')) {
             //proceed
@@ -1169,6 +1170,7 @@ $('#frm-user-details').validate({
             $.post(sAjaxUsers, {
                 type: "getEmailAvailability", // update details
                 email: $('#txt_email').val(),
+                user_id: user_id,
             }, function (rs) {
                 icmsMessage({
                     type: "msgPreloader",
