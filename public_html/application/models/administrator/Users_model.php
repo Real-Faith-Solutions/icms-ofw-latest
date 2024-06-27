@@ -485,8 +485,7 @@ Class Users_model extends CI_Model {
                FROM
                     `icms_user`
                WHERE
-                    `user_email`='" . $aParam['email'] . "' AND 
-                    `agency_branch_id`='" . $_SESSION['userData']['agency_branch_id'] . "'
+                    `user_email`='" . $aParam['email'] . "'
              ";
         //exit($sql);
         $result = $this->yel->GetOne($sql);
