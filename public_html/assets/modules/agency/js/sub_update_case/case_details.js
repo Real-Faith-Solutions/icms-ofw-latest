@@ -1295,8 +1295,8 @@ $(document).ready(function () {
     });
     $('#cd-doc-file').change(function (event) {
         $(this).attr('data-action', '1');
-        // 20997976 = 20mb
-        checkFileFormat(event, 20997976, 'cd-doc-file', 'modalcontent-add_document');
+        // 52428800 = 50mb
+        checkFileFormat(event, 52428800, 'cd-doc-file', 'modalcontent-add_document');
     });
 
     $('.btn-add_offender').click(function () {
