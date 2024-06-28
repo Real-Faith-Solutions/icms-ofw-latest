@@ -544,7 +544,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>                      
                         <div class="row">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <label>Choose photo to upload  <font color="red">* Max size is 5MB</font></label>
+                                <label>Choose photo to upload  <font color="red">* Max size is 20MB</font></label>
                                 <div class="card border-0" id="mng-picture_attachment">
                                     <div class="row" >
                                         <div class="form-group col-lg-12  div-image">
@@ -768,7 +768,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-lg-12 col-md-12 col-sm-12">                  
                         <div class="row">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <label>Choose photo to upload  <font color="red">* Max size is 5MB</font></label>
+                                <label>Choose photo to upload  <font color="red">* Max size is 20MB</font></label>
                                 <div class="card border-0" id="mng-picture_attachment">
                                     <div class="row" >
                                         <div class="form-group col-lg-12  div-image shadow-sm">
