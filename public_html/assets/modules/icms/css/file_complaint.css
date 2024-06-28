@@ -205,3 +205,60 @@ select .form-control .error {
 select .form-control .error {
   color: #545a60 !important;
 }
+
+/* spinner community reporting */
+.CommunityReportingBackdrop { 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  backdrop-filter: blur(10px); /* apply blur effect */
+  z-index: 1000; /* ensure it's above other content */
+}
+
+.CommunityReportingSpinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.CommunityReportingCircle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 10px solid #ccc;
+  border-top-color: orange;
+  animation: spin 0.5s infinite ease-in-out;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
