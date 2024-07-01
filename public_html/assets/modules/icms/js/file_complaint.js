@@ -66,58 +66,26 @@ $('#file_complaint_form').validate({
     }
 });
 
-function add_complaint() {
-    // Display backdrop and spinner
-    $('body').append('<div class="CommunityReportingBackdrop"><div class="CommunityReportingSpinner"><div class="CommunityReportingCircle"></div></div></div>');
-
-    let data = dg__objectAssign({
-        type: "addFileComplaint",
-        is_victim: $('#file_complaint_form').attr('d-id')
-    },
-    dg__getFormValues({
-        type: "obj",
-        form: "#file_complaint_form"
-    }));
-
-    $.post(sAjaxWebPublic, data, function (rs) {
-        // Remove spinner and backdrop after receiving response
-        $('.CommunityReportingBackdrop').remove();
-        // $('.CommunityReportingSpinner').remove();
-
-        if (rs.data.flag != '0') {
-            window.location.assign(window.location.protocol + '/result_page?tcid=' + rs.data.tcid + '&ovc=' + rs.data.otp_details.otp_code);
-        } else {
-            icmsMessage({
-                type: 'msgError'
-            });
-        }
-    }, 'json');
-}
-
 // function add_complaint() {
-//     let data =  dg__objectAssign({
+//     // Display backdrop and spinner
+//     $('body').append('<div class="CommunityReportingBackdrop"><div class="CommunityReportingSpinner"><div class="CommunityReportingCircle"></div></div></div>');
+
+//     let data = dg__objectAssign({
 //         type: "addFileComplaint",
 //         is_victim: $('#file_complaint_form').attr('d-id')
-        
 //     },
-//         dg__getFormValues({
-//             type: "obj",
-//             form: "#file_complaint_form"
-//         })
-//     );
+//     dg__getFormValues({
+//         type: "obj",
+//         form: "#file_complaint_form"
+//     }));
 
-//     $.post(sAjaxWebPublic,data, function (rs) {
-//         icmsMessage({
-//             type: 'msgPreloader',
-//             visible: true
-//         });
+//     $.post(sAjaxWebPublic, data, function (rs) {
+//         // Remove spinner and backdrop after receiving response
+//         $('.CommunityReportingBackdrop').remove();
+//         // $('.CommunityReportingSpinner').remove();
+
 //         if (rs.data.flag != '0') {
-//             icmsMessage({
-//                 type: 'msgSuccess'
-//             });
-//             // console.log(window.location.protocol + '/verification?tcn='+ rs.data.tcn + '&code=' + rs.data.otp_details.otp_code);
-//             // window.location.assign(window.location.protocol + '/verification?code=' + rs.data.otp_details.otp_code +'&tcn='+ rs.data.tcn);
-//             window.location.assign(window.location.protocol + '/result_page?tcid='+ rs.data.tcid + '&ovc='+ rs.data.otp_details.otp_code);
+//             window.location.assign(window.location.protocol + '/result_page?tcid=' + rs.data.tcid + '&ovc=' + rs.data.otp_details.otp_code);
 //         } else {
 //             icmsMessage({
 //                 type: 'msgError'
@@ -125,6 +93,40 @@ function add_complaint() {
 //         }
 //     }, 'json');
 // }
+
+function add_complaint() {
+    let data =  dg__objectAssign({
+        type: "addFileComplaint",
+        is_victim: $('#file_complaint_form').attr('d-id')
+        
+    },
+        dg__getFormValues({
+            type: "obj",
+            form: "#file_complaint_form"
+        })
+    );
+
+    icmsMessage({
+        type: 'msgPreloader',
+        visible: true
+    });
+
+    $.post(sAjaxWebPublic,data, function (rs) {
+
+        if (parseInt(rs.data.flag) != 0) {
+            // icmsMessage({
+            //     type: 'msgSuccess'
+            // });
+            // console.log(window.location.protocol + '/verification?tcn='+ rs.data.tcn + '&code=' + rs.data.otp_details.otp_code);
+            // window.location.assign(window.location.protocol + '/verification?code=' + rs.data.otp_details.otp_code +'&tcn='+ rs.data.tcn);
+            window.location.assign(window.location.protocol + '/result_page?tcid='+ rs.data.tcid + '&ovc='+ rs.data.otp_details.otp_code);
+        } else {
+            icmsMessage({
+                type: 'msgError'
+            });
+        }
+    }, 'json');
+}
 
 // // add gmail
 
