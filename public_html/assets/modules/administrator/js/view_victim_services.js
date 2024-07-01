@@ -495,8 +495,8 @@ $(document).ready(function () {
     });
 
     $('#cd-doc-file').change(function (event) {
-        // 20997976 = 20mb
-        checkFileFormat(event, 20997976, 'cd-doc-file', 'mdl-add-new-update');
+        // 52428800 = 20mb
+        checkFileFormat(event, 52428800, 'cd-doc-file', 'mdl-add-new-update');
     });
 
 });
