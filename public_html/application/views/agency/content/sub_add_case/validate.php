@@ -78,7 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <input type="text" name="v_deployed_date" class="form-control datepicker v-deployed_date" placeholder="MM/DD/YYYY">
                         </div>
                         <!--<div class="form-group col-lg-6 col-md-6 col-sm-6 form-salary">-->
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 form-salary hide">
                             <label>Country of  Deployment </label>
                             <select class="form-control v-deployment_country sel-country">
                                 <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>

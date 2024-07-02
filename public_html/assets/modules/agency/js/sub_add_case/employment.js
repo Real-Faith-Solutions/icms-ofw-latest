@@ -713,7 +713,7 @@ function clearEmployerDetails() {
 
 $(document).ready(function () {
 
-    // getCountryISO();
+    getCountryISO();
     getEmploymentType();
     getDepartureType();
     getPortOfExit();

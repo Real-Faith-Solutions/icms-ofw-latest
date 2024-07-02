@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 
-        <!-- <div class="row">
+        <div class="row hide">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
                     <div class="row">
@@ -47,8 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 </div>
             </div>
-        </div> -->
-        
+        </div>
+
         <div class="form-row row">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="bg-form-grey py-2">
@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" maxlength="50" class="form-control emp-employer_email" name="employer_email">
                             </div>
                         </div>
-                        <div class="row div-employer_form" style="display: none">
+                        <div class="row div-employer_form hide">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label> Country </label>
                                 <select class="form-control text-capital emp-employer_country employers_country">
@@ -147,11 +147,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="row">
 
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label> Country of Deployment </label>
-                                            <!-- fixed to philippines -->
                                             <select id="emp-sel-eer-country" name="emp_sel_eer_country" class="form-control text-capital emp-act_country">
-                                                <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>
+                                                <!-- fixed to philippines -->
+                                                <!-- <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option> -->
                                             </select>
                                         </div>
 
@@ -162,26 +162,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
 
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
                                             <label>Currency</label>
-                                            <!-- fixed to PHP -->
                                             <select id="emp-sel-eer-currency" class="form-control text-capital emp-currency">
-                                                <option value="PHP" selected>PHP</option>
+                                                <!-- fixed to PHP -->
+                                                <!-- <option value="PHP" selected>PHP</option> -->
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type hide">
                                             <label>Employment Type</label>
                                             <select id="emp-sel-eer-employment-type" name="emp_sel_eer_employment-type" class="form-control text-capital emp-employment_type"></select>
                                         </div>
 
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none">
-                                            <label>Salary</label>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                            <label>Salary per hour</label>
                                             <input type="text" maxlength="20" name="emp_act_salary" class="form-control decimal emp-act_salary">
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <!-- Salary per hour -->
-                                            <label> Salary per hour</label>
+                                        <div class="form-group col-lg-4 col-md-4  col-sm-12 hide">
+                                            <label> Salary per hour in Peso</label>
                                             <input type="text" maxlength="20" name="emp_act_salary_in_peso" class="form-control decimal emp-act_salary_in_peso" id="emp-act_salary">
                                         </div>
                                     </div>
@@ -215,11 +214,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label> Country of Deployment </label>
-                                            <!-- fixed to Philippines -->
                                             <select id="emp-sel-eet-country" class="form-control text-capital emp-country">
-                                                <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>
+                                                <!-- fixed to Philippines -->
+                                                <!-- <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option> -->
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
@@ -228,26 +227,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency">
                                             <label>Currency</label>
-                                            <!-- fixed to PHP -->
                                             <select id="emp-sel-eet-currency"  class="form-control text-capital emp-currency">
-                                                <option value="PHP" selected>PHP</option>
+                                                <!-- fixed to PHP -->
+                                                <!-- <option value="PHP" selected>PHP</option> -->
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-employment-type hide">
                                             <label>Employment Type</label>
                                             <select id="emp-sel-employment-type"  class="form-control text-capital emp-employment-type"></select>
                                         </div>
 
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary" style="display: none">
-                                            <label>Salary</label>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary">
+                                            <label>Salary per hour</label>
                                             <input type="text" maxlength="20" class="form-control decimal emp-salary" name="emp_salary" id="emp-salary">
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-6  col-sm-12">
-                                            <!-- Salary per hours -->
-                                            <label> Salary per hour </label>
+                                        <div class="form-group col-lg-4 col-md-6  col-sm-12 hide">
+                                            <label> Salary per hour in Peso</label>
                                             <input type="text" maxlength="20" class="form-control decimal  emp-salary_in_peso" name="emp_salary_in_peso" id="emp-salary_in_peso">
                                         </div>
                                     </div>
@@ -302,7 +300,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
 
                         <!--local_agency_country-->
-                        <div class="row" style="display: none">
+                        <div class="row hide">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label> Country </label>
                                 <select class="form-control emp-local_agency_country" readonly><option value="173" selected>Philippines</option></select>
