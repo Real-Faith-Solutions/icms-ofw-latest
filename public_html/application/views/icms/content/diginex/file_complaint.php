@@ -4,12 +4,19 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <head>
-    <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/global/template/bootstrap/css/bootstrap.min.css">
+
+    <!-- OPLE DEV -->
+    <!-- <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/global/template/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/library/fonts/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/library/fonts/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="<?= SITE_ASSETS ?>library/fonts/fontawesome/css/all.css">
-    <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/modules/icms/css/file_complaint.css">
+    <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/modules/icms/css/file_complaint.css"> -->
     <!-- <link rel="stylesheet" href="<?= MAIN_SITE_URL ?>assets/modules/icms/css/global.css"> -->
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/global/template/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://iacat-icms.com/assets/library/fonts/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="<?= SITE_ASSETS ?>library/fonts/fontawesome/css/all.css">
+
 </head>
 
 <body>
