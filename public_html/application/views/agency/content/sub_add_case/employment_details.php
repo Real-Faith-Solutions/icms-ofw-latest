@@ -14,10 +14,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class=" card-sub-title txt-W-500"> Employment Information<br> 
                     <small class="card-desc"> Indicate both contract and out of contract details. </small> 
                     <hr class="card-sub-title_border">
+                    <div class="padding_15" style="color:#e88f13 !important;">
+                        Note: Leave if not applicable and proceed to next step.
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <!-- <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
                     <div class="row">
@@ -43,7 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 </div>
             </div>
-        </div>
+        </div> -->
+        
         <div class="form-row row">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="bg-form-grey py-2">

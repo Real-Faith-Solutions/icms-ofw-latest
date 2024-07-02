@@ -11,10 +11,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class=" card-sub-title txt-W-500"> Update Employment Information<br>
                 <small class="card-desc"> Update details such as the name of the company, company address, designation, salary, job type, etc. </small>
                 <hr class="card-sub-title_border">
+                <div class="padding_15" style="color:#e88f13 !important;">
+                    Note: Leave if not applicable and proceed to next step.
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    
+    <!-- <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
                 <form id="frm-employment_documented">
@@ -39,7 +43,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
+
     <div class="form-row row">
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="bg-form-grey py-2">
