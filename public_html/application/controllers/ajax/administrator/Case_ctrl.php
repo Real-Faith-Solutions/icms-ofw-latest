@@ -565,7 +565,7 @@ class Case_ctrl extends CI_Controller {
         $aCheck = $aParam['victim_employment_info'];
         // Rules 
         $aRules = array(
-            'act_country' => 'required',
+            // 'act_country' => 'required',
         );
         // Validate 
         $aAssert = $this->assert->formValidate($aCheck, $aRules);
@@ -579,8 +579,8 @@ class Case_ctrl extends CI_Controller {
         $aCheck = $aParam['victim_deployment_details'];
         // Rules 
         $aRules = array(
-            'deployment_date' => 'required',
-            'deployment_departure_type' => 'required',
+            // 'deployment_date' => 'required',
+            // 'deployment_departure_type' => 'required',
         );
         // Validate 
         $aAssert = $this->assert->formValidate($aCheck, $aRules);

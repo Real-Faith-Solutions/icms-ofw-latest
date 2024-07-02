@@ -42,6 +42,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="text" maxlength="10" class="form-control vi-suffix">
                             </div>
                         </div>
+                        <div class="row">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Nickname </label>
+                                    <input type="text" maxlength="10" class="form-control vi-nickname" name="victim_info_nickname" >
+                                </div>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="row">
@@ -77,6 +83,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <select class="form-control sel-religion vi-religion">
                                 </select>
                             </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-12">
+                                    <label>Member of Ethnic Group</label>
+                                    <select class="form-control sel-ethnic-group vi-ethnic_group">
+                                    </select>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -116,6 +129,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" name="v_adob" class="form-control datepicker vi-assumed_dob" placeholder="MM/DD/YYYY">
                                     </div>
                                 </div>
+                                <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class=" card-sub-title txt-W-500">Health Status<br> 
+                                        <small class="card-desc"> Fill in Health Status information. </small> 
+                                    </div>
+                                </div>
+                                <div class="fake-info-content_form">
+                                <div class="row">
+                                    <div class="form-group col-12">           
+                                        <label>Disability</label>
+                                        <select class="form-control sel-disablity vi-disability">
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group col-12">           
+                                        <label>Allergies</label>
+                                        <select class="form-control sel-allergies vi-allergy" >
+                                        </select>
+                                    </div> -->
+                                    <div class="form-group col-12">           
+                                        <label>History of Illness</label>
+                                        <select class="form-control sel-history_of_illness vi-history_of_illness"  >
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label>History of Hospitalization</label>
+                                        <input type="text" maxlength="50" class="form-control vi-other_info_hospitalization" >
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     </div>

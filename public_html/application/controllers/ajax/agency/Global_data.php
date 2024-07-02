@@ -116,6 +116,11 @@ class Global_data extends CI_Controller {
         return $aResponse;
     }
 
+    public function getEthnicGroup($aParam) {
+        $aResponse = $this->Global_data_model->getEthnicGroup($aParam);
+        return $aResponse;
+    }
+
     public function getJobs() {
         $aResponse = $this->Global_data_model->getJobs();
         return $aResponse;
@@ -195,6 +200,26 @@ class Global_data extends CI_Controller {
                 break;
             case 'nextofkin':
                 $aParam['type_id'] = '8';
+                $aParam['status'] = '1';
+                break;
+            case 'ethnicgroup':
+                $aParam['type_id'] = '32';
+                $aParam['status'] = '1';
+                break;
+            case 'disabilities':
+                $aParam['type_id'] = '33';
+                $aParam['status'] = '1';
+                break;
+            case 'allergies':
+                $aParam['type_id'] = '34';
+                $aParam['status'] = '1';
+                break;
+            case 'illness':
+                $aParam['type_id'] = '35';
+                $aParam['status'] = '1';
+                break;
+            case 'offender_description':
+                $aParam['type_id'] = '36';
                 $aParam['status'] = '1';
                 break;
         }

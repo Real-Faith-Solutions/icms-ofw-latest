@@ -36,6 +36,8 @@ function getEmploymentType() {
             l += "<option value='" + val.parameter_count_id + "' data-name='" + val.parameter_name + "'>" + val.parameter_name + " </option>";
         });
         $('#emp-sel-employment-type').html(l);
+        $('#emp-sel-eer-employment-type').html(l);
+
     }, 'json');
 }
 
@@ -880,29 +882,29 @@ $(document).ready(function () {
 
             var departure = $("#emp-sel-departure").val();
             var emp_sel_eer_country = $("#emp-sel-eer-country").val();
-            if (departure == "0") {
-                icmsMessage({
-                    type: 'msgWarning',
-                    body: '<center> Departure type is required. </center>',
-                    caption: 'Close',
-                });
-            } else {
+            // if (departure == "0") {
+            //     icmsMessage({
+            //         type: 'msgWarning',
+            //         body: '<center> Departure type is required. </center>',
+            //         caption: 'Close',
+            //     });
+            // } else {
 
-                if (emp_sel_eer_country == "") {
-                    icmsMessage({
-                        type: 'msgWarning',
-                        body: '<center>Country of deployment (Based on contract) in employment details is required.</center>',
-                        caption: 'Close',
-                    });
-                } else {
+            //     if (emp_sel_eer_country == "") {
+            //         icmsMessage({
+            //             type: 'msgWarning',
+            //             body: '<center>Country of deployment (Based on contract) in employment details is required.</center>',
+            //             caption: 'Close',
+            //         });
+            //     } else {
                     storeEmploymentDetails();
                     $('.step-trigger').attr('disabled', true);
                     $('#case-details-tab1').attr('disabled', false);
                     $('#case-details-tab1').trigger('click');
                     returnTop();
-                }
+            //     }
 
-            }
+            // }
 
         }
 

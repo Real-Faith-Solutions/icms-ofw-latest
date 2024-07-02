@@ -25,6 +25,7 @@ function storeVictimDetails() {
         'first_name': $('.vi-first_name').val(),
         'middle_name': $('.vi-middle_name').val(),
         'last_name': $('.vi-last_name').val(),
+        'nickname': $('.vi-nickname').val(),
         'dob': $('.vi-dob').val(),
         'pob': $('.vi-pob').val(),
         'pob_value': $('.vi-pob option:selected').attr('data-name'),
@@ -35,10 +36,17 @@ function storeVictimDetails() {
         'civil_value': $('.vi-civil option:selected').attr('data-name'),
         'religion': $('.vi-religion').val(),
         'religion_value': $('.vi-religion option:selected').attr('data-name'),
+        'ethnic_group': $('.vi-ethnic_group').val(),
+        'ethnic_group_value': $('.vi-ethnic_group option:selected').attr('data-name'),
         'assumed_first_name': $('.vi-assumed_first_name').val(),
         'assumed_middle_name': $('.vi-assumed_middle_name').val(),
         'assumed_last_name': $('.vi-assumed_last_name').val(),
-        'assumed_dob': $('.vi-assumed_dob').val()
+        'assumed_dob': $('.vi-assumed_dob').val(),
+        'disability': $('.vi-disability').val(),
+        'disability_value': $('.vi-disability option:selected').attr('data-name'),
+        'hospitality': $('.vi-history_of_illness').val(),
+        'hospitality_value': $('.vi-history_of_illness option:selected').attr('data-name'),
+        'other_hospitalization_history': $('.vi-other_info_hospitalization').val(),
     };
 
     _setStorageData(victim_personal_info, 'victim_personal_info');

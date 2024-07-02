@@ -192,7 +192,7 @@
                     <table>                             
                         <tr><td>Number of work per week</td>     <td>:</td>  <td>Monday-Friday</td></tr>
                         <tr><td>Number of working hours per day</td>     <td>:</td>  <td>6</td></tr>
-                        <tr><td>Salary in Peso</td> <td>:</td>  <td>PHP25000</td></tr>
+                        <tr><td>Salary per hour</td> <td>:</td>  <td>PHP25000</td></tr>
                         <tr><td></td>        <td></td>  <td></td></tr>
                     </table>
                 </td>
@@ -226,7 +226,7 @@
                     <table>                             
                         <tr><td>Number of work per week</td>     <td>:</td>  <td>Monday-Friday</td></tr>
                         <tr><td>Number of working hours per day</td>     <td>:</td>  <td>6</td></tr>
-                        <tr><td>Salary in Peso</td> <td>:</td>  <td>PHP25000</td></tr>
+                        <tr><td>Salary per hour</td> <td>:</td>  <td>PHP25000</td></tr>
                         <tr><td>&nbsp;</td>        <td></td>  <td></td></tr>
                     </table>
                 </td>

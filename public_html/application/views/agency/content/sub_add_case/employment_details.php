@@ -14,18 +14,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class=" card-sub-title txt-W-500"> Employment Information<br> 
                     <small class="card-desc"> Indicate both contract and out of contract details. </small> 
                     <hr class="card-sub-title_border">
+                    <div class="padding_15" style="color:#e88f13 !important;">
+                        Note: Leave if not applicable and proceed to next step.
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row hide">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-is_documented" value="1" name="is_employment_documented" id="rdo-documented">
-                                <label class="form-check-label employment_documented" for="rdo-documented" style="color:#e88f13 !important;">Documented<br>
-                                    <small class="card-desc"> Victim's employment is regular. </small>
+                                <label class="form-check-label employment_documented" for="rdo-documented" style="color:#e88f13 !important;">Employed<br>
+                                    <small class="card-desc"> Victim is employed. </small>
 
                                 </label>
                             </div>
@@ -33,8 +37,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-is_documented" value="0" name="is_employment_documented" id="rdo-undocumented">
-                                <label class="form-check-label employment_documented" for="rdo-undocumented" style="color:#e88f13 !important;">Non  documented<br>
-                                    <small class="card-desc"> Victim's employment is irregular. </small>
+                                <label class="form-check-label employment_documented" for="rdo-undocumented" style="color:#e88f13 !important;">Unemployed<br>
+                                    <small class="card-desc"> Victim is unemployed. </small>
 
                                 </label>
                             </div>
@@ -44,13 +48,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
+
         <div class="form-row row">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="bg-form-grey py-2">
                     <div class="row px-3">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Employer's Details
-                            </div>
+                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Employer's Details </div>
                         </div>
                     </div>
                     <div class=" px-3">
@@ -81,15 +85,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                         <div class="row div-employer_form">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="display: none;">
                                 <label> Country </label>
                                 <select class="form-control text-capital emp-employer_country employers_country">
+                                    <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row div-employer_form">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <label> City </label>
+                                <label> Address </label>
                                 <input type="text" maxlength="50" class="form-control emp-employer_city" name="emp-employer_city">
                             </div>
                         </div>
@@ -102,12 +107,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
+
             <!--EMPLOYMENT  DETAILS BASED OF CONTRACT -->
             <div class="col-lg-8 col-md-8 col-sm-12 pl-5">
                 <div class="row ">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class=" card-sub-title txt-W-500" > Employment Details
-                        </div>
+                        <div class=" card-sub-title txt-W-500" > Employment Details </div>
                     </div>
                 </div>
                 <div class="">
@@ -142,26 +147,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label> Country of Deployment  <font color="red"> <b>*</b> </font> </label>
+                                            <label> Country of Deployment </label>
                                             <select id="emp-sel-eer-country" name="emp_sel_eer_country" class="form-control text-capital emp-act_country">
+                                                <!-- fixed to Philippines -->
+                                                <!-- <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option> -->
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
-                                            <label>City </label> 
+                                            <label>Address </label> 
                                             <input type="text" maxlength="50" id="emp-sel-eer-city" class="form-control emp-city" name="emp_sel_eer_city">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
                                             <label>Currency</label>
-                                            <select id="emp-sel-eer-currency"  class="form-control text-capital emp-currency"></select>
+                                            <select id="emp-sel-eer-currency"  class="form-control text-capital emp-currency">
+                                                <!-- fixed to PHP -->
+                                                <!-- <option value="PHP" selected>PHP</option> -->
+                                            </select>
                                         </div>
+
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type hide">
+                                            <label>Employment Type</label>
+                                            <select id="emp-sel-eer-employment-type" name="emp_sel_eer_employment-type" class="form-control text-capital emp-employment_type"></select>
+                                        </div>
+
                                         <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
-                                            <label>Salary</label>
+                                            <label>Salary per hour</label>
                                             <input type="text" maxlength="20" name="emp_act_salary" class="form-control decimal emp-act_salary">
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                        <div class="form-group col-lg-4 col-md-4  col-sm-12 hide">
+                                            <label> Salary per hour in Peso</label>
                                             <input type="text" maxlength="20" name="emp_act_salary_in_peso" class="form-control decimal emp-act_salary_in_peso" id="emp-act_salary">
                                         </div>
                                     </div>
@@ -198,10 +214,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label> Country of Deployment </label>
                                             <select id="emp-sel-eet-country" class="form-control text-capital emp-country">
+                                                <!-- fixed to Philippines -->
+                                                <!-- <option value="173" data-currency="PHP" data-name="Philippines" selected>Philippines</option> -->
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
-                                            <label>Employment City  </label> 
+                                            <label>Address  </label> 
                                             <input type="text" maxlength="50" class="form-control  emp-city" name="emp_city" id="emp-sel-eet-city">
                                         </div>
                                     </div>
@@ -209,14 +227,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency">
                                             <label>Currency</label>
                                             <select id="emp-sel-eet-currency"  class="form-control text-capital emp-currency">
+                                                <!-- fixed to PHP -->
+                                                <!-- <option value="PHP" selected>PHP</option> -->
                                             </select>
                                         </div>
+
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12 form-currency hide">
+                                            <label>Employment Type</label>
+                                            <select id="emp-sel-employment-type"  class="form-control text-capital emp-employment_type"></select>
+                                        </div>
+                                        
                                         <div class="form-group col-lg-4 col-md-6 col-sm-12 form-salary">
-                                            <label>Salary</label>
+                                            <label>Salary per hour</label>
                                             <input type="text" maxlength="20" class="form-control decimal emp-salary" name="emp_salary" id="emp-salary">
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-6  col-sm-12">
-                                            <label> Salary in Peso </label>
+                                        <div class="form-group col-lg-4 col-md-6  col-sm-12 hide">
+                                            <label> Salary per hour in Peso</label>
                                             <input type="text" maxlength="20" class="form-control decimal  emp-salary_in_peso" name="emp_salary_in_peso" id="emp-salary_in_peso">
                                         </div>
                                     </div>
@@ -256,8 +282,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="bg-form-grey py-2">
                     <div class="row px-3">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Recruitment Agency's Details
-                            </div>
+                            <div class=" card-sub-title txt-W-500 " style="color: #e88f15;"> Recruitment Agency's Details </div>
                         </div>
                     </div>
                     <div class=" px-3">
@@ -271,9 +296,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <!--local_agency_country-->
                         <div class="row ">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="display:none">
                                 <label> Country </label>
-                                <select class="form-control emp-local_agency_country" disabled><option value="173" selected>Philippines</option></select>
+                                <select class="form-control emp-local_agency_country" readonly><option value="173" selected>Philippines</option></select>
                             </div>
                         </div>
                         <div class="row div-agency_local_form">
@@ -318,8 +343,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-lg-8 col-md-6 col-sm-12 form-padding-left">
                 <div class="row ">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class=" card-sub-title txt-W-500" > Other Agency's Details
-                        </div>
+                        <div class=" card-sub-title txt-W-500" > Other Agency's Details </div>
                     </div>
                 </div>
                 <div class="div-agency_local_form">
@@ -434,9 +458,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
-    <!------------------->
-    <div class="form-content mt-5">
-
+    
+    <!-- Foreign Recruitment Agency -->
+    <div class="form-content mt-5" style="display: none;">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class=" card-sub-title txt-W-500 " >Foreign Recruitment Agency<br> 
@@ -584,7 +608,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <div class="form-content mt-5 ">
+    <!-- Other Employment Details -->
+    <div class="form-content mt-5 " style="display: none;">
         <div class="employment-info-sub_forms">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -832,12 +857,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="content-footer float-right  match-buttons">
-            <button type="button" class="btn btn-previous_tab return-top" data-tab="victims">Previous</button>
-            <button type="submit" class="btn btn-primary-orange btn-next " data-tab="case-details-tab1" style="margin-left:0px;">Next</button>
-        </div>
     </div>
+
+    <hr>
+    <div class="content-footer float-right  match-buttons">
+        <button type="button" class="btn btn-previous_tab return-top" data-tab="victims">Previous</button>
+        <button type="submit" class="btn btn-primary-orange btn-next " data-tab="case-details-tab1" style="margin-left:0px;">Next</button>
+    </div>
+
 </form>
 
 

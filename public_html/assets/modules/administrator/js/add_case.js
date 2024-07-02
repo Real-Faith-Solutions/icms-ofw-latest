@@ -680,11 +680,15 @@ function clearStoredData() {
 
 
 function initialLoad() {
-    getCountries();
+    // getCountries();
     getRegions();
     getProvinces();
 
     getSex();
+    getEthnicGroup();
+    getDisabilities();
+    getAllergies();
+    getIllness();
     getCivilStatus();
     getCasePurposes();
     getContactTypes();

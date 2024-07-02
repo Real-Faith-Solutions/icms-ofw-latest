@@ -190,7 +190,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </div>
                             </div>
 
-                            <div class="fake-info-content bg-transparent">
+                            <!-- <div class="fake-info-content bg-transparent">
                                 <div class=" card-sub-title mgn-b-5 txt-orange"> Foreign Recruitment Agency's/Principal Details </div>
                                 <div class=" pt-0">
                                     <div class="row ">
@@ -210,7 +210,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -218,7 +218,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <!--<div class="card-sub-title blue" > Personal Information</div>-->
 
             </div>
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <div class="padding-l-15">
                     <div class="fake-info-content bg-transparent">
                         <div class=" card-sub-title mgn-b-5 txt-orange"> 
@@ -266,7 +266,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

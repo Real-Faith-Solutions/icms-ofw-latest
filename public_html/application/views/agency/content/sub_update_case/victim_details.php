@@ -45,6 +45,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <input type="text" class="form-control vi-victim_info_suffix" name="suffix" maxlength="20">
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Nickname </label>
+                                <input type="text" maxlength="10" class="form-control vi-victim_info_nickname" name="nickname" >
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="row">
@@ -79,6 +85,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="form-group col-12">
                                 <label>Religion </label>
                                 <select  class="form-control sel-religion vi-victim_religion" name="religion">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label>Member of Ethnic Group</label>
+                                <select class="form-control sel-ethnic_group vi-victim_ethnic_group" name="victim_ethnic_group">
                                 </select>
                             </div>
                         </div>
@@ -127,6 +140,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <input type="text" class="form-control datepicker vi-assumed-victim_info_dob" name="dob" placeholder="MM/DD/YYYY">
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class=" card-sub-title txt-W-500">Health Status<br> 
+                                                <small class="card-desc"> Fill in Health Status information. </small> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fake-info-content_form">
+                                        <div class="row">
+                                            <div class="form-group col-12">           
+                                                <label>Disability</label>
+                                                <select class="form-control vi-disability" name="disability" >
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-12">           
+                                                <label>History of Illness</label>
+                                                <select class="form-control vi-history_of_illness" name="history_of_illness" >
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label>Hospitalization</label>
+                                                <input type="text" maxlength="50" class="form-control vi-other_info_hospitalization" >
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                 </form>
                                 <div class="content-footer float-right mt-0">
                                     <button class="btn btn-update" id="btn-manage-assumed">Manage</button>

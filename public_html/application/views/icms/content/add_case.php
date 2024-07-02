@@ -246,7 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-12">
-                                                    <label> Salary in Peso</label>
+                                                    <label> Salary per hour</label>
                                                     <input type="text" class="form-control">
                                                 </div>
                                             </div>
@@ -658,7 +658,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                             <div class="row ">
                                                 <div class="col-6 summary-lbl">
-                                                    <label>Salary in Peso</label>
+                                                    <label>Salary per hour</label>
                                                 </div>
                                                 <div class="col-6 summary-details">
                                                     <label>Lorem Ipsum </label>
