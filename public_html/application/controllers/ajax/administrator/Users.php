@@ -629,6 +629,9 @@ class Users extends CI_Controller {
     }
 
     public function getEmailAvailability($aParam) {
+
+        $aParam['user_id'] = $this->yel->decrypt_param($aParam['user_id']);
+        $aParam['agencyid'] = $this->Users_model->getUserEmailAgencyIdByUserId($aParam);
         $aResult = $this->Users_model->getUserEmailAvailability($aParam);
         return $aResult;
     }
