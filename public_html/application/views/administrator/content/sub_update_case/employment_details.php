@@ -11,10 +11,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class=" card-sub-title txt-W-500"> Update Employment Information<br>
                 <small class="card-desc"> Update details such as the name of the company, company address, designation, salary, job type, etc. </small>
                 <hr class="card-sub-title_border">
+                <div class="padding_15" style="color:#e88f13 !important;">
+                    Note: Leave if not applicable and proceed to next step.
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="row hide">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="fake-info-content padding_15 mgn-B-20 " style="display:block;    background-color: #FFE28C;">
                 <form id="frm-employment_documented">
@@ -22,16 +26,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-is_documented rdo_de" value="1" name="rdo_doc_employment" id="rdo_documented_employment">
-                                <label class="form-check-label employment_documented" for="rdo_documented_employment" style="color:#e88f13 !important;">Regular Employment details<br>
-                                    <small class="card-desc"> Victim's employment is regular. </small>
+                                <label class="form-check-label employment_documented" for="rdo_documented_employment" style="color:#e88f13 !important;">Employed<br>
+                                    <small class="card-desc"> Victim is employed. </small>
                                 </label>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group form-check">
                                 <input type="radio" class="form-check-input emp-case_victim_employment_is_documented rdo_de" value="0" name="rdo_doc_employment" id="rdo_undocumented_employment">
-                                <label class="form-check-label employment_documented" for="rdo_undocumented_employment" style="color:#e88f13 !important;">Irregular Employment details<br>
-                                    <small class="card-desc"> Victim's employment is irregular. </small>
+                                <label class="form-check-label employment_documented" for="rdo_undocumented_employment" style="color:#e88f13 !important;">Unemployed<br>
+                                    <small class="card-desc"> Victim is unemployed. </small>
                                 </label>
                             </div>
                         </div>
@@ -40,6 +44,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </div>
     </div>
+
     <div class="form-row row">
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="bg-form-grey py-2">
@@ -153,8 +158,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none;">
-                                            <label> Country of Deployment <font color="red"> <b>*</b> </font></label>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label> Country of Deployment </label>
                                             <select id="emp-sel-eet-country" name="emp_sel_eet_country" class="form-control text-capital emp-country_id" disabled="true"></select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6  col-sm-12">
@@ -163,25 +168,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
                                             <label>Currency</label>
                                             <select id="emp-sel-eet-currency" class="form-control text-capital emp-case_victim_employment_details_salary_foreign_iso" disabled="true"></select>
                                         </div>
 
 
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type hide">
                                             <label>Employment Type</label>
                                             <select id="emp-sel-employment-type" type="text" class="form-control emp-case_victim_employment_details_employment_type" disabled="true"></select>
                                         </div>
 
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
-                                            <label>Salary</label>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                            <label>Salary per hour</label>
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
 
 
-                                        <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary per hour </label>
+                                        <div class="form-group col-lg-4 col-md-4  col-sm-12 hide">
+                                            <label> Salary per hour in Peso</label>
                                             <input type="text" class="form-control decimal emp-case_victim_employment_details_salary_in_local" disabled="true">
                                         </div>
                                     </div>
@@ -223,7 +228,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12" style="display: none;">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label> Country of Deployment </label>
                                             <select id="emp-sel-actual-country" class="form-control text-capital emp-act-country_id" disabled="true"></select>
                                         </div>
@@ -233,23 +238,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-currency">
                                             <label>Currency</label>
                                             <select id="emp-sel-actual-currency" class="form-control text-capital emp-act-case_victim_employment_details_salary_foreign_iso" disabled="true"> </select>
                                         </div>
 
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type" style="display: none;">
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-employment-type hide">
                                             <label>Employment Type</label>
                                             <select id="" type="text" class="form-control emp-act-case_victim_employment_details_employment_type" disabled="true"></select>
                                         </div>
 
 
-                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary" style="display: none;">
-                                            <label>Salary</label>
+                                        <div class="form-group col-lg-4 col-md-4 col-sm-12 form-salary">
+                                            <label>Salary per hour</label>
                                             <input type="text" class="form-control decimal emp-act-case_victim_employment_details_salary_in_foreign" disabled="true">
                                         </div>
-                                        <div class="form-group col-lg-4 col-md-4  col-sm-12">
-                                            <label> Salary per hour </label>
+                                        <div class="form-group col-lg-4 col-md-4  col-sm-12 hide">
+                                            <label> Salary per hour in Peso</label>
                                             <input type="text" class="form-control decimal emp-act-case_victim_employment_details_salary_in_local" disabled="true">
                                         </div>
                                     </div>

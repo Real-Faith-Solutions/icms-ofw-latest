@@ -1490,8 +1490,9 @@ Class Case_model extends CI_Model {
 
     public function addEmployment($aParam) {
 
-        //remove this field from coding but not in database
-//       case_victim_employment_type`='" . $aParam['victim_employment_info']['employment_type'] . "', 
+        // remove this field from coding but not in database
+        // case_victim_employment_type`='" . $aParam['victim_employment_info']['employment_type'] . "', 
+        // `case_victim_employment_is_documented`= '" . $aParam['victim_employment_info']['is_documented'] . "', 
 
         $sql = "
                 INSERT INTO 
@@ -1501,8 +1502,8 @@ Class Case_model extends CI_Model {
                 `recruitment_agency_id_local` = " . $this->yel->checkifStringExist($aParam['local_agency_id']) . ", 
                 `recruitment_agency_id_foreign` = " . $this->yel->checkifStringExist($aParam['foreign_agency_id']) . ", 
                 `employer_id`= " . $this->yel->checkifStringExist($aParam['employer_id']) . ", 
-                `case_victim_employment_is_documented`= '" . $aParam['victim_employment_info']['is_documented'] . "', 
-                `case_victim_employment_type`='" . $aParam['victim_employment_info']['employment_type'] . "', 
+                
+
                 `case_victim_employment_date_added`= now(), 
                 `case_victim_employment_added_by`='" . $this->session->userdata('userData')['user_id'] . "', 
                 `case_victim_employment_added_by_agency`= '" . $this->session->userdata('userData')['agency_id'] . "', 
@@ -2260,12 +2261,16 @@ Class Case_model extends CI_Model {
     }
 
     public function setVictimEmploymentType($aParam) {
+
+        // remove this field from coding but not in database
+        
+
         $aResponse = [];
         $sql = "
                 UPDATE 
                    `icms_case_victim_employment`
                 SET
-                   `case_victim_employment_is_documented`='" . $aParam['is_documented'] . "'
+                    `case_victim_employment_is_documented`='" . $aParam['is_documented'] . "'
                 WHERE
                     `case_victim_employment_id`='" . $aParam['datacveid'] . "'
               ";
